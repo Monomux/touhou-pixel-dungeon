@@ -118,6 +118,13 @@ public class Ring extends KindofMisc {
 	}
 
 	@Override
+	public ArrayList<String> actions(Hero hero ) {
+		ArrayList<String> actions = super.actions( hero );
+		actions.remove(AC_XYZ);
+		return actions;
+	}
+
+	@Override
 	public boolean doUnequip( Hero hero, boolean collect, boolean single ) {
 		if (super.doUnequip( hero, collect, single )) {
 

@@ -65,6 +65,7 @@ public class Yamame extends Mob {
 		FLEEING = new Fleeing();
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.PURE);
 	}
 
 	@Override

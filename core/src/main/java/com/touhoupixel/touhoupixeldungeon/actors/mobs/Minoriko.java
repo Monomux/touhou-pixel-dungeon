@@ -66,6 +66,7 @@ public class Minoriko extends Mob {
 		lootChance = 0.1f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.COOL);
 	}
 
 	private static final String ITEM = "item";

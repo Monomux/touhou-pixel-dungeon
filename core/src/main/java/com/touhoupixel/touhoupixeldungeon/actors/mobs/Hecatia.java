@@ -51,6 +51,7 @@ public class Hecatia extends Mob {
 		lootChance = 0.01f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.WARP);
 	}
 
 	@Override

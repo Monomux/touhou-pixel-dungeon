@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
@@ -45,6 +46,11 @@ public class Gloves extends MeleeWeapon {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);
 		return actions;
+	}
+
+	@Override
+	public int warpResistFactor( Char owner ) {
+		return 0;
 	}
 
 	@Override

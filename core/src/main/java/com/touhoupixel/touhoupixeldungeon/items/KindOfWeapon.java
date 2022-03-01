@@ -23,10 +23,12 @@ package com.touhoupixel.touhoupixeldungeon.items;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.ui.ActionIndicator;
 import com.touhoupixel.touhoupixeldungeon.utils.BArray;
@@ -133,6 +135,28 @@ abstract public class KindOfWeapon extends EquipableItem {
 	}
 
 	public int defenseFactor( Char owner ) {
+		return 0;
+	}
+
+	public int fireResistFactor( Char owner ) {
+		return 0;
+	}
+	public int coldResistFactor( Char owner ) {
+		return 0;
+	}
+	public int warpResistFactor( Char owner ) {
+		return 0;
+	}
+	public int powerfulResistFactor( Char owner ) {
+		return 0;
+	}
+	public int coolResistFactor( Char owner ) {
+		return 0;
+	}
+	public int pureResistFactor( Char owner ) {
+		return 0;
+	}
+	public int happyResistFactor( Char owner ) {
 		return 0;
 	}
 	

@@ -64,6 +64,7 @@ public class Clownpiece extends Mob {
 		lootChance = 0.1f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.WARP);
 	}
 
 	@Override

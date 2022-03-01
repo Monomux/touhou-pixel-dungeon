@@ -31,14 +31,9 @@ import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.blobs.CorrosiveGas;
-import com.touhoupixel.touhoupixeldungeon.actors.blobs.Fire;
-import com.touhoupixel.touhoupixeldungeon.actors.blobs.ParalyticGas;
-import com.touhoupixel.touhoupixeldungeon.actors.blobs.ToxicGas;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
@@ -54,17 +49,12 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Combo;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corrosion;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireImbue;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Foresight;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostImbue;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
@@ -73,7 +63,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.HoldFast;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
@@ -81,27 +70,18 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDamage;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.RingoSurge;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Roots;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SnipersMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperDegrade;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperOoze;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.UnderwaterCurse;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.ArmorAbility;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.NaturesPower;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.warrior.Endure;
@@ -159,14 +139,13 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand2;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flail;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flintlock;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand2;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FullmoonScythe;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Grayswandir;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HellMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KoishiSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
@@ -174,6 +153,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YukinaMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
@@ -216,7 +196,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 
-public class  Hero extends Char {
+public class Hero extends Char {
 
 	{
 		actPriority = HERO_PRIO;
@@ -280,6 +260,7 @@ public class  Hero extends Char {
 		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
 			STR += 10;
 		}
+
 	}
 
 	public void updateHT( boolean boostHP ){
@@ -653,6 +634,10 @@ public class  Hero extends Char {
 
 		if (buff(FrostBrandBuff.class) != null){
 			evasion *= 0.95;
+		}
+
+		if (Dungeon.hero.belongings.weapon() instanceof HellMic) {
+			evasion *= 1.5;
 		}
 
 		if (belongings.armor() != null) {
@@ -1362,6 +1347,10 @@ public class  Hero extends Char {
 			damage *= 10f;
 		}
 
+		if (Dungeon.hero.belongings.weapon() instanceof TurnaboutSword && (Random.Int(3) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
+			damage = enemy.HP-1;
+		}
+
 		if (Dungeon.hero.belongings.weapon() instanceof Grayswandir){
 			if (Dungeon.depth == 46 || Dungeon.depth == 47 || Dungeon.depth == 48 || Dungeon.depth == 49 || Dungeon.depth == 50 || Dungeon.depth == 96 || Dungeon.depth == 97 || Dungeon.depth == 98 || Dungeon.depth == 99 || Dungeon.depth == 100){
 				damage *= 2.5f;
@@ -1420,6 +1409,10 @@ public class  Hero extends Char {
 
 		if (Dungeon.hero.belongings.weapon() instanceof YukinaMic && !enemy.properties().contains(Char.Property.ANIMAL)) {
 			damage *= 2f;
+		}
+
+		if (Dungeon.hero.belongings.weapon() instanceof HellMic && !enemy.properties().contains(Char.Property.ANIMAL)) {
+			damage *= 2.5f;
 		}
 
 		if (Dungeon.hero.belongings.weapon() instanceof BlazingStar){
@@ -2307,11 +2300,9 @@ public class  Hero extends Char {
 		if (Dungeon.hero.belongings.weapon() instanceof AlchemyHat){
 			dmg += 2;
 		}
-
 		if (buff(FireBrandBuff.class) != null){
 			dmg += 1;
 		}
-
 		if (buff(FrostBrandBuff.class) != null){
 			dmg += 1;
 		}
@@ -2856,6 +2847,36 @@ public class  Hero extends Char {
 		boolean wasHighGrass = Dungeon.level.map[step] == Terrain.HIGH_GRASS;
 
 		super.move( step, travelling);
+
+		if (belongings.weapon() != null && belongings.armor() != null) {
+			Statistics.fireres = (belongings.weapon().fireResistFactor(this) + belongings.armor().fireResistFactor(this));
+		}
+			if (belongings.weapon() != null && belongings.armor() != null) {
+				Statistics.coldres = (belongings.weapon().coldResistFactor(this) + belongings.armor().coldResistFactor(this));
+			}
+				if (belongings.weapon() != null && belongings.armor() != null) {
+					Statistics.warpres = (belongings.weapon().warpResistFactor(this) + belongings.armor().warpResistFactor(this));
+				}
+					if (belongings.weapon() != null && belongings.armor() != null) {
+						Statistics.powerfulres = (belongings.weapon().powerfulResistFactor(this) + belongings.armor().powerfulResistFactor(this));
+					}
+						if (belongings.weapon() != null && belongings.armor() != null) {
+							Statistics.coolres = (belongings.weapon().coolResistFactor(this) + belongings.armor().coolResistFactor(this));
+						}
+							if (belongings.weapon() != null && belongings.armor() != null) {
+								Statistics.pureres = (belongings.weapon().pureResistFactor(this) + belongings.armor().pureResistFactor(this));
+							}
+								if (belongings.weapon() != null && belongings.armor() != null)  {
+			Statistics.happyres = (belongings.weapon().happyResistFactor(this)+belongings.armor().happyResistFactor(this));
+								} else {
+		Statistics.fireres = 0;
+		Statistics.coldres = 0;
+		Statistics.warpres = 0;
+		Statistics.powerfulres = 0;
+		Statistics.coolres = 0;
+		Statistics.pureres = 0;
+		Statistics.happyres = 0;
+		}
 
 		if (heroClass == HeroClass.MURASA){
 			Buff.affect(this, UnderwaterCurse.class);

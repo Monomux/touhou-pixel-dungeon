@@ -43,7 +43,7 @@ public class Yachie extends Mob {
 
 		if (Dungeon.depth > 50){
 			HP = HT = 385;
-		} else HP = HT = 27;
+		} else HP = HT = 13;
 
 		if (Dungeon.depth > 50){
 			defenseSkill = 57;
@@ -58,6 +58,7 @@ public class Yachie extends Mob {
 		} else maxLvl = 10;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.POWERFUL);
 
 		WANDERING = new Wandering();
 		FLEEING = new Fleeing();

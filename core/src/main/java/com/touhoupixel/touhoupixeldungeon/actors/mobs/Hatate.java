@@ -59,6 +59,7 @@ public class Hatate extends Mob {
 		lootChance = 0.1667f; //by default, see rollToDropLoot()
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

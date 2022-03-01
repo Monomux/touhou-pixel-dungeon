@@ -62,6 +62,7 @@ public class Yorihime extends Mob {
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.GOD);
+		properties.add(Property.FIRE);
 
 		baseSpeed = 0.8f;
 

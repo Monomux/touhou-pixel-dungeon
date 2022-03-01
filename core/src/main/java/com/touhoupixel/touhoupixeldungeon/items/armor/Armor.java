@@ -162,6 +162,7 @@ public class Armor extends EquipableItem {
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
 		if (seal != null) actions.add(AC_DETACH);
+		actions.remove(AC_XYZ);
 		return actions;
 	}
 
@@ -374,6 +375,28 @@ public class Armor extends EquipableItem {
 		}
 		
 		return stealth;
+	}
+
+	public int fireResistFactor( Char owner ) {
+		return 0;
+	}
+	public int coldResistFactor( Char owner ) {
+		return 0;
+	}
+	public int warpResistFactor( Char owner ) {
+		return 0;
+	}
+	public int powerfulResistFactor( Char owner ) {
+		return 0;
+	}
+	public int coolResistFactor( Char owner ) {
+		return 0;
+	}
+	public int pureResistFactor( Char owner ) {
+		return 0;
+	}
+	public int happyResistFactor( Char owner ) {
+		return 0;
 	}
 	
 	@Override

@@ -46,7 +46,7 @@ public class Tenkyuu extends Mob {
 
 		if (Dungeon.depth > 50){
 			HP = HT = 787;
-		} else HP = HT = 182;
+		} else HP = HT = 184;
 
 		if (Dungeon.depth > 50){
 			defenseSkill = 94;
@@ -61,6 +61,7 @@ public class Tenkyuu extends Mob {
 		} else maxLvl = 45;
 
 		properties.add(Property.GOD);
+		properties.add(Property.WARP);
 
 		WANDERING = new Wandering();
 		FLEEING = new Fleeing();

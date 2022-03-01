@@ -49,7 +49,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.YogFist;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.HecatiaBody;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.Sheep;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.FlowParticle;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.WindParticle;
@@ -1087,7 +1087,7 @@ public abstract class Level implements Bundlable {
 			}
 			
 			if ((c instanceof Hero && ((Hero) c).subClass == HeroSubClass.WARDEN)
-				|| c instanceof YogFist.SoiledFist) {
+				|| c instanceof HecatiaBody.SoiledFist) {
 				System.arraycopy(Dungeon.level.losBlocking, 0, modifiableBlocking, 0, modifiableBlocking.length);
 				blocking = modifiableBlocking;
 				for (int i = 0; i < blocking.length; i++){

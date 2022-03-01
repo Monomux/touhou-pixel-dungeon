@@ -58,6 +58,7 @@ public class Yuuma extends Mob {
 		lootChance = 0.04f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.WARP);
 	}
 
 	@Override

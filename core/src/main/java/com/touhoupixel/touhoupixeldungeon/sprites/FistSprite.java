@@ -23,7 +23,7 @@ package com.touhoupixel.touhoupixeldungeon.sprites;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.YogFist;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.HecatiaBody;
 import com.touhoupixel.touhoupixeldungeon.effects.Beam;
 import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
@@ -130,7 +130,7 @@ public abstract class FistSprite extends MobSprite {
 				new Callback() {
 					@Override
 					public void call() {
-						((YogFist)ch).onZapComplete();
+						((HecatiaBody)ch).onZapComplete();
 					}
 				} );
 		Sample.INSTANCE.play( Assets.Sounds.ZAP );
@@ -269,7 +269,7 @@ public abstract class FistSprite extends MobSprite {
 			turnTo( ch.pos , cell );
 			play( zap );
 
-			((YogFist)ch).onZapComplete();
+			((HecatiaBody)ch).onZapComplete();
 			parent.add( new Beam.LightRay(center(), DungeonTilemap.raisedTileCenterToWorld(cell)));
 		}
 		@Override

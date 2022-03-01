@@ -60,6 +60,7 @@ public class Meiling extends Mob {
 		lootChance = 0.083f;
 
 		properties.add(Property.UNDEAD);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

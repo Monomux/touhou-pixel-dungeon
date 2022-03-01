@@ -56,6 +56,8 @@ public class Mai extends Mob {
 
 		loot = new PotionOfDoublespeed();
 		lootChance = 0.05f;
+
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

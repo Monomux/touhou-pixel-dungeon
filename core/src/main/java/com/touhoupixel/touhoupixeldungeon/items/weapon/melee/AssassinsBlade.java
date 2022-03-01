@@ -55,6 +55,11 @@ public class AssassinsBlade extends MeleeWeapon {
 	}
 
 	@Override
+	public int coolResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);

@@ -51,6 +51,7 @@ public class Medicine extends Mob {
 		intelligentAlly = true;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.PURE);
 	}
 
 	private int level;

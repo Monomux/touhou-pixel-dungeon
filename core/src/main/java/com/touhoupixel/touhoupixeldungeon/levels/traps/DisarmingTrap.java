@@ -25,7 +25,7 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
@@ -65,7 +65,7 @@ public class DisarmingTrap extends Trap{
 			}
 		}
 
-		if (Actor.findChar(pos) instanceof Statue){
+		if (Actor.findChar(pos) instanceof Narumi){
 			Actor.findChar(pos).die(this);
 			Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
 			CellEmitter.get(pos).burst(Speck.factory(Speck.LIGHT), 4);

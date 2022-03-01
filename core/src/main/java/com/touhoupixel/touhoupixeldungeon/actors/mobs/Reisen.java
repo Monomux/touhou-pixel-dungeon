@@ -76,6 +76,7 @@ public class Reisen extends Mob {
 		lootChance = 0.33f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.PURE);
 	}
 
 	@Override

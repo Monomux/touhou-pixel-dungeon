@@ -30,8 +30,15 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.Stylus;
+import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
+import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.windows.WndBag;
 
 import java.util.ArrayList;
 
@@ -52,10 +59,8 @@ public class TurnaboutCloak extends MeleeWeapon {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		actions.remove(AC_XYZ);
-		return actions;
+	public int warpResistFactor( Char owner ) {
+		return 2;
 	}
 
 	@Override
@@ -72,4 +77,41 @@ public class TurnaboutCloak extends MeleeWeapon {
 		}
 		return super.damageRoll(owner);
 	}
+	@Override
+	public void execute(final Hero hero, String action) {
+
+		super.execute(hero, action);
+
+		if (action.equals(AC_XYZ) && curItem.level() == 8) {
+			GameScene.selectItem(itemSelector);
+		}
+	}
+
+	private final WndBag.ItemSelector itemSelector = new WndBag.ItemSelector() {
+
+		@Override
+		public String textPrompt() {
+			return Messages.get(Stylus.class, "promptxyz");
+		}
+
+		@Override
+		public Class<? extends Bag> preferredBag() {
+			return Belongings.Backpack.class;
+		}
+
+		@Override
+		public boolean itemSelectable(Item item) {
+			return item instanceof DoubleSword;
+		}
+
+		@Override
+		public void onSelect(Item item) {
+			if (item != null && item.level() == 8){
+				curItem.detach(curUser.belongings.backpack);
+				item.detach(curUser.belongings.backpack);
+				TurnaboutSword tas = new TurnaboutSword();
+				tas.identify().collect();
+			}
+		}
+	};
 }

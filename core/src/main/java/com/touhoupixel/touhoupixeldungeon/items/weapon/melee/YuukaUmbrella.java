@@ -49,9 +49,14 @@ public class YuukaUmbrella extends MeleeWeapon {
 	}
 
 	@Override
+	public int powerfulResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
 	public int max(int lvl) {
-		return 4 * (tier + 1) +
-				lvl * (tier);
+		return 4*(tier+1)+
+				lvl*(tier);
 	}
 
 	@Override

@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
@@ -62,11 +63,16 @@ public class Flail extends MeleeWeapon {
 	}
 
 	@Override
+	public int coldResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
 	public int damageRoll(Char owner) {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof FireBrand) {
+			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof Flail) {
 				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
 				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
 				Buff.prolong(owner, Hex.class, Hex.DURATION);
@@ -81,7 +87,7 @@ public class Flail extends MeleeWeapon {
 
 		super.execute(hero, action);
 
-		if (action.equals(AC_XYZ) && curItem.level() == 4) {
+		if (action.equals(AC_XYZ) && curItem.level() == 6) {
 			GameScene.selectItem(itemSelector);
 		}
 	}
@@ -105,7 +111,7 @@ public class Flail extends MeleeWeapon {
 
 		@Override
 		public void onSelect(Item item) {
-			if (item.level() == 4){
+			if (item != null && item.level() == 6){
 				curItem.detach(curUser.belongings.backpack);
 				item.detach(curUser.belongings.backpack);
 				FrostBrand2 fb2 = new FrostBrand2();

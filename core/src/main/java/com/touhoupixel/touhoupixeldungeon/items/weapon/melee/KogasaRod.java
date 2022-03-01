@@ -44,15 +44,18 @@ public class KogasaRod extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 
-		//check Dart.class for additional properties
-
 		tier = 4;
 	}
 
 	@Override
 	public int max(int lvl) {
-		return  4*(tier+1) +    //20 base, down from 25
-				lvl*(tier);     //+4 per level, down from +5
+		return  4*(tier+1)+
+				lvl*(tier);
+	}
+
+	@Override
+	public int coldResistFactor( Char owner ) {
+		return 2;
 	}
 
 	@Override

@@ -62,6 +62,11 @@ public class YuyukoFoldingFan extends MeleeWeapon {
 	}
 
 	@Override
+	public int pureResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public int defenseFactor( Char owner ) {
 		return 6;	//2 extra defence
 	}

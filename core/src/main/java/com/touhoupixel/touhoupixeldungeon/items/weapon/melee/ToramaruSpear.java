@@ -50,6 +50,11 @@ public class ToramaruSpear extends MeleeWeapon {
 	}
 
 	@Override
+	public int coolResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
 	public int max(int lvl) {
 		return  Math.round((Statistics.itemsCrafted)*4f+(Statistics.toyohimesKilled)*2f+(Statistics.yorihimesKilled)*2f+(Statistics.limitBreak)*1f+(Statistics.thrownAssists)*0.1f-(Statistics.ankhsUsed)*2f-(Statistics.foodEaten)*0.1f-(Statistics.piranhasKilled)*1f+3f*(tier+1)) +
 				lvl*Math.round(1.33f*(tier+1)); //+4 per level, up from +3

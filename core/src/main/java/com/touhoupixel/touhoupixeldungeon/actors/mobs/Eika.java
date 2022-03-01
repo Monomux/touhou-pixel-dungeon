@@ -52,6 +52,8 @@ public class Eika extends Mob {
 
 		loot = new StoneOfShock();
 		lootChance = 0.2f;
+
+		properties.add(Property.COLD);
 	}
 
 	@Override

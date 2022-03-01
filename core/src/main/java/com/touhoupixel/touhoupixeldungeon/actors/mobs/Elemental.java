@@ -70,6 +70,7 @@ public abstract class Elemental extends Mob {
 		flying = true;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.WARP);
 	}
 
 	@Override

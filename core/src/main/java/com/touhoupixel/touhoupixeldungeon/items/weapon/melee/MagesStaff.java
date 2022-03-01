@@ -87,6 +87,11 @@ public class MagesStaff extends MeleeWeapon {
 	}
 
 	@Override
+	public int warpResistFactor( Char owner ) {
+		return 0;
+	}
+
+	@Override
 	public int max(int lvl) {
 		return  Math.round(3f*(tier+1)) +   //6 base damage, down from 10
 				lvl*(tier+1);               //scaling unaffected

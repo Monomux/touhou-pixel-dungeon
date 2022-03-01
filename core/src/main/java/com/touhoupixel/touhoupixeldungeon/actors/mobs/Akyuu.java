@@ -57,6 +57,8 @@ public class Akyuu extends Mob {
 
 		loot = new Blood();
 		lootChance = 0.04f;
+
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

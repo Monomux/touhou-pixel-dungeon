@@ -50,7 +50,7 @@ import java.util.Locale;
 public class WndHero extends WndTabbed {
 
 	private static final int WIDTH		= 120;
-	private static final int HEIGHT		= 120;
+	private static final int HEIGHT		= 140;
 
 	private StatsTab stats;
 	private TalentsTab talents;
@@ -138,22 +138,20 @@ public class WndHero extends WndTabbed {
 			infoButton.setRect(title.right(), 0, 16, 16);
 			add(infoButton);
 
-			pos = title.bottom() + 2*GAP;
+			pos = title.bottom()+4;
 
 			int strBonus = hero.STR() - hero.STR;
 			if (strBonus > 0)           statSlot( Messages.get(this, "str"), hero.STR + " + " + strBonus );
 			else if (strBonus < 0)      statSlot( Messages.get(this, "str"), hero.STR + " - " + -strBonus );
 			else                        statSlot( Messages.get(this, "str"), hero.STR() );
-			if (hero.shielding() > 0)   statSlot( Messages.get(this, "health"), hero.HP + "+" + hero.shielding() + "/" + hero.HT );
-			else                        statSlot( Messages.get(this, "health"), (hero.HP) + "/" + hero.HT );
 			statSlot( Messages.get(this, "exp"), hero.exp + "/" + hero.maxExp() );
-
-			pos += GAP;
-
-			statSlot( Messages.get(this, "gold"), Statistics.goldCollected );
-			statSlot( Messages.get(this, "depth"), Statistics.deepestFloor );
-
-			pos += GAP;
+			statSlot( Messages.get(this, "fireres"), Statistics.fireres );
+			statSlot( Messages.get(this, "coldres"), Statistics.coldres );
+			statSlot( Messages.get(this, "warpres"), Statistics.warpres );
+			statSlot( Messages.get(this, "powerfulres"), Statistics.powerfulres );
+			statSlot( Messages.get(this, "coolres"), Statistics.coolres );
+			statSlot( Messages.get(this, "pureres"), Statistics.pureres );
+			statSlot( Messages.get(this, "happyres"), Statistics.happyres );
 		}
 
 		private void statSlot( String label, String value ) {

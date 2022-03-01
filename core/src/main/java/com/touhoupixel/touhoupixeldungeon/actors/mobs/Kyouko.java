@@ -57,6 +57,7 @@ public class Kyouko extends Mob {
 
 		properties.add(Property.ANIMAL);
 		properties.add(Property.YOKAI);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

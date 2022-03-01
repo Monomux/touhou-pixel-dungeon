@@ -52,6 +52,7 @@ public class Nazrin extends Mob {
 		lootChance = 0.5f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.armor;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
 public class ClothArmor extends Armor {
@@ -34,5 +36,4 @@ public class ClothArmor extends Armor {
 	public ClothArmor() {
 		super( 1 );
 	}
-
 }

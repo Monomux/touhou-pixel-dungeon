@@ -65,6 +65,7 @@ public class Kokoro extends Mob {
 		lootChance = 0.4f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

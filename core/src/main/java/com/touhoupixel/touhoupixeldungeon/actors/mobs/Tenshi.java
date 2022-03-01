@@ -57,6 +57,8 @@ public class Tenshi extends Mob {
 
 		loot = new Peach();
 		lootChance = 0.04f;
+
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

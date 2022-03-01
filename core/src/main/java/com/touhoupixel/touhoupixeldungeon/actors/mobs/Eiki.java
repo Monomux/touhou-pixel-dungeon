@@ -53,6 +53,7 @@ public class Eiki extends Mob {
 		lootChance = 0.04f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

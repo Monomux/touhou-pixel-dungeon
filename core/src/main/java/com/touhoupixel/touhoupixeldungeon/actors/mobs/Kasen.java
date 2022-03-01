@@ -63,6 +63,8 @@ public class Kasen extends Mob {
 
 		WANDERING = new Wandering();
 		HUNTING = new Hunting();
+
+		properties.add(Property.COOL);
 	}
 
 	@Override

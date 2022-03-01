@@ -22,7 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -67,7 +67,7 @@ public class StatueRoom extends SpecialRoom {
 			
 		}
 		
-		Statue statue = Statue.random();
+		Narumi statue = Narumi.random();
 		statue.pos = cx + cy * level.width();
 		level.mobs.add( statue );
 	}

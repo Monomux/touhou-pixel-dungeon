@@ -60,6 +60,7 @@ public class Mystia extends Mob {
 
 		properties.add(Property.ANIMAL);
 		properties.add(Property.FLOAT);
+		properties.add(Property.PURE);
 	}
 
 	@Override

@@ -45,6 +45,7 @@ public class Albino extends Wriggle {
 		lootChance = 0.8f;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.HAPPY);
 	}
 	
 	@Override

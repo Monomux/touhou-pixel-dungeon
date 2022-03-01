@@ -54,7 +54,7 @@ public class Murasa extends Mob {
 		state = SLEEPING;
 
 		properties.add(Property.YOKAI);
-
+		properties.add(Property.COLD);
 	}
 	
 	public Murasa() {

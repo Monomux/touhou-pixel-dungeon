@@ -54,6 +54,8 @@ public class Star extends Mob {
 		
 		loot = Gold.class;
 		lootChance = 0.4f;
+
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

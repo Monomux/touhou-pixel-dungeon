@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon;
 
+import com.touhoupixel.touhoupixeldungeon.items.KindOfWeapon;
 import com.watabou.utils.Bundle;
 
 public class Statistics {
@@ -55,6 +56,14 @@ public class Statistics {
 	public static int spawnersAlive;
 
 	public static float duration;
+
+	public static int fireres;
+	public static int coldres;
+	public static int warpres;
+	public static int powerfulres;
+	public static int coolres;
+	public static int pureres;
+	public static int happyres;
 
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
@@ -95,6 +104,15 @@ public class Statistics {
 
 		duration	= 0;
 
+		//resistances
+		fireres = 0;
+		coldres = 0;
+		warpres = 0;
+		powerfulres = 0;
+		coolres = 0;
+		pureres = 0;
+		happyres = 0;
+
 		qualifiedForNoKilling = false;
 
 		amuletObtained = false;
@@ -131,6 +149,14 @@ public class Statistics {
 	private static final String SPAWNERS	= "spawnersAlive";
 
 	private static final String DURATION	= "duration";
+
+	private static final String FIRERES	= "fireres";
+	private static final String COLDRES	= "coldres";
+	private static final String WARPRES	= "warpres";
+	private static final String POWERFULRES	= "powerfulres";
+	private static final String COOLRES	= "coolres";
+	private static final String PURERES	= "pureres";
+	private static final String HAPPYRES	= "happyres";
 
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
@@ -170,6 +196,14 @@ public class Statistics {
 
 		bundle.put( DURATION,	duration );
 
+		bundle.put( FIRERES,	fireres );
+		bundle.put( COLDRES,	coldres );
+		bundle.put( WARPRES,	warpres );
+		bundle.put( POWERFULRES,	powerfulres );
+		bundle.put( COOLRES,	coolres );
+		bundle.put( PURERES,	pureres );
+		bundle.put( HAPPYRES,	happyres );
+
 		bundle.put(NO_KILLING_QUALIFIED, qualifiedForNoKilling);
 
 		bundle.put( AMULET,		amuletObtained );
@@ -204,6 +238,14 @@ public class Statistics {
 		spawnersAlive   = bundle.getInt( SPAWNERS );
 
 		duration		= bundle.getFloat( DURATION );
+
+		fireres		= bundle.getInt( FIRERES );
+		coldres		= bundle.getInt( COLDRES );
+		warpres		= bundle.getInt( WARPRES );
+		powerfulres		= bundle.getInt( POWERFULRES );
+		coolres		= bundle.getInt( COOLRES );
+		pureres		= bundle.getInt( PURERES );
+		happyres		= bundle.getInt( HAPPYRES );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 

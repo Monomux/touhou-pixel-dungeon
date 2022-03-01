@@ -53,6 +53,7 @@ public class Mokou extends Mob {
 		lootChance = 0.1f;
 
 		properties.add(Property.ELIXIR);
+		properties.add(Property.FIRE);
 	}
 
 	@Override

@@ -60,6 +60,7 @@ public class Momiji extends Mob {
 		lootChance = 0.5f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.POWERFUL);
 	}
 	
 	protected boolean hasRaged = false;

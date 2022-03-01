@@ -50,6 +50,8 @@ public class Koakuma extends Mob {
 
 		loot = new Sungrass.Seed();
 		lootChance = 0.02f;
+
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

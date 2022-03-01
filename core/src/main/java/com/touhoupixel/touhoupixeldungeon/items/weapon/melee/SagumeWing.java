@@ -56,6 +56,11 @@ public class SagumeWing extends MeleeWeapon {
 	}
 
 	@Override
+	public int coolResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);

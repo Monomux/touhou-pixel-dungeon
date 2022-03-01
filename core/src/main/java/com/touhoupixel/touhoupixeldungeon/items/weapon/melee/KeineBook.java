@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
@@ -35,6 +36,11 @@ public class KeineBook extends MeleeWeapon {
 		hitSoundPitch = 1.0f;
 
 		tier = 2;
+	}
+
+	@Override
+	public int warpResistFactor( Char owner ) {
+		return 3;
 	}
 
 	@Override

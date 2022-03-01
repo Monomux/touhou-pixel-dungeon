@@ -62,6 +62,7 @@ public class Kogasa extends Mob {
 		lootChance = 0.2f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

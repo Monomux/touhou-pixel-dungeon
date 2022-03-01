@@ -91,12 +91,12 @@ public class HecatiaBoss extends Mob {
 	private static final int MAX_SUMMON_CD = 15;
 
 	private static Class getPairedFist(Class fist){
-		if (fist == YogFist.BurningFist.class) return YogFist.SoiledFist.class;
-		if (fist == YogFist.SoiledFist.class) return YogFist.BurningFist.class;
-		if (fist == YogFist.RottingFist.class) return YogFist.RustedFist.class;
-		if (fist == YogFist.RustedFist.class) return YogFist.RottingFist.class;
-		if (fist == YogFist.BrightFist.class) return YogFist.DarkFist.class;
-		if (fist == YogFist.DarkFist.class) return YogFist.BrightFist.class;
+		if (fist == HecatiaBody.BurningFist.class) return HecatiaBody.SoiledFist.class;
+		if (fist == HecatiaBody.SoiledFist.class) return HecatiaBody.BurningFist.class;
+		if (fist == HecatiaBody.RottingFist.class) return HecatiaBody.RustedFist.class;
+		if (fist == HecatiaBody.RustedFist.class) return HecatiaBody.RottingFist.class;
+		if (fist == HecatiaBody.BrightFist.class) return HecatiaBody.DarkFist.class;
+		if (fist == HecatiaBody.DarkFist.class) return HecatiaBody.BrightFist.class;
 		return null;
 	}
 
@@ -104,9 +104,9 @@ public class HecatiaBoss extends Mob {
 	private ArrayList<Class> challengeSummons = new ArrayList<>();
 	{
 		Random.pushGenerator(Dungeon.seedCurDepth());
-			fistSummons.add(Random.Int(2) == 0 ? YogFist.BurningFist.class : YogFist.SoiledFist.class);
-			fistSummons.add(Random.Int(2) == 0 ? YogFist.RottingFist.class : YogFist.RustedFist.class);
-			fistSummons.add(Random.Int(2) == 0 ? YogFist.BrightFist.class : YogFist.DarkFist.class);
+			fistSummons.add(Random.Int(2) == 0 ? HecatiaBody.BurningFist.class : HecatiaBody.SoiledFist.class);
+			fistSummons.add(Random.Int(2) == 0 ? HecatiaBody.RottingFist.class : HecatiaBody.RustedFist.class);
+			fistSummons.add(Random.Int(2) == 0 ? HecatiaBody.BrightFist.class : HecatiaBody.DarkFist.class);
 			Random.shuffle(fistSummons);
 			//randomly place challenge summons so that two fists of a pair can never spawn together
 			if (Random.Int(2) == 0){
@@ -359,10 +359,10 @@ public class HecatiaBoss extends Mob {
 			GLog.n(Messages.get(this, "darkness"));
 			sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 
-			addFist((YogFist)Reflection.newInstance(fistSummons.remove(0)));
+			addFist((HecatiaBody)Reflection.newInstance(fistSummons.remove(0)));
 
 			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
-				addFist((YogFist)Reflection.newInstance(challengeSummons.remove(0)));
+				addFist((HecatiaBody)Reflection.newInstance(challengeSummons.remove(0)));
 			}
 
 			CellEmitter.get(Dungeon.level.exit-1).burst(ShadowParticle.UP, 25);
@@ -379,7 +379,7 @@ public class HecatiaBoss extends Mob {
 
 	}
 
-	public void addFist(YogFist fist){
+	public void addFist(HecatiaBody fist){
 		fist.pos = Dungeon.level.exit;
 
 		CellEmitter.get(Dungeon.level.exit-1).burst(ShadowParticle.UP, 25);
@@ -421,10 +421,10 @@ public class HecatiaBoss extends Mob {
 		}
 	}
 
-	private YogFist findFist(){
+	private HecatiaBody findFist(){
 		for ( Char c : Actor.chars() ){
-			if (c instanceof YogFist){
-				return (YogFist) c;
+			if (c instanceof HecatiaBody){
+				return (HecatiaBody) c;
 			}
 		}
 		return null;

@@ -25,35 +25,46 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank3;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class BlackFan extends MeleeWeapon {
+public class HellMic extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.BLACK_FAN;
-		hitSound = Assets.Sounds.HIT_SLASH;
-		hitSoundPitch = 1.0f;
+		image = ItemSpriteSheet.HELLMIC;
+		hitSound = Assets.Sounds.HIT;
+		hitSoundPitch = 1f;
 
-		tier = 5;
+		tier = 6;
 	}
 
 	@Override
 	public int max(int lvl) {
-		return  4*(tier+1) +
-				lvl*(tier+1);
+		return  12*(tier+1) +
+				lvl*(tier);
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public int fireResistFactor( Char owner ) {
+		return 3;
+	}
+
+	@Override
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
 		actions.remove(AC_XYZ);
 		return actions;
 	}
@@ -63,15 +74,11 @@ public class BlackFan extends MeleeWeapon {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof BlackFan) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
+			if (Dungeon.hero.belongings.weapon() instanceof HellMic && (Random.Int(15) == 0)) {
+				Buff.prolong(owner, Bless.class, Bless.DURATION);
+				Buff.prolong(owner, OneDefDamage.class, OneDefDamage.DURATION);
 			}
 		}
 		return super.damageRoll(owner);
 	}
 }
-
-

@@ -66,6 +66,7 @@ public class Komachi extends Mob {
 		HUNTING = new Hunting();
 
 		properties.add(Property.GOD);
+		properties.add(Property.COLD);
 	}
 
 	@Override

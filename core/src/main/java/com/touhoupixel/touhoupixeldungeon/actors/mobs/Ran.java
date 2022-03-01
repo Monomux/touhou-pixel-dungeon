@@ -65,6 +65,7 @@ public class Ran extends Mob implements Callback {
 		lootChance = 0.5f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.WARP);
 	}
 
 	@Override

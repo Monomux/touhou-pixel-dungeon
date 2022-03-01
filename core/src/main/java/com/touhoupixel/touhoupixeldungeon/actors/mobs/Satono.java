@@ -76,6 +76,8 @@ public class Satono extends Mob {
 
 		loot = new PotionOfTriplespeed();
 		lootChance = 0.05f;
+
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

@@ -65,6 +65,8 @@ public class Youmu extends Mob {
 
 		loot = new Half();
 		lootChance = 0.03f;
+
+		properties.add(Property.COOL);
 	}
 
 	@Override

@@ -33,8 +33,6 @@ public class Acidic extends Sagume {
 
 	{
 		spriteClass = AcidicSprite.class;
-		
-		properties.add(Property.ACIDIC);
 
 		loot = new PotionOfExperience();
 		lootChance = 1f;

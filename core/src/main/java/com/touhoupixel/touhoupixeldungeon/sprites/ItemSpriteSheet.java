@@ -927,14 +927,14 @@ public class ItemSpriteSheet {
 	public static final int FIREBRAND2    = XYZ_WEAPON+0;
 	public static final int FROSTBRAND2   = XYZ_WEAPON+1;
 	public static final int TURNABOUTSWORD   = XYZ_WEAPON+2;
-	public static final int PURGATORYSCYTHE   = XYZ_WEAPON+3;
+	public static final int EXHELLSCYTHE   = XYZ_WEAPON+3;
 	public static final int HELLKEYBOARD   = XYZ_WEAPON+4;
 	public static final int HELLMIC   = XYZ_WEAPON+5;
 	static{
 		assignItemRect(FIREBRAND2, 13, 13);
 		assignItemRect(FROSTBRAND2,    13, 13);
 		assignItemRect(TURNABOUTSWORD,    13, 13);
-		assignItemRect(PURGATORYSCYTHE,    16, 13);
+		assignItemRect(EXHELLSCYTHE,    16, 13);
 		assignItemRect(HELLKEYBOARD,    13, 13);
 		assignItemRect(HELLMIC,    13, 13);
 	}

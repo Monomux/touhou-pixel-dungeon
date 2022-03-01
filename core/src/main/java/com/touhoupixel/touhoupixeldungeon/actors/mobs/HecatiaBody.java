@@ -53,7 +53,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-public abstract class YogFist extends Mob {
+public abstract class HecatiaBody extends Mob {
 
 	{
 		HP = HT = 300;
@@ -68,7 +68,6 @@ public abstract class YogFist extends Mob {
 		state = HUNTING;
 
 		properties.add(Property.BOSS);
-		properties.add(Property.DEMONIC);
 	}
 
 	private float rangedCooldown;
@@ -164,7 +163,7 @@ public abstract class YogFist extends Mob {
 
 	@Override
 	public String description() {
-		return Messages.get(YogFist.class, "desc") + "\n\n" + Messages.get(this, "desc");
+		return Messages.get(HecatiaBody.class, "desc") + "\n\n" + Messages.get(this, "desc");
 	}
 
 	public static final String RANGED_COOLDOWN = "ranged_cooldown";
@@ -181,7 +180,7 @@ public abstract class YogFist extends Mob {
 		rangedCooldown = bundle.getFloat(RANGED_COOLDOWN);
 	}
 
-	public static class BurningFist extends YogFist {
+	public static class BurningFist extends HecatiaBody {
 
 		{
 			spriteClass = FistSprite.Burning.class;
@@ -247,7 +246,7 @@ public abstract class YogFist extends Mob {
 
 	}
 
-	public static class SoiledFist extends YogFist {
+	public static class SoiledFist extends HecatiaBody {
 
 		{
 			spriteClass = FistSprite.Soiled.class;
@@ -340,7 +339,7 @@ public abstract class YogFist extends Mob {
 
 	}
 
-	public static class RottingFist extends YogFist {
+	public static class RottingFist extends HecatiaBody {
 
 		{
 			spriteClass = FistSprite.Rotting.class;
@@ -404,7 +403,7 @@ public abstract class YogFist extends Mob {
 
 	}
 
-	public static class RustedFist extends YogFist {
+	public static class RustedFist extends HecatiaBody {
 
 		{
 			spriteClass = FistSprite.Rusted.class;
@@ -438,7 +437,7 @@ public abstract class YogFist extends Mob {
 
 	}
 
-	public static class BrightFist extends YogFist {
+	public static class BrightFist extends HecatiaBody {
 
 		{
 			spriteClass = FistSprite.Bright.class;
@@ -503,7 +502,7 @@ public abstract class YogFist extends Mob {
 
 	}
 
-	public static class DarkFist extends YogFist {
+	public static class DarkFist extends HecatiaBody {
 
 		{
 			spriteClass = FistSprite.Dark.class;

@@ -58,6 +58,7 @@ public class Kanako extends Mob {
 		lootChance = 0.125f; //initially, see rollToDropLoot
 
 		properties.add(Property.GOD);
+		properties.add(Property.POWERFUL);
 
 		HUNTING = new Hunting();
 	}

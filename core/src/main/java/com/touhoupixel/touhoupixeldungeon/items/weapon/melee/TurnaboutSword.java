@@ -22,47 +22,37 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
-import com.touhoupixel.touhoupixeldungeon.Challenges;
-import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
 
-public class MomoyoShovel extends MeleeWeapon {
+public class TurnaboutSword extends MeleeWeapon {
 
-	{
-		image = ItemSpriteSheet.MOMOYO_SHOVEL;
-		hitSound = Assets.Sounds.HIT_SLASH;
-		hitSoundPitch = 1.0f;
+    {
+        image = ItemSpriteSheet.TURNABOUTSWORD;
+        hitSound = Assets.Sounds.HIT;
+        hitSoundPitch = 1f;
 
-		tier = 2;
-	}
+        tier = 6;
+    }
 
-	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		actions.remove(AC_XYZ);
-		return actions;
-	}
+    @Override
+    public int max(int lvl) {
+        return  10*(tier+1) +
+                lvl*(tier);
+    }
 
-	@Override
-	public int coldResistFactor( Char owner ) {
-		return 0;
-	}
+    @Override
+    public int warpResistFactor( Char owner ) {
+        return 3;
+    }
 
-	@Override
-	public int max(int lvl) {
-		return  3*(tier+1) +    //12 base, down from 15
-				lvl*(tier+1);   //scaling unchanged
-	}
+    @Override
+    public ArrayList<String> actions(Hero hero) {
+        ArrayList<String> actions = super.actions(hero);
+        actions.remove(AC_XYZ);
+        return actions;
+    }
 }
-
-

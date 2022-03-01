@@ -55,6 +55,7 @@ public class Kutaka extends Mob {
 		lootChance = 0.05f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.PURE);
 	}
 
 	@Override

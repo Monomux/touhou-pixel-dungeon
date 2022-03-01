@@ -57,6 +57,7 @@ public class Hina extends Mob {
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.GOD);
+		properties.add(Property.PURE);
 	}
 
 	@Override

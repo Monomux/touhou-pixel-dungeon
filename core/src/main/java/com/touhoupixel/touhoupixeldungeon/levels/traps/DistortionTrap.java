@@ -25,18 +25,13 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Acidic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Albino;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.ArmoredBrute;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bandit;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bestiary;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.DM201;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Elemental;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Murasa;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Senior;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.RatKing;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
@@ -58,9 +53,7 @@ public class DistortionTrap extends Trap{
 	}
 
 	private static final ArrayList<Class<?extends Mob>> RARE = new ArrayList<>(Arrays.asList(
-			Albino.class, Bandit.class,
-			ArmoredBrute.class, DM201.class,
-			Elemental.ChaosElemental.class, Senior.class));
+			Albino.class, Bandit.class));
 
 	@Override
 	public void activate() {
@@ -125,7 +118,7 @@ public class DistortionTrap extends Trap{
 							mob.alignment = Char.Alignment.ENEMY;
 							break;
 						case 3:
-							mob = Statue.random();
+							mob = Narumi.random();
 							break;
 					}
 					break;

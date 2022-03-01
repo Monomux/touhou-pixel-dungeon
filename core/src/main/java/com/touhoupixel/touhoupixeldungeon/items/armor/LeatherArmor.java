@@ -32,5 +32,4 @@ public class LeatherArmor extends Armor {
 	public LeatherArmor() {
 		super( 2 );
 	}
-
 }

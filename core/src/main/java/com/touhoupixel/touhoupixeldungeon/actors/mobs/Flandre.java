@@ -56,6 +56,7 @@ public class Flandre extends Mob {
 		lootChance = 0.04f;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

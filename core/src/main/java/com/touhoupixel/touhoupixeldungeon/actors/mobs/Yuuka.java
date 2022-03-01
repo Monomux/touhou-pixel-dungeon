@@ -60,6 +60,7 @@ public class Yuuka extends Mob {
 		baseSpeed = 0.1f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

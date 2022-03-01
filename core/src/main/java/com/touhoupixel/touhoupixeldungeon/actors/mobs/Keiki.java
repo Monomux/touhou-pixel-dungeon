@@ -55,6 +55,7 @@ public class Keiki extends Mob {
 		lootChance = 0.1f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

@@ -35,7 +35,7 @@ import com.touhoupixel.touhoupixeldungeon.sprites.StatueSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-public class ArmoredStatue extends Statue {
+public class ArmoredStatue extends Narumi {
 
 	{
 		spriteClass = StatueSprite.class;

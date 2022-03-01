@@ -56,6 +56,7 @@ public class Aya extends Mob {
 		lootChance = 0.01f;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

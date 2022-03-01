@@ -53,6 +53,11 @@ public class FullmoonScythe extends MeleeWeapon {
 	}
 
 	@Override
+	public int pureResistFactor( Char owner ) {
+		return 1; //do nothing
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);

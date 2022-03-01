@@ -54,6 +54,11 @@ public class Crossbow extends MeleeWeapon {
 	}
 
 	@Override
+	public int warpResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
 	public int max(int lvl) {
 		return  4*(tier+1) +
 				lvl*(tier);

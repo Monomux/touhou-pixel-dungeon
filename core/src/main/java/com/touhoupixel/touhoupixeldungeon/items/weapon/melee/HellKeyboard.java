@@ -25,43 +25,44 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank3;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class Log extends MeleeWeapon {
+public class HellKeyboard extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.LOG;
-		hitSound = Assets.Sounds.HIT_CRUSH;
-		hitSoundPitch = 0.8f;
+		image = ItemSpriteSheet.HELLKEYBOARD;
+		hitSound = Assets.Sounds.HIT;
+		hitSoundPitch = 1f;
 
-		tier = 5;
-		ACC = 1.6f;
-		//also cannot surprise attack, see Hero.canSurpriseAttack
+		tier = 6;
 	}
 
 	@Override
 	public int max(int lvl) {
-		return  Math.round(8f*(tier+1)) +        //35 base, up from 25
-				lvl*Math.round(3f*(tier+1));  //+8 per level, up from +5
+		return  12*(tier+1) +
+				lvl*(tier);
 	}
 
 	@Override
-	public int powerfulResistFactor( Char owner ) {
+	public int fireResistFactor( Char owner ) {
 		return 3;
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
 		actions.remove(AC_XYZ);
 		return actions;
 	}
@@ -71,14 +72,18 @@ public class Log extends MeleeWeapon {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof Log) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
+			if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank1.class) == null && hero.buff(ArisastarRank2.class) == null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
+				Buff.prolong(owner, ArisastarRank1.class, ArisastarRank1.DURATION);
+			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank1.class) != null && hero.buff(ArisastarRank2.class) == null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
+				Buff.detach(hero, ArisastarRank1.class);
+				Buff.prolong(owner, ArisastarRank2.class, ArisastarRank2.DURATION);
+			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank1.class) == null && hero.buff(ArisastarRank2.class) != null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
+				Buff.detach(hero, ArisastarRank2.class);
+				Buff.prolong(owner, ArisastarRank3.class, ArisastarRank3.DURATION);
+			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank3.class) != null && (Random.Int(2) == 0)) {
+				Buff.prolong(owner, ArisastarRank3.class, ArisastarRank3.DURATION);
 			}
 		}
 		return super.damageRoll(owner);
 	}
 }
-

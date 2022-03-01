@@ -71,6 +71,7 @@ public class Junko extends Mob {
 		lootChance = 0.5f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.PURE);
 	}
 
 	@Override

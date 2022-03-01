@@ -52,6 +52,7 @@ public class Kisume extends Mob {
 		lootChance = 0.13f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.PURE);
 	}
 
 	@Override

@@ -64,6 +64,7 @@ public class Tojiko extends Mob implements Callback {
 
 		properties.add(Property.YOKAI);
 		properties.add(Property.FLOAT);
+		properties.add(Property.PURE);
 	}
 
 	@Override

@@ -78,6 +78,7 @@ public class Shou extends Mob {
 		lootChance = 0.5f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

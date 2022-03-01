@@ -57,7 +57,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.mobs.Medicine;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Murasa;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Alice;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Wraith;
 import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
@@ -134,7 +134,7 @@ public class WandOfCorruption extends Wand {
 			
 			//base enemy resistance is usually based on their exp, but in special cases it is based on other criteria
 			float enemyResist = 1 + enemy.EXP;
-			if (ch instanceof Mimic || ch instanceof Statue){
+			if (ch instanceof Mimic || ch instanceof Narumi){
 				enemyResist = 1 + Dungeon.depth;
 			} else if (ch instanceof Murasa || ch instanceof Medicine) {
 				enemyResist = 1 + Dungeon.depth/2f;

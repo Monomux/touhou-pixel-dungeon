@@ -52,6 +52,7 @@ public class Koishi extends Mob {
 		lootChance = 0.11f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

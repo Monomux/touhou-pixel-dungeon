@@ -58,6 +58,7 @@ public class Yatsuhashi extends Mob {
 		lootChance = 0.04f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.COOL);
 	}
 
 	@Override

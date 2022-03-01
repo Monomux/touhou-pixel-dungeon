@@ -62,6 +62,8 @@ public class Sagume extends Mob {
 		
 		loot = Generator.Category.POTION;
 		lootChance = 0.3f;
+
+		properties.add(Property.WARP);
 	}
 
 	@Override

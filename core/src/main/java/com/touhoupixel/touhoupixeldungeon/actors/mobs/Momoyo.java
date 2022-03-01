@@ -54,6 +54,7 @@ public class Momoyo extends Mob {
 		lootChance = 0.4f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

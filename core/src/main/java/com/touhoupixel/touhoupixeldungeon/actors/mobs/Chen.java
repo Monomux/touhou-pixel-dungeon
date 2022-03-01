@@ -54,6 +54,7 @@ public class Chen extends Mob {
 		lootChance = 0.05f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.PURE);
 	}
 
 	@Override

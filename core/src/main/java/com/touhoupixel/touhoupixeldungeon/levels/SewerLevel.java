@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DespairTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.DisarmingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GapTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GatewayTrap;

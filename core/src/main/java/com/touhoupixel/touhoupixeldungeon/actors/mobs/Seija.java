@@ -58,6 +58,7 @@ public class Seija extends Mob {
 		lootChance = 0.09f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.WARP);
 	}
 
 	@Override

@@ -53,6 +53,7 @@ public class Parsee extends Mob {
 		lootChance = 0.02f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.PURE);
 	}
 
 	@Override

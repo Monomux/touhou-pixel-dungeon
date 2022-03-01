@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
@@ -35,6 +36,11 @@ public class BlazingStar extends MeleeWeapon {
 		hitSoundPitch = 1.0f;
 
 		tier = 3;
+	}
+
+	@Override
+	public int powerfulResistFactor( Char owner ) {
+		return 2;
 	}
 
 	@Override

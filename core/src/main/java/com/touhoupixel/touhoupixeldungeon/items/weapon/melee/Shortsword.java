@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
@@ -43,6 +44,11 @@ public class Shortsword extends MeleeWeapon {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);
 		return actions;
+	}
+
+	@Override
+	public int coolResistFactor( Char owner ) {
+		return 1;
 	}
 
 	@Override

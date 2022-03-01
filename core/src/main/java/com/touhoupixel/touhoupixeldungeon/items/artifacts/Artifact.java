@@ -32,6 +32,8 @@ import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
+import java.util.ArrayList;
+
 public class Artifact extends KindofMisc {
 
 	protected Buff passiveBuff;
@@ -102,6 +104,13 @@ public class Artifact extends KindofMisc {
 			return false;
 
 		}
+	}
+
+	@Override
+	public ArrayList<String> actions(Hero hero ) {
+		ArrayList<String> actions = super.actions( hero );
+		actions.remove(AC_XYZ);
+		return actions;
 	}
 
 	@Override

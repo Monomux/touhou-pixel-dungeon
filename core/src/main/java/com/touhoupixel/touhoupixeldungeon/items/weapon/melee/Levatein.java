@@ -59,12 +59,18 @@ public class Levatein extends MeleeWeapon {
 		return  4*(tier+1) +
 				lvl*(tier);
 	}
+
+	@Override
+	public int fireResistFactor( Char owner ) {
+		return 2;
+	}
+
 	@Override
 	public int damageRoll(Char owner) {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof FireBrand) {
+			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof Levatein) {
 				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
 				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
 				Buff.prolong(owner, Hex.class, Hex.DURATION);
@@ -79,7 +85,7 @@ public class Levatein extends MeleeWeapon {
 
 		super.execute(hero, action);
 
-		if (action.equals(AC_XYZ) && curItem.level() == 4) {
+		if (action.equals(AC_XYZ) && curItem.level() == 6) {
 			GameScene.selectItem(itemSelector);
 		}
 	}
@@ -103,7 +109,7 @@ public class Levatein extends MeleeWeapon {
 
 		@Override
 		public void onSelect(Item item) {
-			if (item.level() == 4){
+			if (item != null && item.level() == 6){
 				curItem.detach(curUser.belongings.backpack);
 				item.detach(curUser.belongings.backpack);
 				FireBrand2 fb2 = new FireBrand2();

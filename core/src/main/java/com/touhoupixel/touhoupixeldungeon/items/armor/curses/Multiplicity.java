@@ -29,7 +29,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Marisa;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.MirrorImage;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
@@ -70,7 +70,7 @@ public class Multiplicity extends Armor.Glyph {
 					//FIXME should probably have a mob property for this
 					if (!(attacker instanceof Mob)
 							|| attacker.properties().contains(Char.Property.BOSS) || attacker.properties().contains(Char.Property.MINIBOSS)
-							|| attacker instanceof Mimic || attacker instanceof Statue){
+							|| attacker instanceof Mimic || attacker instanceof Narumi){
 						m = Dungeon.level.createMob();
 					} else {
 						Actor.fixTime();

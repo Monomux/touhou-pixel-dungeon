@@ -56,6 +56,8 @@ public class Rumia extends Mob {
 
 		loot = new PotionOfShroudingFog();
 		lootChance = 0.15f;
+
+		properties.add(Property.PURE);
 	}
 
 	@Override

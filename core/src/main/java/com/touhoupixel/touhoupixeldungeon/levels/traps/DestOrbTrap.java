@@ -23,28 +23,13 @@ package com.touhoupixel.touhoupixeldungeon.levels.traps;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
-import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Acidic;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Albino;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.ArmoredBrute;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bandit;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bestiary;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.DM201;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.DestOrb;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Elemental;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Murasa;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Senior;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Wraith;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.RatKing;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
-import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 import java.util.Arrays;

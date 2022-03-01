@@ -75,6 +75,7 @@ public class Lily extends Mob {
 		lootChance = 0.15f;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.WARP);
 	}
 
 	private static final String ITEM = "item";

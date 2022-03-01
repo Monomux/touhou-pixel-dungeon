@@ -54,6 +54,7 @@ public class Takane extends Mob {
 		lootChance = 0.04f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.COLD);
 	}
 
 	@Override

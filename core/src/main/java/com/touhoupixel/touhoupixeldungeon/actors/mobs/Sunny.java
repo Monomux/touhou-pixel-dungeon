@@ -59,6 +59,8 @@ public class Sunny extends Mob {
 		
 		loot = Gold.class;
 		lootChance = 0.4f;
+
+		properties.add(Property.FIRE);
 	}
 
 	@Override

@@ -59,6 +59,7 @@ public class Kaguya extends Mob {
 		lootChance = 0.05f;
 
 		properties.add(Property.ELIXIR);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

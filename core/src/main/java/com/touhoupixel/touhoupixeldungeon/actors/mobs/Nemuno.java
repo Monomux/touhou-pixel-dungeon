@@ -65,6 +65,7 @@ public class Nemuno extends Mob {
 		lootChance = 0.1f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.COOL);
 	}
 
 	@Override

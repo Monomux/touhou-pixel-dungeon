@@ -63,6 +63,7 @@ public abstract class Nitori extends Mob {
 		lootChance = 0.03f; //initially, see rollToDropLoot
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

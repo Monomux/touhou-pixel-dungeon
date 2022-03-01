@@ -73,6 +73,7 @@ public class Eirin extends Mob implements Callback {
 
 		properties.add(Property.ANIMAL);
 		properties.add(Property.ELIXIR);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

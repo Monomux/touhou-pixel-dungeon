@@ -70,6 +70,7 @@ public class Yukari extends Mob {
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.YOKAI);
+		properties.add(Property.WARP);
 	}
 
 	@Override

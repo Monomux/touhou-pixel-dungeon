@@ -63,6 +63,7 @@ public class Mike extends Mob {
 		lootChance = 0.3f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.HAPPY);
 
 		WANDERING = new Wandering();
 		HUNTING = new Hunting();

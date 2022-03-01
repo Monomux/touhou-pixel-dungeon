@@ -65,7 +65,7 @@ public class PotionOfHealing extends Potion {
 	public static void heal(Char ch) {
 		if ( ch.buff(AntiHeal.class) != null ){
 			ch.damage(ch.HT/2, ch);
-		} else if (((Hero) ch).heroClass == HeroClass.KAGUYAPLAYER){
+		} else if (ch == Dungeon.hero && ((Hero) ch).heroClass == HeroClass.KAGUYAPLAYER){
 			Buff.prolong( ch, Silence.class, Silence.DURATION );
 		} else if (ch == Dungeon.hero && Dungeon.isChallenged(Challenges.NO_HEALING) && !(Dungeon.hero.heroClass == HeroClass.MURASA)) {
 				pharmacophobiaProc(Dungeon.hero);

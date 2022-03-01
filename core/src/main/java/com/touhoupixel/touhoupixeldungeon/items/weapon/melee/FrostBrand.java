@@ -78,7 +78,7 @@ public class FrostBrand extends MeleeWeapon {
 
 		super.execute(hero, action);
 
-		if (action.equals(AC_XYZ) && curItem.level() == 4) {
+		if (action.equals(AC_XYZ) && curItem.level() == 6) {
 			GameScene.selectItem(itemSelector);
 		}
 	}
@@ -102,7 +102,7 @@ public class FrostBrand extends MeleeWeapon {
 
 		@Override
 		public void onSelect(Item item) {
-			if (item.level() == 4){
+			if (item != null && item.level() == 6){
 				curItem.detach(curUser.belongings.backpack);
 				item.detach(curUser.belongings.backpack);
 				FrostBrand2 fb2 = new FrostBrand2();

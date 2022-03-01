@@ -53,6 +53,7 @@ public class Utsuho extends Mob {
 
 		properties.add(Property.ANIMAL);
 		properties.add(Property.GOD);
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

@@ -141,6 +141,8 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatshield;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatsword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HandAxe;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HecatiaStar;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HellKeyboard;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HellMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HisoutenMankind;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HoshigumaHorn;
@@ -183,6 +185,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SwordofHisou;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ToramaruSpear;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ToyohimeFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WarHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WatermelonSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Whip;
@@ -310,6 +313,9 @@ public enum Catalog {
 		WEAPONS.seen.put( Grayswandir.class,                true);
 		WEAPONS.seen.put( FireBrand2.class,                 true);
 		WEAPONS.seen.put( FrostBrand2.class,                true);
+		WEAPONS.seen.put( TurnaboutSword.class,             true);
+		WEAPONS.seen.put( HellKeyboard.class,               true);
+		WEAPONS.seen.put( HellMic.class,                    true);
 
 		ARMOR.seen.put( ClothArmor.class,                   true);
 		ARMOR.seen.put( LeatherArmor.class,                 true);

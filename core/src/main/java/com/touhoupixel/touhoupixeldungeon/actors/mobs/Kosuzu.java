@@ -76,6 +76,8 @@ public class Kosuzu extends Mob {
 
 		loot = Generator.Category.SCROLL;
 		lootChance = 0.05f;
+
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

@@ -76,6 +76,8 @@ public class Sakuya extends Mob {
 
 		loot = new StoneOfBlink();
 		lootChance = 0.1f;
+
+		properties.add(Property.WARP);
 	}
 
 	@Override

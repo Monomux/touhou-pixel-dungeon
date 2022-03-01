@@ -55,6 +55,7 @@ public class Wriggle extends Mob {
 		lootChance = 0.05f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.PURE);
 	}
 
 	@Override

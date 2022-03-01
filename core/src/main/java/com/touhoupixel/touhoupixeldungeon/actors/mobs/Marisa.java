@@ -70,6 +70,7 @@ public class Marisa extends Mob {
 		FLEEING = new Fleeing();
 
 		properties.add(Property.UNDEAD);
+		properties.add(Property.POWERFUL);
 	}
 
 	private static final String ITEM = "item";

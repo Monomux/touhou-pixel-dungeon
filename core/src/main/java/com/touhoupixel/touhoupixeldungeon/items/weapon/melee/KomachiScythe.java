@@ -55,6 +55,11 @@ public class KomachiScythe extends MeleeWeapon {
 	}
 
 	@Override
+	public int coldResistFactor( Char owner ) {
+		return 0;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);

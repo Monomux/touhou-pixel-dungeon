@@ -55,6 +55,11 @@ public class Dagger extends MeleeWeapon {
 		return  4*(tier+1) +    //8 base, down from 10
 				lvl*(tier+1);   //scaling unchanged
 	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 0;
+	}
 	
 	@Override
 	public int damageRoll(Char owner) {

@@ -47,6 +47,11 @@ public class Flintlock extends MeleeWeapon {
 	}
 
 	@Override
+	public int pureResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public int max(int lvl) {
 		return  5*(tier) +
 				Math.round(lvl*(tier+5));

@@ -59,6 +59,11 @@ public class Greataxe extends MeleeWeapon {
 	}
 
 	@Override
+	public int happyResistFactor( Char owner ) {
+		return 3;
+	}
+
+	@Override
 	public int damageRoll(Char owner) {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;

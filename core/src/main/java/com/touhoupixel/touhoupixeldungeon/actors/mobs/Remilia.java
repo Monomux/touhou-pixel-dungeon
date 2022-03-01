@@ -66,6 +66,8 @@ public class Remilia extends Mob {
 		lootChance = 0.2f;
 		
 		HUNTING = new Hunting();
+
+		properties.add(Property.COOL);
 	}
 	
 	public boolean summoning = false;

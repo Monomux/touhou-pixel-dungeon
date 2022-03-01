@@ -54,6 +54,11 @@ public class SevenStarSword extends MeleeWeapon {
 	}
 
 	@Override
+	public int powerfulResistFactor( Char owner ) {
+		return 3;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);

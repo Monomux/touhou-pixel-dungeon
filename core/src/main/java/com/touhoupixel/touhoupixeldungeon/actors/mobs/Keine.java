@@ -66,6 +66,7 @@ public class Keine extends Mob {
 		lootChance = 0.2f;
 
 		properties.add(Property.ANIMAL);
+		properties.add(Property.WARP);
 	}
 
 	@Override

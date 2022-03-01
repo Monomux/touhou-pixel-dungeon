@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeon.levels.traps;
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Statue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -66,7 +66,7 @@ public class GuardianTrap extends Trap {
 
 	}
 
-	public static class Guardian extends Statue {
+	public static class Guardian extends Narumi {
 
 		{
 			spriteClass = GuardianSprite.class;

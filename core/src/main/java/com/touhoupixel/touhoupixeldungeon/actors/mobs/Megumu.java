@@ -60,6 +60,7 @@ public class Megumu extends Mob {
         lootChance = 0.05f;
 
         properties.add(Property.YOKAI);
+        properties.add(Property.PURE);
     }
 
     private int pumpedUp = 0;

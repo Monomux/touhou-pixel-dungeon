@@ -53,6 +53,11 @@ public class RunicBlade extends MeleeWeapon {
 	}
 
 	@Override
+	public int warpResistFactor( Char owner ) {
+		return 3;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);

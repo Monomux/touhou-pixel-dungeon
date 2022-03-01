@@ -71,6 +71,7 @@ public class Toyohime extends Mob implements Callback {
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.GOD);
+		properties.add(Property.COLD);
 
 		baseSpeed = 0.8f;
 	}

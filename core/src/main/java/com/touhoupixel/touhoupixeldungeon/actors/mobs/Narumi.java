@@ -36,20 +36,20 @@ import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
-public class Statue extends Mob {
+public class Narumi extends Mob {
 	
 	{
 		spriteClass = StatueSprite.class;
 
 		EXP = 0;
 		state = PASSIVE;
-		
-		properties.add(Property.INORGANIC);
+
+		properties.add(Property.WARP);
 	}
 	
 	protected Weapon weapon;
 	
-	public Statue() {
+	public Narumi() {
 		super();
 		
 		do {
@@ -176,11 +176,11 @@ public class Statue extends Mob {
 		resistances.add(Grim.class);
 	}
 
-	public static Statue random(){
+	public static Narumi random(){
 		if (Random.Int(10) == 0){
 			return new ArmoredStatue();
 		} else {
-			return new Statue();
+			return new Narumi();
 		}
 	}
 	

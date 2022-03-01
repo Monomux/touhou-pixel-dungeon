@@ -952,6 +952,13 @@ public abstract class Char extends Actor {
 		ANIMAL,
 		GOD,
 		ELIXIR,
+		FIRE,
+		COLD,
+		WARP,
+		POWERFUL,
+		COOL,
+		PURE,
+		HAPPY,
 		IMMOVABLE;
 
 		private HashSet<Class> resistances;

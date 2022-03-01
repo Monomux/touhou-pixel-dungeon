@@ -57,6 +57,8 @@ public class Patchouli extends Mob {
 
 		loot = Generator.Category.WEAPON;
 		lootChance = 0.1667f;
+
+		properties.add(Property.WARP);
 	}
 
 	@Override

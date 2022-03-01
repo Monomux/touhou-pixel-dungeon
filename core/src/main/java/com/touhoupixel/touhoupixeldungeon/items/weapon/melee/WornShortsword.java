@@ -22,8 +22,12 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -35,11 +39,15 @@ public class WornShortsword extends MeleeWeapon {
 
 		hitSoundPitch = 1.1f;
 
-
 		tier = 1;
 		ACC = 1.05f;
 
 		bones = false;
+	}
+
+	@Override
+	public int coldResistFactor( Char owner ) {
+		return 0;
 	}
 
 	@Override

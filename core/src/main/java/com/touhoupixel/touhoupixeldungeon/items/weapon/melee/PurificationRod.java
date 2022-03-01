@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
@@ -44,6 +45,11 @@ public class PurificationRod extends MeleeWeapon {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);
 		return actions;
+	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 2;
 	}
 
 	@Override

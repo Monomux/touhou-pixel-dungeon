@@ -33,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.mobs.Tojiko;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Nitori;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Ran;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.YogFist;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.HecatiaBody;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfDisintegration;
@@ -85,8 +85,8 @@ public class AntiMagic extends Armor.Glyph {
 		RESISTS.add( Nitori.EarthenBolt.class );
 		RESISTS.add( Ran.DarkBolt.class );
 		RESISTS.add( Junko.DeathGaze.class );
-		RESISTS.add( YogFist.BrightFist.LightBeam.class );
-		RESISTS.add( YogFist.DarkFist.DarkBolt.class );
+		RESISTS.add( HecatiaBody.BrightFist.LightBeam.class );
+		RESISTS.add( HecatiaBody.DarkFist.DarkBolt.class );
 	}
 	
 	@Override

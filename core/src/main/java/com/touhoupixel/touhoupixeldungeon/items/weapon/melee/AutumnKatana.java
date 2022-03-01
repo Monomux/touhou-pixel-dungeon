@@ -49,6 +49,11 @@ public class AutumnKatana extends MeleeWeapon {
 	}
 
 	@Override
+	public int pureResistFactor( Char owner ) {
+		return 3;
+	}
+
+	@Override
 	public int max(int lvl) {
 		return  4*(tier+1) +
 				lvl*(tier);

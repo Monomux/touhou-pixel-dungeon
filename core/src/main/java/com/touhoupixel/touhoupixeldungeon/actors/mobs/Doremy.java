@@ -55,6 +55,7 @@ public class Doremy extends Mob {
 
 		properties.add(Property.ANIMAL);
 		properties.add(Property.YOKAI);
+		properties.add(Property.PURE);
 	}
 
 	@Override

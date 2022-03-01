@@ -59,6 +59,8 @@ public class Hijiri extends Mob {
 
 		loot = new PotionOfDivineInspiration();
 		lootChance = 0.02f;
+
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

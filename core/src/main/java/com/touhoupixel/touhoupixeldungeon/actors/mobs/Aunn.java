@@ -67,6 +67,7 @@ public class Aunn extends Mob implements Callback {
 		lootChance = 0.18f;
 
 		properties.add(Property.YOKAI);
+		properties.add(Property.HAPPY);
 	}
 
 	@Override

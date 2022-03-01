@@ -64,9 +64,10 @@ public class Alice extends Mob {
 		flying = true;
 
 		loot = new PotionOfHealing();
-		lootChance = 0.1667f; //by default, see rollToDropLoot()
+		lootChance = 0.1667f;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.COOL);
 	}
 	
 	private static final float SPLIT_DELAY	= 1f;

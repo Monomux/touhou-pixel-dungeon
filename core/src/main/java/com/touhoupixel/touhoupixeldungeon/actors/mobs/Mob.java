@@ -89,149 +89,149 @@ public abstract class Mob extends Char {
 
 	{
 		actPriority = MOB_PRIO;
-		
+
 		alignment = Alignment.ENEMY;
 	}
-	
-	private static final String	TXT_DIED	= "You hear something died in the distance";
-	
-	protected static final String TXT_NOTICE1	= "?!";
-	protected static final String TXT_RAGE		= "#$%^";
-	protected static final String TXT_EXP		= "%+dEXP";
 
-	public AiState SLEEPING     = new Sleeping();
-	public AiState HUNTING		= new Hunting();
-	public AiState WANDERING	= new Wandering();
-	public AiState FLEEING		= new Fleeing();
-	public AiState PASSIVE		= new Passive();
+	private static final String TXT_DIED = "You hear something died in the distance";
+
+	protected static final String TXT_NOTICE1 = "?!";
+	protected static final String TXT_RAGE = "#$%^";
+	protected static final String TXT_EXP = "%+dEXP";
+
+	public AiState SLEEPING = new Sleeping();
+	public AiState HUNTING = new Hunting();
+	public AiState WANDERING = new Wandering();
+	public AiState FLEEING = new Fleeing();
+	public AiState PASSIVE = new Passive();
 	public AiState state = SLEEPING;
-	
+
 	public Class<? extends CharSprite> spriteClass;
-	
+
 	protected int target = -1;
-	
+
 	public int defenseSkill = 0;
-	
+
 	public int EXP = 1;
 	public int maxLvl = Hero.MAX_LEVEL;
-	
+
 	protected Char enemy;
 	protected boolean enemySeen;
 	protected boolean alerted = false;
 
 	protected static final float TIME_TO_WAKE_UP = 1f;
-	
-	private static final String STATE	= "state";
-	private static final String SEEN	= "seen";
-	private static final String TARGET	= "target";
-	private static final String MAX_LVL	= "max_lvl";
-	
+
+	private static final String STATE = "state";
+	private static final String SEEN = "seen";
+	private static final String TARGET = "target";
+	private static final String MAX_LVL = "max_lvl";
+
 	@Override
-	public void storeInBundle( Bundle bundle ) {
-		
-		super.storeInBundle( bundle );
+	public void storeInBundle(Bundle bundle) {
+
+		super.storeInBundle(bundle);
 
 		if (state == SLEEPING) {
-			bundle.put( STATE, Sleeping.TAG );
+			bundle.put(STATE, Sleeping.TAG);
 		} else if (state == WANDERING) {
-			bundle.put( STATE, Wandering.TAG );
+			bundle.put(STATE, Wandering.TAG);
 		} else if (state == HUNTING) {
-			bundle.put( STATE, Hunting.TAG );
+			bundle.put(STATE, Hunting.TAG);
 		} else if (state == FLEEING) {
-			bundle.put( STATE, Fleeing.TAG );
+			bundle.put(STATE, Fleeing.TAG);
 		} else if (state == PASSIVE) {
-			bundle.put( STATE, Passive.TAG );
+			bundle.put(STATE, Passive.TAG);
 		}
-		bundle.put( SEEN, enemySeen );
-		bundle.put( TARGET, target );
-		bundle.put( MAX_LVL, maxLvl );
+		bundle.put(SEEN, enemySeen);
+		bundle.put(TARGET, target);
+		bundle.put(MAX_LVL, maxLvl);
 	}
-	
-	@Override
-	public void restoreFromBundle( Bundle bundle ) {
-		
-		super.restoreFromBundle( bundle );
 
-		String state = bundle.getString( STATE );
-		if (state.equals( Sleeping.TAG )) {
+	@Override
+	public void restoreFromBundle(Bundle bundle) {
+
+		super.restoreFromBundle(bundle);
+
+		String state = bundle.getString(STATE);
+		if (state.equals(Sleeping.TAG)) {
 			this.state = SLEEPING;
-		} else if (state.equals( Wandering.TAG )) {
+		} else if (state.equals(Wandering.TAG)) {
 			this.state = WANDERING;
-		} else if (state.equals( Hunting.TAG )) {
+		} else if (state.equals(Hunting.TAG)) {
 			this.state = HUNTING;
-		} else if (state.equals( Fleeing.TAG )) {
+		} else if (state.equals(Fleeing.TAG)) {
 			this.state = FLEEING;
-		} else if (state.equals( Passive.TAG )) {
+		} else if (state.equals(Passive.TAG)) {
 			this.state = PASSIVE;
 		}
 
-		enemySeen = bundle.getBoolean( SEEN );
+		enemySeen = bundle.getBoolean(SEEN);
 
-		target = bundle.getInt( TARGET );
+		target = bundle.getInt(TARGET);
 
 		if (bundle.contains(MAX_LVL)) maxLvl = bundle.getInt(MAX_LVL);
 	}
-	
+
 	public CharSprite sprite() {
 		return Reflection.newInstance(spriteClass);
 	}
-	
+
 	@Override
 	protected boolean act() {
-		
+
 		super.act();
-		
+
 		boolean justAlerted = alerted;
 		alerted = false;
-		
-		if (justAlerted){
+
+		if (justAlerted) {
 			sprite.showAlert();
 		} else {
 			sprite.hideAlert();
 			sprite.hideLost();
 		}
-		
+
 		if (paralysed > 0) {
 			enemySeen = false;
-			spend( TICK );
+			spend(TICK);
 			return true;
 		}
 
-		if (buff(Terror.class) != null || buff(Dread.class) != null ){
+		if (buff(Terror.class) != null || buff(Dread.class) != null) {
 			state = FLEEING;
 		}
-		
+
 		enemy = chooseEnemy();
-		
+
 		boolean enemyInFOV = enemy != null && enemy.isAlive() && fieldOfView[enemy.pos] && enemy.invisible <= 0;
 
-		return state.act( enemyInFOV, justAlerted );
+		return state.act(enemyInFOV, justAlerted);
 	}
-	
+
 	//FIXME this is sort of a band-aid correction for allies needing more intelligent behaviour
 	protected boolean intelligentAlly = false;
-	
+
 	protected Char chooseEnemy() {
 
-		Dread dread = buff( Dread.class );
+		Dread dread = buff(Dread.class);
 		if (dread != null) {
-			Char source = (Char)Actor.findById( dread.object );
+			Char source = (Char) Actor.findById(dread.object);
 			if (source != null) {
 				return source;
 			}
 		}
 
-		Terror terror = buff( Terror.class );
+		Terror terror = buff(Terror.class);
 		if (terror != null) {
-			Char source = (Char)Actor.findById( terror.object );
+			Char source = (Char) Actor.findById(terror.object);
 			if (source != null) {
 				return source;
 			}
 		}
-		
+
 		//if we are an alert enemy, auto-hunt a target that is affected by aggression, even another enemy
 		if (alignment == Alignment.ENEMY && state != PASSIVE && state != SLEEPING) {
-			if (enemy != null && enemy.buff(StoneOfAggression.Aggression.class) != null){
+			if (enemy != null && enemy.buff(StoneOfAggression.Aggression.class) != null) {
 				state = HUNTING;
 				return enemy;
 			}
@@ -247,40 +247,40 @@ public abstract class Mob extends Char {
 		//find a new enemy if..
 		boolean newEnemy = false;
 		//we have no enemy, or the current one is dead/missing
-		if ( enemy == null || !enemy.isAlive() || !Actor.chars().contains(enemy) || state == WANDERING) {
+		if (enemy == null || !enemy.isAlive() || !Actor.chars().contains(enemy) || state == WANDERING) {
 			newEnemy = true;
-		//We are amoked and current enemy is the hero
-		} else if (buff( Amok.class ) != null && enemy == Dungeon.hero) {
+			//We are amoked and current enemy is the hero
+		} else if (buff(Amok.class) != null && enemy == Dungeon.hero) {
 			newEnemy = true;
-		//We are charmed and current enemy is what charmed us
+			//We are charmed and current enemy is what charmed us
 		} else if (buff(Charm.class) != null && buff(Charm.class).object == enemy.id()) {
 			newEnemy = true;
 		}
 
 		//additionally, if we are an ally, find a new enemy if...
-		if (!newEnemy && alignment == Alignment.ALLY){
+		if (!newEnemy && alignment == Alignment.ALLY) {
 			//current enemy is also an ally
-			if (enemy.alignment == Alignment.ALLY){
+			if (enemy.alignment == Alignment.ALLY) {
 				newEnemy = true;
-			//current enemy is invulnerable
-			} else if (enemy.isInvulnerable(getClass())){
+				//current enemy is invulnerable
+			} else if (enemy.isInvulnerable(getClass())) {
 				newEnemy = true;
 			}
 		}
 
-		if ( newEnemy ) {
+		if (newEnemy) {
 
 			HashSet<Char> enemies = new HashSet<>();
 
 			//if we are amoked...
-			if ( buff(Amok.class) != null) {
+			if (buff(Amok.class) != null) {
 				//try to find an enemy mob to attack first.
 				for (Mob mob : Dungeon.level.mobs)
 					if (mob.alignment == Alignment.ENEMY && mob != this
 							&& fieldOfView[mob.pos] && mob.invisible <= 0) {
 						enemies.add(mob);
 					}
-				
+
 				if (enemies.isEmpty()) {
 					//try to find ally mobs to attack second.
 					for (Mob mob : Dungeon.level.mobs)
@@ -288,7 +288,7 @@ public abstract class Mob extends Char {
 								&& fieldOfView[mob.pos] && mob.invisible <= 0) {
 							enemies.add(mob);
 						}
-					
+
 					if (enemies.isEmpty()) {
 						//try to find the hero third
 						if (fieldOfView[Dungeon.hero.pos] && Dungeon.hero.invisible <= 0) {
@@ -296,9 +296,9 @@ public abstract class Mob extends Char {
 						}
 					}
 				}
-				
-			//if we are an ally...
-			} else if ( alignment == Alignment.ALLY ) {
+
+				//if we are an ally...
+			} else if (alignment == Alignment.ALLY) {
 				//look for hostile mobs to attack
 				for (Mob mob : Dungeon.level.mobs)
 					if (mob.alignment == Alignment.ENEMY && fieldOfView[mob.pos]
@@ -308,8 +308,8 @@ public abstract class Mob extends Char {
 								(mob.state != mob.SLEEPING && mob.state != mob.PASSIVE && mob.state != mob.WANDERING)) {
 							enemies.add(mob);
 						}
-				
-			//if we are an enemy...
+
+				//if we are an enemy...
 			} else if (alignment == Alignment.ENEMY) {
 				//look for ally mobs to attack
 				for (Mob mob : Dungeon.level.mobs)
@@ -320,28 +320,28 @@ public abstract class Mob extends Char {
 				if (fieldOfView[Dungeon.hero.pos] && Dungeon.hero.invisible <= 0) {
 					enemies.add(Dungeon.hero);
 				}
-				
+
 			}
 
 			//do not target anything that's charming us
-			Charm charm = buff( Charm.class );
-			if (charm != null){
-				Char source = (Char)Actor.findById( charm.object );
-				if (source != null && enemies.contains(source) && enemies.size() > 1){
+			Charm charm = buff(Charm.class);
+			if (charm != null) {
+				Char source = (Char) Actor.findById(charm.object);
+				if (source != null && enemies.contains(source) && enemies.size() > 1) {
 					enemies.remove(source);
 				}
 			}
 
 			//neutral characters in particular do not choose enemies.
-			if (enemies.isEmpty()){
+			if (enemies.isEmpty()) {
 				return null;
 			} else {
 				//go after the closest potential enemy, preferring the hero if two are equidistant
 				Char closest = null;
-				for (Char curr : enemies){
+				for (Char curr : enemies) {
 					if (closest == null
 							|| Dungeon.level.distance(pos, curr.pos) < Dungeon.level.distance(pos, closest.pos)
-							|| Dungeon.level.distance(pos, curr.pos) == Dungeon.level.distance(pos, closest.pos) && curr == Dungeon.hero){
+							|| Dungeon.level.distance(pos, curr.pos) == Dungeon.level.distance(pos, closest.pos) && curr == Dungeon.hero) {
 						closest = curr;
 					}
 				}
@@ -351,23 +351,23 @@ public abstract class Mob extends Char {
 		} else
 			return enemy;
 	}
-	
+
 	@Override
-	public void add( Buff buff ) {
-		super.add( buff );
+	public void add(Buff buff) {
+		super.add(buff);
 		if (buff instanceof Amok || buff instanceof AllyBuff) {
 			state = HUNTING;
 		} else if (buff instanceof Terror || buff instanceof Dread) {
 			state = FLEEING;
 		} else if (buff instanceof Sleep) {
 			state = SLEEPING;
-			postpone( Sleep.SWS );
+			postpone(Sleep.SWS);
 		}
 	}
-	
+
 	@Override
-	public void remove( Buff buff ) {
-		super.remove( buff );
+	public void remove(Buff buff) {
+		super.remove(buff);
 		if ((buff instanceof Terror && buff(Dread.class) == null)
 				|| (buff instanceof Dread && buff(Terror.class) == null)) {
 			if (enemySeen) {
@@ -378,32 +378,32 @@ public abstract class Mob extends Char {
 			}
 		}
 	}
-	
-	protected boolean canAttack( Char enemy ) {
-		if (Dungeon.level.adjacent( pos, enemy.pos )){
+
+	protected boolean canAttack(Char enemy) {
+		if (Dungeon.level.adjacent(pos, enemy.pos)) {
 			return true;
 		}
-		for (ChampionEnemy buff : buffs(ChampionEnemy.class)){
-			if (buff.canAttackWithExtraReach( enemy )){
+		for (ChampionEnemy buff : buffs(ChampionEnemy.class)) {
+			if (buff.canAttackWithExtraReach(enemy)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	protected boolean getCloser( int target ) {
-		
+
+	protected boolean getCloser(int target) {
+
 		if (rooted || target == pos) {
 			return false;
 		}
 
 		int step = -1;
 
-		if (Dungeon.level.adjacent( pos, target )) {
+		if (Dungeon.level.adjacent(pos, target)) {
 
 			path = null;
 
-			if (Actor.findChar( target ) == null
+			if (Actor.findChar(target) == null
 					&& (Dungeon.level.passable[target] || (flying && Dungeon.level.avoid[target]))
 					&& (!Char.hasProp(this, Char.Property.LARGE) || Dungeon.level.openSpace[target])) {
 				step = target;
@@ -416,7 +416,7 @@ public abstract class Mob extends Char {
 			//or if it's extremely inefficient and checking again may result in a much better path
 			if (path == null || path.isEmpty()
 					|| !Dungeon.level.adjacent(pos, path.getFirst())
-					|| path.size() > 2*Dungeon.level.distance(pos, target))
+					|| path.size() > 2 * Dungeon.level.distance(pos, target))
 				newPath = true;
 			else if (path.getLast() != target) {
 				//if the new target is adjacent to the end of the path, adjust for that
@@ -429,7 +429,7 @@ public abstract class Mob extends Char {
 						//shorten for a closer one
 						if (Dungeon.level.adjacent(target, pos)) {
 							path.add(target);
-						//extend the path for a further target
+							//extend the path for a further target
 						} else {
 							path.add(last);
 							path.add(target);
@@ -439,11 +439,11 @@ public abstract class Mob extends Char {
 						//if the new target is simply 1 earlier in the path shorten the path
 						if (path.getLast() == target) {
 
-						//if the new target is closer/same, need to modify end of path
+							//if the new target is closer/same, need to modify end of path
 						} else if (Dungeon.level.adjacent(target, path.getLast())) {
 							path.add(target);
 
-						//if the new target is further away, need to extend the path
+							//if the new target is further away, need to extend the path
 						} else {
 							path.add(last);
 							path.add(target);
@@ -469,11 +469,11 @@ public abstract class Mob extends Char {
 					if (!path.isEmpty()) {
 						for (int i : PathFinder.NEIGHBOURS8) {
 							if (Dungeon.level.adjacent(pos, nextCell + i) && Dungeon.level.adjacent(nextCell + i, path.getFirst())) {
-								if (Dungeon.level.passable[nextCell+i]
-										&& (flying || !Dungeon.level.avoid[nextCell+i])
-										&& (!Char.hasProp(this, Char.Property.LARGE) || Dungeon.level.openSpace[nextCell+i])
-										&& Actor.findChar(nextCell+i) == null){
-									path.addFirst(nextCell+i);
+								if (Dungeon.level.passable[nextCell + i]
+										&& (flying || !Dungeon.level.avoid[nextCell + i])
+										&& (!Char.hasProp(this, Char.Property.LARGE) || Dungeon.level.openSpace[nextCell + i])
+										&& Actor.findChar(nextCell + i) == null) {
+									path.addFirst(nextCell + i);
 									newPath = false;
 									break;
 								}
@@ -489,13 +489,13 @@ public abstract class Mob extends Char {
 			if (newPath) {
 				//If we aren't hunting, always take a full path
 				PathFinder.Path full = Dungeon.findPath(this, target, Dungeon.level.passable, fieldOfView, true);
-				if (state != HUNTING){
+				if (state != HUNTING) {
 					path = full;
 				} else {
 					//otherwise, check if other characters are forcing us to take a very slow route
 					// and don't try to go around them yet in response, basically assume their blockage is temporary
 					PathFinder.Path ignoreChars = Dungeon.findPath(this, target, Dungeon.level.passable, fieldOfView, false);
-					if (ignoreChars != null && (full == null || full.size() > 2*ignoreChars.size())){
+					if (ignoreChars != null && (full == null || full.size() > 2 * ignoreChars.size())) {
 						//check if first cell of shorter path is valid. If it is, use new shorter path. Otherwise do nothing and wait.
 						path = ignoreChars;
 						if (!Dungeon.level.passable[ignoreChars.getFirst()]
@@ -517,21 +517,21 @@ public abstract class Mob extends Char {
 			}
 		}
 		if (step != -1) {
-			move( step );
+			move(step);
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	protected boolean getFurther( int target ) {
+
+	protected boolean getFurther(int target) {
 		if (rooted || target == pos) {
 			return false;
 		}
-		
-		int step = Dungeon.flee( this, target, Dungeon.level.passable, fieldOfView, true );
+
+		int step = Dungeon.flee(this, target, Dungeon.level.passable, fieldOfView, true);
 		if (step != -1) {
-			move( step );
+			move(step);
 			return true;
 		} else {
 			return false;
@@ -543,38 +543,38 @@ public abstract class Mob extends Char {
 		super.updateSpriteState();
 		if (Dungeon.hero.buff(TimekeepersHourglass.timeFreeze.class) != null
 				|| Dungeon.hero.buff(Swiftthistle.TimeBubble.class) != null)
-			sprite.add( CharSprite.State.PARALYSED );
+			sprite.add(CharSprite.State.PARALYSED);
 	}
-	
+
 	public float attackDelay() {
 		float delay = 1f;
-		if ( buff(Adrenaline.class) != null) delay /= 1.5f;
+		if (buff(Adrenaline.class) != null) delay /= 1.5f;
 		return delay;
 	}
-	
-	protected boolean doAttack( Char enemy ) {
-		
+
+	protected boolean doAttack(Char enemy) {
+
 		if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-			sprite.attack( enemy.pos );
+			sprite.attack(enemy.pos);
 			return false;
-			
+
 		} else {
-			attack( enemy );
-			spend( attackDelay() );
+			attack(enemy);
+			spend(attackDelay());
 			return true;
 		}
 	}
-	
+
 	@Override
 	public void onAttackComplete() {
-		attack( enemy );
-		spend( attackDelay() );
+		attack(enemy);
+		spend(attackDelay());
 		super.onAttackComplete();
 	}
-	
+
 	@Override
-	public int defenseSkill( Char enemy ) {
-		if ( !surprisedBy(enemy)
+	public int defenseSkill(Char enemy) {
+		if (!surprisedBy(enemy)
 				&& paralysed == 0
 				&& !(alignment == Alignment.ALLY && enemy == Dungeon.hero)) {
 			return this.defenseSkill;
@@ -582,7 +582,7 @@ public abstract class Mob extends Char {
 			return 0;
 		}
 	}
-	
+
 	protected boolean hitWithRanged = false;
 
 	@Override
@@ -608,6 +608,82 @@ public abstract class Mob extends Char {
 			}
 		}
 		return Messages.get(this, "def_verb");
+	}
+
+	@Override
+	public int attackProc( Char enemy, int damage ) {
+		//res damage zone//
+		if (Statistics.fireres == 1 && properties().contains(Char.Property.FIRE)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.fireres == 2 && properties().contains(Char.Property.FIRE)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.fireres > 2 && properties().contains(Char.Property.FIRE)) {
+			damage = Math.round(damage * 0.2f);
+		}
+
+		if (Statistics.coldres == 1 && properties().contains(Char.Property.COLD)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.coldres == 2 && properties().contains(Char.Property.COLD)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.coldres > 2 && properties().contains(Char.Property.COLD)) {
+			damage = Math.round(damage * 0.2f);
+		}
+
+		if (Statistics.warpres == 1 && properties().contains(Char.Property.WARP)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.warpres == 2 && properties().contains(Char.Property.WARP)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.warpres > 2 && properties().contains(Char.Property.WARP)) {
+			damage = Math.round(damage * 0.2f);
+		}
+
+		if (Statistics.powerfulres == 1 && properties().contains(Char.Property.POWERFUL)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.powerfulres == 2 && properties().contains(Char.Property.POWERFUL)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.powerfulres > 2 && properties().contains(Char.Property.POWERFUL)) {
+			damage = Math.round(damage * 0.2f);
+		}
+
+		if (Statistics.coolres == 1 && properties().contains(Char.Property.COOL)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.coolres == 2 && properties().contains(Char.Property.COOL)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.coolres > 2 && properties().contains(Char.Property.COOL)) {
+			damage = Math.round(damage * 0.2f);
+		}
+
+		if (Statistics.pureres == 1 && properties().contains(Char.Property.PURE)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.pureres == 2 && properties().contains(Char.Property.PURE)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.pureres > 2 && properties().contains(Char.Property.PURE)) {
+			damage = Math.round(damage * 0.2f);
+		}
+
+		if (Statistics.happyres == 1 && properties().contains(Char.Property.HAPPY)) {
+			damage = Math.round(damage * 0.5f);
+		}
+		if (Statistics.happyres == 2 && properties().contains(Char.Property.HAPPY)) {
+			damage = Math.round(damage * 0.33f);
+		}
+		if (Statistics.happyres > 2 && properties().contains(Char.Property.HAPPY)) {
+			damage = Math.round(damage * 0.2f);
+		}
+		//res damage zone//
+		return damage;
 	}
 
 	@Override

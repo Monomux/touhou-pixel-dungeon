@@ -66,7 +66,7 @@ public class Yuugi extends Mob {
 		loot = Generator.Category.ARMOR;
 		lootChance = 0.2f; //by default, see rollToDropLoot()
 
-		properties.add(Property.UNDEAD);
+		properties.add(Property.POWERFUL);
 		
 		HUNTING = new Hunting();
 	}

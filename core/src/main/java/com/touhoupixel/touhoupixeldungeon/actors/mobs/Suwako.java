@@ -54,6 +54,7 @@ public class Suwako extends Mob {
 		lootChance = 0.04f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.COLD);
 	}
 
 	@Override

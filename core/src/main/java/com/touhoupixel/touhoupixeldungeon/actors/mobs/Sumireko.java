@@ -56,6 +56,7 @@ public class Sumireko extends Mob {
 		flying = true;
 
 		properties.add(Property.FLOAT);
+		properties.add(Property.WARP);
 	}
 
 	@Override

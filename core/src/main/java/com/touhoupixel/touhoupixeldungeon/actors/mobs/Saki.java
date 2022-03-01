@@ -62,6 +62,8 @@ public class Saki extends Mob {
 		} else maxLvl = 5;
 
 		baseSpeed = 2f;
+
+		properties.add(Property.POWERFUL);
 	}
 
 	@Override

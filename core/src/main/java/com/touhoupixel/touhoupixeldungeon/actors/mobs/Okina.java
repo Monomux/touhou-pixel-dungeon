@@ -58,6 +58,7 @@ public class Okina extends Mob {
 		lootChance = 0.1f;
 
 		properties.add(Property.GOD);
+		properties.add(Property.WARP);
 	}
 
 	@Override
