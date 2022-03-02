@@ -40,6 +40,11 @@ public class RingOfEvasion extends Ring {
 			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(15f));
 		}
 	}
+
+	@Override
+	public int coolResistFactor( Char owner ) {
+		return 2;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

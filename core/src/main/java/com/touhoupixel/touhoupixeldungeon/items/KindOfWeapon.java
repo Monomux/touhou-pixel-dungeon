@@ -159,6 +159,7 @@ abstract public class KindOfWeapon extends EquipableItem {
 	public int happyResistFactor( Char owner ) {
 		return 0;
 	}
+
 	
 	public int proc( Char attacker, Char defender, int damage ) {
 		return damage;

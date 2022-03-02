@@ -83,6 +83,8 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfAquaticR
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfYomi;
+import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfAccuracy;
+import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRage;
@@ -110,6 +112,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatshield;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Levatein;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WornShortsword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YukinaMic;

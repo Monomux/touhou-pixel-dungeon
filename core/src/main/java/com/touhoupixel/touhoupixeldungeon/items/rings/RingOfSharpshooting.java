@@ -40,6 +40,11 @@ public class RingOfSharpshooting extends Ring {
 			return Messages.get(this, "typical_stats", 1, new DecimalFormat("#.##").format(20f));
 		}
 	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 1;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

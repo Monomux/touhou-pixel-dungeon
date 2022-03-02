@@ -29,13 +29,14 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.PitfallTrap;
+import com.touhoupixel.touhoupixeldungeon.sprites.LunaSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.MomoyoSprite;
 import com.watabou.utils.Random;
 
 public class Luna extends Mob {
 	
 	{
-		spriteClass = MomoyoSprite.class;
+		spriteClass = LunaSprite.class;
 
 		if (Dungeon.depth > 50){
 			HP = HT = 547;

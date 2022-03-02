@@ -51,6 +51,16 @@ public class RingOfElements extends Ring {
 			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(17.5f));
 		}
 	}
+
+	@Override
+	public int fireResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
+	public int coldResistFactor( Char owner ) {
+		return 2;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

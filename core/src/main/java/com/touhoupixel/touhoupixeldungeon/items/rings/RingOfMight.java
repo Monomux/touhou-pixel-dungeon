@@ -47,6 +47,11 @@ public class RingOfMight extends Ring {
 	}
 
 	@Override
+	public int powerfulResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	public boolean doUnequip(Hero hero, boolean collect, boolean single) {
 		if (super.doUnequip(hero, collect, single)){
 			hero.updateHT( false );

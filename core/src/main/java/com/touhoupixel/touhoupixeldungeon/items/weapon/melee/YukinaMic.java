@@ -41,6 +41,7 @@ import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.touhoupixel.touhoupixeldungeon.windows.WndBag;
 import com.watabou.utils.Random;
 
@@ -91,7 +92,9 @@ public class YukinaMic extends MeleeWeapon {
 
 		super.execute(hero, action);
 
-		if (action.equals(AC_XYZ) && curItem.level() == 7) {
+		if (action.equals(AC_XYZ) && curItem.isEquipped(hero)){
+			GLog.w( Messages.get(Stylus.class, "xyzbeforeunequip") );
+		} else if (action.equals(AC_XYZ) && curItem.level() == 7) {
 			GameScene.selectItem(itemSelector);
 		}
 	}
@@ -115,7 +118,9 @@ public class YukinaMic extends MeleeWeapon {
 
 		@Override
 		public void onSelect(Item item) {
-			if (item != null && item.level() == 7){
+			if (item != null && item.isEquipped(curUser)){
+				GLog.w( Messages.get(Stylus.class, "xyzbeforeunequip") );
+			} else if (item != null && item.level() == 7){
 				curItem.detach(curUser.belongings.backpack);
 				item.detach(curUser.belongings.backpack);
 				HellMic hm = new HellMic();

@@ -118,7 +118,7 @@ public class Ring extends KindofMisc {
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
+	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_XYZ);
 		return actions;

@@ -42,6 +42,11 @@ public class RingOfTenacity extends Ring {
 	}
 
 	@Override
+	public int warpResistFactor( Char owner ) {
+		return 2;
+	}
+
+	@Override
 	protected RingBuff buff( ) {
 		return new Tenacity();
 	}

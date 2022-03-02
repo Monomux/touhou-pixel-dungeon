@@ -40,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.touhoupixel.touhoupixeldungeon.windows.WndBag;
 
 import java.util.ArrayList;
@@ -87,7 +88,9 @@ public class Flail extends MeleeWeapon {
 
 		super.execute(hero, action);
 
-		if (action.equals(AC_XYZ) && curItem.level() == 6) {
+		if (action.equals(AC_XYZ) && curItem.isEquipped(hero)){
+			GLog.w( Messages.get(Stylus.class, "xyzbeforeunequip") );
+		} else if (action.equals(AC_XYZ) && curItem.level() == 6) {
 			GameScene.selectItem(itemSelector);
 		}
 	}
@@ -111,7 +114,9 @@ public class Flail extends MeleeWeapon {
 
 		@Override
 		public void onSelect(Item item) {
-			if (item != null && item.level() == 6){
+			if (item != null && item.isEquipped(curUser)){
+				GLog.w( Messages.get(Stylus.class, "xyzbeforeunequip") );
+			} else if (item != null && item.level() == 6){
 				curItem.detach(curUser.belongings.backpack);
 				item.detach(curUser.belongings.backpack);
 				FrostBrand2 fb2 = new FrostBrand2();

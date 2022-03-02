@@ -55,6 +55,11 @@ public class RingOfForce extends Ring {
 		return tier;
 	}
 
+	@Override
+	public int powerfulResistFactor( Char owner ) {
+		return 1;
+	}
+
 	public static int damageRoll( Hero hero ){
 		if (hero.buff(Force.class) != null) {
 			int level = getBuffedBonus(hero, Force.class);

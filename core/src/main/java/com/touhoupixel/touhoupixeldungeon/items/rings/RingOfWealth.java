@@ -67,6 +67,11 @@ public class RingOfWealth extends Ring {
 		}
 	}
 
+	@Override
+	public int happyResistFactor( Char owner ) {
+		return 1;
+	}
+
 	private static final String TRIES_TO_DROP = "tries_to_drop";
 	private static final String DROPS_TO_RARE = "drops_to_rare";
 

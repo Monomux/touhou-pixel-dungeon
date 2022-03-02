@@ -42,6 +42,11 @@ public class RingOfFuror extends Ring {
 	}
 
 	@Override
+	public int happyResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
 	protected RingBuff buff( ) {
 		return new Furor();
 	}

@@ -29,12 +29,13 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.sprites.MomoyoSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.StarSprite;
 import com.watabou.utils.Random;
 
 public class Star extends Mob {
 	
 	{
-		spriteClass = MomoyoSprite.class;
+		spriteClass = StarSprite.class;
 
 		if (Dungeon.depth > 50){
 			HP = HT = 612;

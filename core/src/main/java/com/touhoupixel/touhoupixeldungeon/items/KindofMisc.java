@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
@@ -31,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.touhoupixel.touhoupixeldungeon.windows.WndOptions;
+import com.watabou.utils.Random;
 
 
 public abstract class KindofMisc extends EquipableItem {
@@ -170,6 +172,28 @@ public abstract class KindofMisc extends EquipableItem {
 			return false;
 
 		}
+	}
+
+	public int fireResistFactor( Char owner ) {
+		return 0;
+	}
+	public int coldResistFactor( Char owner ) {
+		return 0;
+	}
+	public int warpResistFactor( Char owner ) {
+		return 0;
+	}
+	public int powerfulResistFactor( Char owner ) {
+		return 0;
+	}
+	public int coolResistFactor( Char owner ) {
+		return 0;
+	}
+	public int pureResistFactor( Char owner ) {
+		return 0;
+	}
+	public int happyResistFactor( Char owner ) {
+		return 0;
 	}
 
 	@Override

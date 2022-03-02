@@ -34,12 +34,13 @@ import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CloakOfShadows;
 import com.touhoupixel.touhoupixeldungeon.sprites.MomoyoSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.SunnySprite;
 import com.watabou.utils.Random;
 
 public class Sunny extends Mob {
 	
 	{
-		spriteClass = MomoyoSprite.class;
+		spriteClass = SunnySprite.class;
 
 		if (Dungeon.depth > 50){
 			HP = HT = 541;

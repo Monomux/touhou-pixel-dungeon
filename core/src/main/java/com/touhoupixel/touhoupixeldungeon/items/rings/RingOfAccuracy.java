@@ -40,6 +40,11 @@ public class RingOfAccuracy extends Ring {
 			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(30f));
 		}
 	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 2;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

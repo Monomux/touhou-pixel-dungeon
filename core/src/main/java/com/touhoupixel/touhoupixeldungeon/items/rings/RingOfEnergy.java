@@ -44,6 +44,11 @@ public class RingOfEnergy extends Ring {
 					new DecimalFormat("#.##").format(15f));
 		}
 	}
+
+	@Override
+	public int warpResistFactor( Char owner ) {
+		return 2;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

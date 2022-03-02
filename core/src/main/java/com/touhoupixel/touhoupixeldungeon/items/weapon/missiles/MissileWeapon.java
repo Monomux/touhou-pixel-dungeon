@@ -135,9 +135,10 @@ abstract public class MissileWeapon extends Weapon {
 	}
 
 	@Override
-	public ArrayList<String> actions( Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
-		actions.remove( AC_EQUIP );
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
+		actions.remove(AC_EQUIP);
+		actions.remove(AC_XYZ);
 		return actions;
 	}
 

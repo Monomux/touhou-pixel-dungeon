@@ -39,8 +39,8 @@ public class Hina extends Mob {
 		} else HP = HT = 89;
 
 		if (Dungeon.depth > 50){
-			defenseSkill = 82;
-		} else defenseSkill = 32;
+			defenseSkill = 78;
+		} else defenseSkill = 28;
 
 		if (Dungeon.depth > 50){
 			EXP = 64;

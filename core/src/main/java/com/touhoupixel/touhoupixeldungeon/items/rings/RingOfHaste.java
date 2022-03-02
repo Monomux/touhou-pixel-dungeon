@@ -40,6 +40,11 @@ public class RingOfHaste extends Ring {
 			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(20f));
 		}
 	}
+
+	@Override
+	public int coolResistFactor( Char owner ) {
+		return 1;
+	}
 	
 	@Override
 	protected RingBuff buff( ) {

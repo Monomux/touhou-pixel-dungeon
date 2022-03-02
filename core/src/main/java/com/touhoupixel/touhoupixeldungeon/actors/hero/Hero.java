@@ -2833,6 +2833,78 @@ public class Hero extends Char {
 	@Override
 	public boolean isAlive() {
 
+		int resa = 0;
+		int resb = 0;
+		int resc = 0;
+		int resd = 0;
+		int rese = 0;
+		int resf = 0;
+		int resg = 0;
+		int resh = 0;
+		int resi = 0;
+		int resj = 0;
+		int resk = 0;
+		int resl = 0;
+		int resm = 0;
+		int resn = 0;
+		int reso = 0;
+		int resp = 0;
+		int resq = 0;
+		int resr = 0;
+		int ress = 0;
+		int rest = 0;
+		int resu = 0;
+		int resaa = 0;
+		int resbb = 0;
+		int rescc = 0;
+		int resdd = 0;
+		int resee = 0;
+		int resff = 0;
+		int resgg = 0;
+		if (belongings.weapon() != null) {
+			resa = belongings.weapon().fireResistFactor(this);
+			resb = belongings.weapon().coldResistFactor(this);
+			resc = belongings.weapon().warpResistFactor(this);
+			resd = belongings.weapon().powerfulResistFactor(this);
+			rese = belongings.weapon().coolResistFactor(this);
+			resf = belongings.weapon().pureResistFactor(this);
+			resg = belongings.weapon().happyResistFactor(this);
+		}
+		if (belongings.armor() != null) {
+			resh = belongings.armor().fireResistFactor(this);
+			resi = belongings.armor().coldResistFactor(this);
+			resj = belongings.armor().warpResistFactor(this);
+			resk = belongings.armor().powerfulResistFactor(this);
+			resl = belongings.armor().coolResistFactor(this);
+			resm = belongings.armor().pureResistFactor(this);
+			resn = belongings.armor().happyResistFactor(this);
+		}
+		if (belongings.misc() != null) {
+			reso = belongings.misc().fireResistFactor(this);
+			resp = belongings.misc().coldResistFactor(this);
+			resq = belongings.misc().warpResistFactor(this);
+			resr = belongings.misc().powerfulResistFactor(this);
+			ress = belongings.misc().coolResistFactor(this);
+			rest = belongings.misc().pureResistFactor(this);
+			resu = belongings.misc().happyResistFactor(this);
+		}
+		if (belongings.ring() != null) {
+			resaa = belongings.ring().fireResistFactor(this);
+			resbb = belongings.ring().coldResistFactor(this);
+			rescc = belongings.ring().warpResistFactor(this);
+			resdd = belongings.ring().powerfulResistFactor(this);
+			resee = belongings.ring().coolResistFactor(this);
+			resff = belongings.ring().pureResistFactor(this);
+			resgg = belongings.ring().happyResistFactor(this);
+		}
+		Statistics.fireres = resa+resh+reso+resaa;
+		Statistics.coldres = resb+resi+resp+resbb;
+		Statistics.warpres = resc+resj+resq+rescc;
+		Statistics.powerfulres = resd+resk+resr+resdd;
+		Statistics.coolres = rese+resl+ress+resee;
+		Statistics.pureres = resf+resm+rest+resff;
+		Statistics.happyres = resg+resn+resu+resgg;
+
 		if (HP <= 0){
 			if (berserk == null) berserk = buff(Berserk.class);
 			return berserk != null && berserk.berserking();
@@ -2846,70 +2918,40 @@ public class Hero extends Char {
 	public void move(int step, boolean travelling) {
 		boolean wasHighGrass = Dungeon.level.map[step] == Terrain.HIGH_GRASS;
 
-		super.move( step, travelling);
+		super.move(step, travelling);
 
-		if (belongings.weapon() != null && belongings.armor() != null) {
-			Statistics.fireres = (belongings.weapon().fireResistFactor(this) + belongings.armor().fireResistFactor(this));
-		}
-			if (belongings.weapon() != null && belongings.armor() != null) {
-				Statistics.coldres = (belongings.weapon().coldResistFactor(this) + belongings.armor().coldResistFactor(this));
-			}
-				if (belongings.weapon() != null && belongings.armor() != null) {
-					Statistics.warpres = (belongings.weapon().warpResistFactor(this) + belongings.armor().warpResistFactor(this));
-				}
-					if (belongings.weapon() != null && belongings.armor() != null) {
-						Statistics.powerfulres = (belongings.weapon().powerfulResistFactor(this) + belongings.armor().powerfulResistFactor(this));
-					}
-						if (belongings.weapon() != null && belongings.armor() != null) {
-							Statistics.coolres = (belongings.weapon().coolResistFactor(this) + belongings.armor().coolResistFactor(this));
-						}
-							if (belongings.weapon() != null && belongings.armor() != null) {
-								Statistics.pureres = (belongings.weapon().pureResistFactor(this) + belongings.armor().pureResistFactor(this));
-							}
-								if (belongings.weapon() != null && belongings.armor() != null)  {
-			Statistics.happyres = (belongings.weapon().happyResistFactor(this)+belongings.armor().happyResistFactor(this));
-								} else {
-		Statistics.fireres = 0;
-		Statistics.coldres = 0;
-		Statistics.warpres = 0;
-		Statistics.powerfulres = 0;
-		Statistics.coolres = 0;
-		Statistics.pureres = 0;
-		Statistics.happyres = 0;
-		}
-
-		if (heroClass == HeroClass.MURASA){
+		if (heroClass == HeroClass.MURASA) {
 			Buff.affect(this, UnderwaterCurse.class);
 		}
 
-		if (Dungeon.hero.belongings.weapon instanceof AlchemyHat){
+		if (Dungeon.hero.belongings.weapon instanceof AlchemyHat) {
 			Buff.prolong(this, HatResistance.class, HatResistance.DURATION);
 		}
 
-		if (buff(MoveDetect.class) != null){
+		if (buff(MoveDetect.class) != null) {
 			damage(10, this);
 		}
 
 		if (Dungeon.isChallenged(Challenges.BECOME_FUMO) && !(heroClass == HeroClass.MURASA)) {
 			Buff.affect(this, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
-			this.sprite.add( CharSprite.State.DARKENED );
+			this.sprite.add(CharSprite.State.DARKENED);
 		}
 
 		if (!flying && travelling) {
 			if (Dungeon.level.water[pos]) {
-				Sample.INSTANCE.play( Assets.Sounds.WATER, 1, Random.Float( 0.8f, 1.25f ) );
+				Sample.INSTANCE.play(Assets.Sounds.WATER, 1, Random.Float(0.8f, 1.25f));
 			} else if (Dungeon.level.map[pos] == Terrain.EMPTY_SP) {
-				Sample.INSTANCE.play( Assets.Sounds.STURDY, 1, Random.Float( 0.96f, 1.05f ) );
+				Sample.INSTANCE.play(Assets.Sounds.STURDY, 1, Random.Float(0.96f, 1.05f));
 			} else if (Dungeon.level.map[pos] == Terrain.GRASS
 					|| Dungeon.level.map[pos] == Terrain.EMBERS
-					|| Dungeon.level.map[pos] == Terrain.FURROWED_GRASS){
+					|| Dungeon.level.map[pos] == Terrain.FURROWED_GRASS) {
 				if (step == pos && wasHighGrass) {
-					Sample.INSTANCE.play(Assets.Sounds.TRAMPLE, 1, Random.Float( 0.96f, 1.05f ) );
+					Sample.INSTANCE.play(Assets.Sounds.TRAMPLE, 1, Random.Float(0.96f, 1.05f));
 				} else {
-					Sample.INSTANCE.play( Assets.Sounds.GRASS, 1, Random.Float( 0.96f, 1.05f ) );
+					Sample.INSTANCE.play(Assets.Sounds.GRASS, 1, Random.Float(0.96f, 1.05f));
 				}
 			} else {
-				Sample.INSTANCE.play( Assets.Sounds.STEP, 1, Random.Float( 0.96f, 1.05f ) );
+				Sample.INSTANCE.play(Assets.Sounds.STEP, 1, Random.Float(0.96f, 1.05f));
 			}
 		}
 	}

@@ -88,8 +88,8 @@ public class Yachie extends Mob {
 	@Override
 	public int attackSkill(Char target) {
 		if (Dungeon.depth > 50) {
-			return 60;
-		} else return 10;
+			return 57;
+		} else return 7;
 	}
 
 	@Override
