@@ -1309,16 +1309,16 @@ public enum Talent {
 			case HUNTRESS:
 				Collections.addAll(tierTalents, NATURES_BOUNTY, SURVIVALISTS_INTUITION, FOLLOWUP_STRIKE, NATURES_AID);
 				break;
-			case REISEN:
+			case REISENPLAYER:
 				Collections.addAll(tierTalents, EIENTEI_MEAL, POTION_INTUITION, DANMAKU_STRIKE, EIENTEI_LUCK);
 				break;
-			case NITORI:
+			case NITORIPLAYER:
 				Collections.addAll(tierTalents, KAPPA_MEAL, SCROLL_INTUITION, CUCUMBER_HEAL, BASIC_FUSION);
 				break;
-			case YUYUKO:
+			case YUYUKOPLAYER:
 				Collections.addAll(tierTalents, ANIMAL_MEAL, PASTY_GAIN, CUCUMBER_GAIN, FROZEN_FOOD_GAIN);
 				break;
-			case MURASA:
+			case MURASAPLAYER:
 				Collections.addAll(tierTalents, GAIN_AQUA_REGEN, GAIN_AQUA_BLAST, AQUA_STRIKE, AQUA_LIGHT);
 				break;
 			case HINAPLAYER:
@@ -1348,16 +1348,16 @@ public enum Talent {
 			case HUNTRESS:
 				Collections.addAll(tierTalents, INVIGORATING_MEAL, RESTORED_NATURE, REJUVENATING_STEPS, HEIGHTENED_SENSES, DURABLE_PROJECTILES);
 				break;
-			case REISEN:
+			case REISENPLAYER:
 				Collections.addAll(tierTalents, EIENTEI_ENHANCE_MEAL, GAINING_HEALING, DANMAKU_ENHANCE_STRIKE, EIENTEI_ENHANCED_LUCK, INVU_IDENTIFY);
 				break;
-			case NITORI:
+			case NITORIPLAYER:
 				Collections.addAll(tierTalents, KAPPA_ENHANCE_MEAL, RISKY_IDENTIFY, FEW_CUCUMBER, MEDIUM_FUSION, ADVANCED_FUSION);
 				break;
-			case YUYUKO:
+			case YUYUKOPLAYER:
 				Collections.addAll(tierTalents, ANIMAL_ENHANCED_MEAL, QUICK_MEAL, MORE_FOOD_PANCAKE, MORE_FOOD_WAFFLE, MORE_FOOD_FRUIT);
 				break;
-			case MURASA:
+			case MURASAPLAYER:
 				Collections.addAll(tierTalents, GAIN_MORE_AQUA_REGEN, GAIN_MORE_AQUA_BLAST, EXHAUSTIVE_FOOD, GHOST_TENSITY, AQUA_BLESS);
 				break;
 			case HINAPLAYER:
@@ -1387,16 +1387,16 @@ public enum Talent {
 			case HUNTRESS:
 				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT);
 				break;
-			case REISEN:
+			case REISENPLAYER:
 				Collections.addAll(tierTalents, SIMPLE_POWER, INVU_POWER);
 				break;
-			case NITORI:
+			case NITORIPLAYER:
 				Collections.addAll(tierTalents, GAINING_CUCUMBER, GAINING_TRANSMUTE);
 				break;
-			case YUYUKO:
+			case YUYUKOPLAYER:
 				Collections.addAll(tierTalents, EVERYONE_IS_MEAL, TENSHI_PEACH_GAIN);
 				break;
-			case MURASA:
+			case MURASAPLAYER:
 				Collections.addAll(tierTalents, AQUA_FOOD, MORE_GHOST_TENSITY);
 				break;
 			case HINAPLAYER:

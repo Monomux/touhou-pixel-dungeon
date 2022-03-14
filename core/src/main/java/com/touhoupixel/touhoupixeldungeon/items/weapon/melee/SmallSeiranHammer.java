@@ -23,24 +23,23 @@ package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bleeding;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class WornShortsword extends MeleeWeapon {
+public class SmallSeiranHammer extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.WORN_SHORTSWORD;
-		hitSound = Assets.Sounds.HIT_SLASH;
+		image = ItemSpriteSheet.SMALL_SEIRAN_HAMMER;
+		hitSound = Assets.Sounds.HIT;
 
 		hitSoundPitch = 1.1f;
 
 		tier = 1;
-		ACC = 1.03f;
 
 		bones = false;
 	}
@@ -48,6 +47,18 @@ public class WornShortsword extends MeleeWeapon {
 	@Override
 	public int coldResistFactor( Char owner ) {
 		return 0;
+	}
+
+	@Override
+	public int damageRoll(Char owner) {
+		if (owner instanceof Hero) {
+			Hero hero = (Hero) owner;
+			Char enemy = hero.enemy();
+			if (Dungeon.hero.belongings.weapon() instanceof SmallSeiranHammer) {
+				Buff.affect(enemy, Bleeding.class).set(4);
+			}
+		}
+		return super.damageRoll(owner);
 	}
 
 	@Override

@@ -56,10 +56,10 @@ public class WndHeroInfo extends WndTabbed {
 		Image tabIcon;
 		switch (cl){
 			case WARRIOR:
-			case REISEN:
-			case NITORI:
-			case YUYUKO:
-			case MURASA:
+			case REISENPLAYER:
+			case NITORIPLAYER:
+			case YUYUKOPLAYER:
+			case MURASAPLAYER:
 			case HINAPLAYER:
 			case KAGUYAPLAYER: default:
 				tabIcon = new ItemSprite(ItemSpriteSheet.SEAL, null);
@@ -134,10 +134,10 @@ public class WndHeroInfo extends WndTabbed {
 			}
 			switch (cls){
 				case WARRIOR:
-				case REISEN:
-				case NITORI:
-				case YUYUKO:
-				case MURASA:
+				case REISENPLAYER:
+				case NITORIPLAYER:
+				case YUYUKOPLAYER:
+				case MURASAPLAYER:
 				case HINAPLAYER:
 				case KAGUYAPLAYER: default:
 					icons = new Image[]{ new ItemSprite(ItemSpriteSheet.SEAL),

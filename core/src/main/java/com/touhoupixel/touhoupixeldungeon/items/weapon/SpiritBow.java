@@ -76,6 +76,7 @@ public class SpiritBow extends Weapon {
 		ArrayList<String> actions = super.actions(hero);
 		actions.remove(AC_EQUIP);
 		actions.add(AC_SHOOT);
+		actions.remove(AC_XYZ);
 		return actions;
 	}
 	

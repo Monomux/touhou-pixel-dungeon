@@ -247,10 +247,10 @@ public class Assets {
 		public static final String MAGE		= "splashes/mage.jpg";
 		public static final String ROGUE	= "splashes/rogue.jpg";
 		public static final String HUNTRESS	= "splashes/huntress.jpg";
-		public static final String REISEN	= "splashes/reisen.jpg";
-		public static final String NITORI	= "splashes/nitori.jpg";
-		public static final String YUYUKO	= "splashes/yuyuko.jpg";
-		public static final String MURASA	= "splashes/murasa.jpg";
+		public static final String REISENPLAYER	= "splashes/reisenplayer.jpg";
+		public static final String NITORIPLAYER	= "splashes/nitoriplayer.jpg";
+		public static final String YUYUKOPLAYER	= "splashes/yuyukoplayer.jpg";
+		public static final String MURASAPLAYER	= "splashes/murasaplayer.jpg";
 		public static final String HINAPLAYER     = "splashes/hinaplayer.jpg";
 		public static final String KAGUYAPLAYER     = "splashes/kaguyaplayer.jpg";
 	}
@@ -263,10 +263,10 @@ public class Assets {
 		public static final String MAGE		= "sprites/mage.png";
 		public static final String ROGUE	= "sprites/rogue.png";
 		public static final String HUNTRESS	= "sprites/huntress.png";
-		public static final String REISEN	= "sprites/reisen.png";
-		public static final String NITORI	= "sprites/nitori.png";
-		public static final String YUYUKO	= "sprites/yuyuko.png";
-		public static final String MURASA	= "sprites/murasa.png";
+		public static final String REISENPLAYER	= "sprites/reisenplayer.png";
+		public static final String NITORIPLAYER	= "sprites/nitoriplayer.png";
+		public static final String YUYUKOPLAYER	= "sprites/yuyukoplayer.png";
+		public static final String MURASAPLAYER	= "sprites/murasaplayer.png";
 		public static final String HINAPLAYER = "sprites/hinaplayer.png";
 		public static final String KAGUYAPLAYER = "sprites/kaguyaplayer.png";
 		public static final String AVATARS	= "sprites/avatars.png";

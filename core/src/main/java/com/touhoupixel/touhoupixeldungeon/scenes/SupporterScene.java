@@ -83,7 +83,7 @@ public class SupporterScene extends PixelScene {
 				DeviceCompat.openURI(link);
 			}
 		};
-		link.icon(Icons.get(Icons.YUYUKO));
+		link.icon(Icons.get(Icons.YUYUKOPLAYER));
 		link.textColor(Window.TITLE_COLOR);
 		link.setSize(elementWidth, BTN_HEIGHT);
 		add(link);
@@ -127,7 +127,7 @@ public class SupporterScene extends PixelScene {
 			text = PixelScene.renderTextBlock(message, 6);
 			add(text);
 
-			icon = Icons.get(Icons.YUYUKO);
+			icon = Icons.get(Icons.YUYUKOPLAYER);
 			add(icon);
 
 		}

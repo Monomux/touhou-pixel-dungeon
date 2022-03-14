@@ -193,7 +193,7 @@ public abstract class Level implements Bundlable {
 				addItemToSpawn( new Torch() );
 			}
 
-			if (Dungeon.hero.heroClass == HeroClass.MURASA){
+			if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER){
 				addItemToSpawn( new ElixirOfAquaticRejuvenation() );
 			}
 

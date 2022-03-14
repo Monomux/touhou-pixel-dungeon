@@ -22,17 +22,10 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
-import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
@@ -43,7 +36,7 @@ public class Psalms extends MeleeWeapon {
 	{
 		image = ItemSpriteSheet.PSALMS;
 		hitSound = Assets.Sounds.HIT;
-		hitSoundPitch = 1.0f;
+		hitSoundPitch = 1f;
 
 		tier = 1;
 	}

@@ -23,31 +23,40 @@ package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bleeding;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class WornShortsword extends MeleeWeapon {
+public class HinaRibbon extends MeleeWeapon {
 
 	{
-		image = ItemSpriteSheet.WORN_SHORTSWORD;
-		hitSound = Assets.Sounds.HIT_SLASH;
+		image = ItemSpriteSheet.HINA_RIBBON;
+		hitSound = Assets.Sounds.HIT;
 
 		hitSoundPitch = 1.1f;
 
 		tier = 1;
-		ACC = 1.03f;
 
 		bones = false;
 	}
 
 	@Override
-	public int coldResistFactor( Char owner ) {
-		return 0;
+	public int damageRoll(Char owner) {
+		if (owner instanceof Hero) {
+			Hero hero = (Hero) owner;
+			Char enemy = hero.enemy();
+			if (Dungeon.hero.belongings.weapon() instanceof HinaRibbon && Random.Int(200) == 0) {
+				PotionOfHealing.cure(hero);
+				PotionOfHealing.heal(hero);
+			}
+		}
+		return super.damageRoll(owner);
 	}
 
 	@Override

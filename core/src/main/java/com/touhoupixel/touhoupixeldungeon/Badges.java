@@ -68,10 +68,10 @@ public class Badges {
 		DEATH_FROM_GAS              ( 16 ),
 		DEATH_FROM_HUNGER           ( 17 ),
 		DEATH_FROM_FALLING          ( 18 ),
-		UNLOCK_REISEN               ( 24 ),
-		UNLOCK_NITORI               ( 25 ),
-		UNLOCK_YUYUKO               ( 26 ),
-		UNLOCK_MURASA               ( 27 ),
+		UNLOCK_REISENPLAYER               ( 24 ),
+		UNLOCK_NITORIPLAYER               ( 25 ),
+		UNLOCK_YUYUKOPLAYER               ( 26 ),
+		UNLOCK_MURASAPLAYER               ( 27 ),
 		UNLOCK_HINAPLAYER           ( 19 ),
 		UNLOCK_KAGUYAPLAYER         ( 20 ),
 		SHOPKEEPERS                 ( 28 ),
@@ -135,10 +135,10 @@ public class Badges {
 		VICTORY_MAGE,
 		VICTORY_ROGUE,
 		VICTORY_HUNTRESS,
-		VICTORY_REISEN,
-		VICTORY_NITORI,
-		VICTORY_YUYUKO,
-		VICTORY_MURASA,
+		VICTORY_REISENPLAYER,
+		VICTORY_NITORIPLAYER,
+		VICTORY_YUYUKOPLAYER,
+		VICTORY_MURASAPLAYER,
 		VICTORY_HINAPLAYER,
 		VICTORY_KAGUYAPLAYER,
 		VICTORY_ALL_CLASSES         ( 98, true ),
@@ -344,8 +344,8 @@ public class Badges {
 			badge = Badge.LEVEL_REACHED_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.UNLOCK_NITORI ) && Dungeon.hero.lvl >= 30) {
-			badge = Badge.UNLOCK_NITORI;
+		if (!local.contains( Badge.UNLOCK_NITORIPLAYER ) && Dungeon.hero.lvl >= 30) {
+			badge = Badge.UNLOCK_NITORIPLAYER;
 			local.add( badge );
 		}
 
@@ -395,8 +395,8 @@ public class Badges {
 			badge = Badge.FOOD_EATEN_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.UNLOCK_YUYUKO ) && Statistics.foodEaten >= 50) {
-			badge = Badge.UNLOCK_YUYUKO;
+		if (!local.contains( Badge.UNLOCK_YUYUKOPLAYER ) && Statistics.foodEaten >= 50) {
+			badge = Badge.UNLOCK_YUYUKOPLAYER;
 			local.add( badge );
 		}
 
@@ -433,8 +433,8 @@ public class Badges {
 	public static void validatePiranhasKilled() {
 		Badge badge = null;
 
-		if (!local.contains( Badge.UNLOCK_MURASA ) && Statistics.piranhasKilled >= 3) {
-			badge = Badge.UNLOCK_MURASA;
+		if (!local.contains( Badge.UNLOCK_MURASAPLAYER ) && Statistics.piranhasKilled >= 3) {
+			badge = Badge.UNLOCK_MURASAPLAYER;
 			local.add( badge );
 		}
 		if (!local.contains( Badge.PIRANHAS ) && Statistics.piranhasKilled >= 6) {
@@ -658,8 +658,8 @@ public class Badges {
 	}
 
 	public static void validateReisenUnlock(){
-		if (Statistics.toyohimesKilled >= 1 && !global.contains(Badge.UNLOCK_REISEN)){
-			displayBadge( Badge.UNLOCK_REISEN );
+		if (Statistics.toyohimesKilled >= 1 && !global.contains(Badge.UNLOCK_REISENPLAYER)){
+			displayBadge( Badge.UNLOCK_REISENPLAYER );
 		}
 	}
 
@@ -689,17 +689,17 @@ public class Badges {
 			case HUNTRESS:
 				badge = Badge.VICTORY_HUNTRESS;
 				break;
-			case REISEN:
-				badge = Badge.VICTORY_REISEN;
+			case REISENPLAYER:
+				badge = Badge.VICTORY_REISENPLAYER;
 				break;
-			case NITORI:
-				badge = Badge.VICTORY_NITORI;
+			case NITORIPLAYER:
+				badge = Badge.VICTORY_NITORIPLAYER;
 				break;
-			case YUYUKO:
-				badge = Badge.VICTORY_YUYUKO;
+			case YUYUKOPLAYER:
+				badge = Badge.VICTORY_YUYUKOPLAYER;
 				break;
-			case MURASA:
-				badge = Badge.VICTORY_MURASA;
+			case MURASAPLAYER:
+				badge = Badge.VICTORY_MURASAPLAYER;
 				break;
 			case HINAPLAYER:
 				badge = Badge.VICTORY_HINAPLAYER;
@@ -717,10 +717,10 @@ public class Badges {
 		if (global.contains( Badge.VICTORY_WARRIOR ) &&
 				global.contains( Badge.VICTORY_MAGE ) &&
 				global.contains( Badge.VICTORY_ROGUE ) &&
-				global.contains( Badge.VICTORY_REISEN ) &&
-				global.contains( Badge.VICTORY_NITORI ) &&
-				global.contains( Badge.VICTORY_YUYUKO ) &&
-				global.contains( Badge.VICTORY_MURASA ) &&
+				global.contains( Badge.VICTORY_REISENPLAYER ) &&
+				global.contains( Badge.VICTORY_NITORIPLAYER ) &&
+				global.contains( Badge.VICTORY_YUYUKOPLAYER ) &&
+				global.contains( Badge.VICTORY_MURASAPLAYER ) &&
 				global.contains( Badge.VICTORY_HINAPLAYER ) &&
 				global.contains( Badge.VICTORY_KAGUYAPLAYER ) &&
 				global.contains( Badge.VICTORY_HUNTRESS )) {

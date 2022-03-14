@@ -27,7 +27,10 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.utils.PathFinder;
 
 public class TeleportationTrap extends Trap {
@@ -43,7 +46,9 @@ public class TeleportationTrap extends Trap {
 		for (int i : PathFinder.NEIGHBOURS9){
 			Char ch = Actor.findChar(pos + i);
 			if (ch != null){
-				if (ScrollOfTeleportation.teleportChar(ch)) {
+				if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
+					GLog.w( Messages.get(ScrollOfTeleportation.class, "tele_interrupt") );
+				} else if (ScrollOfTeleportation.teleportChar(ch)) {
 					if (ch instanceof Mob && ((Mob) ch).state == ((Mob) ch).HUNTING) {
 						((Mob) ch).state = ((Mob) ch).WANDERING;
 					}

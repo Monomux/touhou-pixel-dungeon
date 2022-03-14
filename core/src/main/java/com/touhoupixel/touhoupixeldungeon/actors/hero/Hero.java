@@ -263,10 +263,6 @@ public class Hero extends Char {
 		belongings = new Belongings( this );
 
 		visibleEnemies = new ArrayList<>();
-
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			STR += 15;
-		}
 	}
 
 	public void updateHT( boolean boostHP ){
@@ -290,7 +286,24 @@ public class Hero extends Char {
 	}
 
 	public int STR() {
+
 		int strBonus = 0;
+
+		if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER){
+			strBonus += 4;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUYUKOPLAYER){
+			strBonus += 6;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER){
+			strBonus += 6;
+		}
+
+		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
+			strBonus += 15;
+		}
 
 		strBonus += RingOfMight.strengthBonus( this );
 
@@ -504,7 +517,7 @@ public class Hero extends Char {
 		float accuracy = 1;
 		accuracy *= RingOfAccuracy.accuracyMultiplier( this );
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && Dungeon.level.water[pos]) {
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && Dungeon.level.water[pos]) {
 			accuracy *= 1.5f;
 		}
 
@@ -714,7 +727,7 @@ public class Hero extends Char {
 
 		float speed = super.speed();
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && Dungeon.level.water[pos]) {
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && Dungeon.level.water[pos]) {
 			speed *= 3f;
 		}
 
@@ -1328,7 +1341,7 @@ public class Hero extends Char {
 			Mf.collect();
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && (Random.Int(5) == 0)) {
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(5) == 0)) {
 			Dungeon.level.setCellToWater(false, enemy.pos);
 		}
 
@@ -1483,7 +1496,7 @@ public class Hero extends Char {
 			damage *= 3f;
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.REISEN && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+		if (heroClass == HeroClass.REISENPLAYER && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			damage *= 1.5f;
 		}
 
@@ -1501,7 +1514,7 @@ public class Hero extends Char {
 			damage *= 1.8f;
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && Dungeon.level.water[pos]) {
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && Dungeon.level.water[pos]) {
 			damage *= 1.8f;
 		}
 
@@ -1558,12 +1571,12 @@ public class Hero extends Char {
 			}
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.YUYUKO && (Random.Int(12-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.COMING_DEATH)) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
+		if (Dungeon.hero.heroClass == HeroClass.YUYUKOPLAYER && (Random.Int(12-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.COMING_DEATH)) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && (Random.Int(10-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(10-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
@@ -1722,7 +1735,7 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && (Random.Int(5) == 0)){
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(5) == 0)){
 			Dungeon.level.setCellToWater(false, pos);
 		}
 
@@ -1879,7 +1892,7 @@ public class Hero extends Char {
 			else if (pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.IRON_STOMACH) == 2)  dmg = Math.round(dmg*0.00f);
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.KAGUYAPLAYER){
+		if (heroClass == HeroClass.KAGUYAPLAYER){
 			dmg = Math.round(dmg*0.75f);
 		}
 
@@ -2511,7 +2524,7 @@ public class Hero extends Char {
 
 		super.move(step, travelling);
 
-		if (heroClass == HeroClass.MURASA) {
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER) {
 			Buff.affect(this, UnderwaterCurse.class);
 		}
 
@@ -2523,7 +2536,7 @@ public class Hero extends Char {
 			damage(10, this);
 		}
 
-		if (Dungeon.isChallenged(Challenges.BECOME_FUMO) && !(heroClass == HeroClass.MURASA)) {
+		if (Dungeon.isChallenged(Challenges.BECOME_FUMO) && !(Dungeon.hero.heroClass == HeroClass.MURASAPLAYER)) {
 			Buff.affect(this, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
 			this.sprite.add(CharSprite.State.DARKENED);
 		}

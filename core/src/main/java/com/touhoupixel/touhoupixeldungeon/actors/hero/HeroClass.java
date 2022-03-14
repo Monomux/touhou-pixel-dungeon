@@ -29,28 +29,22 @@ import com.touhoupixel.touhoupixeldungeon.QuickSlot;
 import com.touhoupixel.touhoupixeldungeon.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.Prayer;
-import com.touhoupixel.touhoupixeldungeon.items.MokouRibbon;
 import com.touhoupixel.touhoupixeldungeon.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.HecatiaArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.PC98MarisaArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.PC98ReimuArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.LeatherArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MailArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.ScaleArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CloakOfShadows;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.bags.FoodHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeon.items.bags.TailsmanHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.VelvetPouch;
-import com.touhoupixel.touhoupixeldungeon.items.bombs.RegrowthBomb;
 import com.touhoupixel.touhoupixeldungeon.items.food.Cucumber;
 import com.touhoupixel.touhoupixeldungeon.items.food.Food;
 import com.touhoupixel.touhoupixeldungeon.items.food.TwoSoySauce;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfBerserk;
-import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfInvisibility;
@@ -59,12 +53,9 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfPurity;
-import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.Elixir;
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfCleansing;
-import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
-import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfMastery;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfYomi;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfLullaby;
@@ -78,20 +69,19 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
-import com.touhoupixel.touhoupixeldungeon.items.spells.PhaseShift;
+import com.touhoupixel.touhoupixeldungeon.items.spells.KogasaHammer;
 import com.touhoupixel.touhoupixeldungeon.items.spells.Recycle;
-import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfBlink;
-import com.touhoupixel.touhoupixeldungeon.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dagger;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Gloves;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HinaRibbon;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Psalms;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.NitoriRod;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SmallSeiranHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WornShortsword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YuyukoFoldingFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.FishingSpear;
@@ -107,10 +97,10 @@ public enum HeroClass {
 	MAGE( HeroSubClass.BATTLEMAGE, HeroSubClass.WARLOCK ),
 	ROGUE( HeroSubClass.ASSASSIN, HeroSubClass.FREERUNNER ),
 	HUNTRESS( HeroSubClass.SNIPER, HeroSubClass.WARDEN ),
-	REISEN( HeroSubClass.MOONRABBIT, HeroSubClass.DESERTER ),
-	NITORI( HeroSubClass.KAPPA, HeroSubClass.ENGINEER ),
-	YUYUKO( HeroSubClass.GOURMET, HeroSubClass.DEATHGHOST ),
-	MURASA( HeroSubClass.CAPTAIN, HeroSubClass.SHIPGHOST ),
+	REISENPLAYER( HeroSubClass.MOONRABBIT, HeroSubClass.DESERTER ),
+	NITORIPLAYER( HeroSubClass.KAPPA, HeroSubClass.ENGINEER ),
+	YUYUKOPLAYER( HeroSubClass.GOURMET, HeroSubClass.DEATHGHOST ),
+	MURASAPLAYER( HeroSubClass.CAPTAIN, HeroSubClass.SHIPGHOST ),
 	HINAPLAYER( HeroSubClass.SPINGOD, HeroSubClass.CURSEGOD ),
 	KAGUYAPLAYER( HeroSubClass.TIMESTOP, HeroSubClass.TIMEMOVE );
 
@@ -146,6 +136,13 @@ public enum HeroClass {
 		Waterskin waterskin = new Waterskin();
 		waterskin.collect();
 
+		KogasaHammer kh = new KogasaHammer();
+		if (!Dungeon.isChallenged(Challenges.PACIFIST)) {
+			kh.quantity(3).collect();
+		} else {
+			kh.quantity(10).collect();
+		}
+
 		if (Dungeon.isChallenged(Challenges.PACIFIST)) {
 			DriedRose rose = new DriedRose();
 			rose.identify().collect();
@@ -156,7 +153,7 @@ public enum HeroClass {
 			ScrollOfIdentify soi = new ScrollOfIdentify();
 			soi.quantity(5).identify().collect();
 			ScrollOfSirensSong soss = new ScrollOfSirensSong();
-			soss.quantity(5).identify().collect();
+			soss.quantity(10).identify().collect();
 			ElixirOfHoneyedHealing eohh = new ElixirOfHoneyedHealing();
 			eohh.quantity(5).identify().collect();
 			PotionOfInvisibility Poi = new PotionOfInvisibility();
@@ -172,13 +169,6 @@ public enum HeroClass {
 
 		PotionOfHealing Poh = new PotionOfHealing();
 		Poh.quantity(3).collect();
-
-		ScrollOfUpgrade Upgrade = new ScrollOfUpgrade();
-		if (!Dungeon.isChallenged(Challenges.MASTER_SPARK)) {
-			Upgrade.quantity(3).collect();
-		} else {
-			Upgrade.quantity(6).collect();
-		}
 
 		new PotionOfHealing().identify();
 		new ScrollOfRouteChange().identify();
@@ -201,20 +191,20 @@ public enum HeroClass {
 				initHuntress( hero );
 				break;
 
-			case REISEN:
-				initReisen( hero );
+			case REISENPLAYER:
+				initReisenplayer( hero );
 				break;
 
-			case NITORI:
-				initNitori( hero );
+			case NITORIPLAYER:
+				initNitoriplayer( hero );
 				break;
 
-			case YUYUKO:
-				initYuyuko( hero );
+			case YUYUKOPLAYER:
+				initYuyukoplayer( hero );
 				break;
 
-			case MURASA:
-				initMurasa( hero );
+			case MURASAPLAYER:
+				initMurasaplayer( hero );
 				break;
 
 			case HINAPLAYER:
@@ -297,44 +287,31 @@ public enum HeroClass {
 		new ScrollOfLullaby().identify();
 	}
 
-	private static void initReisen( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
-
-		FishingSpear knives2 = new FishingSpear();
-		knives2.quantity(5).collect();
-
-		Shuriken knives3 = new Shuriken();
-		knives3.quantity(5).collect();
-
-		Dungeon.quickslot.setSlot(0, knives2);
-		Dungeon.quickslot.setSlot(1, knives3);
+	private static void initReisenplayer( Hero hero ) {
+		(hero.belongings.weapon = new SmallSeiranHammer()).identify();
 
 		new ScrollOfSilence().identify();
 		new PotionOfMight().identify();
 	}
 
-	private static void initNitori( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
+	private static void initNitoriplayer( Hero hero ) {
+		(hero.belongings.weapon = new NitoriRod()).identify();
 
-		Cucumber LightHealing2 = new Cucumber();
-		LightHealing2.quantity(5).collect();
+		Cucumber cm = new Cucumber();
+		cm.quantity(5).collect();
 
-		Recycle LightHealing3 = new Recycle();
-		LightHealing3.quantity(3).collect();
+		Recycle rc = new Recycle();
+		rc.quantity(3).collect();
 
-		Dungeon.quickslot.setSlot(0, LightHealing2);
-		Dungeon.quickslot.setSlot(1, LightHealing3);
+		Dungeon.quickslot.setSlot(0, cm);
+		Dungeon.quickslot.setSlot(1, rc);
 
 		new ScrollOfTeleportation().identify();
 		new PotionOfBerserk().identify();
 	}
 
-	private static void initYuyuko( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
-
-		YuyukoFoldingFan yffan = new YuyukoFoldingFan();
-		yffan.collect();
-		yffan.identify();
+	private static void initYuyukoplayer( Hero hero ) {
+		(hero.belongings.weapon = new YuyukoFoldingFan()).identify();
 
 		TwoSoySauce soy = new TwoSoySauce();
 		soy.quantity(3).collect();
@@ -349,34 +326,23 @@ public enum HeroClass {
 		new PotionOfLightHealing().identify();
 	}
 
-	private static void initMurasa( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
-
-		MurasaDipper md = new MurasaDipper();
-		md.collect();
-		md.identify();
+	private static void initMurasaplayer( Hero hero ) {
+		(hero.belongings.weapon = new MurasaDipper()).identify();
 
 		PotionOfHealing Healing = new PotionOfHealing();
-		Healing.quantity(17).collect();
-
-		PotionOfHaste haste = new PotionOfHaste();
-		haste.quantity(20).collect();
-
-		TwoSoySauce soy = new TwoSoySauce();
-		soy.quantity(5).collect();
+		Healing.quantity(27).collect();
 
 		ElixirOfAquaticRejuvenation eoar = new ElixirOfAquaticRejuvenation();
 		eoar.quantity(5).collect();
 
-		Dungeon.quickslot.setSlot(0, soy);
-		Dungeon.quickslot.setSlot(1, eoar);
+		Dungeon.quickslot.setSlot(0, eoar);
 
 		new ScrollOfMagicMapping().identify();
 		new PotionOfHaste().identify();
 	}
 
 	private static void initHinaplayer( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
+		(hero.belongings.weapon = new HinaRibbon()).identify();
 
 		PotionOfCleansing soy2 = new PotionOfCleansing();
 		soy2.quantity(3).collect();
@@ -392,7 +358,7 @@ public enum HeroClass {
 	}
 
 	private static void initKaguyaplayer( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
+		(hero.belongings.weapon = new JeweledBranch()).identify();
 
 		ScrollOfSirensSong soss = new ScrollOfSirensSong();
 		soss.quantity(3).collect();
@@ -428,14 +394,14 @@ public enum HeroClass {
 				return Assets.Sprites.ROGUE;
 			case HUNTRESS:
 				return Assets.Sprites.HUNTRESS;
-			case REISEN:
-				return Assets.Sprites.REISEN;
-			case NITORI:
-				return Assets.Sprites.NITORI;
-			case YUYUKO:
-				return Assets.Sprites.YUYUKO;
-			case MURASA:
-				return Assets.Sprites.MURASA;
+			case REISENPLAYER:
+				return Assets.Sprites.REISENPLAYER;
+			case NITORIPLAYER:
+				return Assets.Sprites.NITORIPLAYER;
+			case YUYUKOPLAYER:
+				return Assets.Sprites.YUYUKOPLAYER;
+			case MURASAPLAYER:
+				return Assets.Sprites.MURASAPLAYER;
 			case HINAPLAYER:
 				return Assets.Sprites.HINAPLAYER;
 			case KAGUYAPLAYER:
@@ -453,14 +419,14 @@ public enum HeroClass {
 				return Assets.Splashes.ROGUE;
 			case HUNTRESS:
 				return Assets.Splashes.HUNTRESS;
-			case REISEN:
-				return Assets.Splashes.REISEN;
-			case NITORI:
-				return Assets.Splashes.NITORI;
-			case YUYUKO:
-				return Assets.Splashes.YUYUKO;
-			case MURASA:
-				return Assets.Splashes.MURASA;
+			case REISENPLAYER:
+				return Assets.Splashes.REISENPLAYER;
+			case NITORIPLAYER:
+				return Assets.Splashes.NITORIPLAYER;
+			case YUYUKOPLAYER:
+				return Assets.Splashes.YUYUKOPLAYER;
+			case MURASAPLAYER:
+				return Assets.Splashes.MURASAPLAYER;
 			case HINAPLAYER:
 				return Assets.Splashes.HINAPLAYER;
 			case KAGUYAPLAYER:
@@ -502,37 +468,37 @@ public enum HeroClass {
 						Messages.get(HeroClass.class, "huntress_perk4"),
 						Messages.get(HeroClass.class, "huntress_perk5"),
 				};
-			case REISEN:
+			case REISENPLAYER:
 				return new String[]{
-						Messages.get(HeroClass.class, "reisen_perk1"),
-						Messages.get(HeroClass.class, "reisen_perk2"),
-						Messages.get(HeroClass.class, "reisen_perk3"),
-						Messages.get(HeroClass.class, "reisen_perk4"),
-						Messages.get(HeroClass.class, "reisen_perk5"),
+						Messages.get(HeroClass.class, "reisenplayer_perk1"),
+						Messages.get(HeroClass.class, "reisenplayer_perk2"),
+						Messages.get(HeroClass.class, "reisenplayer_perk3"),
+						Messages.get(HeroClass.class, "reisenplayer_perk4"),
+						Messages.get(HeroClass.class, "reisenplayer_perk5"),
 				};
-			case NITORI:
+			case NITORIPLAYER:
 				return new String[]{
-						Messages.get(HeroClass.class, "nitori_perk1"),
-						Messages.get(HeroClass.class, "nitori_perk2"),
-						Messages.get(HeroClass.class, "nitori_perk3"),
-						Messages.get(HeroClass.class, "nitori_perk4"),
-						Messages.get(HeroClass.class, "nitori_perk5"),
+						Messages.get(HeroClass.class, "nitoriplayer_perk1"),
+						Messages.get(HeroClass.class, "nitoriplayer_perk2"),
+						Messages.get(HeroClass.class, "nitoriplayer_perk3"),
+						Messages.get(HeroClass.class, "nitoriplayer_perk4"),
+						Messages.get(HeroClass.class, "nitoriplayer_perk5"),
 				};
-			case YUYUKO:
+			case YUYUKOPLAYER:
 				return new String[]{
-						Messages.get(HeroClass.class, "yuyuko_perk1"),
-						Messages.get(HeroClass.class, "yuyuko_perk2"),
-						Messages.get(HeroClass.class, "yuyuko_perk3"),
-						Messages.get(HeroClass.class, "yuyuko_perk4"),
-						Messages.get(HeroClass.class, "yuyuko_perk5"),
+						Messages.get(HeroClass.class, "yuyukoplayer_perk1"),
+						Messages.get(HeroClass.class, "yuyukoplayer_perk2"),
+						Messages.get(HeroClass.class, "yuyukoplayer_perk3"),
+						Messages.get(HeroClass.class, "yuyukoplayer_perk4"),
+						Messages.get(HeroClass.class, "yuyukoplayer_perk5"),
 				};
-			case MURASA:
+			case MURASAPLAYER:
 				return new String[]{
-						Messages.get(HeroClass.class, "murasa_perk1"),
-						Messages.get(HeroClass.class, "murasa_perk2"),
-						Messages.get(HeroClass.class, "murasa_perk3"),
-						Messages.get(HeroClass.class, "murasa_perk4"),
-						Messages.get(HeroClass.class, "murasa_perk5"),
+						Messages.get(HeroClass.class, "murasaplayer_perk1"),
+						Messages.get(HeroClass.class, "murasaplayer_perk2"),
+						Messages.get(HeroClass.class, "murasaplayer_perk3"),
+						Messages.get(HeroClass.class, "murasaplayer_perk4"),
+						Messages.get(HeroClass.class, "murasaplayer_perk5"),
 				};
 			case HINAPLAYER:
 				return new String[]{
@@ -567,14 +533,14 @@ public enum HeroClass {
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_ROGUE);
 			case HUNTRESS:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_HUNTRESS);
-			case REISEN:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_REISEN);
-			case NITORI:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_NITORI);
-			case YUYUKO:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_YUYUKO);
-			case MURASA:
-				return Badges.isUnlocked(Badges.Badge.UNLOCK_MURASA);
+			case REISENPLAYER:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_REISENPLAYER);
+			case NITORIPLAYER:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_NITORIPLAYER);
+			case YUYUKOPLAYER:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_YUYUKOPLAYER);
+			case MURASAPLAYER:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_MURASAPLAYER);
 			case HINAPLAYER:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_HINAPLAYER);
 			case KAGUYAPLAYER:
@@ -593,14 +559,14 @@ public enum HeroClass {
 				return Messages.get(HeroClass.class, "rogue_unlock");
 			case HUNTRESS:
 				return Messages.get(HeroClass.class, "huntress_unlock");
-			case REISEN:
-				return Messages.get(HeroClass.class, "reisen_unlock");
-			case NITORI:
-				return Messages.get(HeroClass.class, "nitori_unlock");
-			case YUYUKO:
-				return Messages.get(HeroClass.class, "yuyuko_unlock");
-			case MURASA:
-				return Messages.get(HeroClass.class, "murasa_unlock");
+			case REISENPLAYER:
+				return Messages.get(HeroClass.class, "reisenplayer_unlock");
+			case NITORIPLAYER:
+				return Messages.get(HeroClass.class, "nitoriplayer_unlock");
+			case YUYUKOPLAYER:
+				return Messages.get(HeroClass.class, "yuyukoplayer_unlock");
+			case MURASAPLAYER:
+				return Messages.get(HeroClass.class, "murasaplayer_unlock");
 			case HINAPLAYER:
 				return Messages.get(HeroClass.class, "hinaplayer_unlock");
 			case KAGUYAPLAYER:

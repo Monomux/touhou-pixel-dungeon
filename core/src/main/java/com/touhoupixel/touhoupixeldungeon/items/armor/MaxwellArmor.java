@@ -32,22 +32,22 @@ public class MaxwellArmor extends Armor {
 
 	@Override
 	public int powerfulResistFactor( Char owner ) {
-		return 3;
+		return 2;
 	}
 
 	@Override
 	public int coolResistFactor( Char owner ) {
-		return 3;
+		return 2;
 	}
 
 	@Override
 	public int pureResistFactor( Char owner ) {
-		return 3;
+		return 2;
 	}
 
 	@Override
 	public int happyResistFactor( Char owner ) {
-		return 3;
+		return 2;
 	}
 
 	public MaxwellArmor() {

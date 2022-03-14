@@ -56,6 +56,8 @@ public class Statistics {
 
 	public static int deepdwarfHTdown;
 
+	public static int extraSTRcheck;
+
 	public static int spawnersAlive;
 
 	public static float duration;
@@ -113,6 +115,8 @@ public class Statistics {
 
 		deepdwarfHTdown   = 0;
 
+		extraSTRcheck   = 0;
+
 		spawnersAlive   = 0;
 
 		duration	= 0;
@@ -169,6 +173,8 @@ public class Statistics {
 
 	private static final String DEEPDWARFHTDOWN		= "deepdwarfhtdown";
 
+	private static final String EXTRASTRCHECK		= "extraSTRcheck";
+
 	private static final String SPAWNERS	= "spawnersAlive";
 
 	private static final String DURATION	= "duration";
@@ -222,6 +228,8 @@ public class Statistics {
 		bundle.put( TIMERESET,		timeReset );
 
 		bundle.put( DEEPDWARFHTDOWN,	deepdwarfHTdown );
+
+		bundle.put( EXTRASTRCHECK,	extraSTRcheck );
 
 		bundle.put( SPAWNERS,	spawnersAlive );
 
@@ -277,6 +285,8 @@ public class Statistics {
 		timeReset   = bundle.getInt( TIMERESET );
 
 		deepdwarfHTdown   = bundle.getInt( DEEPDWARFHTDOWN );
+
+		extraSTRcheck   = bundle.getInt( EXTRASTRCHECK );
 
 		spawnersAlive   = bundle.getInt( SPAWNERS );
 

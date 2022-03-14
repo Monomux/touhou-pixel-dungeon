@@ -75,10 +75,10 @@ public enum Icons {
 	MAGE,
 	ROGUE,
 	HUNTRESS,
-	REISEN,
-	NITORI,
-	YUYUKO,
-	MURASA,
+	REISENPLAYER,
+	NITORIPLAYER,
+	YUYUKOPLAYER,
+	MURASAPLAYER,
 	HINAPLAYER,
 	KAGUYAPLAYER,
 	
@@ -238,16 +238,16 @@ public enum Icons {
 		case HUNTRESS:
 			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 			break;
-		case REISEN:
+		case REISENPLAYER:
 			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 			break;
-		case NITORI:
+		case NITORIPLAYER:
 			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 			break;
-		case YUYUKO:
+		case YUYUKOPLAYER:
 			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 			break;
-		case MURASA:
+		case MURASAPLAYER:
 			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 			break;
 		case HINAPLAYER:
@@ -328,14 +328,14 @@ public enum Icons {
 			return get( ROGUE );
 		case HUNTRESS:
 			return get( HUNTRESS );
-		case REISEN:
-			return get( REISEN );
-		case NITORI:
-			return get( NITORI );
-		case YUYUKO:
-			return get( YUYUKO );
-		case MURASA:
-			return get( MURASA );
+		case REISENPLAYER:
+			return get( REISENPLAYER );
+		case NITORIPLAYER:
+			return get( NITORIPLAYER );
+		case YUYUKOPLAYER:
+			return get( YUYUKOPLAYER );
+		case MURASAPLAYER:
+			return get( MURASAPLAYER );
 		case HINAPLAYER:
 			return get( HINAPLAYER );
 		case KAGUYAPLAYER:

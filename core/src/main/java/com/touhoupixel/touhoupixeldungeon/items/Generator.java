@@ -179,6 +179,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatshield;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatsword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HandAxe;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HecatiaStar;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HoshigumaHorn;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.JeweledPagoda;
@@ -215,6 +216,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Scimitar;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SevenStarSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Shortsword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SilkyHair;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SmallSeiranHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Spear;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Sword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SwordofHisou;
@@ -463,9 +465,11 @@ public class Generator {
 					WornShortsword.class,
 					Gloves.class,
 					Dagger.class,
+					SmallSeiranHammer.class,
+					HinaRibbon.class,
 					MagesStaff.class
 			};
-			WEP_T1.probs = new float[]{ 1, 1, 1, 0 };
+			WEP_T1.probs = new float[]{ 1, 1, 1, 1, 1, 0 };
 
 			WEP_T2.classes = new Class<?>[]{
 					Shortsword.class,

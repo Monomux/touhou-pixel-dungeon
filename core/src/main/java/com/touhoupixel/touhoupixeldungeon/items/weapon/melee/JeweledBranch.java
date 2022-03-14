@@ -22,18 +22,8 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
-import com.touhoupixel.touhoupixeldungeon.Challenges;
-import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
 import java.util.ArrayList;
@@ -45,37 +35,44 @@ public class JeweledBranch extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 
-		//check Dart.class for additional properties
-
 		tier = 1;
 	}
 
 	@Override
-	public int max(int lvl) {
-		return  4*Statistics.ankhsUsed+5*(tier+1)+
-				lvl*(tier+2);
+	public int warpResistFactor(Char owner) {
+		return 2;
 	}
 
 	@Override
-	public int pureResistFactor( Char owner ) {
-		return 3;
+	public int powerfulResistFactor(Char owner) {
+		return 2;
 	}
 
 	@Override
-	public ArrayList<String> actions(Hero hero ) {
-		ArrayList<String> actions = super.actions( hero );
+	public int coolResistFactor(Char owner) {
+		return 2;
+	}
+
+	@Override
+	public int pureResistFactor(Char owner) {
+		return 2;
+	}
+
+	@Override
+	public int happyResistFactor(Char owner) {
+		return 2;
+	}
+
+	@Override
+	public ArrayList<String> actions(Hero hero) {
+		ArrayList<String> actions = super.actions(hero);
 		actions.remove(AC_XYZ);
 		return actions;
 	}
 
 	@Override
-	public int damageRoll(Char owner) {
-		if (owner instanceof Hero && (owner.HP < owner.HT)) {
-			Hero hero = (Hero) owner;
-			Char enemy = hero.enemy();
-			owner.HP = Math.min(owner.HP + owner.HT / 20, owner.HT);
-			owner.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-		return super.damageRoll(owner);
+	public int max(int lvl) {
+		return 9*(tier+1)+
+				lvl*(tier+2);
 	}
 }

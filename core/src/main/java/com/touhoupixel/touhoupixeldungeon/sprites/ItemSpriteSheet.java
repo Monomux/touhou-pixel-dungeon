@@ -523,11 +523,10 @@ public class ItemSpriteSheet {
 	public static final int WAND_ANTIEMBER    = WANDS+15;
 	public static final int WAND_WISHING    = WANDS+304;
 	public static final int WAND_HEALWOUNDS    = WANDS+305;
-	public static final int WAND_RANDOMEFFECTS    = WANDS+306;
-	public static final int WAND_DESTORB    = WANDS+307;
-	public static final int WAND_DEATH    = WANDS+308;
+	public static final int WAND_DESTORB    = WANDS+306;
+	public static final int WAND_DEATH    = WANDS+307;
 	static {
-		for (int i = WANDS; i < WANDS+309; i++)
+		for (int i = WANDS; i < WANDS+308; i++)
 			assignItemRect(i, 14, 14);
 	}
 
@@ -772,7 +771,7 @@ public class ItemSpriteSheet {
 	public static final int WILD_ENERGY     = SPELLS+3;
 	public static final int RETURN_BEACON   = SPELLS+4;
 	public static final int SUMMON_ELE      = SPELLS+5;
-
+	public static final int KOGASA_HAMMER   = SPELLS+6;
 	public static final int AQUA_BLAST      = SPELLS+7;
 	public static final int FEATHER_FALL    = SPELLS+8;
 	public static final int RECLAIM_TRAP    = SPELLS+9;
@@ -785,10 +784,10 @@ public class ItemSpriteSheet {
 		assignItemRect(MAGIC_PORTER,    12, 11);
 		assignItemRect(PHASE_SHIFT,     12, 11);
 		assignItemRect(TELE_GRAB,       12, 11);
-		assignItemRect(WILD_ENERGY,      8, 16);
-		assignItemRect(RETURN_BEACON,    8, 16);
-		assignItemRect(SUMMON_ELE,       8, 16);
-
+		assignItemRect(WILD_ENERGY,     8, 16);
+		assignItemRect(RETURN_BEACON,   8, 16);
+		assignItemRect(SUMMON_ELE,      8, 16);
+		assignItemRect(KOGASA_HAMMER,   16, 16);
 		assignItemRect(AQUA_BLAST,      11, 11);
 		assignItemRect(FEATHER_FALL,    11, 11);
 		assignItemRect(RECLAIM_TRAP,    11, 11);
@@ -942,6 +941,8 @@ public class ItemSpriteSheet {
 	public static final int POT_OF_GREED        = WEP_TIER5_PART2+7;
 	public static final int ALCHEMY_HAT        = WEP_TIER5_PART2+8;
 	public static final int BLACK_FAN        = WEP_TIER5_PART2+9;
+	public static final int SMALL_SEIRAN_HAMMER    = WEP_TIER5_PART2+10;
+	public static final int HINA_RIBBON        = WEP_TIER5_PART2+11;
 	static{
 		assignItemRect(RANDOMPHONE, 8, 12);
 		assignItemRect(TENKYUUCLOAK,    16, 14);
@@ -953,6 +954,8 @@ public class ItemSpriteSheet {
 		assignItemRect(POT_OF_GREED,      12, 12);
 		assignItemRect(ALCHEMY_HAT,      11, 10);
 		assignItemRect(BLACK_FAN,      10, 10);
+		assignItemRect(SMALL_SEIRAN_HAMMER,      10, 10);
+		assignItemRect(HINA_RIBBON,      13, 6);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite

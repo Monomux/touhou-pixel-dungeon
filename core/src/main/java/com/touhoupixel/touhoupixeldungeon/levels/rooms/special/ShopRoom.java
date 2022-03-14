@@ -188,7 +188,7 @@ public class ShopRoom extends SpecialRoom {
 						itemsToSpawn.add(new RumiaArmor().identify());
 						break;
 				}
-				if (Dungeon.hero.heroClass == HeroClass.NITORI){
+				if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
 				}
@@ -214,7 +214,7 @@ public class ShopRoom extends SpecialRoom {
 						itemsToSpawn.add(new PoppinPartyArmor().identify());
 						break;
 				}
-				if (Dungeon.hero.heroClass == HeroClass.NITORI){
+				if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
 				}
@@ -237,7 +237,7 @@ public class ShopRoom extends SpecialRoom {
 						itemsToSpawn.add(new MaxwellArmor().identify());
 						break;
 				}
-				if (Dungeon.hero.heroClass == HeroClass.NITORI){
+				if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
 				}
@@ -260,7 +260,7 @@ public class ShopRoom extends SpecialRoom {
 						itemsToSpawn.add(new GoldenDragonArmor().identify());
 						break;
 				}
-				if (Dungeon.hero.heroClass == HeroClass.NITORI){
+				if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
 				}

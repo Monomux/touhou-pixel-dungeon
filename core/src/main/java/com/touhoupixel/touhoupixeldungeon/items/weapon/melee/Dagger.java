@@ -38,7 +38,7 @@ public class Dagger extends MeleeWeapon {
 		hitSoundPitch = 1.1f;
 
 		tier = 1;
-		ACC = 1.05f;
+		ACC = 1.03f;
 		
 		bones = false;
 	}
