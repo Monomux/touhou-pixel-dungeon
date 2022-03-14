@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.BlobImmunity;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Foresight;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostImbue;
@@ -47,6 +48,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicalSight;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PrismaticGuard;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Recharging;
@@ -97,7 +99,7 @@ public class ScrollOfMetamorphosis extends ExoticScroll {
 			identifiedByUse = false;
 		}
 
-		switch (Random.Int(32)) {
+		switch (Random.Int(34)) {
 			case 0:
 			default:
 				Buff.prolong(curUser, Adrenaline.class, Adrenaline.DURATION);
@@ -195,9 +197,15 @@ public class ScrollOfMetamorphosis extends ExoticScroll {
 			case 31:
 				Buff.affect(curUser, WellFed.class).reset();
 				break;
+			case 32:
+				Buff.prolong(curUser, OneDefDamage.class, OneDefDamage.DURATION);
+				break;
+			case 33:
+				Buff.prolong(curUser, Doublerainbow.class, Doublerainbow.DURATION);
+				break;
 		}
 
-		switch (Random.Int(32)) {
+		switch (Random.Int(34)) {
 			case 0:
 			default:
 				Buff.prolong(curUser, Adrenaline.class, Adrenaline.DURATION);
@@ -295,9 +303,15 @@ public class ScrollOfMetamorphosis extends ExoticScroll {
 			case 31:
 				Buff.affect(curUser, WellFed.class).reset();
 				break;
+			case 32:
+				Buff.prolong(curUser, OneDefDamage.class, OneDefDamage.DURATION);
+				break;
+			case 33:
+				Buff.prolong(curUser, Doublerainbow.class, Doublerainbow.DURATION);
+				break;
 		}
 
-		switch (Random.Int(32)) {
+		switch (Random.Int(34)) {
 			case 0:
 			default:
 				Buff.prolong(curUser, Adrenaline.class, Adrenaline.DURATION);
@@ -395,36 +409,11 @@ public class ScrollOfMetamorphosis extends ExoticScroll {
 			case 31:
 				Buff.affect(curUser, WellFed.class).reset();
 				break;
-		}
-
-		switch (Random.Int(9)) {
-			case 0:
-			default:
-				Buff.prolong(curUser, Doublespeed.class, Doublespeed.DURATION);
+			case 32:
+				Buff.prolong(curUser, OneDefDamage.class, OneDefDamage.DURATION);
 				break;
-			case 1:
-				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION);
-				break;
-			case 2:
-				Buff.prolong(curUser, Might.class, Might.DURATION);
-				break;
-			case 3:
-				Buff.prolong(curUser, Hisou.class, Hisou.DURATION);
-				break;
-			case 4:
-				Buff.prolong(curUser, Haste.class, Haste.DURATION);
-				break;
-			case 5:
-				Buff.prolong(curUser, Bless.class, Bless.DURATION);
-				break;
-			case 6:
-				Buff.prolong(curUser, Adrenaline.class, Adrenaline.DURATION);
-				break;
-			case 7:
-				Buff.prolong(curUser, Doubleevasion.class, Doubleevasion.DURATION);
-				break;
-			case 8:
-				Buff.prolong(curUser, MagicImmune.class, MagicImmune.DURATION);
+			case 33:
+				Buff.prolong(curUser, Doublerainbow.class, Doublerainbow.DURATION);
 				break;
 		}
 

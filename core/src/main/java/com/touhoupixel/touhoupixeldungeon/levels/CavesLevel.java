@@ -99,7 +99,7 @@ public class CavesLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				BurningTrap.class, PoisonDartTrap.class, FrostTrap.class, StormTrap.class, CorrosionTrap.class, GapTrap.class,
+				BurningTrap.class, PoisonDartTrap.class, FrostTrap.class, CorrosionTrap.class, GapTrap.class,
 				GrippingTrap.class, RockfallTrap.class,  GuardianTrap.class,
 				ConfusionTrap.class, SummoningTrap.class, WarpingTrap.class, PitfallTrap.class, GatewayTrap.class, GeyserTrap.class };
 	}
@@ -107,7 +107,7 @@ public class CavesLevel extends RegularLevel {
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				4, 4, 4, 4, 4, 4,
+				4, 4, 4, 4, 4,
 				2, 2, 2,
 				1, 1, 1, 1, 1, 1 };
 	}

@@ -78,12 +78,6 @@ public class EnmaShaku extends MeleeWeapon {
 				enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 				//Buff.prolong( defender, Terror.class, Terror.DURATION/5f );
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof EnmaShaku) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

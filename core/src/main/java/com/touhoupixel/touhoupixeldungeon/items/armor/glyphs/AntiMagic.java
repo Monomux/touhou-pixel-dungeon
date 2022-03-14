@@ -28,7 +28,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicalSleep;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.WarpBeacon;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Tojiko;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Junko;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Nitori;
@@ -78,8 +77,6 @@ public class AntiMagic extends Armor.Glyph {
 		RESISTS.add( WandOfPrismaticLight.class );
 		RESISTS.add( WandOfTransfusion.class );
 		RESISTS.add( WandOfWarding.Ward.class );
-
-		RESISTS.add( WarpBeacon.class );
 		
 		RESISTS.add( Tojiko.LightningBolt.class );
 		RESISTS.add( Nitori.EarthenBolt.class );

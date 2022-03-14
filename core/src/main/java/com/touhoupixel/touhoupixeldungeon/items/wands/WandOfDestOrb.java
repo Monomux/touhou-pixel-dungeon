@@ -55,10 +55,7 @@ public class WandOfDestOrb extends Wand {
 	@Override
 	public void onZap(Ballistica beam) {
 		new DestOrbTrap().set(curUser.pos).activate();
-		if (this.level()>2){
-			new DestOrbTrap().set(curUser.pos).activate();
-		}
-		if (this.level()>4){
+		if (this.level()>3){
 			new DestOrbTrap().set(curUser.pos).activate();
 		}
 		if (this.level()>6){

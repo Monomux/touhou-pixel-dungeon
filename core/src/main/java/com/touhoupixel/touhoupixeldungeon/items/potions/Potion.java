@@ -45,6 +45,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.NoPotion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
@@ -275,6 +276,10 @@ public class Potion extends Item {
 				GLog.w(Messages.get(this, "silence"));
 			}
 
+			else if (hero.buff(NoPotion.class) != null) {
+				GLog.w(Messages.get(this, "nopotion"));
+			}
+
 			else if (hero.buff(Incompetence.class) != null) {
 				GLog.w(Messages.get(this, "incompetence"));
 
@@ -331,27 +336,6 @@ public class Potion extends Item {
 					}
 				}
 
-				if (hero.pointsInTalent(Talent.POTION_HEAL) == 1){
-					//3/5 HP healed, when hero is below 25% health
-					hero.HP = Math.min(hero.HP + 21, hero.HT);
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-				}
-				if (hero.pointsInTalent(Talent.POTION_HEAL) == 2){
-					//3/5 HP healed, when hero is below 25% health
-					hero.HP = Math.min(hero.HP + 27, hero.HT);
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-				}
-				if (hero.pointsInTalent(Talent.POTION_HEAL) == 3){
-					//3/5 HP healed, when hero is below 25% health
-					hero.HP = Math.min(hero.HP + 34, hero.HT);
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-				}
-				if (hero.pointsInTalent(Talent.POTION_HEAL) == 4){
-					//3/5 HP healed, when hero is below 25% health
-					hero.HP = Math.min(hero.HP + 40, hero.HT);
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-				}
-
 				if (hero.pointsInTalent(Talent.AQUA_POTION) == 1){
 					hero.HP = Math.min(hero.HP + 11, hero.HT);
 					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
@@ -359,7 +343,6 @@ public class Potion extends Item {
 					if (Random.Int(2) == 0)
 						Buff.affect(hero, SuperOoze.class).set( SuperOoze.DURATION );
 				}
-
 				if (hero.pointsInTalent(Talent.AQUA_POTION) == 2){
 					hero.HP = Math.min(hero.HP + 18, hero.HT);
 					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
@@ -367,7 +350,6 @@ public class Potion extends Item {
 					if (Random.Int(2) == 0)
 						Buff.affect(hero, SuperOoze.class).set( SuperOoze.DURATION );
 				}
-
 				if (hero.pointsInTalent(Talent.AQUA_POTION) == 3){
 					hero.HP = Math.min(hero.HP + 25, hero.HT);
 					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
@@ -383,7 +365,6 @@ public class Potion extends Item {
 					if (Random.Int(2) == 0)
 						Buff.prolong( hero, Degrade.class, Degrade.DURATION );
 				}
-
 				if (hero.pointsInTalent(Talent.RISKY_POTION) == 2){
 					hero.HP = Math.min(hero.HP + 28, hero.HT);
 					Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION/2f );
@@ -391,7 +372,6 @@ public class Potion extends Item {
 					if (Random.Int(2) == 0)
 						Buff.prolong( hero, Degrade.class, Degrade.DURATION );
 				}
-
 				if (hero.pointsInTalent(Talent.RISKY_POTION) == 3){
 					hero.HP = Math.min(hero.HP + 36, hero.HT);
 					Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION/2f );
@@ -399,149 +379,7 @@ public class Potion extends Item {
 					if (Random.Int(2) == 0)
 						Buff.prolong( hero, Degrade.class, Degrade.DURATION );
 				}
-
-				if (hero.pointsInTalent(Talent.INVIS_POTION) == 1){
-					hero.HP = Math.min(hero.HP + 25, hero.HT);
-					Buff.prolong( hero, Invisibility.class, Invisibility.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(2) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.INVIS_POTION) == 2){
-					hero.HP = Math.min(hero.HP + 34, hero.HT);
-					Buff.prolong( hero, Invisibility.class, Invisibility.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(2) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.INVIS_POTION) == 3){
-					hero.HP = Math.min(hero.HP + 43, hero.HT);
-					Buff.prolong( hero, Invisibility.class, Invisibility.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(2) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.INVIS_POTION) == 4){
-					hero.HP = Math.min(hero.HP + 52, hero.HT);
-					Buff.prolong( hero, Invisibility.class, Invisibility.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(2) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.FIERY_POTION) == 1){
-					hero.HP = Math.min(hero.HP + 30, hero.HT);
-					Buff.prolong( hero, Might.class, Might.DURATION );
-					Buff.prolong( hero, Bless.class, Bless.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(2) == 0)
-						Buff.affect( hero, Burning.class ).reignite( hero, 30f );
-				}
-
-				if (hero.pointsInTalent(Talent.FIERY_POTION) == 2){
-					hero.HP = Math.min(hero.HP + 40, hero.HT);
-					Buff.prolong( hero, Might.class, Might.DURATION );
-					Buff.prolong( hero, Bless.class, Bless.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(3) == 0)
-						Buff.affect( hero, Burning.class ).reignite( hero, 30f );
-				}
-
-				if (hero.pointsInTalent(Talent.FIERY_POTION) == 3){
-					hero.HP = Math.min(hero.HP + 50, hero.HT);
-					Buff.prolong( hero, Might.class, Might.DURATION );
-					Buff.prolong( hero, Bless.class, Bless.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(4) == 0)
-						Buff.affect( hero, Burning.class ).reignite( hero, 30f );
-				}
-
-				if (hero.pointsInTalent(Talent.FIERY_POTION) == 4){
-					hero.HP = Math.min(hero.HP + 60, hero.HT);
-					Buff.prolong( hero, Might.class, Might.DURATION );
-					Buff.prolong( hero, Bless.class, Bless.DURATION );
-					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-					if (Random.Int(5) == 0)
-						Buff.affect( hero, Burning.class ).reignite( hero, 30f );
-				}
-
-				if (hero.pointsInTalent(Talent.HEX_POTION) == 1){
-					Buff.prolong( hero, Haste.class, Haste.DURATION );
-					Buff.prolong( hero, Stamina.class, Stamina.DURATION );
-					if (Random.Int(2) == 0)
-						Buff.prolong( hero, Weakness.class, Weakness.DURATION );
-					Buff.prolong( hero, Vulnerable.class, Vulnerable.DURATION );
-					Buff.prolong( hero, Hex.class, Hex.DURATION );
-				}
-
-				if (hero.pointsInTalent(Talent.HEX_POTION) == 2){
-					Buff.prolong( hero, Haste.class, Haste.DURATION );
-					Buff.prolong( hero, Stamina.class, Stamina.DURATION );
-					if (Random.Int(3) == 0)
-						Buff.prolong( hero, Weakness.class, Weakness.DURATION );
-					Buff.prolong( hero, Vulnerable.class, Vulnerable.DURATION );
-					Buff.prolong( hero, Hex.class, Hex.DURATION );
-				}
-
-				if (hero.pointsInTalent(Talent.HEX_POTION) == 3){
-					Buff.prolong( hero, Haste.class, Haste.DURATION );
-					Buff.prolong( hero, Stamina.class, Stamina.DURATION );
-					if (Random.Int(4) == 0)
-						Buff.prolong( hero, Weakness.class, Weakness.DURATION );
-					Buff.prolong( hero, Vulnerable.class, Vulnerable.DURATION );
-					Buff.prolong( hero, Hex.class, Hex.DURATION );
-				}
-
-				if (hero.pointsInTalent(Talent.HEX_POTION) == 4){
-					Buff.prolong( hero, Haste.class, Haste.DURATION );
-					Buff.prolong( hero, Stamina.class, Stamina.DURATION );
-					if (Random.Int(5) == 0)
-						Buff.prolong( hero, Weakness.class, Weakness.DURATION );
-					Buff.prolong( hero, Vulnerable.class, Vulnerable.DURATION );
-					Buff.prolong( hero, Hex.class, Hex.DURATION );
-				}
-
-				if (hero.pointsInTalent(Talent.SPEED_POTION) == 1){
-					hero.HP = Math.min(hero.HP + 10, hero.HT);
-					Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					if (Random.Int(7) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.SPEED_POTION) == 2){
-					hero.HP = Math.min(hero.HP + 20, hero.HT);
-					Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					if (Random.Int(8) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.SPEED_POTION) == 3){
-					hero.HP = Math.min(hero.HP + 30, hero.HT);
-					Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					if (Random.Int(9) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
-				if (hero.pointsInTalent(Talent.SPEED_POTION) == 4){
-					hero.HP = Math.min(hero.HP + 40, hero.HT);
-					Buff.prolong( hero, Doublespeed.class, Doublespeed.DURATION );
-					Buff.prolong( hero, Triplespeed.class, Triplespeed.DURATION );
-					if (Random.Int(10) == 0)
-						Buff.prolong( hero, SuperDegrade.class, SuperDegrade.DURATION/2f );
-				}
-
 			}
-
 		}
 	}
 

@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -41,8 +42,10 @@ public class ScrollOfPassage extends ExoticScroll {
 	public void doRead() {
 
 		identify();
-		
-		if (Dungeon.bossLevel()) {
+
+		if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
+			GLog.w( Messages.get(ScrollOfTeleportation.class, "tele_interrupt") );
+		} else if (Dungeon.bossLevel()) {
 			
 			GLog.w( Messages.get(ScrollOfTeleportation.class, "no_tele") );
 			return;

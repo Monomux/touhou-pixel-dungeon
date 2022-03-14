@@ -562,14 +562,12 @@ public class HecatiaBoss extends Mob {
 		{
 			spriteClass = LarvaSprite.class;
 
-			HP = HT = 20;
-			defenseSkill = 12;
+			HP = HT = 300;
+			defenseSkill = 50;
 			viewDistance = Light.DISTANCE;
 
-			EXP = 5;
+			EXP = 0;
 			maxLvl = -2;
-
-			properties.add(Property.DEMONIC);
 		}
 
 		@Override
@@ -584,7 +582,7 @@ public class HecatiaBoss extends Mob {
 
 		@Override
 		public int drRoll() {
-			return Random.NormalIntRange(0, 4);
+			return Random.NormalIntRange(100, 300);
 		}
 
 	}

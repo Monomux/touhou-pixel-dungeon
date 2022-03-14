@@ -81,7 +81,7 @@ public class PlayMat extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  5*(tier+1) +
+		return  4*(tier+1) +
 				lvl*(tier);
 	}
 

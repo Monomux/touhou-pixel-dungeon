@@ -26,51 +26,31 @@ import com.touhoupixel.touhoupixeldungeon.Badges;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.QuickSlot;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.ArmorAbility;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.hinaplayer.Supercursegod;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.hinaplayer.Supermedicine;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.hinaplayer.Superspingod;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.NaturesPower;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.SpectralBlades;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.kaguyaplayer.EirinAb2;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.kaguyaplayer.KaguyaAb2;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.kaguyaplayer.MokouAb2;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.WildMagic;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.WarpBeacon;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.ElementalBlast;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.murasa.BlueVentora;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.murasa.GreenVentora;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.murasa.RedVentora;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.nitori.Blackkappa;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.nitori.Greenkappa;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.nitori.Yellowkappa;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.reisen.EirinAb;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.reisen.KaguyaAb;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.reisen.UltDeserter;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.rogue.DeathMark;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.rogue.ShadowClone;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.rogue.SmokeBomb;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.warrior.HeroicLeap;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.warrior.Shockwave;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.warrior.Endure;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.yuyuko.Cbgirl;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.yuyuko.Deatheater;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.yuyuko.Nethergirl;
 import com.touhoupixel.touhoupixeldungeon.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.Prayer;
+import com.touhoupixel.touhoupixeldungeon.items.MokouRibbon;
 import com.touhoupixel.touhoupixeldungeon.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HecatiaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98MarisaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98ReimuArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CloakOfShadows;
+import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.bags.FoodHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeon.items.bags.TailsmanHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.VelvetPouch;
+import com.touhoupixel.touhoupixeldungeon.items.bombs.RegrowthBomb;
 import com.touhoupixel.touhoupixeldungeon.items.food.Cucumber;
 import com.touhoupixel.touhoupixeldungeon.items.food.Food;
 import com.touhoupixel.touhoupixeldungeon.items.food.TwoSoySauce;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfBerserk;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfInvisibility;
@@ -79,12 +59,14 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMindVision;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfPurity;
+import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.Elixir;
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfCleansing;
+import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
+import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfMastery;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfYomi;
-import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfAccuracy;
-import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfElements;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRage;
@@ -96,26 +78,21 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
+import com.touhoupixel.touhoupixeldungeon.items.spells.PhaseShift;
 import com.touhoupixel.touhoupixeldungeon.items.spells.Recycle;
+import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfBlink;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ArisaKeyboard;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dagger;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.EnmaShaku;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flail;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Gloves;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatshield;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Levatein;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SilkyHair;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Psalms;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WornShortsword;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YukinaMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YuyukoFoldingFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.FishingSpear;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.Shuriken;
@@ -169,6 +146,23 @@ public enum HeroClass {
 		Waterskin waterskin = new Waterskin();
 		waterskin.collect();
 
+		if (Dungeon.isChallenged(Challenges.PACIFIST)) {
+			DriedRose rose = new DriedRose();
+			rose.identify().collect();
+			WornShortsword wss = new WornShortsword();
+			wss.identify().collect();
+			ClothArmor ca = new ClothArmor();
+			ca.identify().collect();
+			ScrollOfIdentify soi = new ScrollOfIdentify();
+			soi.quantity(5).identify().collect();
+			ScrollOfSirensSong soss = new ScrollOfSirensSong();
+			soss.quantity(5).identify().collect();
+			ElixirOfHoneyedHealing eohh = new ElixirOfHoneyedHealing();
+			eohh.quantity(5).identify().collect();
+			PotionOfInvisibility Poi = new PotionOfInvisibility();
+			Poi.quantity(5).identify().collect();
+		}
+
 		if (!Dungeon.isChallenged(Challenges.ATHEISM)) {
 			Prayer pray = new Prayer();
 			pray.collect();
@@ -176,8 +170,8 @@ public enum HeroClass {
 			Dungeon.quickslot.setSlot(3, pray);
 		}
 
-		PotionOfHealing Healing = new PotionOfHealing();
-		Healing.quantity(3).collect();
+		PotionOfHealing Poh = new PotionOfHealing();
+		Poh.quantity(3).collect();
 
 		ScrollOfUpgrade Upgrade = new ScrollOfUpgrade();
 		if (!Dungeon.isChallenged(Challenges.MASTER_SPARK)) {
@@ -371,11 +365,11 @@ public enum HeroClass {
 		TwoSoySauce soy = new TwoSoySauce();
 		soy.quantity(5).collect();
 
-		ElixirOfAquaticRejuvenation Aquaheal = new ElixirOfAquaticRejuvenation();
-		Aquaheal.quantity(5).collect();
+		ElixirOfAquaticRejuvenation eoar = new ElixirOfAquaticRejuvenation();
+		eoar.quantity(5).collect();
 
 		Dungeon.quickslot.setSlot(0, soy);
-		Dungeon.quickslot.setSlot(1, Aquaheal);
+		Dungeon.quickslot.setSlot(1, eoar);
 
 		new ScrollOfMagicMapping().identify();
 		new PotionOfHaste().identify();
@@ -406,8 +400,7 @@ public enum HeroClass {
 		WandOfHealWounds wohw = new WandOfHealWounds();
 		wohw.identify().collect();
 
-		Dungeon.quickslot.setSlot(0, soss);
-		Dungeon.quickslot.setSlot(1, wohw);
+		Dungeon.quickslot.setSlot(0, wohw);
 
 		new ScrollOfLullaby().identify();
 		new PotionOfLightHealing().identify();
@@ -423,31 +416,6 @@ public enum HeroClass {
 
 	public HeroSubClass[] subClasses() {
 		return subClasses;
-	}
-
-	public ArmorAbility[] armorAbilities(){
-		switch (this) {
-			case WARRIOR: default:
-				return new ArmorAbility[]{new HeroicLeap(), new Shockwave(), new Endure()};
-			case MAGE:
-				return new ArmorAbility[]{new ElementalBlast(), new WildMagic(), new WarpBeacon()};
-			case ROGUE:
-				return new ArmorAbility[]{new SmokeBomb(), new DeathMark(), new ShadowClone()};
-			case HUNTRESS:
-				return new ArmorAbility[]{new SpectralBlades(), new NaturesPower(), new SpiritHawk()};
-			case REISEN:
-				return new ArmorAbility[]{new EirinAb(), new KaguyaAb(), new UltDeserter()};
-			case NITORI:
-				return new ArmorAbility[]{new Blackkappa(), new Yellowkappa(), new Greenkappa()};
-			case YUYUKO:
-				return new ArmorAbility[]{new Deatheater(), new Nethergirl(), new Cbgirl()};
-			case MURASA:
-				return new ArmorAbility[]{new RedVentora(), new BlueVentora(), new GreenVentora()};
-			case HINAPLAYER:
-				return new ArmorAbility[]{new Superspingod(), new Supercursegod(), new Supermedicine()};
-			case KAGUYAPLAYER:
-				return new ArmorAbility[]{new EirinAb2(), new KaguyaAb2(), new MokouAb2()};
-		}
 	}
 
 	public String spritesheet() {

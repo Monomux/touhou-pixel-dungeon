@@ -100,7 +100,7 @@ public class PrisonLevel extends RegularLevel {
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, BurningTrap.class, PoisonDartTrap.class, GapTrap.class,
+				ChillingTrap.class, ToxicTrap.class, BurningTrap.class, PoisonDartTrap.class, GapTrap.class,
 				AlarmTrap.class, OozeTrap.class, GrippingTrap.class,
 				ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class, GeyserTrap.class };
 	}
@@ -108,7 +108,7 @@ public class PrisonLevel extends RegularLevel {
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				4, 4, 4, 4, 4, 4,
+				4, 4, 4, 4, 4,
 				2, 2, 2,
 				1, 1, 1, 1, 1, 1 };
 	}

@@ -58,8 +58,6 @@ public class TalentsPane extends ScrollPane {
 				tiersAvailable = 1;
 			} else if (!Badges.isUnlocked(Badges.Badge.LEVEL_REACHED_2) || !Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_2)){
 				tiersAvailable = 2;
-			} else if (!Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_4)){
-				tiersAvailable = 3;
 			} else {
 				tiersAvailable = Talent.MAX_TALENT_TIERS;
 			}
@@ -70,8 +68,6 @@ public class TalentsPane extends ScrollPane {
 			}
 			if (tiersAvailable > 2 && Dungeon.hero.subClass == HeroSubClass.NONE){
 				tiersAvailable = 2;
-			} else if (tiersAvailable > 3 && Dungeon.hero.armorAbility == null){
-				tiersAvailable = 3;
 			}
 		}
 
@@ -94,19 +90,6 @@ public class TalentsPane extends ScrollPane {
 
 		blocker = new ColorBlock(0, 0, 0xFF222222);
 		content.add(blocker);
-
-		if (tiersAvailable == 1) {
-			blockText = PixelScene.renderTextBlock(Messages.get(this, "unlock_tier2"), 6);
-			content.add(blockText);
-		} else if (tiersAvailable == 2) {
-			blockText = PixelScene.renderTextBlock(Messages.get(this, "unlock_tier3"), 6);
-			content.add(blockText);
-		} else if (tiersAvailable == 3) {
-			blockText = PixelScene.renderTextBlock(Messages.get(this, "unlock_tier4"), 6);
-			content.add(blockText);
-		} else {
-			blockText = null;
-		}
 	}
 
 	@Override

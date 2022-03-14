@@ -7,7 +7,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Elemental;
 import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.FlameParticle;
@@ -80,21 +79,18 @@ public class SummonElemental extends Spell {
 			}
 		}
 
-		if (!spawnPoints.isEmpty()){
+		if (!spawnPoints.isEmpty()) {
 
 			Elemental elemental = Reflection.newInstance(summonClass);
-			GameScene.add( elemental );
+			GameScene.add(elemental);
 			Buff.affect(elemental, InvisAlly.class);
-			ScrollOfTeleportation.appear( elemental, Random.element(spawnPoints) );
+			ScrollOfTeleportation.appear(elemental, Random.element(spawnPoints));
 
 			summonClass = Elemental.AllyNewBornElemental.class;
 
 			detach(Dungeon.hero.belongings.backpack);
 
-		} else {
-			GLog.w(Messages.get(SpiritHawk.class, "no_space"));
 		}
-
 	}
 
 	@Override

@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.TimeManiTrap;
 import com.touhoupixel.touhoupixeldungeon.sprites.HinaSprite;
 import com.watabou.utils.Random;
 
@@ -83,7 +84,9 @@ public class Hina extends Mob {
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
-			if (Random.Int(2) == 0) {
+			if (Dungeon.depth > 50 && Random.Int(2) == 0) {
+				new CursingTrap().set(target).activate();
+			} else if (Random.Int(3) == 0) {
 				new CursingTrap().set(target).activate();
 			}
 		}

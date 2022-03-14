@@ -51,8 +51,8 @@ public class Rumia extends Mob {
 		} else EXP = 4;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		loot = new PotionOfShroudingFog();
 		lootChance = 0.15f;

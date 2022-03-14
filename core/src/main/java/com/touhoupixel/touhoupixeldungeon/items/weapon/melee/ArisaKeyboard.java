@@ -88,12 +88,6 @@ public class ArisaKeyboard extends MeleeWeapon {
 			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank3.class) != null && (Random.Int(3) == 0)) {
 				Buff.prolong(owner, ArisastarRank3.class, ArisastarRank3.DURATION);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

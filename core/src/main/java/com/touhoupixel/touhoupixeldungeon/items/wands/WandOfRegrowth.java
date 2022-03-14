@@ -36,7 +36,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.WildMagic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.NPC;
 import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.Dewdrop;
@@ -270,7 +269,7 @@ public class WandOfRegrowth extends Wand {
 
 	@Override
 	protected int chargesPerCast() {
-		if (charger != null && charger.target.buff(WildMagic.WildMagicTracker.class) != null){
+		if (charger != null){
 			return 1;
 		}
 		//consumes 30% of current charges, rounded up, with a min of 1 and a max of 3.

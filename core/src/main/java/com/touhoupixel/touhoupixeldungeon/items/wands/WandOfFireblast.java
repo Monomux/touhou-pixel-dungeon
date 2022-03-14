@@ -31,7 +31,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.WildMagic;
 import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Blazing;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
@@ -173,7 +172,7 @@ public class WandOfFireblast extends DamageWand {
 
 	@Override
 	protected int chargesPerCast() {
-		if (charger != null && charger.target.buff(WildMagic.WildMagicTracker.class) != null){
+		if (charger != null){
 			return 1;
 		}
 		//consumes 30% of current charges, rounded up, with a min of 1 and a max of 3.

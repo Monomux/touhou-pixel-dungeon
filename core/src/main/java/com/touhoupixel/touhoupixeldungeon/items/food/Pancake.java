@@ -47,8 +47,7 @@ public class Pancake extends Food {
 
 	public static void effect(Hero hero){
 		switch (Random.Int( 0 )) {
-			case 0: case 1: case 2: case 3:
-				//GLog.i( Messages.get(MiracleFruit.class, "invis") );
+			case 0:
 				Buff.affect( hero, Might.class, Might.DURATION/2f );
 				break;
 		}

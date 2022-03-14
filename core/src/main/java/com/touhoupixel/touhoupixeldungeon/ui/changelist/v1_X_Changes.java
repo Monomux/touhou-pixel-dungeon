@@ -221,13 +221,6 @@ public class v1_X_Changes {
 		changes.addButton( new ChangeButton( new Image(Assets.Sprites.ROGUE, 0, 90, 12, 15), HeroSubClass.ASSASSIN.title(),
 				"The Assassin is doing very well right now, especially after the power boost he can receive from smoke bomb or death mark. I'm scaling back his core power a little to try and reign him in a bit:\n\n" +
 				"_-_ Preparation bonus damage at power level 1/2/3/4 reduced to 10/20/35/50%, from 15/30/45/60%"));
-
-		changes.addButton( new ChangeButton(new TalentIcon(Talent.DOUBLE_JUMP.icon()), Talent.DOUBLE_JUMP.title(),
-				"Just one talent/ability nerf this time! I'm scaling double jump back a bit to put it more in line with the other heroic leap talents:\n\n" +
-				"_-_ Charge cost reduction now caps at 50%, down from 60%\n" +
-				"_-_ The warrior must now jump again within 3 turns, down from 5\n\n" +
-				"I'll likely making more balance tweaks (including nerfs) to abilities and talents in the future, but at the moment double jump is the only major standout."));
-
 	}
 
 	public static void add_v1_0_Changes( ArrayList<ChangeInfo> changeInfos ) {

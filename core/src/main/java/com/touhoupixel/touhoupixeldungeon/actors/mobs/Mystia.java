@@ -50,8 +50,8 @@ public class Mystia extends Mob {
 		} else EXP = 1;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 55;
-		} else maxLvl = 5;
+			maxLvl = 60;
+		} else maxLvl = 10;
 
 		loot = Generator.Category.SEED;
 		lootChance = 0.3f;

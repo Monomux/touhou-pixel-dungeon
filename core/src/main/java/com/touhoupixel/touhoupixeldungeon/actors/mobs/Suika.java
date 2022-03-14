@@ -37,7 +37,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
 import com.touhoupixel.touhoupixeldungeon.effects.BlobEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.FloatingText;
@@ -49,8 +48,6 @@ import com.touhoupixel.touhoupixeldungeon.effects.particles.SmokeParticle;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.SparkParticle;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
-import com.touhoupixel.touhoupixeldungeon.items.KingsCrown;
-import com.touhoupixel.touhoupixeldungeon.items.TengusMask;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.LloydsBeacon;
 import com.touhoupixel.touhoupixeldungeon.items.bombs.Bomb;
@@ -84,7 +81,7 @@ public class Suika extends Mob {
 	{
 		spriteClass = SuikaSprite.class;
 		
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 250 : 200;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 400 : 300;
 		EXP = 20;
 		defenseSkill = 15;
 		
@@ -203,8 +200,6 @@ public class Suika extends Mob {
 		
 		GameScene.bossSlain();
 		super.die( cause );
-
-		Dungeon.level.drop( new KingsCrown(), pos ).sprite.drop();
 		
 		LloydsBeacon beacon = Dungeon.hero.belongings.getItem(LloydsBeacon.class);
 		if (beacon != null) {

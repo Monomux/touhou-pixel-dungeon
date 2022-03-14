@@ -54,8 +54,8 @@ public class Joon extends Mob {
 		} else EXP = 5;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		flying = true;
 

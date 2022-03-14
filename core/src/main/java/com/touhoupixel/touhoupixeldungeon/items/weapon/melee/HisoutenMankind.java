@@ -49,8 +49,8 @@ public class HisoutenMankind extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  9*(tier+1) +    //20 base, down from 25
-				lvl*(tier+2);     //+4 per level, down from +5
+		return  9*(tier+1)+
+				lvl*(tier+2);
 	}
 
 	@Override
@@ -72,12 +72,6 @@ public class HisoutenMankind extends MeleeWeapon {
 			Char enemy = hero.enemy();
 			if (Dungeon.hero.belongings.weapon() instanceof HisoutenMankind) {
 				Buff.prolong(owner, Hisou.class, Hisou.DURATION);
-			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof HisoutenMankind) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
 			}
 		}
 		return super.damageRoll(owner);

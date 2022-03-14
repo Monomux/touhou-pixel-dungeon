@@ -76,12 +76,6 @@ public class WindgodFan extends MeleeWeapon {
 				Buff.prolong(hero, Levitation.class, Levitation.DURATION);
 				Buff.prolong(hero, Doublespeed.class, Doublespeed.DURATION);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof WindgodFan) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

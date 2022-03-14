@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeon.actors.hero;
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.GamesInProgress;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
@@ -61,8 +62,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandEmpower;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.ArmorAbility;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.Ratmogrify;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
@@ -153,12 +152,6 @@ public enum Talent {
 	ENDLESS_RAGE(11, 3), BERSERKING_STAMINA(12, 3), ENRAGED_CATALYST(13, 3),
 	//Gladiator T3
 	CLEAVE(14, 3), LETHAL_DEFENSE(15, 3), ENHANCED_COMBO(16, 3),
-	//Heroic Leap T4
-	BODY_SLAM(17, 4), IMPACT_WAVE(18, 4), DOUBLE_JUMP(19, 4),
-	//Shockwave T4
-	EXPANDING_WAVE(20, 4), STRIKING_WAVE(21, 4), SHOCK_FORCE(22, 4),
-	//Endure T4
-	SUSTAINED_RETRIBUTION(23, 4), SHRUG_IT_OFF(24, 4), EVEN_THE_ODDS(25, 4),
 
 	//Mage T1
 	EMPOWERING_MEAL(32), SCHOLARS_INTUITION(33), TESTED_HYPOTHESIS(34), BACKUP_BARRIER(35),
@@ -170,12 +163,6 @@ public enum Talent {
 	EMPOWERED_STRIKE(43, 3), MYSTICAL_CHARGE(44, 3), EXCESS_CHARGE(45, 3),
 	//Ran T3
 	SOUL_EATER(46, 3), SOUL_SIPHON(47, 3), NECROMANCERS_MINIONS(48, 3),
-	//Elemental Blast T4
-	BLAST_RADIUS(49, 4), ELEMENTAL_POWER(50, 4), REACTIVE_BARRIER(51, 4),
-	//Wild Magic T4
-	WILD_POWER(52, 4), FIRE_EVERYTHING(53, 4), CONSERVED_MAGIC(54, 4),
-	//Warp Beacon T4
-	TELEFRAG(55, 4), REMOTE_BEACON(56, 4), LONGRANGE_WARP(57, 4),
 
 	//Rogue T1
 	CACHED_RATIONS(64), THIEFS_INTUITION(65), SUCKER_PUNCH(66), PROTECTIVE_SHADOWS(67),
@@ -187,12 +174,6 @@ public enum Talent {
 	ENHANCED_LETHALITY(75, 3), ASSASSINS_REACH(76, 3), BOUNTY_HUNTER(77, 3),
 	//Freerunner T3
 	EVASIVE_ARMOR(78, 3), PROJECTILE_MOMENTUM(79, 3), SPEEDY_STEALTH(80, 3),
-	//Smoke Bomb T4
-	HASTY_RETREAT(81, 4), BODY_REPLACEMENT(82, 4), SHADOW_STEP(83, 4),
-	//Death Mark T4
-	FEAR_THE_REAPER(84, 4), DEATHLY_DURABILITY(85, 4), DOUBLE_MARK(86, 4),
-	//Shadow Clone T4
-	SHADOW_BLADE(87, 4), CLONED_ARMOR(88, 4), PERFECT_COPY(89, 4),
 
 	//Huntress T1
 	NATURES_BOUNTY(96), SURVIVALISTS_INTUITION(97), FOLLOWUP_STRIKE(98), NATURES_AID(99),
@@ -204,12 +185,6 @@ public enum Talent {
 	FARSIGHT(107, 3), SHARED_ENCHANTMENT(108, 3), SHARED_UPGRADES(109, 3),
 	//Warden T3
 	DURABLE_TIPS(110, 3), BARKSKIN(111, 3), SHIELDING_DEW(112, 3),
-	//Spectral Blades T4
-	FAN_OF_BLADES(113, 4), PROJECTING_BLADES(114, 4), SPIRIT_BLADES(115, 4),
-	//Natures Power T4
-	GROWING_POWER(116, 4), NATURES_WRATH(117, 4), WILD_MOMENTUM(118, 4),
-	//Spirit Hawk T4
-	EAGLE_EYE(119, 4), GO_FOR_THE_EYES(120, 4), SWIFT_SPIRIT(121, 4),
 
 	//Reisen T1
 	EIENTEI_MEAL(128), POTION_INTUITION(129), DANMAKU_STRIKE(130), EIENTEI_LUCK(131),
@@ -221,12 +196,6 @@ public enum Talent {
 	PARA_RESISTANCE(139, 3), GAS_RESISTANCE(140, 3), DEGRADE_RESISTANCE(141, 3),
 	//Deserter T3
 	DANMAKU_HEAL(142, 3), DANMAKU_BLESS(143, 3), DANMAKU_SPEED(144, 3),
-	//EIRIN T4
-	FOOD_HEAL(145, 4), POTION_HEAL(146, 4), GOLD_HEAL(147, 4),
-	//KAGUYA T4
-	ANKH_GAIN(148, 4), INVU_ATTACK(149, 4), TRIPLESPEED_ATTACK(150, 4),
-	//Ultimate Deserter T4
-	MIGHT_GAIN(151, 4), TRIPLESPEED_GAIN(152, 4), STRENGTH_GAIN(153, 4),
 
 	//Nitori T1
 	KAPPA_MEAL(160), SCROLL_INTUITION(161), CUCUMBER_HEAL(162), BASIC_FUSION(163),
@@ -238,12 +207,6 @@ public enum Talent {
 	CUCUMBER_MEAL(171, 3), AQUA_UPGRADE(172, 3), AQUA_POTION(173, 3),
 	//Engineer T3
 	DANGEROUS_MEAL(174, 3), RISKY_UPGRADE(175, 3), RISKY_POTION(176, 3),
-	//Blackkappa T4
-	DARKENED_MEAL(177, 4), OVERPOWERED_HEALING(178, 4), INVIS_POTION(179, 4),
-	//Yellowkappa T4
-	SLOW_STRIKE(180, 4), LUNATIC_STRIKE(181, 4), COMMOTION_STRIKE(182, 4),
-	//Greenkappa T4
-	FIERY_POTION(183, 4), HEX_POTION(184, 4), SPEED_POTION(185, 4),
 
 	//YuyukoBoss T1
 	ANIMAL_MEAL(192), PASTY_GAIN(193), CUCUMBER_GAIN(194), FROZEN_FOOD_GAIN(195),
@@ -255,12 +218,6 @@ public enum Talent {
 	TRIPLESPEED_MEAL(203, 3), MIND_VISION_MEAL(204, 3), MAGIC_IMMUNE_MEAL(205, 3),
 	//Deathghost T3
 	CONTROL_DEATH(206, 3), DOOM_ATTACK(207, 3), COMING_DEATH(208, 3),
-	//Deatheater T4
-	YOKAI_MEAL(209, 4), FLOAT_MEAL(210, 4), GOD_MEAL(211, 4),
-	//Nethergirl T4
-	COMING_MORE_DEATH(212, 4), NULLIFY_DEATH(213, 4), DOOMED_HEALING(214, 4),
-	//Cbgirl T4
-	YOMI_POTION(215, 4), SUICIDE_BUTTERFLY(216, 4), REFLOWERING(217, 4),
 
 	//Murasa T1
 	GAIN_AQUA_REGEN(224), GAIN_AQUA_BLAST(225), AQUA_STRIKE(226), AQUA_LIGHT(227),
@@ -272,12 +229,6 @@ public enum Talent {
 	AQUA_STAMINA(235, 3), AQUA_HASTE(236, 3), AQUA_MINDVISION(237, 3),
 	//Shipghost T3
 	AQUA_PARALYSIS(238, 3), AQUA_SLOW(239, 3), AQUA_INSTAKILL(240, 3),
-	//RedVentora T4
-	LIFE_EXTEND(241, 4), HUGE_GHOST_TENSITY(242, 4), AQUA_INVISIBILITY(243, 4),
-	//BlueVentora T4
-	SCORE_EXTEND(244, 4), AQUA_MIGHT(245, 4), AQUA_MORE_INSTAKILL(246, 4),
-	//GreenVentora T4
-	BOMB_EXTEND(247, 4), AQUA_TRIPLESPEED(248, 4), AQUA_INVU(249, 4),
 
 	//Hina T1
 	CURSED_MEAL(256), GAIN_CURSED_METAL(257), CURSED_IDENTIFY(258), CURSED_MINDVISION(259),
@@ -289,12 +240,6 @@ public enum Talent {
 	SPIN_BLIND(267, 3), SPIN_HEX(268, 3), SPIN_HEAL(269, 3),
 	//Cursegod T3
 	CURSED_SNEAKATTACK(270, 3), CURSED_INVISIBILITY(271, 3), CURSED_ACC(272, 3),
-	//Superspingod T4
-	SPIN_CHARM(273, 4), SPIN_DOOM(274, 4), SPIN_PARALYSIS(275, 4),
-	//Supercursegod T4
-	CURSED_MIGHT(276, 4), CURSED_SPEED(277, 4), CURSED_EVASION(278, 4),
-	//Supermedicine T4
-	UNIDENTIFY_MEDICINE(279, 4), LONG_INVU(280, 4), OMNISCIENCE_GAIN(281, 4),
 
 	//Kaguya T1
 	GAIN_ALCHEMY_ENERGY(288), GAIN_RECHARGE(289), GAIN_CSD(290), GAIN_WAND(291),
@@ -305,47 +250,118 @@ public enum Talent {
 	//Timestop T3
 	HEALWAND_MV_AND_LEV(299, 3), HEALWAND_LIGHT_AND_BLESS(300, 3), HEALWAND_THREESPEED(301, 3),
 	//Timemove T3
-	MAXHP_SPEED(302, 3), MAXHP_EVASION(303, 3), MAXHP_ACC(304, 3),
-	//Eirin T4
-	GAIN_HEALING_SET_AND_ANTIHEAL_RES(305, 4), HEALWAND_LVL(306, 4), HEALWAND_NURSE(307, 4),
-	//Kaguya T4
-	GAIN_MORE_ALCHEMY_ENERGY(308, 4), POTION_PRESERVE_ATTACK(309, 4), MAXHP_DAMAGE(310, 4),
-	//Mokou T4
-	GAIN_ANKH(311, 4), GAIN_ANOTHER_HEALWAND(312, 4), BURN_IMMUN_AND_GAIN_INVU(313, 4),
+	MAXHP_SPEED(302, 3), MAXHP_EVASION(303, 3), MAXHP_ACC(304, 3);
 
-	//universal T4
-	HEROIC_ENERGY(26, 4), //See icon() and title() for special logic for this one
-	//Ratmogrify T4
-	RATSISTANCE(124, 4), RATLOMACY(125, 4), RATFORCEMENTS(126, 4);
+	public static class ImprovisedProjectileCooldown extends FlavourBuff {
+		public int icon() {
+			return BuffIndicator.TIME;
+		}
 
-	public static class ImprovisedProjectileCooldown extends FlavourBuff{
-		public int icon() { return BuffIndicator.TIME; }
-		public void tintIcon(Image icon) { icon.hardlight(0.15f, 0.2f, 0.5f); }
-		public float iconFadePercent() { return Math.max(0, visualcooldown() / 50); }
-		public String toString() { return Messages.get(this, "name"); }
-		public String desc() { return Messages.get(this, "desc", dispTurns(visualcooldown())); }
-	};
-	public static class LethalMomentumTracker extends FlavourBuff{};
-	public static class StrikingWaveTracker extends FlavourBuff{};
-	public static class WandPreservationCounter extends CounterBuff{{revivePersists = true;}};
-	public static class EmpoweredStrikeTracker extends FlavourBuff{};
-	public static class BountyHunterTracker extends FlavourBuff{};
-	public static class RejuvenatingStepsCooldown extends FlavourBuff{
-		public int icon() { return BuffIndicator.TIME; }
-		public void tintIcon(Image icon) { icon.hardlight(0f, 0.35f, 0.15f); }
-		public float iconFadePercent() { return Math.max(0, visualcooldown() / (15 - 5*Dungeon.hero.pointsInTalent(REJUVENATING_STEPS))); }
-		public String toString() { return Messages.get(this, "name"); }
-		public String desc() { return Messages.get(this, "desc", dispTurns(visualcooldown())); }
-	};
-	public static class RejuvenatingStepsFurrow extends CounterBuff{{revivePersists = true;}};
-	public static class SeerShotCooldown extends FlavourBuff{
-		public int icon() { return target.buff(RevealedArea.class) != null ? BuffIndicator.NONE : BuffIndicator.TIME; }
-		public void tintIcon(Image icon) { icon.hardlight(0.7f, 0.4f, 0.7f); }
-		public float iconFadePercent() { return Math.max(0, visualcooldown() / 20); }
-		public String toString() { return Messages.get(this, "name"); }
-		public String desc() { return Messages.get(this, "desc", dispTurns(visualcooldown())); }
-	};
-	public static class SpiritBladesTracker extends FlavourBuff{};
+		public void tintIcon(Image icon) {
+			icon.hardlight(0.15f, 0.2f, 0.5f);
+		}
+
+		public float iconFadePercent() {
+			return Math.max(0, visualcooldown() / 50);
+		}
+
+		public String toString() {
+			return Messages.get(this, "name");
+		}
+
+		public String desc() {
+			return Messages.get(this, "desc", dispTurns(visualcooldown()));
+		}
+	}
+
+	;
+
+	public static class LethalMomentumTracker extends FlavourBuff {
+	}
+
+	;
+
+	public static class StrikingWaveTracker extends FlavourBuff {
+	}
+
+	;
+
+	public static class WandPreservationCounter extends CounterBuff {
+		{
+			revivePersists = true;
+		}}
+
+	;
+
+	public static class EmpoweredStrikeTracker extends FlavourBuff {
+	}
+
+	;
+
+	public static class BountyHunterTracker extends FlavourBuff {
+	}
+
+	;
+
+	public static class RejuvenatingStepsCooldown extends FlavourBuff {
+		public int icon() {
+			return BuffIndicator.TIME;
+		}
+
+		public void tintIcon(Image icon) {
+			icon.hardlight(0f, 0.35f, 0.15f);
+		}
+
+		public float iconFadePercent() {
+			return Math.max(0, visualcooldown() / (15 - 5 * Dungeon.hero.pointsInTalent(REJUVENATING_STEPS)));
+		}
+
+		public String toString() {
+			return Messages.get(this, "name");
+		}
+
+		public String desc() {
+			return Messages.get(this, "desc", dispTurns(visualcooldown()));
+		}
+	}
+
+	;
+
+	public static class RejuvenatingStepsFurrow extends CounterBuff {
+		{
+			revivePersists = true;
+		}}
+
+	;
+
+	public static class SeerShotCooldown extends FlavourBuff {
+		public int icon() {
+			return target.buff(RevealedArea.class) != null ? BuffIndicator.NONE : BuffIndicator.TIME;
+		}
+
+		public void tintIcon(Image icon) {
+			icon.hardlight(0.7f, 0.4f, 0.7f);
+		}
+
+		public float iconFadePercent() {
+			return Math.max(0, visualcooldown() / 20);
+		}
+
+		public String toString() {
+			return Messages.get(this, "name");
+		}
+
+		public String desc() {
+			return Messages.get(this, "desc", dispTurns(visualcooldown()));
+		}
+	}
+
+	;
+
+	public static class SpiritBladesTracker extends FlavourBuff {
+	}
+
+	;
 
 	int icon;
 	int maxPoints;
@@ -353,46 +369,17 @@ public enum Talent {
 	// tiers 1/2/3/4 start at levels 2/7/13/21
 	public static int[] tierLevelThresholds = new int[]{0, 2, 7, 13, 21, 31};
 
-	Talent( int icon ){
+	Talent(int icon) {
 		this(icon, 2);
 	}
 
-	Talent( int icon, int maxPoints ){
+	Talent(int icon, int maxPoints) {
 		this.icon = icon;
 		this.maxPoints = maxPoints;
 	}
 
-	public int icon(){
-		if (this == HEROIC_ENERGY){
-			if (Dungeon.hero != null && Dungeon.hero.armorAbility instanceof Ratmogrify){
-				return 127;
-			}
-			com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass cls = Dungeon.hero != null ? Dungeon.hero.heroClass : GamesInProgress.selectedClass;
-			switch (cls){
-				case WARRIOR: default:
-					return 26;
-				case MAGE:
-					return 58;
-				case ROGUE:
-					return 90;
-				case HUNTRESS:
-					return 122;
-				case REISEN:
-					return 154;
-				case NITORI:
-					return 186;
-				case YUYUKO:
-					return 218;
-				case MURASA:
-					return 250;
-				case HINAPLAYER:
-					return 282;
-				case KAGUYAPLAYER:
-					return 314;
-			}
-		} else {
-			return icon;
-		}
+	public int icon() {
+		return icon;
 	}
 
 	public int maxPoints(){
@@ -400,13 +387,6 @@ public enum Talent {
 	}
 
 	public String title(){
-		//TODO translate this
-		if (this == HEROIC_ENERGY &&
-				Messages.lang() == Languages.ENGLISH
-				&& Dungeon.hero != null
-				&& Dungeon.hero.armorAbility instanceof Ratmogrify){
-			return "ratroic energy";
-		}
 		return Messages.get(this, name() + ".title");
 	}
 
@@ -492,180 +472,6 @@ public enum Talent {
 			Poi.quantity(1).collect();
 		}
 
-		if (talent == ANKH_GAIN && hero.pointsInTalent(ANKH_GAIN) == 1){
-			Ankh Ankh = new Ankh();
-			Ankh.collect();
-		}
-		if (talent == ANKH_GAIN && hero.pointsInTalent(ANKH_GAIN) == 2){
-			Ankh Ankh = new Ankh();
-			Ankh.collect();
-		}
-		if (talent == ANKH_GAIN && hero.pointsInTalent(ANKH_GAIN) == 3){
-			Ankh Ankh = new Ankh();
-			Ankh.collect();
-		}
-		if (talent == ANKH_GAIN && hero.pointsInTalent(ANKH_GAIN) == 4){
-			Ankh Ankh = new Ankh();
-			Ankh.collect();
-		}
-
-		if (talent == LIFE_EXTEND && hero.pointsInTalent(LIFE_EXTEND) == 1){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-		if (talent == LIFE_EXTEND && hero.pointsInTalent(LIFE_EXTEND) == 2){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-		if (talent == LIFE_EXTEND && hero.pointsInTalent(LIFE_EXTEND) == 3){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-		if (talent == LIFE_EXTEND && hero.pointsInTalent(LIFE_EXTEND) == 4){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-
-		if (talent == GAIN_ANKH && hero.pointsInTalent(GAIN_ANKH) == 1){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-		if (talent == GAIN_ANKH && hero.pointsInTalent(GAIN_ANKH) == 2){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-		if (talent == GAIN_ANKH && hero.pointsInTalent(GAIN_ANKH) == 3){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-		if (talent == GAIN_ANKH && hero.pointsInTalent(GAIN_ANKH) == 4){
-			Ankh live = new Ankh();
-			live.collect();
-		}
-
-		if (talent == GAIN_ANOTHER_HEALWAND && hero.pointsInTalent(GAIN_ANOTHER_HEALWAND) == 1){
-			WandOfHealWounds wohw = new WandOfHealWounds();
-			wohw.identify().collect();
-		}
-		if (talent == GAIN_ANOTHER_HEALWAND && hero.pointsInTalent(GAIN_ANOTHER_HEALWAND) == 2){
-			WandOfHealWounds wohw = new WandOfHealWounds();
-			wohw.identify().collect();
-		}
-		if (talent == GAIN_ANOTHER_HEALWAND && hero.pointsInTalent(GAIN_ANOTHER_HEALWAND) == 3){
-			WandOfHealWounds wohw = new WandOfHealWounds();
-			wohw.identify().collect();
-		}
-		if (talent == GAIN_ANOTHER_HEALWAND && hero.pointsInTalent(GAIN_ANOTHER_HEALWAND) == 4){
-			WandOfHealWounds wohw = new WandOfHealWounds();
-			wohw.identify().collect();
-		}
-
-		if (talent == BURN_IMMUN_AND_GAIN_INVU && hero.pointsInTalent(BURN_IMMUN_AND_GAIN_INVU) == 1){
-			PotionOfInvulnerability poi = new PotionOfInvulnerability();
-			poi.quantity(5).collect();
-		}
-		if (talent == BURN_IMMUN_AND_GAIN_INVU && hero.pointsInTalent(BURN_IMMUN_AND_GAIN_INVU) == 2){
-			PotionOfInvulnerability poi = new PotionOfInvulnerability();
-			poi.quantity(5).collect();
-		}
-		if (talent == BURN_IMMUN_AND_GAIN_INVU && hero.pointsInTalent(BURN_IMMUN_AND_GAIN_INVU) == 3){
-			PotionOfInvulnerability poi = new PotionOfInvulnerability();
-			poi.quantity(5).collect();
-		}
-		if (talent == BURN_IMMUN_AND_GAIN_INVU && hero.pointsInTalent(BURN_IMMUN_AND_GAIN_INVU) == 4){
-			PotionOfInvulnerability poi = new PotionOfInvulnerability();
-			poi.quantity(5).collect();
-		}
-
-		if (talent == SCORE_EXTEND && hero.pointsInTalent(SCORE_EXTEND) == 1){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(2).collect();
-		}
-		if (talent == SCORE_EXTEND && hero.pointsInTalent(SCORE_EXTEND) == 2){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(2).collect();
-		}
-		if (talent == SCORE_EXTEND && hero.pointsInTalent(SCORE_EXTEND) == 3){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(2).collect();
-		}
-		if (talent == SCORE_EXTEND && hero.pointsInTalent(SCORE_EXTEND) == 4){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(2).collect();
-		}
-
-		if (talent == BOMB_EXTEND && hero.pointsInTalent(BOMB_EXTEND) == 1){
-			PotionOfInvulnerability Poi = new PotionOfInvulnerability();
-			Poi.quantity(5).collect();
-		}
-		if (talent == BOMB_EXTEND && hero.pointsInTalent(BOMB_EXTEND) == 2){
-			PotionOfInvulnerability Poi = new PotionOfInvulnerability();
-			Poi.quantity(5).collect();
-		}
-		if (talent == BOMB_EXTEND && hero.pointsInTalent(BOMB_EXTEND) == 3){
-			PotionOfInvulnerability Poi = new PotionOfInvulnerability();
-			Poi.quantity(5).collect();
-			PotionOfPhilosopher Pop = new PotionOfPhilosopher();
-			Pop.quantity(5).collect();
-		}
-		if (talent == BOMB_EXTEND && hero.pointsInTalent(BOMB_EXTEND) == 4){
-			PotionOfInvulnerability Poi = new PotionOfInvulnerability();
-			Poi.quantity(5).collect();
-			PotionOfPhilosopher Pop = new PotionOfPhilosopher();
-			Pop.quantity(5).collect();
-		}
-
-		if (talent == MIGHT_GAIN && hero.pointsInTalent(MIGHT_GAIN) == 1){
-			PotionOfMight Healing100 = new PotionOfMight();
-			Healing100.quantity(5).collect();
-		}
-		if (talent == MIGHT_GAIN && hero.pointsInTalent(MIGHT_GAIN) == 2){
-			PotionOfMight Healing100 = new PotionOfMight();
-			Healing100.quantity(5).collect();
-		}
-		if (talent == MIGHT_GAIN && hero.pointsInTalent(MIGHT_GAIN) == 3){
-			PotionOfMight Healing100 = new PotionOfMight();
-			Healing100.quantity(5).collect();
-		}
-		if (talent == MIGHT_GAIN && hero.pointsInTalent(MIGHT_GAIN) == 4){
-			PotionOfMight Healing100 = new PotionOfMight();
-			Healing100.quantity(5).collect();
-		}
-
-		if (talent == TRIPLESPEED_GAIN && hero.pointsInTalent(TRIPLESPEED_GAIN) == 1){
-			PotionOfTriplespeed Healing10 = new PotionOfTriplespeed();
-			Healing10.quantity(5).collect();
-		}
-		if (talent == TRIPLESPEED_GAIN && hero.pointsInTalent(TRIPLESPEED_GAIN) == 2){
-			PotionOfTriplespeed Healing10 = new PotionOfTriplespeed();
-			Healing10.quantity(5).collect();
-		}
-		if (talent == TRIPLESPEED_GAIN && hero.pointsInTalent(TRIPLESPEED_GAIN) == 3){
-			PotionOfTriplespeed Healing10 = new PotionOfTriplespeed();
-			Healing10.quantity(5).collect();
-		}
-		if (talent == TRIPLESPEED_GAIN && hero.pointsInTalent(TRIPLESPEED_GAIN) == 4){
-			PotionOfTriplespeed Healing10 = new PotionOfTriplespeed();
-			Healing10.quantity(5).collect();
-		}
-
-		if (talent == STRENGTH_GAIN && hero.pointsInTalent(STRENGTH_GAIN) == 1){
-			PotionOfStrength Pos = new PotionOfStrength();
-			Pos.quantity(10).collect();
-		}
-		if (talent == STRENGTH_GAIN && hero.pointsInTalent(STRENGTH_GAIN) == 2){
-			PotionOfStrength Pos = new PotionOfStrength();
-			Pos.quantity(10).collect();
-		}
-		if (talent == STRENGTH_GAIN && hero.pointsInTalent(STRENGTH_GAIN) == 3){
-			PotionOfStrength Pos = new PotionOfStrength();
-			Pos.quantity(10).collect();
-		}
-		if (talent == STRENGTH_GAIN && hero.pointsInTalent(STRENGTH_GAIN) == 4){
-			PotionOfStrength Pos = new PotionOfStrength();
-			Pos.quantity(10).collect();
-		}
-
 		if (talent == GAINING_HEALING && hero.pointsInTalent(GAINING_HEALING) == 1){
 			PotionOfHealing Healing4 = new PotionOfHealing();
 			Healing4.quantity(2).collect();
@@ -686,53 +492,6 @@ public enum Talent {
 		if (talent == GAINING_TRANSMUTE && hero.pointsInTalent(GAINING_TRANSMUTE) == 3){
 			ScrollOfTransmutation Healing4 = new ScrollOfTransmutation();
 			Healing4.quantity(1).collect();
-		}
-
-		if (talent == YOMI_POTION && hero.pointsInTalent(YOMI_POTION) == 1){
-			PotionOfYomi Healing412 = new PotionOfYomi();
-			Healing412.quantity(5).collect();
-		}
-		if (talent == YOMI_POTION && hero.pointsInTalent(YOMI_POTION) == 2){
-			PotionOfYomi Healing412 = new PotionOfYomi();
-			Healing412.quantity(5).collect();
-		}
-		if (talent == YOMI_POTION && hero.pointsInTalent(YOMI_POTION) == 3){
-			PotionOfYomi Healing412 = new PotionOfYomi();
-			Healing412.quantity(5).collect();
-		}
-		if (talent == YOMI_POTION && hero.pointsInTalent(YOMI_POTION) == 4){
-			PotionOfYomi Healing412 = new PotionOfYomi();
-			Healing412.quantity(5).collect();
-		}
-
-		if (talent == LONG_INVU && hero.pointsInTalent(LONG_INVU) == 1){
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*20f);
-		}
-		if (talent == LONG_INVU && hero.pointsInTalent(LONG_INVU) == 2){
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*20f);
-		}
-		if (talent == LONG_INVU && hero.pointsInTalent(LONG_INVU) == 3){
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*20f);
-		}
-		if (talent == LONG_INVU && hero.pointsInTalent(LONG_INVU) == 4){
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*20f);
-		}
-
-		if (talent == OMNISCIENCE_GAIN && hero.pointsInTalent(OMNISCIENCE_GAIN) == 1){
-			ScrollOfMagicMapping Somm = new ScrollOfMagicMapping();
-			Somm.quantity(3).collect();
-		}
-		if (talent == OMNISCIENCE_GAIN && hero.pointsInTalent(OMNISCIENCE_GAIN) == 2){
-			ScrollOfMagicMapping Somm = new ScrollOfMagicMapping();
-			Somm.quantity(3).collect();
-		}
-		if (talent == OMNISCIENCE_GAIN && hero.pointsInTalent(OMNISCIENCE_GAIN) == 3){
-			ScrollOfMagicMapping Somm = new ScrollOfMagicMapping();
-			Somm.quantity(3).collect();
-		}
-		if (talent == OMNISCIENCE_GAIN && hero.pointsInTalent(OMNISCIENCE_GAIN) == 4){
-			ScrollOfMagicMapping Somm = new ScrollOfMagicMapping();
-			Somm.quantity(3).collect();
 		}
 
 		if (talent == PARA_RESISTANCE && hero.pointsInTalent(PARA_RESISTANCE) == 1){
@@ -951,67 +710,6 @@ public enum Talent {
 			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
 		}
 
-		if (talent == UNIDENTIFY_MEDICINE && hero.pointsInTalent(UNIDENTIFY_MEDICINE) == 1) {
-			if (!(Dungeon.hero.belongings.weapon() instanceof KeineBook)) {
-				Potion.initColors();
-				Scroll.initLabels();
-				Ring.initGems();
-				Item.updateQuickslot();
-			}
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
-			Buff.prolong(hero, Might.class, Might.DURATION);
-			Buff.prolong(hero, Hisou.class, Hisou.DURATION);
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Bless.class, Bless.DURATION);
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-		}
-		if (talent == UNIDENTIFY_MEDICINE && hero.pointsInTalent(UNIDENTIFY_MEDICINE) == 2) {
-			if (!(Dungeon.hero.belongings.weapon() instanceof KeineBook)) {
-				Potion.initColors();
-				Scroll.initLabels();
-				Ring.initGems();
-				Item.updateQuickslot();
-			}
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
-			Buff.prolong(hero, Might.class, Might.DURATION);
-			Buff.prolong(hero, Hisou.class, Hisou.DURATION);
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Bless.class, Bless.DURATION);
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-		}
-		if (talent == UNIDENTIFY_MEDICINE && hero.pointsInTalent(UNIDENTIFY_MEDICINE) == 3) {
-			if (!(Dungeon.hero.belongings.weapon() instanceof KeineBook)) {
-				Potion.initColors();
-				Scroll.initLabels();
-				Ring.initGems();
-				Item.updateQuickslot();
-			}
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
-			Buff.prolong(hero, Might.class, Might.DURATION);
-			Buff.prolong(hero, Hisou.class, Hisou.DURATION);
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Bless.class, Bless.DURATION);
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-		}
-		if (talent == UNIDENTIFY_MEDICINE && hero.pointsInTalent(UNIDENTIFY_MEDICINE) == 4) {
-			if (!(Dungeon.hero.belongings.weapon() instanceof KeineBook)) {
-				Potion.initColors();
-				Scroll.initLabels();
-				Ring.initGems();
-				Item.updateQuickslot();
-			}
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
-			Buff.prolong(hero, Might.class, Might.DURATION);
-			Buff.prolong(hero, Hisou.class, Hisou.DURATION);
-			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
-			Buff.prolong(hero, Bless.class, Bless.DURATION);
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-		}
-
 		if (talent == AQUA_FOOD && hero.pointsInTalent(AQUA_FOOD) == 1) {
 			ElixirOfAquaticRejuvenation murasa1 = new ElixirOfAquaticRejuvenation();
 			murasa1.quantity(6).collect();
@@ -1165,51 +863,12 @@ public enum Talent {
 			Healingseed.quantity(4).collect();
 		}
 
-		if (talent == GAIN_HEALING_SET_AND_ANTIHEAL_RES && hero.pointsInTalent(GAIN_HEALING_SET_AND_ANTIHEAL_RES) == 1){
-			PotionOfLightHealing Healinglh = new PotionOfLightHealing();
-			Healinglh.quantity(3).identify().collect();
-			Sungrass.Seed Healingseed = new Sungrass.Seed();
-			Healingseed.quantity(6).collect();
-		}
-		if (talent == GAIN_HEALING_SET_AND_ANTIHEAL_RES && hero.pointsInTalent(GAIN_HEALING_SET_AND_ANTIHEAL_RES) == 2){
-			PotionOfLightHealing Healinglh = new PotionOfLightHealing();
-			Healinglh.quantity(3).identify().collect();
-			Sungrass.Seed Healingseed = new Sungrass.Seed();
-			Healingseed.quantity(6).collect();
-		}
-		if (talent == GAIN_HEALING_SET_AND_ANTIHEAL_RES && hero.pointsInTalent(GAIN_HEALING_SET_AND_ANTIHEAL_RES) == 3){
-			PotionOfLightHealing Healinglh = new PotionOfLightHealing();
-			Healinglh.quantity(3).identify().collect();
-			Sungrass.Seed Healingseed = new Sungrass.Seed();
-			Healingseed.quantity(6).collect();
-		}
-		if (talent == GAIN_HEALING_SET_AND_ANTIHEAL_RES && hero.pointsInTalent(GAIN_HEALING_SET_AND_ANTIHEAL_RES) == 4){
-			PotionOfLightHealing Healinglh = new PotionOfLightHealing();
-			Healinglh.quantity(3).identify().collect();
-			Sungrass.Seed Healingseed = new Sungrass.Seed();
-			Healingseed.quantity(6).collect();
-		}
-
 		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 1){
 			Dungeon.energy += 15;
 		}
-		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 2){
+		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 2) {
 			Dungeon.energy += 15;
 		}
-
-		if (talent == GAIN_MORE_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_MORE_ALCHEMY_ENERGY) == 1){
-			Dungeon.energy += 30;
-		}
-		if (talent == GAIN_MORE_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_MORE_ALCHEMY_ENERGY) == 2){
-			Dungeon.energy += 30;
-		}
-		if (talent == GAIN_MORE_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_MORE_ALCHEMY_ENERGY) == 1){
-			Dungeon.energy += 30;
-		}
-		if (talent == GAIN_MORE_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_MORE_ALCHEMY_ENERGY) == 2){
-			Dungeon.energy += 30;
-		}
-
 
 		if (talent == THIEFS_INTUITION && hero.pointsInTalent(THIEFS_INTUITION) == 2){
 			if (hero.belongings.ring instanceof Ring) hero.belongings.ring.identify();
@@ -1260,7 +919,7 @@ public enum Talent {
 			//3/5 HP healed, when hero is below 25% health
 			if (hero.HP <= hero.HT / 2) {
 				Buff.prolong( hero, Hex.class, Hex.DURATION );
-				hero.HP = Math.min(hero.HP + 5 + 5 * hero.pointsInTalent(EIENTEI_MEAL), hero.HT);
+				hero.HP = Math.min(hero.HP + 3 + 5 * hero.pointsInTalent(EIENTEI_MEAL), hero.HT);
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(EIENTEI_MEAL));
 			}
 		}
@@ -1268,7 +927,7 @@ public enum Talent {
 		if (hero.hasTalent(EIENTEI_ENHANCE_MEAL)) {
 			if (hero.HP <= hero.HT / 2) {
 				Buff.prolong( hero, Hex.class, Hex.DURATION );
-				hero.HP = Math.min(hero.HP + 15 + 10 * hero.pointsInTalent(EIENTEI_ENHANCE_MEAL), hero.HT);
+				hero.HP = Math.min(hero.HP + 8 + 4 * hero.pointsInTalent(EIENTEI_ENHANCE_MEAL), hero.HT);
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(EIENTEI_ENHANCE_MEAL));
 			}
 		}
@@ -1340,13 +999,6 @@ public enum Talent {
 			Buff.prolong( hero, Hex.class, Hex.DURATION );
 		}
 
-		if (hero.hasTalent(DARKENED_MEAL)) {
-			Buff.prolong( hero, MindVision.class, MindVision.DURATION );
-			Buff.prolong( hero, MagicImmune.class, MagicImmune.DURATION );
-			if (Random.Int(3+hero.pointsInTalent(DARKENED_MEAL)-2) == 0)
-				Buff.prolong( hero, Paralysis.class, Paralysis.DURATION );
-		}
-
 		if (hero.hasTalent(TRIPLESPEED_MEAL) && hero.pointsInTalent(TRIPLESPEED_MEAL) == 1) {
 			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION / 2f);
 		}
@@ -1384,35 +1036,6 @@ public enum Talent {
 		if (hero.hasTalent(MAGIC_IMMUNE_MEAL) && hero.pointsInTalent(MAGIC_IMMUNE_MEAL) == 3) {
 			Buff.prolong(hero, MagicImmune.class, MagicImmune.DURATION);
 			Buff.prolong(hero, Might.class, Might.DURATION);
-		}
-
-
-
-		if (hero.hasTalent(NULLIFY_DEATH) && hero.pointsInTalent(NULLIFY_DEATH) == 1) {
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/6f);
-			Buff.prolong(hero, Invisibility.class, Invisibility.DURATION/6f);
-		}
-
-		if (hero.hasTalent(NULLIFY_DEATH) && hero.pointsInTalent(NULLIFY_DEATH) == 2) {
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/6f);
-			Buff.prolong(hero, Invisibility.class, Invisibility.DURATION/3f);
-		}
-
-		if (hero.hasTalent(NULLIFY_DEATH) && hero.pointsInTalent(NULLIFY_DEATH) == 3) {
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/6f);
-			Buff.prolong(hero, Invisibility.class, Invisibility.DURATION/2f);
-		}
-
-		if (hero.hasTalent(NULLIFY_DEATH) && hero.pointsInTalent(NULLIFY_DEATH) == 4) {
-			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/6f);
-			Buff.prolong(hero, Invisibility.class, Invisibility.DURATION);
-		}
-
-
-
-		if (hero.hasTalent(FOOD_HEAL)) {
-			hero.HP = Math.min(hero.HP + 20 + 10 * hero.pointsInTalent(FOOD_HEAL), hero.HT);
-			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
 		}
 
 		if (hero.hasTalent(IRON_STOMACH)){
@@ -1464,48 +1087,6 @@ public enum Talent {
 	}
 
 	public static void onHealingPotionUsed( Hero hero ){
-
-		if (hero.hasTalent(OVERPOWERED_HEALING)){
-			Buff.affect(hero, Triplespeed.class, Triplespeed.DURATION/2f);
-			Buff.affect(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
-			if (Random.Int(3+hero.pointsInTalent(OVERPOWERED_HEALING)-2) == 0)
-				Buff.affect(hero, Slow.class, Slow.DURATION);
-		}
-
-		if (hero.hasTalent(DOOMED_HEALING) && hero.pointsInTalent(DOOMED_HEALING) == 1) {
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				mob.beckon(mob.pos);
-				Buff.affect(mob, Doom.class);
-			}
-		}
-
-		if (hero.hasTalent(DOOMED_HEALING) && hero.pointsInTalent(DOOMED_HEALING) == 2) {
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				mob.beckon(mob.pos);
-				Buff.affect(mob, Doom.class);
-				Buff.prolong(mob, Vulnerable.class, Vulnerable.DURATION * 1000f);
-			}
-		}
-
-		if (hero.hasTalent(DOOMED_HEALING) && hero.pointsInTalent(DOOMED_HEALING) == 3) {
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				mob.beckon(mob.pos);
-				Buff.affect(mob, Doom.class);
-				Buff.prolong(mob, Weakness.class, Weakness.DURATION * 1000f);
-				Buff.prolong(mob, Vulnerable.class, Vulnerable.DURATION * 1000f);
-			}
-		}
-
-		if (hero.hasTalent(DOOMED_HEALING) && hero.pointsInTalent(DOOMED_HEALING) == 4) {
-			for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-				mob.beckon(mob.pos);
-				Buff.affect(mob, Doom.class);
-				Buff.prolong(mob, Weakness.class, Weakness.DURATION * 1000f);
-				Buff.prolong(mob, Vulnerable.class, Vulnerable.DURATION * 1000f);
-				Buff.prolong(mob, Slow.class, Slow.DURATION * 1000f);
-			}
-		}
-
 		if (hero.hasTalent(RESTORED_WILLPOWER)){
 			BrokenSeal.WarriorShield shield = hero.buff(BrokenSeal.WarriorShield.class);
 			if (shield != null){
@@ -1665,31 +1246,6 @@ public enum Talent {
 			Buff.prolong(hero, Doublespeed.class, hero.pointsInTalent(DANMAKU_HEAL) * Doublespeed.DURATION / 10f);
 		}
 
-		if (hero.hasTalent(Talent.SLOW_STRIKE)) {
-			Buff.prolong(enemy, Slow.class, Slow.DURATION);
-			Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
-			Buff.prolong(enemy, Cripple.class, Cripple.DURATION);
-			if (Random.Int( 2+hero.pointsInTalent(SLOW_STRIKE) ) == 0)
-				Buff.prolong(hero, Slow.class, Slow.DURATION);
-			Buff.prolong(hero, Cripple.class, Cripple.DURATION);
-		}
-
-		if (hero.hasTalent(Talent.LUNATIC_STRIKE)) {
-			Buff.affect(enemy, Doom.class);
-			Buff.prolong(enemy, Vulnerable.class, Vulnerable.DURATION);
-			if (Random.Int( 2+hero.pointsInTalent(LUNATIC_STRIKE) ) == 0)
-				Buff.prolong(hero, Weakness.class, Weakness.DURATION);
-			Buff.prolong(hero, Hex.class, Hex.DURATION);
-		}
-
-		if (hero.hasTalent(Talent.COMMOTION_STRIKE)) {
-			Buff.affect( enemy, Bleeding.class ).set( 20 );
-			Buff.affect( enemy, Poison.class ).set( 20 );
-			if (Random.Int( 2+hero.pointsInTalent(COMMOTION_STRIKE) ) == 0)
-				Buff.prolong(hero, Degrade.class, Degrade.DURATION);
-			Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
-		}
-
 		if (hero.hasTalent(Talent.FOLLOWUP_STRIKE)) {
 			if (hero.belongings.weapon() instanceof MissileWeapon) {
 				Buff.affect(enemy, FollowupStrikeTracker.class);
@@ -1731,16 +1287,17 @@ public enum Talent {
 		initClassTalents( cls, talents, new LinkedHashMap<>());
 	}
 
-	public static void initClassTalents( HeroClass cls, ArrayList<LinkedHashMap<Talent, Integer>> talents, LinkedHashMap<Talent, Talent> replacements ){
-		while (talents.size() < MAX_TALENT_TIERS){
+	public static void initClassTalents( HeroClass cls, ArrayList<LinkedHashMap<Talent, Integer>> talents, LinkedHashMap<Talent, Talent> replacements ) {
+		while (talents.size() < MAX_TALENT_TIERS) {
 			talents.add(new LinkedHashMap<>());
 		}
 
 		ArrayList<Talent> tierTalents = new ArrayList<>();
 
 		//tier 1
-		switch (cls){
-			case WARRIOR: default:
+		switch (cls) {
+			case WARRIOR:
+			default:
 				Collections.addAll(tierTalents, HEARTY_MEAL, ARMSMASTERS_INTUITION, TEST_SUBJECT, IRON_WILL);
 				break;
 			case MAGE:
@@ -1771,14 +1328,15 @@ public enum Talent {
 				Collections.addAll(tierTalents, GAIN_ALCHEMY_ENERGY, GAIN_RECHARGE, GAIN_CSD, GAIN_WAND);
 				break;
 		}
-		for (Talent talent : tierTalents){
+		for (Talent talent : tierTalents) {
 			talents.get(0).put(talent, 0);
 		}
 		tierTalents.clear();
 
 		//tier 2
-		switch (cls){
-			case WARRIOR: default:
+		switch (cls) {
+			case WARRIOR:
+			default:
 				Collections.addAll(tierTalents, IRON_STOMACH, RESTORED_WILLPOWER, RUNIC_TRANSFERENCE, LETHAL_MOMENTUM, IMPROVISED_PROJECTILES);
 				break;
 			case MAGE:
@@ -1809,14 +1367,15 @@ public enum Talent {
 				Collections.addAll(tierTalents, HEALWAND_SILENCE, UPGRADE_MAXHT_UP, POTION_PRESERVE, GAIN_POTIONOFHEALING, GAIN_SUNGRASSSEED);
 				break;
 		}
-		for (Talent talent : tierTalents){
+		for (Talent talent : tierTalents) {
 			talents.get(1).put(talent, 0);
 		}
 		tierTalents.clear();
 
 		//tier 3
-		switch (cls){
-			case WARRIOR: default:
+		switch (cls) {
+			case WARRIOR:
+			default:
 				Collections.addAll(tierTalents, HOLD_FAST, STRONGMAN);
 				break;
 			case MAGE:
@@ -1847,13 +1406,10 @@ public enum Talent {
 				Collections.addAll(tierTalents, HEALWAND_SIMPLE, MAXHT_UP);
 				break;
 		}
-		for (Talent talent : tierTalents){
+		for (Talent talent : tierTalents) {
 			talents.get(2).put(talent, 0);
 		}
 		tierTalents.clear();
-
-		//tier4
-		//TBD
 	}
 
 	public static void initSubclassTalents( Hero hero ){
@@ -1939,22 +1495,6 @@ public enum Talent {
 
 	}
 
-	public static void initArmorTalents( Hero hero ){
-		initArmorTalents( hero.armorAbility, hero.talents);
-	}
-
-	public static void initArmorTalents(ArmorAbility abil, ArrayList<LinkedHashMap<Talent, Integer>> talents ){
-		if (abil == null) return;
-
-		while (talents.size() < MAX_TALENT_TIERS){
-			talents.add(new LinkedHashMap<>());
-		}
-
-		for (Talent t : abil.talents()){
-			talents.get(3).put(t, 0);
-		}
-	}
-
 	private static final String TALENT_TIER = "talents_tier_";
 
 	public static void storeTalentsInBundle( Bundle bundle, Hero hero ){
@@ -1991,7 +1531,6 @@ public enum Talent {
 
 		if (hero.heroClass != null)     initClassTalents(hero);
 		if (hero.subClass != null)      initSubclassTalents(hero);
-		if (hero.armorAbility != null)  initArmorTalents(hero);
 
 		for (int i = 0; i < MAX_TALENT_TIERS; i++){
 			LinkedHashMap<Talent, Integer> tier = hero.talents.get(i);

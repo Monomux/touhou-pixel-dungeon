@@ -23,6 +23,9 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfShock;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.RockfallTrap;
@@ -79,6 +82,9 @@ public class Eika extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
+			if (Dungeon.depth > 50) {
+				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+			}
 			if (Random.Int(2) == 0) {
 				new RockfallTrap().set(target).activate();
 			}

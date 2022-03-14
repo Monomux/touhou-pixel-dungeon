@@ -21,13 +21,17 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.spells;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 
 public class PhaseShift extends TargetedSpell {
 	
@@ -38,8 +42,10 @@ public class PhaseShift extends TargetedSpell {
 	@Override
 	protected void affectTarget(Ballistica bolt, Hero hero) {
 		final Char ch = Actor.findChar(bolt.collisionPos);
-		
-		if (ch == hero){
+
+		if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor) {
+			GLog.w(Messages.get(ScrollOfTeleportation.class, "tele_interrupt"));
+		} else if (ch == hero){
 			//TODO probably want this to not work on the hero for balance reasons?
 			ScrollOfTeleportation.teleportChar(curUser);
 		} else if (ch != null) {

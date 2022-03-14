@@ -56,7 +56,7 @@ import com.watabou.utils.Random;
 public abstract class HecatiaBody extends Mob {
 
 	{
-		HP = HT = 300;
+		HP = HT = 1000;
 		defenseSkill = 20;
 
 		viewDistance = Light.DISTANCE;
@@ -343,8 +343,6 @@ public abstract class HecatiaBody extends Mob {
 
 		{
 			spriteClass = FistSprite.Rotting.class;
-
-			properties.add(Property.ACIDIC);
 		}
 
 		@Override

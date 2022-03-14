@@ -46,8 +46,8 @@ public class Misumaru extends Mob {
 		} else EXP = 7;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 65;
-		} else maxLvl = 15;
+			maxLvl = 66;
+		} else maxLvl = 16;
 
 		loot = Gold.class;
 		lootChance = 0.1f;

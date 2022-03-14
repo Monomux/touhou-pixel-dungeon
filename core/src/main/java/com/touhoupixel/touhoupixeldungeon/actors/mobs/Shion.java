@@ -53,8 +53,8 @@ public class Shion extends Mob {
 		} else EXP = 7;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 65;
-		} else maxLvl = 15;
+			maxLvl = 66;
+		} else maxLvl = 16;
 
 		flying = true;
 

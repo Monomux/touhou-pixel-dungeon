@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
@@ -115,7 +116,7 @@ public class Tenkyuu extends Mob {
 				state = WANDERING;
 				ScrollOfSilence Silence = new ScrollOfSilence();
 				Silence.quantity(1).collect();
-				Buff.prolong(this, Might.class, Might.DURATION * 1000f);
+				Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
 			}
 		}
 		return damage;

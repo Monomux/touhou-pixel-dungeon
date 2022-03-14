@@ -28,30 +28,37 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
+import com.touhoupixel.touhoupixeldungeon.actors.blobs.Fire;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ChampionEnemy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corruption;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Immolation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageA;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageD;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Preparation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SoulMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.DirectableAlly;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.Ghost;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.effects.Surprise;
@@ -60,6 +67,7 @@ import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeon.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfWealth;
@@ -72,6 +80,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.plants.Swiftthistle;
+import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -587,7 +596,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.ENEMY_GRAZE) && !(enemy instanceof KisumeBoss) && !(enemy instanceof FlandreBoss) && !(enemy instanceof Cirno) && !(enemy instanceof Suika) && !(enemy instanceof TenshiBoss) && !(enemy instanceof YuyukoBoss) && !(enemy instanceof HecatiaBoss)) {
+		if (Dungeon.isChallenged(Challenges.ENEMY_GRAZE) && !(this instanceof DriedRose.GhostHero) && !properties().contains(Char.Property.BOSS)) {
 			switch (Random.Int(5)) {
 				case 0:
 				default:
@@ -612,6 +621,32 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int attackProc( Char enemy, int damage ) {
+
+		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)){
+			damage += Statistics.goldPickedup/5+Statistics.enemiesSlain/40;
+		}
+
+		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
+			switch (Random.Int(5)) {
+				case 0:
+				default:
+					Buff.affect(enemy, MessageD.class).reignite(enemy, 50f);
+					break;
+				case 1:
+					Buff.affect(enemy, MessageE.class).reignite(enemy, 50f);
+					break;
+				case 2:
+					Buff.affect(enemy, MessageA.class).reignite(enemy, 50f);
+					break;
+				case 3:
+					Buff.affect(enemy, MessageT.class).reignite(enemy, 50f);
+					break;
+				case 4:
+					Buff.affect(enemy, MessageH.class).reignite(enemy, 50f);
+					break;
+			}
+		}
+
 		//res damage zone//
 		if (Statistics.fireres == 1 && properties().contains(Char.Property.FIRE)) {
 			damage = Math.round(damage * 0.5f);
@@ -795,6 +830,14 @@ public abstract class Mob extends Char {
 	
 	@Override
 	public void die( Object cause ) {
+
+		if (buff(Immolation.class) != null){
+			for (int i : PathFinder.NEIGHBOURS9){
+				if (!Dungeon.level.solid[this.pos+i]){
+					GameScene.add(Blob.seed(this.pos+i, 2, Fire.class));
+				}
+			}
+		}
 
 		if (cause == Chasm.class){
 			//50% chance to round up, 50% to round down

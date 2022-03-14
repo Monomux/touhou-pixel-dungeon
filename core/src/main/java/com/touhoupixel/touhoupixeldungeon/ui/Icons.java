@@ -198,20 +198,20 @@ public enum Icons {
 		case SEED_POUCH:
 			icon.frame( icon.texture.uvRect( 68, 32, 78, 42 ) );
 			break;
-		case TAILSMAN_HOLDER:
-			icon.frame( icon.texture.uvRect( 68, 32, 78, 42 ) );
-			break;
 		case WAND_HOLSTER:
 			icon.frame( icon.texture.uvRect( 78, 32, 88, 42 ) );
 			break;
 		case POTION_BANDOLIER:
 			icon.frame( icon.texture.uvRect( 88, 32, 98, 42 ) );
 			break;
-		case ARCANE_HOLDER:
-			icon.frame( icon.texture.uvRect( 78, 32, 88, 42 ) );
-			break;
 		case FOOD_HOLDER:
-			icon.frame( icon.texture.uvRect( 88, 32, 98, 42 ) );
+			icon.frame( icon.texture.uvRect( 88, 128, 98, 138 ) );
+			break;
+		case ARCANE_HOLDER:
+			icon.frame( icon.texture.uvRect( 98, 128, 108, 138 ) );
+			break;
+		case TAILSMAN_HOLDER:
+			icon.frame( icon.texture.uvRect( 108, 128, 118, 138 ) );
 			break;
 		case ENERGY:
 			icon.frame( icon.texture.uvRect( 96, 80, 112, 96 ) );

@@ -78,12 +78,6 @@ public class WoodenBat extends MeleeWeapon {
 				//knock them back along that ballistica
 				WandOfBlastWave.throwChar(enemy, trajectory, 100);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof WoodenBat) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

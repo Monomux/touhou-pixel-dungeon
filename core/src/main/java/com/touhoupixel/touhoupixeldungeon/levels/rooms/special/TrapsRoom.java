@@ -159,31 +159,31 @@ public class TrapsRoom extends SpecialRoom {
 			//spirit
 			{DisintegrationTrap.class, GrimTrap.class, SummoningTrap.class},
 			//lunar
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//sky
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//halls
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai1
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai2
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai3
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai4
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai5
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai6
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai7
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai8
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai9
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 			//dekai10
-			{GrimTrap.class, SummoningTrap.class},
+			{DisintegrationTrap.class, GrimTrap.class},
 
 	};
 }

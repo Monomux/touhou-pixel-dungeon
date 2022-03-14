@@ -74,12 +74,6 @@ public class HorouBook extends MeleeWeapon {
 			if (Dungeon.hero.belongings.weapon() instanceof HorouBook && (Random.Int(6) == 0)) {
 				Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION / 2f);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof HorouBook) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
+import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfStamina;
 import com.touhoupixel.touhoupixeldungeon.sprites.MomoyoSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.StarSprite;
 import com.watabou.utils.Random;
@@ -53,8 +54,8 @@ public class Star extends Mob {
 			maxLvl = 85;
 		} else maxLvl = 35;
 		
-		loot = Gold.class;
-		lootChance = 0.4f;
+		loot = PotionOfStamina.class;
+		lootChance = 0.1f;
 
 		properties.add(Property.HAPPY);
 	}

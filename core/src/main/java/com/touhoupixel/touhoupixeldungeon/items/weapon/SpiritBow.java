@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.NaturesPower;
 import com.touhoupixel.touhoupixeldungeon.effects.Splash;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.LeafParticle;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfFuror;
@@ -97,42 +96,6 @@ public class SpiritBow extends Weapon {
 	private static Class[] harmfulPlants = new Class[]{
 			Blindweed.class, Firebloom.class, Icecap.class, Sorrowmoss.class,  Stormvine.class
 	};
-
-	@Override
-	public int proc(Char attacker, Char defender, int damage) {
-
-		if (attacker.buff(NaturesPower.naturesPowerTracker.class) != null && !sniperSpecial){
-
-			Actor.add(new Actor() {
-				{
-					actPriority = VFX_PRIO;
-				}
-
-				@Override
-				protected boolean act() {
-
-					if (Random.Int(12) < ((Hero)attacker).pointsInTalent(Talent.NATURES_WRATH)){
-						Plant plant = (Plant) Reflection.newInstance(Random.element(harmfulPlants));
-						plant.pos = defender.pos;
-						plant.activate( defender.isAlive() ? defender : null );
-					}
-
-					if (!defender.isAlive()){
-						NaturesPower.naturesPowerTracker tracker = attacker.buff(NaturesPower.naturesPowerTracker.class);
-						if (tracker != null){
-							tracker.extend(((Hero) attacker).pointsInTalent(Talent.WILD_MOMENTUM));
-						}
-					}
-
-					Actor.remove(this);
-					return true;
-				}
-			});
-
-		}
-
-		return super.proc(attacker, defender, damage);
-	}
 
 	@Override
 	public String info() {
@@ -258,10 +221,6 @@ public class SpiritBow extends Weapon {
 	@Override
 	protected float speedMultiplier(Char owner) {
 		float speed = super.speedMultiplier(owner);
-		if (owner.buff(NaturesPower.naturesPowerTracker.class) != null){
-			// +33% speed to +50% speed, depending on talent points
-			speed += ((8 + ((Hero)owner).pointsInTalent(Talent.GROWING_POWER)) / 24f);
-		}
 		return speed;
 	}
 
@@ -291,19 +250,6 @@ public class SpiritBow extends Weapon {
 			image = ItemSpriteSheet.SPIRIT_ARROW;
 
 			hitSound = Assets.Sounds.HIT_ARROW;
-		}
-
-		@Override
-		public Emitter emitter() {
-			if (Dungeon.hero.buff(NaturesPower.naturesPowerTracker.class) != null && !sniperSpecial){
-				Emitter e = new Emitter();
-				e.pos(5, 5);
-				e.fillTarget = false;
-				e.pour(LeafParticle.GENERAL, 0.01f);
-				return e;
-			} else {
-				return super.emitter();
-			}
 		}
 
 		@Override

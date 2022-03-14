@@ -63,8 +63,8 @@ public class Lily extends Mob {
 		} else EXP = 5;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		flying = true;
 
@@ -102,8 +102,8 @@ public class Lily extends Mob {
 	@Override
 	public int attackSkill(Char target) {
 		if (Dungeon.depth > 50) {
-			return 60;
-		} else return 10;
+			return 62;
+		} else return 12;
 	}
 
 	@Override

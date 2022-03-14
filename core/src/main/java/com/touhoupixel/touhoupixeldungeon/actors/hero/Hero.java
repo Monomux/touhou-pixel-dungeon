@@ -46,11 +46,9 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Combo;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireImbue;
@@ -66,7 +64,11 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageA;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageD;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
@@ -77,14 +79,12 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.RingoSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SnipersMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.UnderwaterCurse;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.ArmorAbility;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.NaturesPower;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.warrior.Endure;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.*;
 import com.touhoupixel.touhoupixeldungeon.effects.CheckedCell;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
@@ -98,7 +98,12 @@ import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Heap.Type;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.KindOfWeapon;
-import com.touhoupixel.touhoupixeldungeon.items.armor.ClassArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PoppinPartyArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.ToyohimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YorihimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.Brimstone;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.Viscosity;
@@ -111,6 +116,7 @@ import com.touhoupixel.touhoupixeldungeon.items.artifacts.HornOfPlenty;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
+import com.touhoupixel.touhoupixeldungeon.items.food.MiracleFruit;
 import com.touhoupixel.touhoupixeldungeon.items.journal.Guidebook;
 import com.touhoupixel.touhoupixeldungeon.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeon.items.keys.GoldenKey;
@@ -131,6 +137,7 @@ import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfMight;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfLivingEarth;
@@ -151,6 +158,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RandomPhone;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutSword;
@@ -212,9 +220,8 @@ public class Hero extends Char {
 	private static final float TIME_TO_SEARCH	    = 2f;
 	private static final float HUNGER_FOR_SEARCH	= 6f;
 
-	public com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass heroClass = com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.ROGUE;
-	public com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass subClass = com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass.NONE;
-	public ArmorAbility armorAbility = null;
+	public HeroClass heroClass = HeroClass.ROGUE;
+	public HeroSubClass subClass = HeroSubClass.NONE;
 	public ArrayList<LinkedHashMap<com.touhoupixel.touhoupixeldungeon.actors.hero.Talent, Integer>> talents = new ArrayList<>();
 	public LinkedHashMap<Talent, Talent> metamorphedTalents = new LinkedHashMap<>();
 
@@ -258,18 +265,17 @@ public class Hero extends Char {
 		visibleEnemies = new ArrayList<>();
 
 		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			STR += 10;
+			STR += 15;
 		}
-
 	}
 
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
 		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)) {
-			HT = 30 + 3 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + 50*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.HUGE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
+			HT = 30 + 3 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
 		} else
-			HT = 30 + 5 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + 50*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.HUGE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
+			HT = 30 + 5 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 
@@ -323,7 +329,6 @@ public class Hero extends Char {
 
 		bundle.put( CLASS, heroClass );
 		bundle.put( SUBCLASS, subClass );
-		bundle.put( ABILITY, armorAbility );
 		com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.storeTalentsInBundle( bundle, this );
 
 		bundle.put( ATTACK, attackSkill );
@@ -351,7 +356,6 @@ public class Hero extends Char {
 
 		heroClass = bundle.getEnum( CLASS, com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.class );
 		subClass = bundle.getEnum( SUBCLASS, com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass.class );
-		armorAbility = (ArmorAbility)bundle.get( ABILITY );
 		com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.restoreTalentsFromBundle( bundle, this );
 
 		attackSkill = bundle.getInt( ATTACK );
@@ -405,21 +409,21 @@ public class Hero extends Char {
 	}
 
 	public int talentPointsAvailable(int tier){
-		if (lvl < com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.tierLevelThresholds[tier]
-				|| (tier == 3 && subClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass.NONE)
-				|| (tier == 4 && armorAbility == null)){
+		if (lvl < (Talent.tierLevelThresholds[tier] - 1)
+				|| (tier == 3 && subClass == HeroSubClass.NONE)
+				|| tier == 4) {
 			return 0;
-		} else if (lvl >= com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.tierLevelThresholds[tier+1]){
-			return com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.tierLevelThresholds[tier+1] - com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.tierLevelThresholds[tier] - talentPointsSpent(tier);
+		} else if (lvl >= Talent.tierLevelThresholds[tier+1]){
+			return Talent.tierLevelThresholds[tier+1] - Talent.tierLevelThresholds[tier] - talentPointsSpent(tier) + bonusTalentPoints(tier);
 		} else {
-			return 1 + lvl - com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.tierLevelThresholds[tier] - talentPointsSpent(tier);
+			return 1 + lvl - Talent.tierLevelThresholds[tier] - talentPointsSpent(tier) + bonusTalentPoints(tier);
 		}
 	}
 
 	public int bonusTalentPoints(int tier){
 		if (lvl < (Talent.tierLevelThresholds[tier]-1)
 				|| (tier == 3 && subClass == HeroSubClass.NONE)
-				|| (tier == 4 && armorAbility == null)) {
+				|| tier == 4) {
 			return 0;
 		} else if (buff(PotionOfDivineInspiration.DivineInspirationTracker.class) != null
 				&& buff(PotionOfDivineInspiration.DivineInspirationTracker.class).isBoosted(tier)) {
@@ -468,9 +472,7 @@ public class Hero extends Char {
 	}
 
 	public int tier() {
-		if (belongings.armor() instanceof ClassArmor){
-			return 6;
-		} else if (belongings.armor() != null){
+		if (belongings.armor() != null){
 			return belongings.armor().tier;
 		} else {
 			return 0;
@@ -507,7 +509,7 @@ public class Hero extends Char {
 		}
 
 		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			accuracy *= 0.8f;
+			accuracy *= 0.9f;
 		}
 
 		if (buff(ArisastarRank1.class) != null){
@@ -602,6 +604,10 @@ public class Hero extends Char {
 
 		if (buff(Doubleevasion.class) != null){
 			evasion *= 2;
+		}
+
+		if (Dungeon.hero.belongings.armor() instanceof PoppinPartyArmor){
+			evasion *= 1.05;
 		}
 
 		if (buff(ArisastarRank1.class) != null){
@@ -746,11 +752,6 @@ public class Hero extends Char {
 			speed *= 5f;
 		}
 
-		NaturesPower.naturesPowerTracker natStrength = buff(NaturesPower.naturesPowerTracker.class);
-		if (natStrength != null){
-			speed *= (2f + 0.25f*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GROWING_POWER));
-		}
-
 		return speed;
 
 	}
@@ -832,10 +833,6 @@ public class Hero extends Char {
 
 		//calls to dungeon.observe will also update hero's local FOV.
 		fieldOfView = Dungeon.level.heroFOV;
-
-		if (buff(Endure.EndureTracker.class) != null){
-			buff(Endure.EndureTracker.class).endEnduring();
-		}
 
 		if (!ready) {
 			//do a full observe (including fog update) if not resting.
@@ -1317,6 +1314,20 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc(enemy, damage);
 
+		if (Dungeon.hero.belongings.armor() instanceof YorihimeArmor && (Random.Int(50) == 0)){
+			Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION);
+		}
+
+		if (Dungeon.hero.belongings.armor() instanceof ToyohimeArmor && (Random.Int(50) == 0)){
+			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
+		}
+
+		if (Dungeon.hero.belongings.armor() instanceof YuyukoArmor && (Random.Int(50) == 0)){
+			GameScene.flash(0x80FFFFFF);
+			MiracleFruit Mf = new MiracleFruit();
+			Mf.collect();
+		}
+
 		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && (Random.Int(5) == 0)) {
 			Dungeon.level.setCellToWater(false, enemy.pos);
 		}
@@ -1329,6 +1340,14 @@ public class Hero extends Char {
 		if (buff(FrostBrandBuff.class) != null){
 			Buff.affect(this, FrostImbue.class, FrostImbue.DURATION);
 			damage *= 2.5f;
+		}
+
+		if (Dungeon.isChallenged(Challenges.PACIFIST)){
+			damage *= 0f;
+		}
+
+		if (Dungeon.isChallenged(Challenges.PACIFIST) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(enemy);
 		}
 
 		if (Dungeon.hero.belongings.weapon() instanceof FireBrand2 && enemy.properties().contains(Char.Property.ANIMAL)){
@@ -1403,6 +1422,10 @@ public class Hero extends Char {
 			}
 		}
 
+		if (Dungeon.hero.belongings.weapon() instanceof RandomPhone && Dungeon.gold > 9999){
+			damage *= 1.2f;
+		}
+
 		if (Dungeon.hero.belongings.weapon() instanceof YukinaMic && enemy.properties().contains(Char.Property.ANIMAL)) {
 			damage *= 0.05f;
 		}
@@ -1439,19 +1462,6 @@ public class Hero extends Char {
 		}
 
 		if (Dungeon.hero.belongings.weapon() instanceof RunicBlade && Statistics.amuletObtained){
-			damage *= 2f;
-		}
-
-		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_DAMAGE) == 1){
-			damage *= 1.25f;
-		}
-		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_DAMAGE) == 2){
-			damage *= 1.5f;
-		}
-		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_DAMAGE) == 3){
-			damage *= 1.75f;
-		}
-		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_DAMAGE) == 4){
 			damage *= 2f;
 		}
 
@@ -1548,142 +1558,12 @@ public class Hero extends Char {
 			}
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) == 1) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Might.class, Might.DURATION / 4f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) == 2) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Might.class, Might.DURATION / 2f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) == 3) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Might.class, Might.DURATION / 2f);
-					Buff.prolong(this, Bless.class, Bless.DURATION);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MIGHT) == 4) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Might.class, Might.DURATION);
-					Buff.prolong(this, Bless.class, Bless.DURATION);
-				}
-			}
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED)==1) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION / 4f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED)==2) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION / 2f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED)==3) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION / 2f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_SPEED)==4) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
-				}
-			}
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION)==1) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION / 4f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION)==2) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION / 2f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION)==3) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION / 2f);
-					Buff.prolong(this, Light.class, Light.DURATION / 10f);
-				}
-			}
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_EVASION)==4) {
-			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
-					Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
-					Buff.prolong(this, Light.class, Light.DURATION / 10f);
-				}
-			}
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK)==1 && (Random.Int(12) == 0)){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK)==2 && (Random.Int(10) == 0)){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK)==3 && (Random.Int(8) == 0)){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.INVU_ATTACK)==4 && (Random.Int(6) == 0)){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK)==1 && (Random.Int(12) == 0)){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION / 5f);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK)==2 && (Random.Int(10) == 0)){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION / 5f);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK)==3 && (Random.Int(8) == 0)){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION / 5f);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.TRIPLESPEED_ATTACK)==4 && (Random.Int(6) == 0)){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION / 5f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK)==1 && (Random.Int(12) == 0)){
-			Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK)==2 && (Random.Int(10) == 0)){
-			Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK)==3 && (Random.Int(8) == 0)){
-			Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.POTION_PRESERVE_ATTACK)==4 && (Random.Int(6) == 0)){
-			Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION);
-		}
-
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.YUYUKO && (Random.Int(12-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.COMING_DEATH)-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.COMING_MORE_DEATH)) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
+		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.YUYUKO && (Random.Int(12-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.COMING_DEATH)) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
 
-		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && (Random.Int(10-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INSTAKILL)-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MORE_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
+		if (heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.MURASA && (Random.Int(10-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
@@ -1709,140 +1589,6 @@ public class Hero extends Char {
 			Hunger hunger = Buff.affect(this, Hunger.class);
 			hunger.affectHunger(40);
 			this.HP = Math.min(this.HP + 3, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT)==1 && (Random.Int(7) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Might.class, Might.DURATION/5f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT)==2 && (Random.Int(7) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Might.class, Might.DURATION/4f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT)==3 && (Random.Int(7) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Might.class, Might.DURATION/2f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_MIGHT)==4 && (Random.Int(7) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Might.class, Might.DURATION);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED)==1 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION/10f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED)==2 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION/5f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED)==3 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION/2f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_TRIPLESPEED)==4 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU)==1 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/6f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU)==2 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/3f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU)==3 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVU)==4 && (Random.Int(5) == 0) && Dungeon.level.water[pos]){
-			Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
-		}
-
-
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL)==1 && enemy.properties().contains(Property.YOKAI)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 10, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL)==2 && enemy.properties().contains(Property.YOKAI)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 14, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL)==3 && enemy.properties().contains(Property.YOKAI)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 18, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.YOKAI_MEAL)==4 && enemy.properties().contains(Property.YOKAI)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 22, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL)==1 && enemy.properties().contains(Property.FLOAT)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 10, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL)==2 && enemy.properties().contains(Property.FLOAT)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 14, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL)==3 && enemy.properties().contains(Property.FLOAT)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 18, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.FLOAT_MEAL)==4 && enemy.properties().contains(Property.FLOAT)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 22, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL)==1 && enemy.properties().contains(Property.GOD)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 10, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL)==2 && enemy.properties().contains(Property.GOD)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 14, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL)==3 && enemy.properties().contains(Property.GOD)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 18, this.HT);
-			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GOD_MEAL)==4 && enemy.properties().contains(Property.GOD)){
-			Hunger hunger = Buff.affect(this, Hunger.class);
-			hunger.affectHunger(40);
-			this.HP = Math.min(this.HP + 22, this.HT);
 			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
 		}
 
@@ -1943,13 +1689,6 @@ public class Hero extends Char {
 		KindOfWeapon wep = belongings.weapon();
 
 		if (wep != null) damage = wep.proc( this, enemy, damage );
-
-		if (buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SpiritBladesTracker.class) != null
-				&& Random.Int(10) < 3*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIRIT_BLADES)){
-			SpiritBow bow = belongings.getItem(SpiritBow.class);
-			if (bow != null) damage = bow.proc( this, enemy, damage );
-			buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SpiritBladesTracker.class).detach();
-		}
 
 		damage = com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.onAttackProc( this, enemy, damage );
 
@@ -2086,161 +1825,8 @@ public class Hero extends Char {
 			this.HP = Math.min(this.HP + 9, this.HT);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM)==1){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 2);
-			Buff.prolong(enemy, Charm.class, Charm.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM)==2){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 4);
-			Buff.prolong(enemy, Charm.class, Charm.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM)==3){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 6);
-			Buff.prolong(enemy, Charm.class, Charm.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_CHARM)==4){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 8);
-			Buff.prolong(enemy, Charm.class, Charm.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM)==1){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 2);
-			Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM)==2){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 4);
-			Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM)==3){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 6);
-			Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_DOOM)==4){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 8);
-			Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS)==1){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 2);
-			Buff.prolong(enemy, Paralysis.class, Paralysis.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS)==2){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 4);
-			Buff.prolong(enemy, Paralysis.class, Paralysis.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS)==3){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 6);
-			Buff.prolong(enemy, Paralysis.class, Paralysis.DURATION);
-		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SPIN_PARALYSIS)==4){
-			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
-			//trim it to just be the part that goes past them
-			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
-			//knock them back along that ballistica
-			WandOfBlastWave.throwChar(enemy, trajectory, 8);
-			Buff.prolong(enemy, Paralysis.class, Paralysis.DURATION);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY)==1){
-			Buff.affect( enemy, Bleeding.class ).set( 14 );
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY)==1){
-			Buff.affect( enemy, Bleeding.class ).set( 14 );
-		}
-
 		if ( buff(HighStress.class) != null ){
 			HP = 1;
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY)==1){
-			Buff.affect( enemy, Bleeding.class ).set( 14 );
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY)==2){
-			Buff.affect( enemy, Bleeding.class ).set( 17 );
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY)==3){
-			Buff.affect( enemy, Bleeding.class ).set( 20 );
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SUICIDE_BUTTERFLY)==4){
-			Buff.affect( enemy, Bleeding.class ).set( 23 );
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING)==1){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/15f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING)==2){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/10f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING)==3){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/6f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.REFLOWERING)==4){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/3f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY)==1 && Dungeon.level.water[pos]){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/5f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY)==2 && Dungeon.level.water[pos]){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/3f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY)==3 && Dungeon.level.water[pos]){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION/2f);
-		}
-
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INVISIBILITY)==4 && Dungeon.level.water[pos]){
-			Buff.prolong(this, Invisibility.class, Invisibility.DURATION);
 		}
 
 		if (belongings.armor() != null) {
@@ -2299,6 +1885,12 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.belongings.weapon() instanceof AlchemyHat){
 			dmg += 2;
+		}
+		if (Dungeon.hero.belongings.armor() instanceof HanasakigawaArmor){
+			dmg -= 2;
+		}
+		if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
+			dmg -= 3;
 		}
 		if (buff(FireBrandBuff.class) != null){
 			dmg += 1;
@@ -2634,7 +2226,6 @@ public class Hero extends Char {
 				Sample.INSTANCE.play( Assets.Sounds.LEVELUP );
 				if (lvl < com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.tierLevelThresholds[com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAX_TALENT_TIERS+1]){
 					GLog.newLine();
-					GLog.p( Messages.get(this, "new_talent") );
 					StatusPane.talentBlink = 10f;
 					WndHero.lastIdx = 1;
 				}

@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
@@ -33,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
@@ -114,6 +116,12 @@ public class Kokoro extends Mob {
 			}
 			if (hero.buff(MagicImmune.class) != null) {
 				Buff.prolong(this, MagicImmune.class, MagicImmune.DURATION);
+			}
+			if (hero.buff(OneDefDamage.class) != null) {
+				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+			}
+			if (hero.buff(Doublerainbow.class) != null) {
+				Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
 			}
 		}
 		return damage;

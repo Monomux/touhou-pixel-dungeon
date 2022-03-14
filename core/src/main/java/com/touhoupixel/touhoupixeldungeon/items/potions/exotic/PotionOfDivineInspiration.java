@@ -23,7 +23,9 @@ package com.touhoupixel.touhoupixeldungeon.items.potions.exotic;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
@@ -64,7 +66,7 @@ public class PotionOfDivineInspiration extends ExoticPotion {
 				}
 			}
 
-			if (allBoosted){
+			if (Statistics.divinetrackbuff == 3){
 				GLog.w(Messages.get(this, "no_more_points"));
 				return;
 			}
@@ -73,15 +75,13 @@ public class PotionOfDivineInspiration extends ExoticPotion {
 		if (!isIdentified()) {
 			curItem.detach(curUser.belongings.backpack);
 		}
-
-		GameScene.show(new WndOptions(
+			GameScene.show(new WndOptions(
 				new ItemSprite(this),
 				Messages.titleCase(trueName()),
 				Messages.get(PotionOfDivineInspiration.class, "select_tier"),
 				Messages.titleCase(Messages.get(TalentsPane.class, "tier", 1)),
 				Messages.titleCase(Messages.get(TalentsPane.class, "tier", 2)),
-				Messages.titleCase(Messages.get(TalentsPane.class, "tier", 3)),
-				Messages.titleCase(Messages.get(TalentsPane.class, "tier", 4))
+				Messages.titleCase(Messages.get(TalentsPane.class, "tier", 3))
 		){
 			@Override
 			protected boolean enabled(int index) {
@@ -102,6 +102,7 @@ public class PotionOfDivineInspiration extends ExoticPotion {
 					identify();
 					curUser.busy();
 					curUser.sprite.operate(curUser.pos);
+					Statistics.divinetrackbuff += 1;
 
 					curUser.spendAndNext(1f);
 

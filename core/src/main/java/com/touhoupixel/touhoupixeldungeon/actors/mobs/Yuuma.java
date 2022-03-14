@@ -23,6 +23,8 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiHeal;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
@@ -84,6 +86,9 @@ public class Yuuma extends Mob {
 	public int attackProc(Char enemy, int damage) {
 		damage = super.attackProc(enemy, damage);
 		if (this.buff(Incompetence.class) == null) {
+			if (Dungeon.depth > 50) {
+				Buff.prolong(enemy, AntiHeal.class, AntiHeal.DURATION);
+			}
 			int reg = Math.min(damage - 4, HT - HP);
 			//int reg = Math.min( damage - 4, HT - HP );
 

@@ -37,9 +37,12 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HisoutenMankind;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HorouBook;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.JeweledBranch;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KeineBook;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KokoroFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.NazrinRod;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Psalms;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SwordofHisou;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ToyohimeFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YorihimeSword;
@@ -120,6 +123,18 @@ public class WaterOfHealth extends WellWater {
 		} else if ( item instanceof RingOfElements){
 			YorihimeSword Transmute6 = new YorihimeSword();
 			Transmute6.collect();
+			CellEmitter.get( pos ).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
+			Sample.INSTANCE.play( Assets.Sounds.DRINK );
+			return item;
+		} else if ( item instanceof KeineBook){
+			Psalms Transmute7 = new Psalms();
+			Transmute7.collect();
+			CellEmitter.get( pos ).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
+			Sample.INSTANCE.play( Assets.Sounds.DRINK );
+			return item;
+		} else if ( item instanceof HorouBook){
+			Psalms Transmute8 = new Psalms();
+			Transmute8.collect();
 			CellEmitter.get( pos ).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
 			Sample.INSTANCE.play( Assets.Sounds.DRINK );
 			return item;

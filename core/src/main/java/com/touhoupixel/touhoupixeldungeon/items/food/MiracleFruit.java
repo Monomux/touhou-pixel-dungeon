@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeon.items.food;
 
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
@@ -49,7 +50,7 @@ public class MiracleFruit extends Food {
 		switch (Random.Int( 0 )) {
 			case 0: case 1: case 2: case 3:
 				//GLog.i( Messages.get(MiracleFruit.class, "invis") );
-				Buff.affect( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION );
+				Buff.affect( hero, Doublerainbow.class, Doublerainbow.DURATION/4f );
 				break;
 		}
 	}

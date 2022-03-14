@@ -74,12 +74,6 @@ public class PhoenixTail extends MeleeWeapon {
 			if (Dungeon.hero.belongings.weapon() instanceof PhoenixTail && (Random.Int(6) == 0)) {
 				Buff.prolong(owner, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 3f);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof PhoenixTail) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

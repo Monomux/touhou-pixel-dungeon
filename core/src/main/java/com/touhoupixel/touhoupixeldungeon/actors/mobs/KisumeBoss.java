@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LockedFloor;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
@@ -83,6 +84,7 @@ public class KisumeBoss extends Mob {
 			CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
 			if (this.HP < 500){
 				Buff.prolong( this, Triplespeed.class, Triplespeed.DURATION );
+				Buff.prolong( this, Doublerainbow.class, Doublerainbow.DURATION );
 			}
 		}
 

@@ -38,11 +38,12 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.ChampionEnemy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corrosion;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireImbue;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Frost;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostImbue;
@@ -65,7 +66,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Preparation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ShieldBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SnipersMark;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Speed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
@@ -76,10 +76,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.YuukaRage;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.rogue.DeathMark;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.warrior.Endure;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Elemental;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Yuuka;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.Potential;
@@ -89,7 +86,6 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRetribution;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
-import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfAggression;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfFireblast;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfFrost;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfLightning;
@@ -97,8 +93,6 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Blazing;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Shocking;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.EnmaShaku;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.darts.ShockingDart;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -359,16 +353,6 @@ public abstract class Char extends Actor {
 
 			dmg += dmgBonus;
 
-			//friendly endure
-			Endure.EndureTracker endure = buff(Endure.EndureTracker.class);
-			if (endure != null) dmg = endure.damageFactor(dmg);
-
-			//enemy endure
-			endure = enemy.buff(Endure.EndureTracker.class);
-			if (endure != null){
-				dmg = endure.adjustDamageTaken(dmg);
-			}
-
 			if (enemy.buff(ScrollOfChallenge.ChallengeArena.class) != null){
 				dmg *= 0.67f;
 			}
@@ -406,7 +390,6 @@ public abstract class Char extends Actor {
 				} else {
 					//helps with triggering any on-damage effects that need to activate
 					enemy.damage(-1, this);
-					DeathMark.processFearTheReaper(enemy);
 				}
 				enemy.sprite.showStatus(CharSprite.NEGATIVE, Messages.get(Preparation.class, "assassinated"));
 			}
@@ -467,6 +450,7 @@ public abstract class Char extends Actor {
 
 		float acuRoll = Random.Float( acuStat );
 		if (attacker.buff(Bless.class) != null) acuRoll *= 1.25f;
+		if (attacker.buff(Doublerainbow.class) != null) acuRoll *= 1.75f;
 		if (attacker.buff(  Hex.class) != null) acuRoll *= 0.8f;
 		for (ChampionEnemy buff : attacker.buffs(ChampionEnemy.class)){
 			acuRoll *= buff.evasionAndAccuracyFactor();
@@ -474,6 +458,7 @@ public abstract class Char extends Actor {
 
 		float defRoll = Random.Float( defStat );
 		if (defender.buff(Bless.class) != null) defRoll *= 1.25f;
+		if (defender.buff(Doublerainbow.class) != null) defRoll *= 1.75f;
 		if (defender.buff(  Hex.class) != null) defRoll *= 0.8f;
 		for (ChampionEnemy buff : defender.buffs(ChampionEnemy.class)){
 			defRoll *= buff.evasionAndAccuracyFactor();
@@ -618,9 +603,6 @@ public abstract class Char extends Actor {
 		if (this.buff(Doom.class) != null && !isImmune(Doom.class)){
 			dmg *= 2;
 		}
-		if (alignment != Alignment.ALLY && this.buff(DeathMark.DeathMarkTracker.class) != null){
-			dmg *= 1.25f;
-		}
 
 		Class<?> srcClass = src.getClass();
 		if (isImmune( srcClass )) {
@@ -637,11 +619,6 @@ public abstract class Char extends Actor {
 
 		if (buff( Paralysis.class ) != null) {
 			buff( Paralysis.class ).processDamage(dmg);
-		}
-
-		Endure.EndureTracker endure = buff(Endure.EndureTracker.class);
-		if (endure != null){
-			dmg = endure.enforceDamagetakenLimit(dmg);
 		}
 
 		int shielded = dmg;
@@ -665,9 +642,7 @@ public abstract class Char extends Actor {
 		if (HP < 0) HP = 0;
 
 		if (!isAlive()) {
-			die( src );
-		} else if (HP == 0 && buff(DeathMark.DeathMarkTracker.class) != null){
-			DeathMark.processFearTheReaper(this);
+			die(src);
 		}
 	}
 
@@ -930,7 +905,7 @@ public abstract class Char extends Actor {
 	}
 
 	public enum Property{
-		BOSS ( new HashSet<Class>( Arrays.asList(Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class)),
+		BOSS ( new HashSet<Class>( Arrays.asList(Drowsy.class, Grim.class, GrimTrap.class, ScrollOfRetribution.class, ScrollOfPsionicBlast.class)),
 				new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),
 		MINIBOSS ( new HashSet<Class>(),
 				new HashSet<Class>( Arrays.asList(AllyBuff.class, Dread.class) )),

@@ -42,8 +42,8 @@ public class Yachie extends Mob {
 		spriteClass = YachieSprite.class;
 
 		if (Dungeon.depth > 50){
-			HP = HT = 385;
-		} else HP = HT = 13;
+			HP = HT = 375;
+		} else HP = HT = 14;
 
 		if (Dungeon.depth > 50){
 			defenseSkill = 57;
@@ -54,8 +54,8 @@ public class Yachie extends Mob {
 		} else EXP = 5;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		properties.add(Property.YOKAI);
 		properties.add(Property.POWERFUL);

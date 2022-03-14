@@ -71,13 +71,7 @@ public class KogasaRod extends MeleeWeapon {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
 			if (Dungeon.hero.belongings.weapon() instanceof KogasaRod) {
-				Buff.prolong(enemy, Terror.class, Terror.DURATION / 2f);
-			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof KogasaRod) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
+				Buff.prolong(enemy, Terror.class, Terror.DURATION*2f);
 			}
 		}
 		return super.damageRoll(owner);

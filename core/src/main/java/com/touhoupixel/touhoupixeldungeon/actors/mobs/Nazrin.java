@@ -45,8 +45,8 @@ public class Nazrin extends Mob {
 		} else EXP = 2;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 55;
-		} else maxLvl = 5;
+			maxLvl = 60;
+		} else maxLvl = 10;
 		
 		loot = Gold.class;
 		lootChance = 0.5f;

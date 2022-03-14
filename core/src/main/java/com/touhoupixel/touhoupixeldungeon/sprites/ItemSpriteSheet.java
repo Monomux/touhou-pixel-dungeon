@@ -348,14 +348,9 @@ public class ItemSpriteSheet {
 	public static final int ARISA_KEYBOARD        = WEP_TIER5+373;
 	public static final int TURNABOUT_CLOAK        = WEP_TIER5+374;
 	public static final int DOUBLE_SWORD        = WEP_TIER5+375;
-	public static final int ALCHEMY_HAT        = WEP_TIER5+345;
-	public static final int HOROU_BOOK        = WEP_TIER5+376;
 	public static final int AUTUMN_KATANA        = WEP_TIER5+377;
 	public static final int GRAYSWANDIR        = WEP_TIER5+378;
-	public static final int POT_OF_GREED        = WEP_TIER5+379;
-	public static final int KEINE_BOOK        = WEP_TIER5+380;
 	public static final int YUKINA_MIC        = WEP_TIER5+381;
-	public static final int BLACK_FAN        = WEP_TIER5+382;
 	public static final int PLAY_MAT        = WEP_TIER5+383;
 	static{
 		assignItemRect(WAR_HAMMER,   13, 13);
@@ -398,14 +393,9 @@ public class ItemSpriteSheet {
 		assignItemRect(ARISA_KEYBOARD,      13, 13);
 		assignItemRect(TURNABOUT_CLOAK,      14, 14);
 		assignItemRect(DOUBLE_SWORD,      13, 13);
-		assignItemRect(ALCHEMY_HAT,      11, 10);
-		assignItemRect(HOROU_BOOK,      13, 16);
 		assignItemRect(AUTUMN_KATANA,      13, 13);
 		assignItemRect(GRAYSWANDIR,      13, 13);
-		assignItemRect(POT_OF_GREED,      12, 12);
-		assignItemRect(KEINE_BOOK,      13, 16);
 		assignItemRect(YUKINA_MIC,      13, 13);
-		assignItemRect(BLACK_FAN,      10, 10);
 		assignItemRect(PLAY_MAT,      13, 13);
 	}
 
@@ -482,32 +472,34 @@ public class ItemSpriteSheet {
 	public static final int ARMOR_MAIL      = ARMOR+2;
 	public static final int ARMOR_SCALE     = ARMOR+3;
 	public static final int ARMOR_PLATE     = ARMOR+4;
-	public static final int ARMOR_WARRIOR   = ARMOR+5;
-	public static final int ARMOR_MAGE      = ARMOR+6;
-	public static final int ARMOR_ROGUE     = ARMOR+7;
-	public static final int ARMOR_HUNTRESS  = ARMOR+8;
-	public static final int ARMOR_REISEN    = ARMOR+9;
-	public static final int ARMOR_NITORI    = ARMOR+10;
+	public static final int ARMOR_PC98REIMU   = ARMOR+5;
+	public static final int ARMOR_PC98MARISA      = ARMOR+6;
+	public static final int ARMOR_YORIHIME    = ARMOR+7;
+	public static final int ARMOR_TOYOHIME  = ARMOR+8;
+	public static final int ARMOR_RUMIA    = ARMOR+9;
+	public static final int ARMOR_HANASAKIGAWA    = ARMOR+10;
 	public static final int ARMOR_YUYUKO    = ARMOR+11;
-	public static final int ARMOR_MURASA    = ARMOR+12;
-	public static final int ARMOR_HINAPLAYER    = ARMOR+13;
-	public static final int ARMOR_KAGUYAPLAYER    = ARMOR+14;
+	public static final int ARMOR_HECATIA    = ARMOR+12;
+	public static final int ARMOR_POPPINPARTY    = ARMOR+13;
+	public static final int ARMOR_MAXWELL    = ARMOR+14;
+	public static final int ARMOR_GOLDENDRAGON    = ARMOR+15;
 	static{
 		assignItemRect(ARMOR_CLOTH,     9, 13);
 		assignItemRect(ARMOR_LEATHER,   9, 13);
 		assignItemRect(ARMOR_MAIL,      9, 13);
 		assignItemRect(ARMOR_SCALE,     9, 13);
 		assignItemRect(ARMOR_PLATE,     9, 13);
-		assignItemRect(ARMOR_WARRIOR,   9, 13);
-		assignItemRect(ARMOR_MAGE,      9, 13);
-		assignItemRect(ARMOR_ROGUE,     9, 13);
-		assignItemRect(ARMOR_HUNTRESS,  9, 13);
-		assignItemRect(ARMOR_REISEN,    9, 13);
-		assignItemRect(ARMOR_NITORI,    9, 13);
+		assignItemRect(ARMOR_PC98REIMU,   9, 13);
+		assignItemRect(ARMOR_PC98MARISA,      9, 13);
+		assignItemRect(ARMOR_YORIHIME,     9, 13);
+		assignItemRect(ARMOR_TOYOHIME,  9, 13);
+		assignItemRect(ARMOR_RUMIA,    9, 13);
+		assignItemRect(ARMOR_HANASAKIGAWA,    9, 13);
 		assignItemRect(ARMOR_YUYUKO,    9, 13);
-		assignItemRect(ARMOR_MURASA,    9, 13);
-		assignItemRect(ARMOR_HINAPLAYER,    9, 13);
-		assignItemRect(ARMOR_KAGUYAPLAYER,    9, 13);
+		assignItemRect(ARMOR_HECATIA,    9, 13);
+		assignItemRect(ARMOR_POPPINPARTY,    9, 13);
+		assignItemRect(ARMOR_MAXWELL,    9, 13);
+		assignItemRect(ARMOR_GOLDENDRAGON,    9, 13);
 	}
 
 	//16 free slots
@@ -905,8 +897,8 @@ public class ItemSpriteSheet {
 	public static final int BANDOLIER   = BAGS+4;
 	public static final int HOLSTER     = BAGS+5;
 	public static final int VIAL        = BAGS+6;
-	public static final int FOODHOLD       = BAGS+7;
-	public static final int PRAYER       = BAGS+8;
+	public static final int PRAYER       = BAGS+7;
+	public static final int FOODHOLD       = BAGS+8;
 	public static final int ARTIHOLD       = BAGS+9;
 	public static final int TAILSMANHOLD       = BAGS+10;
 	static{
@@ -917,8 +909,8 @@ public class ItemSpriteSheet {
 		assignItemRect(BANDOLIER,   15, 16);
 		assignItemRect(HOLSTER,     15, 16);
 		assignItemRect(VIAL,        12, 12);
-		assignItemRect(FOODHOLD,       14, 15);
 		assignItemRect(PRAYER,       13, 13);
+		assignItemRect(FOODHOLD,       14, 15);
 		assignItemRect(ARTIHOLD,       14, 15);
 		assignItemRect(TAILSMANHOLD,       14, 15);
 	}
@@ -939,7 +931,29 @@ public class ItemSpriteSheet {
 		assignItemRect(HELLMIC,    13, 13);
 	}
 
-	//16 free slots
+	private static final int WEP_TIER5_PART2   =                               xy(1, 35);   //8 slots
+	public static final int RANDOMPHONE    = WEP_TIER5_PART2+0;
+	public static final int TENKYUUCLOAK   = WEP_TIER5_PART2+1;
+	public static final int MINTCHOCOSWORD   = WEP_TIER5_PART2+2;
+	public static final int HOROU_BOOK        = WEP_TIER5_PART2+3;
+	public static final int KEINE_BOOK        = WEP_TIER5_PART2+4;
+	public static final int PSALMS        = WEP_TIER5_PART2+5;
+	public static final int ALCHEMY_SWORD        = WEP_TIER5_PART2+6;
+	public static final int POT_OF_GREED        = WEP_TIER5_PART2+7;
+	public static final int ALCHEMY_HAT        = WEP_TIER5_PART2+8;
+	public static final int BLACK_FAN        = WEP_TIER5_PART2+9;
+	static{
+		assignItemRect(RANDOMPHONE, 8, 12);
+		assignItemRect(TENKYUUCLOAK,    16, 14);
+		assignItemRect(MINTCHOCOSWORD,    13, 13);
+		assignItemRect(HOROU_BOOK,      13, 16);
+		assignItemRect(KEINE_BOOK,      13, 16);
+		assignItemRect(PSALMS,      13, 16);
+		assignItemRect(ALCHEMY_SWORD,      13, 13);
+		assignItemRect(POT_OF_GREED,      12, 12);
+		assignItemRect(ALCHEMY_HAT,      11, 10);
+		assignItemRect(BLACK_FAN,      10, 10);
+	}
 
 	//for smaller 8x8 icons that often accompany an item sprite
 	public static class Icons {

@@ -23,7 +23,6 @@ package com.touhoupixel.touhoupixeldungeon.windows;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
-import com.touhoupixel.touhoupixeldungeon.items.armor.ClassArmor;
 import com.touhoupixel.touhoupixeldungeon.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeon.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.Scroll;
@@ -755,13 +754,8 @@ public class WndJournal extends WndTabbed {
 			
 			public boolean onClick( float x, float y ) {
 				if (inside( x, y ) && seen) {
-					if (item instanceof ClassArmor){
-						GameScene.show(new WndTitledMessage(new Image(icon),
-								Messages.titleCase(item.trueName()), item.desc()));
-					} else {
-						GameScene.show(new WndTitledMessage(new Image(icon),
+					GameScene.show(new WndTitledMessage(new Image(icon),
 								Messages.titleCase(item.trueName()), item.info()));
-					}
 					return true;
 				} else {
 					return false;

@@ -47,7 +47,7 @@ public class Waffle extends Food {
 
 	public static void effect(Hero hero) {
 		switch (Random.Int(0)) {
-			case 0: case 1: case 2: case 3:
+			case 0:
 				//GLog.i( Messages.get(MiracleFruit.class, "invis") );
 				Buff.affect(hero, Doublespeed.class, Doublespeed.DURATION/2f);
 				break;

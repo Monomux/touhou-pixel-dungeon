@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.armor;
 
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
 public class MailArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_MAIL;
+	}
+
+	@Override
+	public int warpResistFactor( Char owner ) {
+		return 2;
 	}
 	
 	public MailArmor() {

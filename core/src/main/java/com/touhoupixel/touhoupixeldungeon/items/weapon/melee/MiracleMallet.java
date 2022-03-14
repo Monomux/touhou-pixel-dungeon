@@ -44,8 +44,6 @@ public class MiracleMallet extends MeleeWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1f;
 
-		//check Dart.class for additional properties
-
 		tier = 1;
 	}
 
@@ -56,8 +54,8 @@ public class MiracleMallet extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  5*(tier+1) +    //20 base, down from 25
-				lvl*(tier);     //+4 per level, down from +5
+		return  9*(tier+1)+
+				lvl*(tier+2);
 	}
 
 	@Override
@@ -74,12 +72,6 @@ public class MiracleMallet extends MeleeWeapon {
 			Char enemy = hero.enemy();
 			if (Dungeon.hero.belongings.weapon() instanceof MiracleMallet) {
 				Buff.affect(enemy, Doom.class);
-			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof MiracleMallet) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
 			}
 		}
 		return super.damageRoll(owner);

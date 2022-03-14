@@ -97,7 +97,7 @@ public class SewerLevel extends RegularLevel {
 		return Dungeon.depth == 1 ?
 				new Class<?>[]{ WornDartTrap.class } :
 				new Class<?>[]{
-						ChillingTrap.class, ShockingTrap.class, ToxicTrap.class, WornDartTrap.class, GapTrap.class,
+						ChillingTrap.class, ToxicTrap.class, WornDartTrap.class, GapTrap.class,
 						AlarmTrap.class, OozeTrap.class,
 						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class };
 }
@@ -107,7 +107,7 @@ public class SewerLevel extends RegularLevel {
 		return Dungeon.depth == 1 ?
 				new float[]{1} :
 				new float[]{
-						4, 4, 4, 4, 4,
+						4, 4, 4, 4,
 						2, 2,
 						1, 1, 1, 1, 1};
 	}

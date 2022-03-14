@@ -60,8 +60,8 @@ public class Yuugi extends Mob {
 		} else EXP = 7;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 65;
-		} else maxLvl = 15;
+			maxLvl = 66;
+		} else maxLvl = 16;
 
 		loot = Generator.Category.ARMOR;
 		lootChance = 0.2f; //by default, see rollToDropLoot()

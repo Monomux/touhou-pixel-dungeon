@@ -73,28 +73,8 @@ public class Gold extends Item {
 
 		Dungeon.gold += quantity;
 		Statistics.goldCollected += quantity;
+		Statistics.goldPickedup += 1;
 		Badges.validateGoldCollected();
-
-		if (hero.pointsInTalent(Talent.GOLD_HEAL) == 1){
-			//3/5 HP healed, when hero is below 25% health
-			hero.HP = Math.min(hero.HP + 40, hero.HT);
-			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-		if (hero.pointsInTalent(Talent.GOLD_HEAL) == 2){
-			//3/5 HP healed, when hero is below 25% health
-			hero.HP = Math.min(hero.HP + 50, hero.HT);
-			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-		if (hero.pointsInTalent(Talent.GOLD_HEAL) == 3){
-			//3/5 HP healed, when hero is below 25% health
-			hero.HP = Math.min(hero.HP + 60, hero.HT);
-			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-		if (hero.pointsInTalent(Talent.GOLD_HEAL) == 4){
-			//3/5 HP healed, when hero is below 25% health
-			hero.HP = Math.min(hero.HP + 70, hero.HT);
-			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
 
 		MasterThievesArmband.Thievery thievery = hero.buff(MasterThievesArmband.Thievery.class);
 		if (thievery != null)

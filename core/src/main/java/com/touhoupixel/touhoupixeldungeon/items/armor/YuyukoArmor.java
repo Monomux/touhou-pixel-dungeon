@@ -21,12 +21,27 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.armor;
 
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
-public class YuyukoArmor extends ClassArmor {
-	
+public class YuyukoArmor extends Armor {
+
 	{
 		image = ItemSpriteSheet.ARMOR_YUYUKO;
+	}
+
+	@Override
+	public int warpResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
+	public int happyResistFactor( Char owner ) {
+		return 3;
+	}
+
+	public YuyukoArmor() {
+		super( 4 );
 	}
 
 }

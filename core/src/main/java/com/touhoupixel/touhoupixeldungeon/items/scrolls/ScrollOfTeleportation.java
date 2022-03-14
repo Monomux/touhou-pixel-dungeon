@@ -27,6 +27,8 @@ import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.levels.RegularLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.rooms.Room;
@@ -55,8 +57,10 @@ public class ScrollOfTeleportation extends Scroll {
 	public void doRead() {
 
 		Sample.INSTANCE.play( Assets.Sounds.READ );
-		
-		if (teleportPreferringUnseen( curUser )){
+
+		if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
+			GLog.w( Messages.get(ScrollOfTeleportation.class, "tele_interrupt") );
+		} else if (teleportPreferringUnseen( curUser )){
 			readAnimation();
 		}
 		identify();

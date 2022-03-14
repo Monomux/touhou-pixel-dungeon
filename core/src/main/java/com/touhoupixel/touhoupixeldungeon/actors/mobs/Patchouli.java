@@ -52,8 +52,8 @@ public class Patchouli extends Mob {
 		} else EXP = 4;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		loot = Generator.Category.WEAPON;
 		lootChance = 0.1667f;

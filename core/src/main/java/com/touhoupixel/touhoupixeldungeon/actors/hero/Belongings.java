@@ -29,7 +29,6 @@ import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.KindOfWeapon;
 import com.touhoupixel.touhoupixeldungeon.items.KindofMisc;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.ClassArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeon.items.rings.Ring;
@@ -170,11 +169,7 @@ public class Belongings implements Iterable<Item> {
 	public static void preview( GamesInProgress.Info info, Bundle bundle ) {
 		if (bundle.contains( ARMOR )){
 			Armor armor = ((Armor)bundle.get( ARMOR ));
-			if (armor instanceof ClassArmor){
-				info.armorTier = 6;
-			} else {
-				info.armorTier = armor.tier;
-			}
+			info.armorTier = armor.tier;
 		} else {
 			info.armorTier = 0;
 		}

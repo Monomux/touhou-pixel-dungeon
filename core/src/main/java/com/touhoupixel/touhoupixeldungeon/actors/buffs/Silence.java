@@ -33,12 +33,6 @@ public class Silence extends FlavourBuff {
 		type = buffType.NEGATIVE;
 		announced = true;
 	}
-
-	@Override
-	public void detach() {
-		super.detach();
-		Dungeon.observe();
-	}
 	
 	@Override
 	public int icon() {

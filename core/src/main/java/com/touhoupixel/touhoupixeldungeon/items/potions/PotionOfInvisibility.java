@@ -44,11 +44,6 @@ public class PotionOfInvisibility extends Potion {
 	public void apply( Hero hero ) {
 		identify();
 
-		if (Dungeon.isChallenged(Challenges.NO_INVIS)){
-			Buff.affect( hero, AntiHeal.class, AntiHeal.DURATION );
-			Buff.affect( hero, Doubleevasion.class, Doubleevasion.DURATION/2f );
-		} else
-
 		Buff.affect( hero, Invisibility.class, Invisibility.DURATION );
 		GLog.i( Messages.get(this, "invisible") );
 		Sample.INSTANCE.play( Assets.Sounds.MELD );

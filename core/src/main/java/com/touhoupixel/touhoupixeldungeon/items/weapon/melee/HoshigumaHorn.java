@@ -74,12 +74,6 @@ public class HoshigumaHorn extends MeleeWeapon {
 			if (Dungeon.hero.belongings.weapon() instanceof HoshigumaHorn && (Random.Int(4) == 0)) {
 				Buff.prolong(owner, PotionPreserve.class, PotionPreserve.DURATION);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof HoshigumaHorn) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

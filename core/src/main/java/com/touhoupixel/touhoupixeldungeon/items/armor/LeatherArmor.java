@@ -21,12 +21,18 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.armor;
 
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
 public class LeatherArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_LEATHER;
+	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 1;
 	}
 	
 	public LeatherArmor() {

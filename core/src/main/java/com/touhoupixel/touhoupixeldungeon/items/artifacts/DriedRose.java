@@ -86,6 +86,8 @@ public class DriedRose extends Artifact {
 		chargeCap = 100;
 
 		defaultAction = AC_SUMMON;
+
+		unique = true;
 	}
 
 	private boolean talkedTo = false;
@@ -106,10 +108,6 @@ public class DriedRose extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (!Ghost.Quest.completed()){
-			actions.remove(AC_EQUIP);
-			return actions;
-		}
 		if (isEquipped( hero ) && charge == chargeCap && !cursed && ghostID == 0) {
 			actions.add(AC_SUMMON);
 		}
@@ -130,8 +128,7 @@ public class DriedRose extends Artifact {
 
 		if (action.equals(AC_SUMMON)) {
 
-			if (!Ghost.Quest.completed())   GameScene.show(new WndUseItem(null, this));
-			else if (ghost != null)         GLog.i( Messages.get(this, "spawned") );
+			if (ghost != null)         GLog.i( Messages.get(this, "spawned") );
 			else if (!isEquipped( hero ))   GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge != chargeCap)   GLog.i( Messages.get(this, "no_charge") );
 			else if (cursed)                GLog.i( Messages.get(this, "cursed") );
@@ -203,10 +200,6 @@ public class DriedRose extends Artifact {
 
 	@Override
 	public String desc() {
-		if (!Ghost.Quest.completed() && !isIdentified()){
-			return Messages.get(this, "desc_no_quest");
-		}
-		
 		String desc = super.desc();
 
 		if (isEquipped( Dungeon.hero )){

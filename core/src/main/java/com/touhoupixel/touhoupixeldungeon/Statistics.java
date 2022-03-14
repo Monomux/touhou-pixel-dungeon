@@ -27,6 +27,7 @@ import com.watabou.utils.Bundle;
 public class Statistics {
 
 	public static int goldCollected;
+	public static int goldPickedup;
 	public static int deepestFloor;
 	public static int enemiesSlain;
 	public static int foodEaten;
@@ -45,6 +46,8 @@ public class Statistics {
 	public static int thrownAssists;
 
 	public static int limitBreak;
+
+	public static int happyworldCounter;
 
 	public static int cardDraw;
 	public static int cardDrawalt;
@@ -65,6 +68,13 @@ public class Statistics {
 	public static int pureres;
 	public static int happyres;
 
+	public static int divinetrackbuff;
+
+	public static int fairybosskillcount;
+	public static int mansionbosskillcount;
+	public static int ymbosskillcount;
+	public static int forestbosskillcount;
+
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
 
@@ -75,6 +85,7 @@ public class Statistics {
 	public static void reset() {
 
 		goldCollected	= 0;
+		goldPickedup	= 0;
 		deepestFloor	= 0;
 		enemiesSlain	= 0;
 		foodEaten		= 0;
@@ -92,6 +103,8 @@ public class Statistics {
 		thrownAssists   = 0;
 
 		limitBreak   = 0;
+
+		happyworldCounter   = 0;
 
 		cardDraw   = 0;
 		cardDrawalt   = 0;
@@ -113,6 +126,13 @@ public class Statistics {
 		pureres = 0;
 		happyres = 0;
 
+		divinetrackbuff = 0;
+
+		fairybosskillcount = 0;
+		mansionbosskillcount = 0;
+		ymbosskillcount = 0;
+		forestbosskillcount = 0;
+
 		qualifiedForNoKilling = false;
 
 		amuletObtained = false;
@@ -122,6 +142,7 @@ public class Statistics {
 	}
 
 	private static final String GOLD		= "score";
+	private static final String GOLDPICKEDUP		= "goldpickedup";
 	private static final String DEEPEST		= "maxDepth";
 	private static final String SLAIN		= "enemiesSlain";
 	private static final String FOOD		= "foodEaten";
@@ -138,6 +159,8 @@ public class Statistics {
 	private static final String THROWN		= "thrownAssists";
 
 	private static final String LIMITBREAK		= "limitBreak";
+
+	private static final String HAPPYWORLDCOUNTER		= "happyworldCounter";
 
 	private static final String CARDDRAW		= "cardDraw";
 	private static final String CARDDRAWALT		= "cardDrawalt";
@@ -158,6 +181,13 @@ public class Statistics {
 	private static final String PURERES	= "pureres";
 	private static final String HAPPYRES	= "happyres";
 
+	private static final String DIVINETRACKBUFF	= "divinetrackbuff";
+
+	private static final String FAIRYBOSSKILLCOUNT	= "fairybosskillcount";
+	private static final String MANSIONBOSSKILLCOUNT	= "mansionbosskillcount";
+	private static final String YMBOSSKILLCOUNT	= "ymbosskillcount";
+	private static final String FORESTBOSSKILLCOUNT	= "forestbosskillcount";
+
 	private static final String NO_KILLING_QUALIFIED	= "qualifiedForNoKilling";
 
 	private static final String AMULET		= "amuletObtained";
@@ -166,6 +196,7 @@ public class Statistics {
 
 	public static void storeInBundle( Bundle bundle ) {
 		bundle.put( GOLD,		goldCollected );
+		bundle.put( GOLDPICKEDUP,		goldPickedup );
 		bundle.put( DEEPEST,	deepestFloor );
 		bundle.put( SLAIN,		enemiesSlain );
 		bundle.put( FOOD,		foodEaten );
@@ -182,6 +213,8 @@ public class Statistics {
 		bundle.put( THROWN,		thrownAssists );
 
 		bundle.put( LIMITBREAK,		limitBreak );
+
+		bundle.put( HAPPYWORLDCOUNTER,		happyworldCounter );
 
 		bundle.put( CARDDRAW,		cardDraw );
 		bundle.put( CARDDRAWALT,		cardDrawalt );
@@ -204,6 +237,13 @@ public class Statistics {
 		bundle.put( PURERES,	pureres );
 		bundle.put( HAPPYRES,	happyres );
 
+		bundle.put( DIVINETRACKBUFF,	divinetrackbuff );
+
+		bundle.put( FAIRYBOSSKILLCOUNT,	fairybosskillcount );
+		bundle.put( MANSIONBOSSKILLCOUNT,	mansionbosskillcount );
+		bundle.put( YMBOSSKILLCOUNT,	ymbosskillcount );
+		bundle.put( FORESTBOSSKILLCOUNT,	forestbosskillcount );
+
 		bundle.put(NO_KILLING_QUALIFIED, qualifiedForNoKilling);
 
 		bundle.put( AMULET,		amuletObtained );
@@ -211,6 +251,7 @@ public class Statistics {
 
 	public static void restoreFromBundle( Bundle bundle ) {
 		goldCollected	= bundle.getInt( GOLD );
+		goldPickedup	= bundle.getInt( GOLDPICKEDUP );
 		deepestFloor	= bundle.getInt( DEEPEST );
 		enemiesSlain	= bundle.getInt( SLAIN );
 		foodEaten		= bundle.getInt( FOOD );
@@ -227,6 +268,8 @@ public class Statistics {
 		thrownAssists   = bundle.getInt( THROWN );
 
 		limitBreak   = bundle.getInt( LIMITBREAK );
+
+		happyworldCounter   = bundle.getInt( HAPPYWORLDCOUNTER );
 
 		cardDraw   = bundle.getInt( CARDDRAW );
 		cardDrawalt   = bundle.getInt( CARDDRAWALT );
@@ -246,6 +289,13 @@ public class Statistics {
 		coolres		= bundle.getInt( COOLRES );
 		pureres		= bundle.getInt( PURERES );
 		happyres		= bundle.getInt( HAPPYRES );
+
+		divinetrackbuff		= bundle.getInt( DIVINETRACKBUFF );
+
+		fairybosskillcount		= bundle.getInt( FAIRYBOSSKILLCOUNT );
+		mansionbosskillcount		= bundle.getInt( MANSIONBOSSKILLCOUNT );
+		ymbosskillcount		= bundle.getInt( YMBOSSKILLCOUNT );
+		forestbosskillcount		= bundle.getInt( FORESTBOSSKILLCOUNT );
 
 		qualifiedForNoKilling = bundle.getBoolean( NO_KILLING_QUALIFIED );
 

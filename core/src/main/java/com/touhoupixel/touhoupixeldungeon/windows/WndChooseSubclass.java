@@ -24,7 +24,7 @@ package com.touhoupixel.touhoupixeldungeon.windows;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
-import com.touhoupixel.touhoupixeldungeon.items.TengusMask;
+import com.touhoupixel.touhoupixeldungeon.items.MokouRibbon;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
@@ -41,7 +41,7 @@ public class WndChooseSubclass extends Window {
 	private static final int WIDTH		= 130;
 	private static final float GAP		= 2;
 	
-	public WndChooseSubclass(final TengusMask tome, final Hero hero ) {
+	public WndChooseSubclass(final MokouRibbon tome, final Hero hero ) {
 		
 		super();
 

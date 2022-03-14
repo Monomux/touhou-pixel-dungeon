@@ -50,7 +50,7 @@ public class Iceapple extends Food {
 
 	public static void effect(Hero hero){
 		switch (Random.Int( 0 )) {
-			case 0: case 1: case 2: case 3:
+			case 0:
 				//GLog.i( Messages.get(MiracleFruit.class, "invis") );
 				Buff.affect( hero, Adrenaline.class, Adrenaline.DURATION );
 				Buff.affect( hero, FrostImbue.class, FrostImbue.DURATION );

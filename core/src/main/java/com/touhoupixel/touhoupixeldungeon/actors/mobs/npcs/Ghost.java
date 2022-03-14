@@ -33,10 +33,21 @@ import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HecatiaArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.LeatherArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.MailArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98MarisaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98ReimuArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.PlateArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PoppinPartyArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.RumiaArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ScaleArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.ToyohimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YorihimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeon.journal.Notes;
@@ -297,15 +308,23 @@ public class Ghost extends NPC {
 				processed = false;
 				depth = Dungeon.depth;
 
-				//50%:tier2, 30%:tier3, 15%:tier4, 5%:tier5
-				switch (Random.chances(new float[]{0, 0, 1, 1, 1, 1})){
-					default:
-					case 2: armor = new LeatherArmor(); break;
-					case 3: armor = new MailArmor();    break;
-					case 4: armor = new ScaleArmor();   break;
-					case 5: armor = new PlateArmor();   break;
+				switch (Random.chances(new float[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1})){
+					default: case 0: armor = new LeatherArmor(); break;
+					case 1: armor = new MailArmor();    break;
+					case 2: armor = new ScaleArmor();   break;
+					case 3: armor = new PlateArmor();   break;
+					case 4: armor = new PC98ReimuArmor();   break;
+					case 5: armor = new PC98MarisaArmor();   break;
+					case 6: armor = new YorihimeArmor();   break;
+					case 7: armor = new ToyohimeArmor();   break;
+					case 8: armor = new RumiaArmor();   break;
+					case 9: armor = new HanasakigawaArmor();   break;
+					case 10: armor = new YuyukoArmor();   break;
+					case 11: armor = new HecatiaArmor();   break;
+					case 12: armor = new PoppinPartyArmor();   break;
+					case 13: armor = new MaxwellArmor();   break;
+					case 14: armor = new GoldenDragonArmor();   break;
 				}
-				//50%:tier2, 30%:tier3, 15%:tier4, 5%:tier5
 				int wepTier = Random.chances(new float[]{0, 0, 1, 1, 1, 1});
 				Generator.Category c = Generator.wepTiers[wepTier - 1];
 				weapon = (MeleeWeapon) Reflection.newInstance(c.classes[Random.chances(c.probs)]);

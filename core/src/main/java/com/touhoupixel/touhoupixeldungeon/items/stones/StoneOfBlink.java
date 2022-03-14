@@ -21,11 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.stones;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 
 public class StoneOfBlink extends Runestone {
 	
@@ -52,6 +56,8 @@ public class StoneOfBlink extends Runestone {
 	
 	@Override
 	protected void activate(int cell) {
-		ScrollOfTeleportation.teleportToLocation(curUser, cell);
+		if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
+			GLog.w( Messages.get(ScrollOfTeleportation.class, "tele_interrupt") );
+		} else ScrollOfTeleportation.teleportToLocation(curUser, cell);
 	}
 }

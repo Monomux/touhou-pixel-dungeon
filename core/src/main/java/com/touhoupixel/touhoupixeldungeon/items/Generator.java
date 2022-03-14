@@ -22,12 +22,24 @@
 package com.touhoupixel.touhoupixeldungeon.items;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Toyohime;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HecatiaArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.LeatherArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.MailArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98MarisaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98ReimuArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.PlateArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PoppinPartyArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.RumiaArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ScaleArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.ToyohimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YorihimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.AlchemistsToolkit;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CapeOfThorns;
@@ -141,6 +153,7 @@ import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfWishing;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AkyuuBrush;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemyHat;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemySword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ArisaKeyboard;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AssassinsBlade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AutumnKatana;
@@ -181,6 +194,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Longsword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Mace;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MintchocoSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MiracleRod;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
@@ -191,6 +205,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PotofGreed;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PurificationRod;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Quarterstaff;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RandomPhone;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RingoDango;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RoundShield;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
@@ -203,6 +218,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SilkyHair;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Spear;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Sword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SwordofHisou;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TenkyuuCloak;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ToramaruSpear;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WarHammer;
@@ -254,16 +270,21 @@ import java.util.LinkedHashMap;
 public class Generator {
 
 	public enum Category {
-		WEAPON	( 2, 2, MeleeWeapon.class),
+		WEAPON	( 4, 4, MeleeWeapon.class),
 		WEP_T1	( 0, 0, MeleeWeapon.class),
 		WEP_T2	( 0, 0, MeleeWeapon.class),
 		WEP_T3	( 0, 0, MeleeWeapon.class),
 		WEP_T4	( 0, 0, MeleeWeapon.class),
 		WEP_T5	( 0, 0, MeleeWeapon.class),
+
+		ARMOR	    ( 3, 2, Armor.class ),
+		ARMOR_T1	( 0, 0, Armor.class ),
+		ARMOR_T2	( 0, 0, Armor.class ),
+		ARMOR_T3	( 0, 0, Armor.class ),
+		ARMOR_T4	( 0, 0, Armor.class ),
+		ARMOR_T5	( 0, 0, Armor.class ),
 		
-		ARMOR	( 2, 1, Armor.class ),
-		
-		MISSILE ( 1, 2, MissileWeapon.class ),
+		MISSILE ( 2, 2, MissileWeapon.class ),
 		MIS_T1  ( 0, 0, MissileWeapon.class ),
 		MIS_T2  ( 0, 0, MissileWeapon.class ),
 		MIS_T3  ( 0, 0, MissileWeapon.class ),
@@ -276,12 +297,12 @@ public class Generator {
 		
 		FOOD	( 0, 0, Food.class ),
 		
-		POTION	( 8, 8, Potion.class ),
+		POTION	( 7, 7, Potion.class ),
 		SEED	( 1, 1, Plant.Seed.class ),
 		
-		SCROLL	( 8, 8, Scroll.class ),
+		SCROLL	( 7, 7, Scroll.class ),
 		STONE   ( 1, 1, Runestone.class),
-		TAILSMAN( 8, 8, Tailsman.class),
+		TAILSMAN( 6, 6, Tailsman.class),
 		
 		GOLD	( 10, 10,   Gold.class );
 		
@@ -376,7 +397,7 @@ public class Generator {
 					ScrollOfSilence.class,
 					ScrollOfRouteChange.class
 			};
-			SCROLL.defaultProbs = new float[]{ 0, 6, 4, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1};
+			SCROLL.defaultProbs = new float[]{ 0, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 			
 			STONE.classes = new Class<?>[]{
@@ -457,9 +478,10 @@ public class Generator {
 					NazrinRod.class,
 					MomoyoShovel.class,
 					PotofGreed.class,
-					KeineBook.class
+					KeineBook.class,
+					MintchocoSword.class
 			};
-			WEP_T2.probs = new float[]{ 5, 5, 4, 4, 4, 5, 4, 5, 4, 5, 3 };
+			WEP_T2.probs = new float[]{ 5, 5, 4, 4, 4, 5, 4, 5, 4, 5, 3, 5 };
 
 			WEP_T3.classes = new Class<?>[]{
 					Sword.class,
@@ -477,9 +499,12 @@ public class Generator {
 					WatermelonSword.class,
 					BlazingStar.class,
 					AlchemyHat.class,
-					PlayMat.class
+					PlayMat.class,
+					RandomPhone.class,
+					TenkyuuCloak.class,
+					AlchemySword.class
 			};
-			WEP_T3.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 4, 5, 4, 5, 4, 5, 5 };
+			WEP_T3.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 4, 5, 4, 5, 4, 5, 5, 5, 5, 5 };
 
 			WEP_T4.classes = new Class<?>[]{
 					Longsword.class,
@@ -532,15 +557,42 @@ public class Generator {
 					Grayswandir.class
 			};
 			WEP_T5.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5 };
-			
+
+			//see generator.randomWeapon
+			ARMOR.classes = new Class<?>[]{};
+			ARMOR.probs = new float[]{};
+
 			//see Generator.randomArmor
-			ARMOR.classes = new Class<?>[]{
-					ClothArmor.class,
+			ARMOR_T1.classes = new Class<?>[]{
+					ClothArmor.class};
+			ARMOR_T1.probs = new float[]{ 5 };
+
+			ARMOR_T2.classes = new Class<?>[]{
 					LeatherArmor.class,
+					PC98ReimuArmor.class,
+					RumiaArmor.class};
+			ARMOR_T2.probs = new float[]{ 5, 5, 5 };
+
+			ARMOR_T3.classes = new Class<?>[]{
 					MailArmor.class,
+					PC98MarisaArmor.class,
+					HanasakigawaArmor.class,
+					PoppinPartyArmor.class};
+			ARMOR_T3.probs = new float[]{ 5, 5, 5, 5 };
+
+			ARMOR_T4.classes = new Class<?>[]{
 					ScaleArmor.class,
-					PlateArmor.class };
-			ARMOR.probs = new float[]{ 0, 0, 0, 0, 0 };
+					YorihimeArmor.class,
+					YuyukoArmor.class,
+					MaxwellArmor.class};
+			ARMOR_T4.probs = new float[]{ 5, 5, 5, 5 };
+
+			ARMOR_T5.classes = new Class<?>[]{
+					PlateArmor.class,
+					ToyohimeArmor.class,
+					HecatiaArmor.class,
+					GoldenDragonArmor.class};
+			ARMOR_T5.probs = new float[]{ 5, 5, 5, 5 };
 			
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
@@ -618,7 +670,7 @@ public class Generator {
 					LloydsBeacon.class,
 					EtherealChains.class
 			};
-			ARTIFACT.defaultProbs = new float[]{ 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1};
+			ARTIFACT.defaultProbs = new float[]{ 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1};
 			ARTIFACT.probs = ARTIFACT.defaultProbs.clone();
 		}
 	}
@@ -699,17 +751,26 @@ public class Generator {
 		return Reflection.newInstance(cl).random();
 	}
 
+	public static final Category[] armorTiers = new Category[]{
+			Category.ARMOR_T1,
+			Category.ARMOR_T2,
+			Category.ARMOR_T3,
+			Category.ARMOR_T4,
+			Category.ARMOR_T5
+	};
+
 	public static Armor randomArmor(){
 		return randomArmor(Dungeon.depth / 5);
 	}
-	
+
 	public static Armor randomArmor(int floorSet) {
 
 		floorSet = (int)GameMath.gate(0, floorSet, floorSetTierProbs.length-1);
-		
-		Armor a = (Armor)Reflection.newInstance(Category.ARMOR.classes[Random.chances(floorSetTierProbs[floorSet])]);
-		a.random();
-		return a;
+
+		Category c2 = armorTiers[Random.chances(floorSetTierProbs[floorSet])];
+		Armor w2 = (Armor)Reflection.newInstance(c2.classes[Random.chances(c2.probs)]);
+		w2.random();
+		return w2;
 	}
 
 	public static final Category[] wepTiers = new Category[]{

@@ -2,7 +2,6 @@ package com.touhoupixel.touhoupixeldungeon.ui;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.ArmorAbility;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.TextureFilm;
 
@@ -77,13 +76,4 @@ public class HeroIcon extends Image {
 		}
 		frame(film.get(subCls.icon()));
 	}
-
-	public HeroIcon(ArmorAbility abil){
-		super( Assets.Interfaces.HERO_ICONS );
-		if (film == null){
-			film = new TextureFilm(texture, SIZE, SIZE);
-		}
-		frame(film.get(abil.icon()));
-	}
-
 }

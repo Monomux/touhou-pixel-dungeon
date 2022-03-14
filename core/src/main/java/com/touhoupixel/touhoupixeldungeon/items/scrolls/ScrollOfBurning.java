@@ -26,6 +26,8 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Immolation;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
@@ -42,6 +44,7 @@ public class ScrollOfBurning extends Scroll {
 		for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 			if (mob.alignment != Char.Alignment.ALLY && Dungeon.level.heroFOV[mob.pos]) {
 				Buff.affect( mob, Burning.class ).reignite( mob, 20f );
+				Buff.prolong(mob, Immolation.class, Immolation.DURATION);
 			}
 		}
 

@@ -74,12 +74,6 @@ public class AutumnKatana extends MeleeWeapon {
 			if (Dungeon.hero.belongings.weapon() instanceof AutumnKatana && (Random.Int(6) == 0)) {
 				Buff.prolong(owner, OneDefDamage.class, OneDefDamage.DURATION / 4f);
 			}
-			if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof AutumnKatana) {
-				Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-				Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-				Buff.prolong(owner, Hex.class, Hex.DURATION);
-				Buff.prolong(owner, Cripple.class, Cripple.DURATION);
-			}
 		}
 		return super.damageRoll(owner);
 	}

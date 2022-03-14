@@ -21,12 +21,33 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.armor;
 
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 
 public class ScaleArmor extends Armor {
 
 	{
 		image = ItemSpriteSheet.ARMOR_SCALE;
+	}
+
+	@Override
+	public int powerfulResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
+	public int coolResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 1;
+	}
+
+	@Override
+	public int happyResistFactor( Char owner ) {
+		return 1;
 	}
 	
 	public ScaleArmor() {

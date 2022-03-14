@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
+import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfMastery;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.PitfallTrap;
 import com.touhoupixel.touhoupixeldungeon.sprites.LunaSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.MomoyoSprite;
@@ -54,8 +55,8 @@ public class Luna extends Mob {
 			maxLvl = 80;
 		} else maxLvl = 30;
 		
-		loot = Gold.class;
-		lootChance = 0.4f;
+		loot = PotionOfMastery.class;
+		lootChance = 0.05f;
 
 		properties.add(Property.PURE);
 	}

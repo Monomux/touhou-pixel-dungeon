@@ -30,7 +30,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.RevealedArea;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.Blacksmith;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.Ghost;
@@ -62,20 +61,23 @@ import com.touhoupixel.touhoupixeldungeon.levels.DekaiSewerLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.DekaiSkyLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.DekaiSpiritLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.FlandreBossLevel;
+import com.touhoupixel.touhoupixeldungeon.levels.ForestBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.ForestLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.HallsBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.HallsLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.KisumeBossLevel;
+import com.touhoupixel.touhoupixeldungeon.levels.LakeBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.LastLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.LunarLevel;
+import com.touhoupixel.touhoupixeldungeon.levels.MansionBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.MoriyaLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.PrisonBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.PrisonLevel;
-import com.touhoupixel.touhoupixeldungeon.levels.SewerBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.SewerLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.SkyLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.SpiritLevel;
+import com.touhoupixel.touhoupixeldungeon.levels.YokaiBossLevel;
 import com.touhoupixel.touhoupixeldungeon.levels.rooms.secret.SecretRoom;
 import com.touhoupixel.touhoupixeldungeon.levels.rooms.special.SpecialRoom;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -275,8 +277,10 @@ public class Dungeon {
 			case 2:
 			case 3:
 			case 4:
-			case 5:
 				level = new SewerLevel();
+				break;
+			case 5:
+				level = new LakeBossLevel();
 				break;
 			case 6:
 			case 7:
@@ -285,14 +289,16 @@ public class Dungeon {
 				level = new PrisonLevel();
 				break;
 			case 10:
-				level = new SewerBossLevel();
+				level = new MansionBossLevel();
 				break;
 			case 11:
 			case 12:
 			case 13:
 			case 14:
-			case 15:
 				level = new CavesLevel();
+				break;
+			case 15:
+				level = new YokaiBossLevel();
 				break;
 			case 16:
 			case 17:
@@ -307,8 +313,10 @@ public class Dungeon {
 			case 22:
 			case 23:
 			case 24:
-			case 25:
 				level = new ForestLevel();
+				break;
+			case 25:
+				level = new ForestBossLevel();
 				break;
 			case 26:
 			case 27:
@@ -475,7 +483,7 @@ public class Dungeon {
 	}
 
 	public static boolean bossLevel( int depth ) {
-		return depth == 10 || depth == 20 || depth == 30 || depth == 35 || depth == 40 || depth == 45 || depth == 50; //|| depth == 60 || depth == 65 || depth == 70 || depth == 75 || depth == 80 || depth == 85 || depth == 90 || depth == 94 || depth == 98;
+		return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == 30 || depth == 35 || depth == 40 || depth == 45 || depth == 50; //|| depth == 60 || depth == 65 || depth == 70 || depth == 75 || depth == 80 || depth == 85 || depth == 90 || depth == 94 || depth == 98;
 	}
 
 	public static void switchLevel( final Level level, int pos ) {
@@ -932,8 +940,7 @@ public class Dungeon {
 
 		for (Char ch : Actor.chars()){
 			if (ch instanceof WandOfWarding.Ward
-					|| ch instanceof WandOfRegrowth.Lotus
-					|| ch instanceof SpiritHawk.HawkAlly){
+					|| ch instanceof WandOfRegrowth.Lotus){
 				x = ch.pos % level.width();
 				y = ch.pos / level.width();
 

@@ -23,9 +23,7 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.Ratmogrify;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
-import com.touhoupixel.touhoupixeldungeon.items.quest.Blood;
 import com.touhoupixel.touhoupixeldungeon.sprites.RatSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -48,23 +46,14 @@ public class Wriggle extends Mob {
 		} else EXP = 1;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 55;
-		} else maxLvl = 5;
+			maxLvl = 60;
+		} else maxLvl = 10;
 
 		loot = Generator.Category.POTION;
 		lootChance = 0.05f;
 
 		properties.add(Property.YOKAI);
 		properties.add(Property.PURE);
-	}
-
-	@Override
-	protected boolean act() {
-		if (Dungeon.level.heroFOV[pos] && Dungeon.hero.armorAbility instanceof Ratmogrify){
-			alignment = Alignment.ALLY;
-			if (state == SLEEPING) state = WANDERING;
-		}
-		return super.act();
 	}
 
 	@Override

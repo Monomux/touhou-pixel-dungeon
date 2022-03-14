@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OrbTime;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.UnderwaterCurse;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.NPC;
@@ -56,7 +57,7 @@ public class DestOrb extends NPC {
 		//before other mobs
 		actPriority = MOB_PRIO + 1;
 
-		baseSpeed = 2.5f;
+		baseSpeed = 1.5f;
 
 		maxLvl = -9;
 
@@ -83,7 +84,7 @@ public class DestOrb extends NPC {
 
 	@Override
 	public void move( int step, boolean travelling) {
-		Buff.affect( this, UnderwaterCurse.class);
+		Buff.affect( this, OrbTime.class);
 		super.move( step, travelling);
 	}
 	

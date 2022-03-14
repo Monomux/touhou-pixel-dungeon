@@ -45,8 +45,8 @@ public class Kisume extends Mob {
 		} else EXP = 1;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 55;
-		} else maxLvl = 5;
+			maxLvl = 60;
+		} else maxLvl = 10;
 		
 		loot = PotionOfLiquidFlame.class;
 		lootChance = 0.13f;

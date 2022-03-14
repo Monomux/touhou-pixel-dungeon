@@ -60,8 +60,8 @@ public class Aunn extends Mob implements Callback {
 		} else EXP = 2;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 55;
-		} else maxLvl = 5;
+			maxLvl = 60;
+		} else maxLvl = 10;
 
 		loot = new ScrollOfChallenge();
 		lootChance = 0.18f;

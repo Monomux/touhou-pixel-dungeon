@@ -86,7 +86,12 @@ public class Hijiri extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
-			if (Random.Int(3) == 0) {
+			if (Dungeon.depth > 50 && Random.Int(2) == 0) {
+				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
+				Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
+				Buff.prolong(this, Hisou.class, Hisou.DURATION);
+				Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
+			} else if (Random.Int(3) == 0) {
 				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
 				Buff.prolong(this, Triplespeed.class, Triplespeed.DURATION);
 				Buff.prolong(this, Hisou.class, Hisou.DURATION);

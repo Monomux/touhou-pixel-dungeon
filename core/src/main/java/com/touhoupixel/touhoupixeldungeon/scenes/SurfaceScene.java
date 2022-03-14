@@ -25,7 +25,6 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Badges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.Ratmogrify;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfWarding;
@@ -148,19 +147,6 @@ public class SurfaceScene extends PixelScene {
 		a.x = (SKY_WIDTH - a.width) / 2;
 		a.y = SKY_HEIGHT - a.height;
 		align(a);
-
-		if (Dungeon.hero.armorAbility instanceof Ratmogrify) {
-			rats = new Pet[30];
-			for (int i = 0; i < rats.length; i++){
-				Pet pet = new Pet();
-				pet.rm = pet.gm = pet.bm = 1.2f;
-				pet.x = Random.Int(SKY_WIDTH)-10;
-				pet.y = SKY_HEIGHT - pet.height;
-				window.add(pet);
-				rats[i] = pet;
-				if (dayTime) pet.brightness( 1.2f );
-			}
-		}
 
 		final Pet pet = new Pet();
 		pet.rm = pet.gm = pet.bm = 1.2f;

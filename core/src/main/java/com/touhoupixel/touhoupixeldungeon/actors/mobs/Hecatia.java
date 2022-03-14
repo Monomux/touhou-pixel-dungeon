@@ -30,6 +30,8 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HecatiaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.quest.Peach;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
 import com.touhoupixel.touhoupixeldungeon.sprites.HecatiaSprite;
@@ -44,7 +46,7 @@ public class Hecatia extends Mob {
 		HP = HT = Dungeon.depth*2;
 		defenseSkill = Dungeon.depth;
 
-		EXP = 1;
+		EXP = 0;
 		maxLvl = 99;
 
 		loot = new ScrollOfChallenge();
@@ -56,7 +58,7 @@ public class Hecatia extends Mob {
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange(Dungeon.depth+4, Dungeon.depth+6);
+		return Random.NormalIntRange(Dungeon.depth, Dungeon.depth+1);
 	}
 
 	@Override
@@ -73,14 +75,23 @@ public class Hecatia extends Mob {
 	public int attackProc(Char hero, int damage) {
 		damage = super.attackProc(enemy, damage);
 		if (this.buff(Incompetence.class) == null) {
-			if (Random.Int(3) == 0) {
-				Sample.INSTANCE.play(Assets.Sounds.READ);
-				CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-				for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
-					mob.beckon(enemy.pos);
-					Buff.prolong(mob, Doublespeed.class, Doublespeed.DURATION * 1000f);
-					Buff.affect(mob, ChampionEnemy.HecatiaStatsUp.class);
-
+			if (!(Dungeon.hero.belongings.armor() instanceof HecatiaArmor)) {
+				if (Dungeon.depth > 50 && Random.Int(2) == 0) {
+					Sample.INSTANCE.play(Assets.Sounds.READ);
+					CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+					for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+						mob.beckon(enemy.pos);
+						Buff.prolong(mob, Doublespeed.class, Doublespeed.DURATION * 1000f);
+						Buff.affect(mob, ChampionEnemy.HecatiaStatsUp.class);
+					}
+				} else if (Random.Int(3) == 0) {
+					Sample.INSTANCE.play(Assets.Sounds.READ);
+					CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
+					for (Mob mob : Dungeon.level.mobs.toArray(new Mob[0])) {
+						mob.beckon(enemy.pos);
+						Buff.prolong(mob, Doublespeed.class, Doublespeed.DURATION * 1000f);
+						Buff.affect(mob, ChampionEnemy.HecatiaStatsUp.class);
+					}
 				}
 			}
 		}

@@ -21,7 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.sewerboss;
 
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Cirno;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.CirnoBoss;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -62,7 +62,7 @@ public class ThinPillarsGooRoom extends GooBossRoom {
 		
 		setupGooNest(level);
 		
-		Cirno boss = new Cirno();
+		CirnoBoss boss = new CirnoBoss();
 		boss.pos = level.pointToCell(center());
 		level.mobs.add( boss );
 		

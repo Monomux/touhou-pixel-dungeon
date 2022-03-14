@@ -21,8 +21,14 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -57,6 +63,13 @@ public class MeleeWeapon extends Weapon {
 			if (exStr > 0) {
 				damage += Random.IntRange( 0, exStr );
 			}
+		}
+
+		if (Dungeon.isChallenged(Challenges.POPPIN_PARTY) && tier > 3) {
+			Buff.prolong(owner, Weakness.class, Weakness.DURATION);
+			Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
+			Buff.prolong(owner, Hex.class, Hex.DURATION);
+			Buff.prolong(owner, Cripple.class, Cripple.DURATION);
 		}
 		
 		return damage;

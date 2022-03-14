@@ -33,7 +33,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Murasa;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Narumi;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Wraith;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.RatKing;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.watabou.utils.PathFinder;
@@ -91,12 +90,7 @@ public class DistortionTrap extends Trap{
 			summoned++;
 			Mob mob;
 			switch (summoned){
-				case 1:
-					if (Dungeon.depth != 5 && Random.Int(100) == 0){
-						mob = new RatKing();
-						break;
-					}
-				case 3: case 5 : default:
+				case 1: case 3: case 5 : default:
 					int floor;
 					do {
 						floor = Random.Int(25);

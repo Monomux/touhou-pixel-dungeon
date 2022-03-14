@@ -45,8 +45,8 @@ public class Koakuma extends Mob {
 		} else EXP = 4;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		loot = new Sungrass.Seed();
 		lootChance = 0.02f;

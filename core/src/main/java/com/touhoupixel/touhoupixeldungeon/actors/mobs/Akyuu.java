@@ -25,6 +25,8 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
@@ -84,6 +86,9 @@ public class Akyuu extends Mob {
 	public int attackProc(Char hero, int damage) {
 		damage = super.attackProc(enemy, damage);
 		if (this.buff(Incompetence.class) == null) {
+			if (Dungeon.depth > 50) {
+				Buff.prolong(enemy, AntiSneakattack.class, AntiSneakattack.DURATION);
+			}
 			if (Random.Int(0) == 0) {
 				if (HP > 3) {
 					HP = HP / 2;

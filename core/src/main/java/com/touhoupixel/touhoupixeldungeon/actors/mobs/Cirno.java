@@ -21,68 +21,67 @@
 
 package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 
+import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.LockedFloor;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Ooze;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
-import com.touhoupixel.touhoupixeldungeon.effects.Speck;
-import com.touhoupixel.touhoupixeldungeon.items.TengusMask;
-import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
-import com.touhoupixel.touhoupixeldungeon.items.keys.SkeletonKey;
-import com.touhoupixel.touhoupixeldungeon.items.quest.GooBlob;
-import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Chill;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.NoPotion;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
+import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeon.items.quest.Ice;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
-import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.CirnoSprite;
-import com.touhoupixel.touhoupixeldungeon.ui.BossHealthBar;
+import com.touhoupixel.touhoupixeldungeon.sprites.NemunoSprite;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
-import com.watabou.noosa.Camera;
-import com.watabou.utils.Bundle;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class Cirno extends Mob {
 
 	{
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 120 : 100;
-		EXP = 10;
-		defenseSkill = 8;
 		spriteClass = CirnoSprite.class;
 
-		properties.add(Property.BOSS);
-	}
+		if (Dungeon.depth > 50){
+			HP = HT = 417;
+		} else HP = HT = 27;
 
-	private int pumpedUp = 0;
-	private int healInc = 1;
+		if (Dungeon.depth > 50){
+			defenseSkill = 59;
+		} else defenseSkill = 9;
+
+		if (Dungeon.depth > 50){
+			EXP = 55;
+		} else EXP = 5;
+
+		if (Dungeon.depth > 50){
+			maxLvl = 63;
+		} else maxLvl = 13;
+
+		loot = new Ice();
+		lootChance = 0.1f;
+
+		properties.add(Property.COLD);
+	}
 
 	@Override
 	public int damageRoll() {
-		int min = 1;
-		int max = (HP*2 <= HT) ? 12 : 8;
-		if (pumpedUp > 0) {
-			pumpedUp = 0;
-			return Random.NormalIntRange( min*3, max*3 );
-		} else {
-			return Random.NormalIntRange( min, max );
-		}
+		if (Dungeon.depth > 50) {
+			return Random.NormalIntRange(35, 41);
+		} else return Random.NormalIntRange(4, 6);
 	}
 
 	@Override
-	public int attackSkill( Char target ) {
-		int attack = 10;
-		if (HP*2 <= HT) attack = 15;
-		if (pumpedUp > 0) attack *= 2;
-		return attack;
-	}
-
-	@Override
-	public int defenseSkill(Char enemy) {
-		return (int)(super.defenseSkill(enemy) * ((HP*2 <= HT)? 1.5 : 1));
+	public int attackSkill(Char target) {
+		if (Dungeon.depth > 50) {
+			return 59;
+		} else return 9;
 	}
 
 	@Override
@@ -91,218 +90,17 @@ public class Cirno extends Mob {
 	}
 
 	@Override
-	public boolean act() {
-
-		if (Dungeon.level.water[pos] && HP < HT) {
-			HP += healInc;
-
-			LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
-			if (lock != null) lock.removeTime(healInc*2);
-
-			if (Dungeon.level.heroFOV[pos] ){
-				sprite.emitter().burst( Speck.factory( Speck.HEALING ), healInc );
+	public int attackProc(Char hero, int damage) {
+		damage = super.attackProc(enemy, damage);
+		if (hero instanceof Hero) {
+			Buff.prolong(enemy, Chill.class, Chill.DURATION);
+			if (Random.Int(5) == 0) {
+				Buff.prolong(enemy, NoPotion.class, NoPotion.DURATION);
+				GLog.w(Messages.get(this, "nopotion"));
+				Sample.INSTANCE.play(Assets.Sounds.SHATTER);
 			}
-			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES) && healInc < 3) {
-				healInc++;
-			}
-			if (HP*2 > HT) {
-				BossHealthBar.bleed(false);
-				((CirnoSprite)sprite).spray(false);
-				HP = Math.min(HP, HT);
-			}
-		} else {
-			healInc = 1;
+			return damage;
 		}
-		
-		if (state != SLEEPING){
-			Dungeon.level.seal();
-		}
-
-		return super.act();
-	}
-
-	@Override
-	protected boolean canAttack( Char enemy ) {
-		if (pumpedUp > 0){
-			//we check both from and to in this case as projectile logic isn't always symmetrical.
-			//this helps trim out BS edge-cases
-			return Dungeon.level.distance(enemy.pos, pos) <= 2
-						&& new Ballistica( pos, enemy.pos, Ballistica.PROJECTILE).collisionPos == enemy.pos
-						&& new Ballistica( enemy.pos, pos, Ballistica.PROJECTILE).collisionPos == pos;
-		} else {
-			return super.canAttack(enemy);
-		}
-	}
-
-	@Override
-	public int attackProc( Char enemy, int damage ) {
-		damage = super.attackProc( enemy, damage );
-		if (Random.Int( 3 ) == 0) {
-			Buff.affect( enemy, Ooze.class ).set( Ooze.DURATION );
-			enemy.sprite.burst( 0x000000, 5 );
-		}
-
-		if (pumpedUp > 0) {
-			Camera.main.shake( 3, 0.2f );
-		}
-
 		return damage;
 	}
-
-	@Override
-	public void updateSpriteState() {
-		super.updateSpriteState();
-
-		if (pumpedUp > 0){
-			((CirnoSprite)sprite).pumpUp( pumpedUp );
-		}
-	}
-
-	@Override
-	protected boolean doAttack( Char enemy ) {
-		if (pumpedUp == 1) {
-			pumpedUp++;
-			((CirnoSprite)sprite).pumpUp( pumpedUp );
-
-			spend( attackDelay() );
-
-			return true;
-		} else if (pumpedUp >= 2 || Random.Int( (HP*2 <= HT) ? 2 : 5 ) > 0) {
-
-			boolean visible = Dungeon.level.heroFOV[pos];
-
-			if (visible) {
-				if (pumpedUp >= 2) {
-					((CirnoSprite) sprite).pumpAttack();
-				} else {
-					sprite.attack(enemy.pos);
-				}
-			} else {
-				if (pumpedUp >= 2){
-					((CirnoSprite)sprite).triggerEmitters();
-				}
-				attack( enemy );
-				spend( attackDelay() );
-			}
-
-			return !visible;
-
-		} else {
-
-			pumpedUp++;
-			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
-				pumpedUp++;
-			}
-
-			((CirnoSprite)sprite).pumpUp( pumpedUp );
-
-			if (Dungeon.level.heroFOV[pos]) {
-				sprite.showStatus( CharSprite.NEGATIVE, Messages.get(this, "!!!") );
-				GLog.n( Messages.get(this, "pumpup") );
-			}
-
-			spend( attackDelay() );
-
-			return true;
-		}
-	}
-
-	@Override
-	public boolean attack( Char enemy, float dmgMulti, float dmgBonus, float accMulti ) {
-		boolean result = super.attack( enemy, dmgMulti, dmgBonus, accMulti );
-		pumpedUp = 0;
-		return result;
-	}
-
-	@Override
-	protected boolean getCloser( int target ) {
-		if (pumpedUp != 0) {
-			pumpedUp = 0;
-			sprite.idle();
-		}
-		return super.getCloser( target );
-	}
-
-	@Override
-	public void damage(int dmg, Object src) {
-		if (!BossHealthBar.isAssigned()){
-			BossHealthBar.assignBoss( this );
-		}
-		boolean bleeding = (HP*2 <= HT);
-		super.damage(dmg, src);
-		if ((HP*2 <= HT) && !bleeding){
-			BossHealthBar.bleed(true);
-			sprite.showStatus(CharSprite.NEGATIVE, Messages.get(this, "enraged"));
-			((CirnoSprite)sprite).spray(true);
-			yell(Messages.get(this, "gluuurp"));
-		}
-		LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
-		if (lock != null) lock.addTime(dmg*2);
-	}
-
-	@Override
-	public void die( Object cause ) {
-		
-		super.die( cause );
-
-		Dungeon.level.drop( new TengusMask(), pos ).sprite.drop();
-		
-		Dungeon.level.unseal();
-		
-		GameScene.bossSlain();
-		Dungeon.level.drop( new SkeletonKey( Dungeon.depth ), pos ).sprite.drop();
-		
-		//60% chance of 2 blobs, 30% chance of 3, 10% chance for 4. Average of 2.5
-		int blobs = Random.chances(new float[]{0, 0, 6, 3, 1});
-		for (int i = 0; i < blobs; i++){
-			int ofs;
-			do {
-				ofs = PathFinder.NEIGHBOURS8[Random.Int(8)];
-			} while (!Dungeon.level.passable[pos + ofs]);
-			Dungeon.level.drop( new GooBlob(), pos + ofs ).sprite.drop( pos );
-		}
-		
-		yell( Messages.get(this, "defeated") );
-	}
-	
-	@Override
-	public void notice() {
-		super.notice();
-		if (!BossHealthBar.isAssigned()) {
-			BossHealthBar.assignBoss(this);
-			yell(Messages.get(this, "notice"));
-			for (Char ch : Actor.chars()){
-				if (ch instanceof DriedRose.GhostHero){
-					((DriedRose.GhostHero) ch).sayBoss();
-				}
-			}
-		}
-	}
-
-	private final String PUMPEDUP = "pumpedup";
-	private final String HEALINC = "healinc";
-
-	@Override
-	public void storeInBundle( Bundle bundle ) {
-
-		super.storeInBundle( bundle );
-
-		bundle.put( PUMPEDUP , pumpedUp );
-		bundle.put( HEALINC, healInc );
-	}
-
-	@Override
-	public void restoreFromBundle( Bundle bundle ) {
-
-		super.restoreFromBundle( bundle );
-
-		pumpedUp = bundle.getInt( PUMPEDUP );
-		if (state != SLEEPING) BossHealthBar.assignBoss(this);
-		if ((HP*2 <= HT)) BossHealthBar.bleed(true);
-
-		//if check is for pre-0.9.3 saves
-		healInc = bundle.getInt(HEALINC);
-
-	}
-	
 }

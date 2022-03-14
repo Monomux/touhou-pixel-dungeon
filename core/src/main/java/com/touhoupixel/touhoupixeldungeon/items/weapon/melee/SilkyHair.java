@@ -42,7 +42,7 @@ public class SilkyHair extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  Math.round(4f*(tier+1)) +    //20 base, up from 15
+		return  Math.round(3.5f*(tier+1)) +    //20 base, up from 15
 				lvl*Math.round(1.33f*(tier+1)); //+4 per level, up from +3
 	}
 

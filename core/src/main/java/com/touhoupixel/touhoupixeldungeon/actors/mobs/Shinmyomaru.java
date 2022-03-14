@@ -54,8 +54,8 @@ public class Shinmyomaru extends Mob {
 		} else EXP = 1;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 55;
-		} else maxLvl = 5;
+			maxLvl = 60;
+		} else maxLvl = 10;
 
 		if (!Dungeon.isChallenged(Challenges.BECOME_FUMO)) {
 			loot = Generator.Category.SCROLL;

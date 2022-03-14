@@ -41,7 +41,6 @@ import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.SparkParticle;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
-import com.touhoupixel.touhoupixeldungeon.items.KingsCrown;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.Viscosity;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.LloydsBeacon;
@@ -69,26 +68,26 @@ public class YuyukoBoss extends Mob {
 	{
 		spriteClass = YuyukoBossSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 450 : 300;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 1350 : 900;
 		EXP = 40;
-		defenseSkill = 22;
+		defenseSkill = 48;
 
 		properties.add(Property.BOSS);
 	}
 
 	@Override
 	public int damageRoll() {
-		return Random.NormalIntRange( 15, 25 );
+		return Random.NormalIntRange( 35, 45 );
 	}
 
 	@Override
 	public int attackSkill( Char target ) {
-		return 26;
+		return 46;
 	}
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(15, 30);
+		return Random.NormalIntRange(0, 8);
 	}
 
 	private int phase = 1;
@@ -192,7 +191,7 @@ public class YuyukoBoss extends Mob {
 					spend(3 * TICK);
 					summonsMade += 2;
 					return true;
-				} else if (shielding() <= 300 && summonsMade < 12){
+				} else if (shielding() <= 900 && summonsMade < 12){
 					if (summonsMade == 6) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
@@ -208,7 +207,7 @@ public class YuyukoBoss extends Mob {
 					summonsMade += 3;
 					spend(3*TICK);
 					return true;
-				} else if (shielding() <= 150 && summonsMade < 18) {
+				} else if (shielding() <= 450 && summonsMade < 18) {
 					if (summonsMade == 12) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
@@ -242,7 +241,7 @@ public class YuyukoBoss extends Mob {
 					spend(3 * TICK);
 					summonsMade++;
 					return true;
-				} else if (shielding() <= 200 && summonsMade < 8) {
+				} else if (shielding() <= 600 && summonsMade < 8) {
 					if (summonsMade == 4) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
@@ -256,7 +255,7 @@ public class YuyukoBoss extends Mob {
 					summonsMade++;
 					spend(TICK);
 					return true;
-				} else if (shielding() <= 100 && summonsMade < 12) {
+				} else if (shielding() <= 300 && summonsMade < 12) {
 					sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 					Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
 					yell(Messages.get(this, "wave_3"));

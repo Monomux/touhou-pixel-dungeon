@@ -22,8 +22,13 @@
 package com.touhoupixel.touhoupixeldungeon.items.wands;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandEmpower;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
@@ -58,6 +63,11 @@ public abstract class DamageWand extends Wand{
 				emp.detach();
 			}
 			Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG, 0.75f, 1.2f);
+		}
+		Hero hero = (Hero) curUser;
+		Char enemy = hero.enemy();
+		if (Dungeon.isChallenged(Challenges.PACIFIST)){
+			dmg *= 0f;
 		}
 		return dmg;
 	}

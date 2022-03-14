@@ -71,8 +71,8 @@ public class Kosuzu extends Mob {
 		} else EXP = 5;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		loot = Generator.Category.SCROLL;
 		lootChance = 0.05f;

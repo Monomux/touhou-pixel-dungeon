@@ -47,20 +47,20 @@ public class Remilia extends Mob {
 		spriteClass = RemiliaSprite.class;
 
 		if (Dungeon.depth > 50){
-			HP = HT = 356;
-		} else HP = HT = 8;
+			HP = HT = 394;
+		} else HP = HT = 29;
 
 		if (Dungeon.depth > 50){
-			defenseSkill = 2;
-		} else defenseSkill = 20;
+			defenseSkill = 59;
+		} else defenseSkill = 9;
 
 		if (Dungeon.depth > 50){
 			EXP = 55;
 		} else EXP = 5;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 		
 		loot = new PotionOfHealing();
 		lootChance = 0.2f;

@@ -84,7 +84,9 @@ public class Sakuya extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
-			if (Random.Int(10) == 0) {
+			if (Dungeon.depth > 50 && Random.Int(6) == 0) {
+				new TimeManiTrap().set(target).activate();
+			} else if (Random.Int(10) == 0) {
 				new TimeManiTrap().set(target).activate();
 			}
 		}

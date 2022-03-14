@@ -60,8 +60,8 @@ public class Marisa extends Mob {
 		} else EXP = 5;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 60;
-		} else maxLvl = 10;
+			maxLvl = 63;
+		} else maxLvl = 13;
 
 		loot = Random.oneOf(Generator.Category.RING, Generator.Category.ARTIFACT);
 		lootChance = 0.03f; //initially, see rollToDropLoot

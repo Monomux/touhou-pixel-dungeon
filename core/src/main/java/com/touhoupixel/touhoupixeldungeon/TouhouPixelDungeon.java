@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeon;
 
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Suika;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.TenshiBoss;
+import com.touhoupixel.touhoupixeldungeon.items.MokouRibbon;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
@@ -130,11 +131,8 @@ public class TouhouPixelDungeon extends Game {
 				com.touhoupixel.touhoupixeldungeon.items.Waterskin.class,
 				"com.touhoupixel.touhoupixeldungeon.items.DewVial" );
 		com.watabou.utils.Bundle.addAlias(
-				com.touhoupixel.touhoupixeldungeon.items.TengusMask.class,
+				MokouRibbon.class,
 				"com.touhoupixel.touhoupixeldungeon.items.TomeOfMastery" );
-		com.watabou.utils.Bundle.addAlias(
-				com.touhoupixel.touhoupixeldungeon.items.KingsCrown.class,
-				"com.touhoupixel.touhoupixeldungeon.items.ArmorKit" );
 		
 	}
 	

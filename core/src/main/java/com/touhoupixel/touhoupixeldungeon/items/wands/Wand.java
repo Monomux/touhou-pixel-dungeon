@@ -37,7 +37,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.SoulMark;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.mage.WildMagic;
 import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TalismanOfForesight;
@@ -67,15 +66,15 @@ public abstract class Wand extends Item {
 	public static final String AC_ZAP	= "ZAP";
 
 	private static final float TIME_TO_ZAP	= 1f;
-	
+
 	public int maxCharges = initialCharges();
 	public int curCharges = maxCharges;
 	public float partialCharge = 0f;
-	
+
 	protected Charger charger;
-	
+
 	public boolean curChargeKnown = false;
-	
+
 	public boolean curseInfusionBonus = false;
 	public int resinBonus = 0;
 
@@ -84,13 +83,13 @@ public abstract class Wand extends Item {
 	private float availableUsesToID = USES_TO_ID/2f;
 
 	protected int collisionProperties = Ballistica.MAGIC_BOLT;
-	
+
 	{
 		defaultAction = AC_ZAP;
 		usesTargeting = true;
 		bones = true;
 	}
-	
+
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
@@ -100,18 +99,18 @@ public abstract class Wand extends Item {
 
 		return actions;
 	}
-	
+
 	@Override
 	public void execute( Hero hero, String action ) {
 
 		super.execute( hero, action );
 
 		if (action.equals( AC_ZAP )) {
-			
+
 			curUser = hero;
 			curItem = this;
 			GameScene.selectCell( zapper );
-			
+
 		}
 	}
 
@@ -167,7 +166,7 @@ public abstract class Wand extends Item {
 			updateQuickslot();
 		}
 	}
-	
+
 	public void charge( Char owner ) {
 		if (charger == null) charger = new Charger();
 		charger.attachTo( owner );
@@ -208,23 +207,23 @@ public abstract class Wand extends Item {
 			charger = null;
 		}
 	}
-	
+
 	public void level( int value) {
 		super.level( value );
 		updateLevel();
 	}
-	
+
 	@Override
 	public Item identify() {
-		
+
 		curChargeKnown = true;
 		super.identify();
-		
+
 		updateQuickslot();
-		
+
 		return this;
 	}
-	
+
 	public void onHeroGainExp( float levelPercent, Hero hero ){
 		levelPercent *= Talent.itemIDSpeedFactor(hero, this);
 		if (!isIdentified() && availableUsesToID <= USES_TO_ID/2f) {
@@ -261,12 +260,12 @@ public abstract class Wand extends Item {
 	public String statsDesc(){
 		return Messages.get(this, "stats_desc");
 	}
-	
+
 	@Override
 	public boolean isIdentified() {
 		return super.isIdentified() && curChargeKnown;
 	}
-	
+
 	@Override
 	public String status() {
 		if (levelKnown) {
@@ -275,7 +274,7 @@ public abstract class Wand extends Item {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public int level() {
 		if (!cursed && curseInfusionBonus){
@@ -284,7 +283,7 @@ public abstract class Wand extends Item {
 		}
 		return super.level() + resinBonus + (curseInfusionBonus ? 1 : 0);
 	}
-	
+
 	@Override
 	public Item upgrade() {
 
@@ -313,17 +312,17 @@ public abstract class Wand extends Item {
 		updateLevel();
 		curCharges = Math.min( curCharges + 1, maxCharges );
 		updateQuickslot();
-		
+
 		return this;
 	}
-	
+
 	@Override
 	public Item degrade() {
 		super.degrade();
-		
+
 		updateLevel();
 		updateQuickslot();
-		
+
 		return this;
 	}
 
@@ -332,16 +331,6 @@ public abstract class Wand extends Item {
 		int lvl = super.buffedLvl();
 
 		if (charger != null && charger.target != null) {
-			if (charger.target.buff(WildMagic.WildMagicTracker.class) != null){
-				int bonus = 2 + ((Hero)charger.target).pointsInTalent(Talent.WILD_POWER);
-				if (Random.Int(2) == 0) bonus++;
-				bonus /= 2; // +1/+1.5/+2/+2.5/+3 at 0/1/2/3/4 talent points
-
-				int maxBonusLevel = 2 + ((Hero)charger.target).pointsInTalent(Talent.WILD_POWER);
-				if (lvl < maxBonusLevel) {
-					lvl = Math.min(lvl + bonus, maxBonusLevel);
-				}
-			}
 
 			if (charger.target.buff(ScrollEmpower.class) != null){
 				lvl += Dungeon.hero.pointsInTalent(Talent.EMPOWERING_SCROLLS);

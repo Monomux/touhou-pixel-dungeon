@@ -35,10 +35,22 @@ import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.MerchantsBeacon;
 import com.touhoupixel.touhoupixeldungeon.items.Stylus;
 import com.touhoupixel.touhoupixeldungeon.items.Torch;
+import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.HecatiaArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.LeatherArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.MailArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98MarisaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PC98ReimuArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.PlateArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PoppinPartyArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.RumiaArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ScaleArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.ToyohimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YorihimeArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
+import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeon.items.bags.ArcaneHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
@@ -165,17 +177,43 @@ public class ShopRoom extends SpecialRoom {
 			default:
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[1]);
 				itemsToSpawn.add(Generator.random(Generator.misTiers[1]).quantity(2).identify());
-				itemsToSpawn.add(new LeatherArmor().identify());
+				switch (Random.Int(3)) {
+					case 0: default:
+					itemsToSpawn.add(new LeatherArmor().identify());
+						break;
+					case 1:
+						itemsToSpawn.add(new PC98ReimuArmor().identify());
+						break;
+					case 2:
+						itemsToSpawn.add(new RumiaArmor().identify());
+						break;
+				}
 				if (Dungeon.hero.heroClass == HeroClass.NITORI){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
+				}
+				if (!Dungeon.isChallenged(Challenges.ROSELIA)){
+					itemsToSpawn.add(new DriedRose());
 				}
 				break;
 
 			case 11:
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[2]);
 				itemsToSpawn.add( Generator.random(Generator.misTiers[2]).quantity(2).identify() );
-				itemsToSpawn.add( new MailArmor().identify() );
+				switch (Random.Int(4)) {
+					case 0: default:
+						itemsToSpawn.add(new MailArmor().identify());
+						break;
+					case 1:
+						itemsToSpawn.add(new PC98MarisaArmor().identify());
+						break;
+					case 2:
+						itemsToSpawn.add(new HanasakigawaArmor().identify());
+						break;
+					case 3:
+						itemsToSpawn.add(new PoppinPartyArmor().identify());
+						break;
+				}
 				if (Dungeon.hero.heroClass == HeroClass.NITORI){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
@@ -185,7 +223,20 @@ public class ShopRoom extends SpecialRoom {
 			case 16:
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[3]);
 				itemsToSpawn.add( Generator.random(Generator.misTiers[3]).quantity(2).identify() );
-				itemsToSpawn.add( new ScaleArmor().identify() );
+				switch (Random.Int(4)) {
+					case 0: default:
+						itemsToSpawn.add(new ScaleArmor().identify());
+						break;
+					case 1:
+						itemsToSpawn.add(new YorihimeArmor().identify());
+						break;
+					case 2:
+						itemsToSpawn.add(new YuyukoArmor().identify());
+						break;
+					case 3:
+						itemsToSpawn.add(new MaxwellArmor().identify());
+						break;
+				}
 				if (Dungeon.hero.heroClass == HeroClass.NITORI){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
@@ -195,7 +246,20 @@ public class ShopRoom extends SpecialRoom {
 			case 21: case 31: case 61: case 81:
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[4]);
 				itemsToSpawn.add( Generator.random(Generator.misTiers[4]).quantity(2).identify() );
-				itemsToSpawn.add( new PlateArmor().identify() );
+				switch (Random.Int(4)) {
+					case 0: default:
+						itemsToSpawn.add(new PlateArmor().identify());
+						break;
+					case 1:
+						itemsToSpawn.add(new ToyohimeArmor().identify());
+						break;
+					case 2:
+						itemsToSpawn.add(new HecatiaArmor().identify());
+						break;
+					case 3:
+						itemsToSpawn.add(new GoldenDragonArmor().identify());
+						break;
+				}
 				if (Dungeon.hero.heroClass == HeroClass.NITORI){
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
@@ -249,7 +313,7 @@ public class ShopRoom extends SpecialRoom {
 				break;
 		}
 
-		if (!Dungeon.isChallenged(Challenges.NO_ANKH)) {
+		if (!Dungeon.isChallenged(Challenges.ATHEISM)) {
 			itemsToSpawn.add(new Ankh());
 		}
 		itemsToSpawn.add( new StoneOfAugmentation() );

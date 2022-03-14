@@ -27,6 +27,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
+import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfPassage;
@@ -57,6 +58,8 @@ public class BeaconOfReturning extends Spell {
 		
 		if (returnDepth == -1){
 			setBeacon(hero);
+		} else if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
+			GLog.w( Messages.get(ScrollOfTeleportation.class, "tele_interrupt") );
 		} else {
 			GameScene.show(new WndOptions(new ItemSprite(this),
 					Messages.titleCase(name()),

@@ -515,11 +515,6 @@ public class v0_9_X_Changes {
 		changes.hardlight(CharSprite.NEGATIVE);
 		changeInfos.add(changes);
 
-		changes.addButton( new ChangeButton( new TalentIcon(Talent.HEARTY_MEAL), Talent.HEARTY_MEAL.title(),
-				"_Hearty Meal_ is currently the strongest tier one talent in the game, so I'm deepening the missing health requirement slightly to make its power a bit harder to access:\n\n" +
-				"_-_ Now grants 2/3 healing when hero is below 50% health, down from 3/5\n" +
-				"_-_ The full 3/5 heal is still available if the hero is below 25% health"));
-
 		changes.addButton( new ChangeButton( new Image(new YamameSprite()), Messages.get(Yamame.class, "name"),
 				"I'm pulling down the damage of _Cave Spinners_ slightly to address player frustration:\n\n" +
 				"_-_ Melee damage down to 10-20 from 10-25"));

@@ -52,8 +52,8 @@ public class JeweledBranch extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  Math.round((Statistics.ankhsUsed)*8f+5f*(tier+1)) +    //20 base, up from 15
-				lvl*Math.round(1.33f*(tier+1)); //+4 per level, up from +3
+		return  4*Statistics.ankhsUsed+5*(tier+1)+
+				lvl*(tier+2);
 	}
 
 	@Override
@@ -75,12 +75,6 @@ public class JeweledBranch extends MeleeWeapon {
 			Char enemy = hero.enemy();
 			owner.HP = Math.min(owner.HP + owner.HT / 20, owner.HT);
 			owner.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
-		}
-		if (Dungeon.isChallenged(Challenges.ANTI_FUMO) && Dungeon.hero.belongings.weapon() instanceof JeweledBranch) {
-			Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-			Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-			Buff.prolong(owner, Hex.class, Hex.DURATION);
-			Buff.prolong(owner, Cripple.class, Cripple.DURATION);
 		}
 		return super.damageRoll(owner);
 	}

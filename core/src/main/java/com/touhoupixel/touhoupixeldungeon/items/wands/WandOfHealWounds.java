@@ -77,7 +77,7 @@ public class WandOfHealWounds extends Wand {
 	public void onZap(Ballistica beam) {
 		if ( curUser.buff(AntiHeal.class) != null ) {
 			curUser.damage(curUser.HP / 2, this);
-		} else curUser.HP = Math.min(curUser.HP + 12*Dungeon.hero.pointsInTalent(Talent.HEALWAND_SIMPLE) + Dungeon.hero.pointsInTalent(Talent.HEALWAND_LVL)*curUser.lvl + curUser.HT/4, curUser.HT);
+		} else curUser.HP = Math.min(curUser.HP + 12*Dungeon.hero.pointsInTalent(Talent.HEALWAND_SIMPLE) + curUser.HT/4, curUser.HT);
 		if (curUser.buff( Silence.class ) != null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_SILENCE) == 1) {
 			curUser.HP = Math.min(curUser.HP + 15, curUser.HT);
 		}
@@ -110,21 +110,6 @@ public class WandOfHealWounds extends Wand {
 		}
 		if (curUser.buff( Haste.class ) != null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_THREESPEED) == 3 || curUser.buff( Doublespeed.class ) != null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_THREESPEED) == 3 || curUser.buff( Triplespeed.class ) != null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_THREESPEED) == 3) {
 			curUser.HP = Math.min(curUser.HP + 45, curUser.HT);
-		}
-		if (Dungeon.hero.belongings.weapon() == null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_NURSE) == 1) {
-			curUser.HP = Math.min(curUser.HP + 20, curUser.HT);
-		}
-		if (Dungeon.hero.belongings.weapon() == null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_NURSE) == 2) {
-			curUser.HP = Math.min(curUser.HP + 40, curUser.HT);
-		}
-		if (Dungeon.hero.belongings.weapon() == null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_NURSE) == 3) {
-			curUser.HP = Math.min(curUser.HP + 60, curUser.HT);
-		}
-		if (Dungeon.hero.belongings.weapon() == null && Dungeon.hero.pointsInTalent(Talent.HEALWAND_NURSE) == 4) {
-			curUser.HP = Math.min(curUser.HP + 80, curUser.HT);
-		}
-		if (Dungeon.hero.hasTalent(Talent.HEALWAND_LVL)){
-			Buff.prolong(curUser, Slow.class, Slow.DURATION*2f);
 		}
 		if (Random.Int(4) == 0 && curUser.HT > 4 && curUser.HP > 4) {
 			curUser.HP -= 4;

@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeon.items.food;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Levitation;
@@ -60,7 +61,7 @@ public class TenshiPeach extends Food {
 				Buff.affect(hero, Doublespeed.class, Doublespeed.DURATION);
 				Buff.affect(hero, Triplespeed.class, Triplespeed.DURATION);
 				Buff.affect(hero, Might.class, Might.DURATION);
-				Buff.affect(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
+				Buff.affect(hero, Doublerainbow.class, Doublerainbow.DURATION/4f );
 				Buff.affect(hero, Bless.class, Bless.DURATION);
 				Buff.affect(hero, Levitation.class, Levitation.DURATION);
 				Buff.affect(hero, MagicImmune.class, MagicImmune.DURATION);

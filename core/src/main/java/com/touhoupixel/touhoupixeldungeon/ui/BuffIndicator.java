@@ -126,6 +126,15 @@ public class BuffIndicator extends Component {
 	public static final int FIREBRANDBUFF         = 77;
 	public static final int FROSTBRANDBUFF         = 78;
 	public static final int DUEL_OPPONENT         = 79;
+	public static final int IMMOLATION         = 80;
+	public static final int ORBTIME         = 81;
+	public static final int DOUBLERAINBOW         = 82;
+	public static final int NO_POTION         = 83;
+	public static final int MESSAGE_D         = 84;
+	public static final int MESSAGE_E         = 85;
+	public static final int MESSAGE_A         = 86;
+	public static final int MESSAGE_T         = 87;
+	public static final int MESSAGE_H         = 88;
 
 	public static final int SIZE    = 7;
 

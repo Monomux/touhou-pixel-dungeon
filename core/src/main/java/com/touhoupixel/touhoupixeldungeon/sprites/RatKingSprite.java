@@ -24,7 +24,6 @@ package com.touhoupixel.touhoupixeldungeon.sprites;
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.abilities.Ratmogrify;
 import com.watabou.noosa.TextureFilm;
 
 import java.util.Calendar;
@@ -32,14 +31,14 @@ import java.util.Calendar;
 public class RatKingSprite extends MobSprite {
 
 	public boolean festive;
-	
+
 	public RatKingSprite() {
 		super();
 
 		resetAnims();
 	}
 
-	public void resetAnims(){
+	public void resetAnims() {
 
 		final Calendar calendar = Calendar.getInstance();
 		//once a year the rat king feels a bit festive!
@@ -48,37 +47,23 @@ public class RatKingSprite extends MobSprite {
 
 		int c = festive ? 8 : 0;
 
-		if (Dungeon.hero != null && Dungeon.hero.armorAbility instanceof Ratmogrify){
-			c += 16;
-			if (parent != null) aura(0xFFFF00);
-		}
+		texture(Assets.Sprites.RATKING);
 
-		texture( Assets.Sprites.RATKING );
+		TextureFilm frames = new TextureFilm(texture, 16, 17);
 
-		TextureFilm frames = new TextureFilm( texture, 16, 17 );
+		idle = new Animation(2, true);
+		idle.frames(frames, c + 0, c + 0, c + 0, c + 1);
 
-		idle = new Animation( 2, true );
-		idle.frames( frames, c+0, c+0, c+0, c+1 );
+		run = new Animation(10, true);
+		run.frames(frames, c + 2, c + 3, c + 4, c + 5, c + 6);
 
-		run = new Animation( 10, true );
-		run.frames( frames, c+2, c+3, c+4, c+5, c+6 );
+		attack = new Animation(15, false);
+		attack.frames(frames, c + 0);
 
-		attack = new Animation( 15, false );
-		attack.frames( frames, c+0 );
+		die = new Animation(10, false);
+		die.frames(frames, c + 0);
 
-		die = new Animation( 10, false );
-		die.frames( frames, c+0 );
+		play(idle);
 
-		play( idle );
-
-	}
-
-
-	@Override
-	public void link(Char ch) {
-		super.link(ch);
-		if (Dungeon.hero != null && Dungeon.hero.armorAbility instanceof Ratmogrify){
-			aura(0xFFFF00);
-		}
 	}
 }

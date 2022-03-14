@@ -45,8 +45,8 @@ public class Aya extends Mob {
 		} else EXP = 6;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 65;
-		} else maxLvl = 15;
+			maxLvl = 66;
+		} else maxLvl = 16;
 
 		baseSpeed = 5f;
 

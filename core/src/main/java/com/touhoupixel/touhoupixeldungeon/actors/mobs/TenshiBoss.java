@@ -79,12 +79,11 @@ public class TenshiBoss extends Mob {
 	{
 		spriteClass = TenshiBossSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 400 : 300;
+		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 800 : 600;
 		EXP = 30;
 		defenseSkill = 15;
 
 		properties.add(Property.BOSS);
-		properties.add(Property.LARGE);
 	}
 
 	@Override

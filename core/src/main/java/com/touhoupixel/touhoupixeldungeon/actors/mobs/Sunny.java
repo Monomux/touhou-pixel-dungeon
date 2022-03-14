@@ -33,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CloakOfShadows;
+import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
 import com.touhoupixel.touhoupixeldungeon.sprites.MomoyoSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.SunnySprite;
 import com.watabou.utils.Random;
@@ -58,8 +59,8 @@ public class Sunny extends Mob {
 			maxLvl = 75;
 		} else maxLvl = 25;
 		
-		loot = Gold.class;
-		lootChance = 0.4f;
+		loot = PotionOfDragonsBreath.class;
+		lootChance = 0.1f;
 
 		properties.add(Property.FIRE);
 	}
