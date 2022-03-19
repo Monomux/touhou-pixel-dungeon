@@ -82,14 +82,14 @@ public class Yachie extends Mob {
 	public int damageRoll() {
 		if (Dungeon.depth > 50) {
 			return Random.NormalIntRange(37, 44);
-		} else return Random.NormalIntRange(2, 8);
+		} else return Random.NormalIntRange(2, 7);
 	}
 
 	@Override
 	public int attackSkill(Char target) {
 		if (Dungeon.depth > 50) {
-			return 57;
-		} else return 7;
+			return 58;
+		} else return 8;
 	}
 
 	@Override

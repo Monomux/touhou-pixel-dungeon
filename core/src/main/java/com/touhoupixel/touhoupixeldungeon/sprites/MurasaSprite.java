@@ -34,7 +34,7 @@ public class MurasaSprite extends MobSprite {
 		renderShadow = false;
 		perspectiveRaise = 0.2f;
 		
-		texture( Assets.Sprites.PIRANHA );
+		texture( Assets.Sprites.MURASA );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

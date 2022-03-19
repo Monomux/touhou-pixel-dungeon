@@ -22,9 +22,18 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfDoublespeed;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 
 import java.util.ArrayList;
 
@@ -59,4 +68,18 @@ public class Gloves extends MeleeWeapon {
 				lvl*Math.round(0.5f*(tier+1));  //+1 per level, down from +2
 	}
 
+	@Override
+	public int damageRoll(Char owner) {
+		if (owner instanceof Hero) {
+			Hero hero = (Hero) owner;
+			Char enemy = hero.enemy();
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && Dungeon.hero.belongings.weapon() instanceof Gloves){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( owner, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( owner, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( owner, Silence.class, Silence.DURATION*2f);
+		}
+		return super.damageRoll(owner);
+	}
 }

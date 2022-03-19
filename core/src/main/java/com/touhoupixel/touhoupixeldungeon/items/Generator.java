@@ -22,7 +22,6 @@
 package com.touhoupixel.touhoupixeldungeon.items;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Toyohime;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
@@ -204,7 +203,6 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.NitoriRod;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PhoenixTail;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PotofGreed;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PurificationRod;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Quarterstaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RandomPhone;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RingoDango;
@@ -455,7 +453,7 @@ public class Generator {
 					WandOfDestOrb.class,
 					WandOfDeath.class,
 					WandOfRegrowth.class };
-			WAND.probs = new float[]{ 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0, 5, 1, 2 };
+			WAND.probs = new float[]{ 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 5, 0, 5, 1, 2 };
 
 			//see generator.randomWeapon
 			WEAPON.classes = new Class<?>[]{};
@@ -495,7 +493,6 @@ public class Generator {
 					Sai.class,
 					Whip.class,
 					AkyuuBrush.class,
-					PurificationRod.class,
 					DoremyDream.class,
 					KokoroFan.class,
 					NitoriRod.class,
@@ -508,7 +505,7 @@ public class Generator {
 					TenkyuuCloak.class,
 					AlchemySword.class
 			};
-			WEP_T3.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 4, 5, 4, 5, 4, 5, 5, 5, 5, 5 };
+			WEP_T3.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 4, 5, 4, 1, 4, 5, 5, 5, 5, 5 };
 
 			WEP_T4.classes = new Class<?>[]{
 					Longsword.class,

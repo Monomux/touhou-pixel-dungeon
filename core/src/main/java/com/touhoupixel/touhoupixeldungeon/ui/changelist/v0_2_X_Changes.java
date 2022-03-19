@@ -201,10 +201,6 @@ public class v0_2_X_Changes {
 				"_-_ Added a gnoll trickster quest\n\n" +
 				"_-_ Added a great crab quest"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.GOO, 43, 3, 14, 11), "Cirno Changes",
-				"Cirno's animations have been overhauled, including a particle effect for the area of its pumped up attack.\n\n" +
-				"Cirno's arena has been updated to give more room to maneuver, and to be more variable."));
-		
 		changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.GUIDE_PAGE, null), "Story & Signpost Changes",
 				"Most text in the sewers has been overhauled, including descriptions, quest dialogues, signposts, and story scrolls"));
 	}

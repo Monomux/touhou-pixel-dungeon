@@ -135,6 +135,7 @@ public class BuffIndicator extends Component {
 	public static final int MESSAGE_A         = 86;
 	public static final int MESSAGE_T         = 87;
 	public static final int MESSAGE_H         = 88;
+	public static final int MURASA_INF_EVASION         = 89;
 
 	public static final int SIZE    = 7;
 

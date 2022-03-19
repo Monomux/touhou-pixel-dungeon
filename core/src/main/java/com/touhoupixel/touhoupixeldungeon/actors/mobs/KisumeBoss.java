@@ -37,7 +37,7 @@ import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.quest.GooBlob;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfBurning;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeon.sprites.KisumeBossSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.KisumeSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.BossHealthBar;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
@@ -46,9 +46,9 @@ import com.watabou.utils.Random;
 public class KisumeBoss extends Mob {
 
 	{
-		spriteClass = KisumeBossSprite.class;
+		spriteClass = KisumeSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 1400 : 1200;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 1400 : 1200;
 		defenseSkill = 32;
 
 		EXP = 50;

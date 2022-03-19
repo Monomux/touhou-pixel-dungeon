@@ -27,6 +27,9 @@ import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.ToxicGas;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
@@ -40,7 +43,7 @@ public class KanakoBoss extends Mob {
 	{
 		spriteClass = KanakoSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 180 : 120;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 180 : 120;
 
 		defenseSkill = 15;
 
@@ -51,8 +54,6 @@ public class KanakoBoss extends Mob {
 		properties.add(Property.BOSS);
 		properties.add(Property.GOD);
 		properties.add(Property.POWERFUL);
-
-		HUNTING = new Hunting();
 	}
 
 	@Override
@@ -71,97 +72,24 @@ public class KanakoBoss extends Mob {
 	}
 
 	@Override
-	public void die( Object cause ) {
-		super.die( cause );
+	public int attackProc( Char hero, int damage ) {
+		damage = super.attackProc( enemy, damage );
+		if (this.buff(Incompetence.class) == null) {
+			if (Random.Int(2) == 0) {
+				Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
+			}
+		}
+		return damage;
+	}
+
+	@Override
+	public void die(Object cause) {
+		super.die(cause);
 		Statistics.ymbosskillcount += 1;
 
-		if (Statistics.ymbosskillcount > 2){
+		if (Statistics.ymbosskillcount > 2) {
 			Dungeon.level.unseal();
 			GameScene.bossSlain();
 		}
 	}
-
-	private int ventCooldown = 0;
-
-	private static final String VENT_COOLDOWN = "vent_cooldown";
-
-	@Override
-	public void storeInBundle(Bundle bundle) {
-		super.storeInBundle(bundle);
-		bundle.put(VENT_COOLDOWN, ventCooldown);
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		ventCooldown = bundle.getInt( VENT_COOLDOWN );
-	}
-
-	@Override
-	protected boolean act() {
-		ventCooldown--;
-		return super.act();
-	}
-
-	public void onZapComplete(){
-		zap();
-		next();
-	}
-
-	private void zap( ){
-		spend( TICK );
-		ventCooldown = 30;
-
-		Ballistica trajectory = new Ballistica(pos, enemy.pos, Ballistica.STOP_TARGET);
-
-		for (int i : trajectory.subPath(0, trajectory.dist)){
-			GameScene.add(Blob.seed(i, 20, ToxicGas.class));
-		}
-		GameScene.add(Blob.seed(trajectory.collisionPos, 100, ToxicGas.class));
-
-	}
-
-	private class Hunting extends Mob.Hunting{
-
-		@Override
-		public boolean act(boolean enemyInFOV, boolean justAlerted) {
-			if (!enemyInFOV || canAttack(enemy)) {
-				return super.act(enemyInFOV, justAlerted);
-			} else {
-				enemySeen = true;
-				target = enemy.pos;
-
-				int oldPos = pos;
-
-				if (ventCooldown <= 0 && distance(enemy) >= 1 && Random.Int(100/distance(enemy)) == 0){
-					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						sprite.zap( enemy.pos );
-						return false;
-					} else {
-						zap();
-						return true;
-					}
-
-				} else if (getCloser( target )) {
-					spend( 1 / speed() );
-					return moveSprite( oldPos,  pos );
-
-				} else if (ventCooldown <= 0) {
-					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						sprite.zap( enemy.pos );
-						return false;
-					} else {
-						zap();
-						return true;
-					}
-
-				} else {
-					spend( TICK );
-					return true;
-				}
-
-			}
-		}
-	}
-
 }

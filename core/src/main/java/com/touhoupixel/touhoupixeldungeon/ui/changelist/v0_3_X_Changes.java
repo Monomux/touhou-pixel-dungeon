@@ -182,7 +182,7 @@ public class v0_3_X_Changes {
 				"\n" +
 				"v0.3.2 was also another update with a controversial change: the removal of the tome of mastery from the start of the game. Prior to this change subclasses were available from floor 1 after you unlocked them. I changed this as I wanted to make subclasses more powerful and interesting, but having them available on floor 1 limited that."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.TENGU, 0, 0, 14, 16), "Prison Rework",
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SUIKA, 0, 0, 14, 16), "Prison Rework",
 				"_-_ Suika boss fight completely redone\n" +
 				"_-_ Corpse dust quest overhauled\n" +
 				"_-_ Rotberry quest overhauled\n" +

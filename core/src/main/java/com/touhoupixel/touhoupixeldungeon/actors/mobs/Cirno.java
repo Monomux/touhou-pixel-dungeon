@@ -49,7 +49,7 @@ public class Cirno extends Mob {
 		spriteClass = CirnoSprite.class;
 
 		if (Dungeon.depth > 50){
-			HP = HT = 417;
+			HP = HT = 418;
 		} else HP = HT = 27;
 
 		if (Dungeon.depth > 50){

@@ -27,8 +27,12 @@ import com.touhoupixel.touhoupixeldungeon.GamesInProgress;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Adrenaline;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArcaneArmor;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArtifactRecharge;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Awareness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
@@ -39,6 +43,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.EnhancedRings;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FlavourBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
@@ -76,6 +81,7 @@ import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CloakOfShadows;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.HornOfPlenty;
 import com.touhoupixel.touhoupixeldungeon.items.food.Cucumber;
+import com.touhoupixel.touhoupixeldungeon.items.food.Food;
 import com.touhoupixel.touhoupixeldungeon.items.food.FrozenCarpaccio;
 import com.touhoupixel.touhoupixeldungeon.items.food.MiracleFruit;
 import com.touhoupixel.touhoupixeldungeon.items.food.Pancake;
@@ -107,6 +113,7 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfSlowness;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
@@ -114,12 +121,21 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfDread;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
 import com.touhoupixel.touhoupixeldungeon.items.spells.AquaBlast;
 import com.touhoupixel.touhoupixeldungeon.items.spells.CurseInfusion;
+import com.touhoupixel.touhoupixeldungeon.items.spells.KogasaHammer;
+import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfBlink;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HisoutenMankind;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KeineBook;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MiracleMallet;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Psalms;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ToyohimeFan;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YorihimeSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -154,103 +170,114 @@ public enum Talent {
 	CLEAVE(14, 3), LETHAL_DEFENSE(15, 3), ENHANCED_COMBO(16, 3),
 
 	//Mage T1
-	EMPOWERING_MEAL(32), SCHOLARS_INTUITION(33), TESTED_HYPOTHESIS(34), BACKUP_BARRIER(35),
+	EMPOWERING_MEAL(17), SCHOLARS_INTUITION(18), TESTED_HYPOTHESIS(19), BACKUP_BARRIER(20),
 	//Mage T2
-	ENERGIZING_MEAL(36), ENERGIZING_UPGRADE(37), WAND_PRESERVATION(38), ARCANE_VISION(39), SHIELD_BATTERY(40),
+	ENERGIZING_MEAL(21), ENERGIZING_UPGRADE(22), WAND_PRESERVATION(23), ARCANE_VISION(24), SHIELD_BATTERY(25),
 	//Mage T3
-	EMPOWERING_SCROLLS(41, 3), ALLY_WARP(42, 3),
+	EMPOWERING_SCROLLS(26, 3), ALLY_WARP(27, 3),
 	//Battlemage T3
-	EMPOWERED_STRIKE(43, 3), MYSTICAL_CHARGE(44, 3), EXCESS_CHARGE(45, 3),
+	EMPOWERED_STRIKE(28, 3), MYSTICAL_CHARGE(29, 3), EXCESS_CHARGE(30, 3),
 	//Ran T3
-	SOUL_EATER(46, 3), SOUL_SIPHON(47, 3), NECROMANCERS_MINIONS(48, 3),
+	SOUL_EATER(31, 3), SOUL_SIPHON(32, 3), NECROMANCERS_MINIONS(33, 3),
 
 	//Rogue T1
-	CACHED_RATIONS(64), THIEFS_INTUITION(65), SUCKER_PUNCH(66), PROTECTIVE_SHADOWS(67),
+	CACHED_RATIONS(34), THIEFS_INTUITION(35), SUCKER_PUNCH(36), PROTECTIVE_SHADOWS(37),
 	//Rogue T2
-	MYSTICAL_MEAL(68), MYSTICAL_UPGRADE(69), WIDE_SEARCH(70), SILENT_STEPS(71), ROGUES_FORESIGHT(72),
+	MYSTICAL_MEAL(38), MYSTICAL_UPGRADE(39), WIDE_SEARCH(40), SILENT_STEPS(41), ROGUES_FORESIGHT(42),
 	//Rogue T3
-	ENHANCED_RINGS(73, 3), LIGHT_CLOAK(74, 3),
+	ENHANCED_RINGS(43, 3), LIGHT_CLOAK(44, 3),
 	//Assassin T3
-	ENHANCED_LETHALITY(75, 3), ASSASSINS_REACH(76, 3), BOUNTY_HUNTER(77, 3),
+	ENHANCED_LETHALITY(45, 3), ASSASSINS_REACH(46, 3), BOUNTY_HUNTER(47, 3),
 	//Freerunner T3
-	EVASIVE_ARMOR(78, 3), PROJECTILE_MOMENTUM(79, 3), SPEEDY_STEALTH(80, 3),
+	EVASIVE_ARMOR(48, 3), PROJECTILE_MOMENTUM(49, 3), SPEEDY_STEALTH(50, 3),
 
 	//Huntress T1
-	NATURES_BOUNTY(96), SURVIVALISTS_INTUITION(97), FOLLOWUP_STRIKE(98), NATURES_AID(99),
+	NATURES_BOUNTY(51), SURVIVALISTS_INTUITION(52), FOLLOWUP_STRIKE(53), NATURES_AID(54),
 	//Huntress T2
-	INVIGORATING_MEAL(100), RESTORED_NATURE(101), REJUVENATING_STEPS(102), HEIGHTENED_SENSES(103), DURABLE_PROJECTILES(104),
+	INVIGORATING_MEAL(55), RESTORED_NATURE(56), REJUVENATING_STEPS(57), HEIGHTENED_SENSES(58), DURABLE_PROJECTILES(59),
 	//Huntress T3
-	POINT_BLANK(105, 3), SEER_SHOT(106, 3),
+	POINT_BLANK(60, 3), SEER_SHOT(61, 3),
 	//Sniper T3
-	FARSIGHT(107, 3), SHARED_ENCHANTMENT(108, 3), SHARED_UPGRADES(109, 3),
+	FARSIGHT(62, 3), SHARED_ENCHANTMENT(63, 3), SHARED_UPGRADES(64, 3),
 	//Warden T3
-	DURABLE_TIPS(110, 3), BARKSKIN(111, 3), SHIELDING_DEW(112, 3),
+	DURABLE_TIPS(65, 3), BARKSKIN(66, 3), SHIELDING_DEW(67, 3),
 
 	//Reisen T1
-	EIENTEI_MEAL(128), POTION_INTUITION(129), DANMAKU_STRIKE(130), EIENTEI_LUCK(131),
+	EIENTEI_MEAL(68), POTION_INTUITION(69), DANMAKU_STRIKE(70), EIENTEI_LUCK(71),
 	//Reisen T2
-	EIENTEI_ENHANCE_MEAL(132), GAINING_HEALING(133), DANMAKU_ENHANCE_STRIKE(134), EIENTEI_ENHANCED_LUCK(135), INVU_IDENTIFY(136),
+	EIENTEI_ENHANCE_MEAL(72), GAINING_HEALING(73), DANMAKU_ENHANCE_STRIKE(74), EIENTEI_ENHANCED_LUCK(75), INVU_IDENTIFY(76),
 	//Reisen T3
-	SIMPLE_POWER(137, 3), INVU_POWER(138, 3),
+	SIMPLE_POWER(77, 3), INVU_POWER(78, 3),
 	//Moonrabbit T3
-	PARA_RESISTANCE(139, 3), GAS_RESISTANCE(140, 3), DEGRADE_RESISTANCE(141, 3),
+	PARA_RESISTANCE(79, 3), GAS_RESISTANCE(80, 3), DEGRADE_RESISTANCE(81, 3),
 	//Deserter T3
-	DANMAKU_HEAL(142, 3), DANMAKU_BLESS(143, 3), DANMAKU_SPEED(144, 3),
+	DANMAKU_HEAL(82, 3), DANMAKU_BLESS(83, 3), DANMAKU_SPEED(84, 3),
 
 	//Nitori T1
-	KAPPA_MEAL(160), SCROLL_INTUITION(161), CUCUMBER_HEAL(162), BASIC_FUSION(163),
+	KAPPA_MEAL(85), SCROLL_INTUITION(86), CUCUMBER_HEAL(87), BASIC_FUSION(88),
 	//Nitori T2
-	KAPPA_ENHANCE_MEAL(164), RISKY_IDENTIFY(165), FEW_CUCUMBER(166), MEDIUM_FUSION(167), ADVANCED_FUSION(168),
+	KAPPA_ENHANCE_MEAL(89), RISKY_IDENTIFY(90), FEW_CUCUMBER(91), MEDIUM_FUSION(92), ADVANCED_FUSION(93),
 	//Nitori T3
-	GAINING_CUCUMBER(169, 3), GAINING_TRANSMUTE(170, 3),
+	GAINING_CUCUMBER(94, 3), GAINING_TRANSMUTE(95, 3),
 	//Kappa T3
-	CUCUMBER_MEAL(171, 3), AQUA_UPGRADE(172, 3), AQUA_POTION(173, 3),
+	CUCUMBER_MEAL(96, 3), AQUA_UPGRADE(97, 3), AQUA_POTION(98, 3),
 	//Engineer T3
-	DANGEROUS_MEAL(174, 3), RISKY_UPGRADE(175, 3), RISKY_POTION(176, 3),
+	DANGEROUS_MEAL(99, 3), RISKY_UPGRADE(100, 3), RISKY_POTION(101, 3),
 
 	//YuyukoBoss T1
-	ANIMAL_MEAL(192), PASTY_GAIN(193), CUCUMBER_GAIN(194), FROZEN_FOOD_GAIN(195),
+	ANIMAL_MEAL(102), PASTY_GAIN(103), CUCUMBER_GAIN(104), FROZEN_FOOD_GAIN(105),
 	//YuyukoBoss T2
-	ANIMAL_ENHANCED_MEAL(196), QUICK_MEAL(197), MORE_FOOD_PANCAKE(198), MORE_FOOD_WAFFLE(199), MORE_FOOD_FRUIT(200),
+	ANIMAL_ENHANCED_MEAL(106), QUICK_MEAL(107), MORE_FOOD_PANCAKE(108), MORE_FOOD_WAFFLE(109), MORE_FOOD_FRUIT(110),
 	//YuyukoBoss T3
-	EVERYONE_IS_MEAL(201, 3), TENSHI_PEACH_GAIN(202, 3),
+	EVERYONE_IS_MEAL(111, 3), TENSHI_PEACH_GAIN(112, 3),
 	//Gourmet T3
-	TRIPLESPEED_MEAL(203, 3), MIND_VISION_MEAL(204, 3), MAGIC_IMMUNE_MEAL(205, 3),
+	TRIPLESPEED_MEAL(113, 3), MIND_VISION_MEAL(114, 3), MAGIC_IMMUNE_MEAL(115, 3),
 	//Deathghost T3
-	CONTROL_DEATH(206, 3), DOOM_ATTACK(207, 3), COMING_DEATH(208, 3),
+	CONTROL_DEATH(116, 3), DOOM_ATTACK(117, 3), COMING_DEATH(118, 3),
 
 	//Murasa T1
-	GAIN_AQUA_REGEN(224), GAIN_AQUA_BLAST(225), AQUA_STRIKE(226), AQUA_LIGHT(227),
+	GAIN_AQUA_REGEN(119), GAIN_AQUA_BLAST(120), AQUA_STRIKE(121), AQUA_LIGHT(122),
 	//Murasa T2
-	GAIN_MORE_AQUA_REGEN(228), GAIN_MORE_AQUA_BLAST(229), EXHAUSTIVE_FOOD(230), GHOST_TENSITY(231), AQUA_BLESS(232),
+	GAIN_MORE_AQUA_REGEN(123), GAIN_MORE_AQUA_BLAST(124), EXHAUSTIVE_FOOD(125), GHOST_TENSITY(126), AQUA_BLESS(127),
 	//Murasa T3
-	AQUA_FOOD(233, 3), MORE_GHOST_TENSITY(234, 3),
+	AQUA_FOOD(128, 3), MORE_GHOST_TENSITY(129, 3),
 	//Captain T3
-	AQUA_STAMINA(235, 3), AQUA_HASTE(236, 3), AQUA_MINDVISION(237, 3),
+	AQUA_STAMINA(130, 3), AQUA_HASTE(131, 3), AQUA_MINDVISION(132, 3),
 	//Shipghost T3
-	AQUA_PARALYSIS(238, 3), AQUA_SLOW(239, 3), AQUA_INSTAKILL(240, 3),
+	AQUA_PARALYSIS(133, 3), AQUA_SLOW(134, 3), AQUA_INSTAKILL(135, 3),
 
 	//Hina T1
-	CURSED_MEAL(256), GAIN_CURSED_METAL(257), CURSED_IDENTIFY(258), CURSED_MINDVISION(259),
+	CURSED_MEAL(136), GAIN_CURSED_METAL(137), CURSED_IDENTIFY(138), CURSED_MINDVISION(139),
 	//Hina T2
-	CURSED_EXTRA_MEAL(260), GAIN_METAL_AND_REMOVE(261), EMER_UNIDENTIFY(262), CURSED_HASTE(263), CURSED_INVU(264),
+	CURSED_EXTRA_MEAL(140), GAIN_METAL_AND_REMOVE(141), EMER_UNIDENTIFY(142), CURSED_HASTE(143), CURSED_INVU(144),
 	//Hina T3
-	CURSED_SET(265, 3), CURSED_PRESERVE(266, 3),
+	CURSED_SET(145, 3), CURSED_PRESERVE(146, 3),
 	//Spingod T3
-	SPIN_BLIND(267, 3), SPIN_HEX(268, 3), SPIN_HEAL(269, 3),
+	SPIN_BLIND(147, 3), SPIN_HEX(148, 3), SPIN_HEAL(149, 3),
 	//Cursegod T3
-	CURSED_SNEAKATTACK(270, 3), CURSED_INVISIBILITY(271, 3), CURSED_ACC(272, 3),
+	CURSED_SNEAKATTACK(150, 3), CURSED_INVISIBILITY(151, 3), CURSED_ACC(152, 3),
 
 	//Kaguya T1
-	GAIN_ALCHEMY_ENERGY(288), GAIN_RECHARGE(289), GAIN_CSD(290), GAIN_WAND(291),
+	GAIN_ALCHEMY_ENERGY(153), GAIN_RECHARGE(154), GAIN_CSD(155), GAIN_WAND(156),
 	//Kaguya T2
-	HEALWAND_SILENCE(292), UPGRADE_MAXHT_UP(293), POTION_PRESERVE(294), GAIN_POTIONOFHEALING(295), GAIN_SUNGRASSSEED(296),
+	HEALWAND_SILENCE(157), UPGRADE_MAXHT_UP(158), POTION_PRESERVE(159), GAIN_POTIONOFHEALING(160), GAIN_SUNGRASSSEED(161),
 	//Kaguya T3
-	HEALWAND_SIMPLE(297, 3), MAXHT_UP(298, 3),
+	HEALWAND_SIMPLE(162, 3), MAXHT_UP(163, 3),
 	//Timestop T3
-	HEALWAND_MV_AND_LEV(299, 3), HEALWAND_LIGHT_AND_BLESS(300, 3), HEALWAND_THREESPEED(301, 3),
+	HEALWAND_MV_AND_LEV(164, 3), HEALWAND_LIGHT_AND_BLESS(165, 3), HEALWAND_THREESPEED(166, 3),
 	//Timemove T3
-	MAXHP_SPEED(302, 3), MAXHP_EVASION(303, 3), MAXHP_ACC(304, 3);
+	MAXHP_SPEED(167, 3), MAXHP_EVASION(168, 3), MAXHP_ACC(169, 3),
+
+	//Kogasa T1
+	GAIN_FOOD(170), GAIN_GOLD(171), GAIN_KOGASA_HAMMER(172), GAIN_RANDOM_SECRET_WEAPON(173),
+	//Kogasa T2
+	GAIN_BLINK(174), GAIN_TELEPORTATION(175), GAIN_SWAP(176), GAIN_RANDOM_5TIER_WEAPON(177), GAIN_UPGRADE(178),
+	//Kogasa T3
+	SLOWED_ACCURACY_UP(179, 3), SLOWED_EVASION_UP(180, 3),
+	//Slowgirl T3
+	SLOWED_ATTACK(181, 3), SLOWED_SNIPE(182, 3), SLOWED_UPGRADE(183, 3),
+	//Horrorgirl T3
+	HORROR_ATTACK(184, 3), HORROR_DEFENSE(185, 3), GAIN_DREAD(186, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff {
 		public int icon() {
@@ -274,34 +301,20 @@ public enum Talent {
 		}
 	}
 
-	;
-
 	public static class LethalMomentumTracker extends FlavourBuff {
 	}
-
-	;
-
-	public static class StrikingWaveTracker extends FlavourBuff {
-	}
-
-	;
 
 	public static class WandPreservationCounter extends CounterBuff {
 		{
 			revivePersists = true;
-		}}
-
-	;
+		}
+	}
 
 	public static class EmpoweredStrikeTracker extends FlavourBuff {
 	}
 
-	;
-
 	public static class BountyHunterTracker extends FlavourBuff {
 	}
-
-	;
 
 	public static class RejuvenatingStepsCooldown extends FlavourBuff {
 		public int icon() {
@@ -325,14 +338,11 @@ public enum Talent {
 		}
 	}
 
-	;
-
 	public static class RejuvenatingStepsFurrow extends CounterBuff {
 		{
 			revivePersists = true;
-		}}
-
-	;
+		}
+	}
 
 	public static class SeerShotCooldown extends FlavourBuff {
 		public int icon() {
@@ -355,13 +365,6 @@ public enum Talent {
 			return Messages.get(this, "desc", dispTurns(visualcooldown()));
 		}
 	}
-
-	;
-
-	public static class SpiritBladesTracker extends FlavourBuff {
-	}
-
-	;
 
 	int icon;
 	int maxPoints;
@@ -404,6 +407,7 @@ public enum Talent {
 			if (hero.belongings.weapon() != null) hero.belongings.weapon().identify();
 			if (hero.belongings.armor() != null)  hero.belongings.armor.identify();
 		}
+
 		if (talent == POTION_INTUITION && hero.pointsInTalent(POTION_INTUITION) == 1){
 			new PotionOfExperience().identify();
 			new PotionOfLiquidFlame().identify();
@@ -414,6 +418,7 @@ public enum Talent {
 			new PotionOfParalyticGas().identify();
 			new PotionOfDoublespeed().identify();
 		}
+
 		if (talent == SCROLL_INTUITION && hero.pointsInTalent(SCROLL_INTUITION) == 1){
 			new ScrollOfIdentify().identify();
 			new ScrollOfRemoveCurse().identify();
@@ -863,6 +868,163 @@ public enum Talent {
 			Healingseed.quantity(4).collect();
 		}
 
+		if (talent == GAIN_FOOD && hero.pointsInTalent(GAIN_FOOD) == 1) {
+			Food food = new Food();
+			food.quantity(3).collect();
+		}
+		if (talent == GAIN_FOOD && hero.pointsInTalent(GAIN_FOOD) == 2) {
+			Food food = new Food();
+			food.quantity(3).collect();
+		}
+
+		if (talent == GAIN_GOLD && hero.pointsInTalent(GAIN_GOLD) == 1){
+			Dungeon.gold += 800;
+		}
+		if (talent == GAIN_GOLD && hero.pointsInTalent(GAIN_GOLD) == 2) {
+			Dungeon.gold += 800;
+		}
+
+		if (talent == GAIN_KOGASA_HAMMER && hero.pointsInTalent(GAIN_KOGASA_HAMMER) == 1) {
+			KogasaHammer kh = new KogasaHammer();
+			kh.quantity(2).collect();
+		}
+		if (talent == GAIN_KOGASA_HAMMER && hero.pointsInTalent(GAIN_KOGASA_HAMMER) == 2) {
+			KogasaHammer kh = new KogasaHammer();
+			kh.quantity(2).collect();
+		}
+
+		if (talent == GAIN_RANDOM_SECRET_WEAPON && hero.pointsInTalent(GAIN_RANDOM_SECRET_WEAPON) == 1) {
+			switch (Random.Int(6)) {
+				case 0:
+				default:
+					JeweledBranch jb = new JeweledBranch();
+					jb.identify().collect();
+					break;
+				case 1:
+					MiracleMallet mm = new MiracleMallet();
+					mm.identify().collect();
+					break;
+				case 2:
+					ToyohimeFan tf = new ToyohimeFan();
+					tf.identify().collect();
+					break;
+				case 3:
+					YorihimeSword ys = new YorihimeSword();
+					ys.identify().collect();
+					break;
+				case 4:
+					HisoutenMankind hm = new HisoutenMankind();
+					hm.identify().collect();
+					break;
+				case 5:
+					Psalms ps = new Psalms();
+					ps.identify().collect();
+					break;
+			}
+		}
+		if (talent == GAIN_RANDOM_SECRET_WEAPON && hero.pointsInTalent(GAIN_RANDOM_SECRET_WEAPON) == 2) {
+			switch (Random.Int(6)) {
+				case 0:
+				default:
+					JeweledBranch jb = new JeweledBranch();
+					jb.identify().collect();
+					break;
+				case 1:
+					MiracleMallet mm = new MiracleMallet();
+					mm.identify().collect();
+					break;
+				case 2:
+					ToyohimeFan tf = new ToyohimeFan();
+					tf.identify().collect();
+					break;
+				case 3:
+					YorihimeSword ys = new YorihimeSword();
+					ys.identify().collect();
+					break;
+				case 4:
+					HisoutenMankind hm = new HisoutenMankind();
+					hm.identify().collect();
+					break;
+				case 5:
+					Psalms ps = new Psalms();
+					ps.identify().collect();
+					break;
+			}
+		}
+
+		if (talent == GAIN_BLINK && hero.pointsInTalent(GAIN_BLINK) == 1) {
+			StoneOfBlink sob = new StoneOfBlink();
+			sob.quantity(3).collect();
+		}
+		if (talent == GAIN_BLINK && hero.pointsInTalent(GAIN_BLINK) == 2) {
+			StoneOfBlink sob = new StoneOfBlink();
+			sob.quantity(3).collect();
+		}
+
+		if (talent == GAIN_TELEPORTATION && hero.pointsInTalent(GAIN_TELEPORTATION) == 1) {
+			ScrollOfTeleportation sot = new ScrollOfTeleportation();
+			sot.identify().quantity(3).collect();
+		}
+		if (talent == GAIN_TELEPORTATION && hero.pointsInTalent(GAIN_TELEPORTATION) == 2) {
+			ScrollOfTeleportation sot = new ScrollOfTeleportation();
+			sot.identify().quantity(3).collect();
+		}
+
+		if (talent == GAIN_SWAP && hero.pointsInTalent(GAIN_SWAP) == 1) {
+			SwapTailsman st = new SwapTailsman();
+			st.quantity(12).collect();
+		}
+		if (talent == GAIN_SWAP && hero.pointsInTalent(GAIN_SWAP) == 2) {
+			SwapTailsman st = new SwapTailsman();
+			st.quantity(12).collect();
+		}
+
+		if (talent == GAIN_RANDOM_5TIER_WEAPON && hero.pointsInTalent(GAIN_RANDOM_5TIER_WEAPON) == 1) {
+			Generator.Category c = Generator.Category.WEP_T5;
+			MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+			w.collect();
+		}
+		if (talent == GAIN_RANDOM_5TIER_WEAPON && hero.pointsInTalent(GAIN_RANDOM_5TIER_WEAPON) == 2) {
+			Generator.Category c = Generator.Category.WEP_T5;
+			MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+			w.collect();
+		}
+
+		if (talent == GAIN_UPGRADE && hero.pointsInTalent(GAIN_UPGRADE) == 1) {
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
+		}
+		if (talent == GAIN_UPGRADE && hero.pointsInTalent(GAIN_UPGRADE) == 2) {
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
+		}
+
+		if (talent == SLOWED_UPGRADE && hero.pointsInTalent(SLOWED_UPGRADE) == 1) {
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.quantity(2).collect();
+		}
+		if (talent == SLOWED_UPGRADE && hero.pointsInTalent(SLOWED_UPGRADE) == 2) {
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.quantity(2).collect();
+		}
+		if (talent == SLOWED_UPGRADE && hero.pointsInTalent(SLOWED_UPGRADE) == 3) {
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.quantity(2).collect();
+		}
+
+		if (talent == GAIN_DREAD && hero.pointsInTalent(GAIN_DREAD) == 1) {
+			ScrollOfDread sod = new ScrollOfDread();
+			sod.identify().quantity(5).collect();
+		}
+		if (talent == GAIN_DREAD && hero.pointsInTalent(GAIN_DREAD) == 2) {
+			ScrollOfDread sod = new ScrollOfDread();
+			sod.identify().quantity(5).collect();
+		}
+		if (talent == GAIN_DREAD && hero.pointsInTalent(GAIN_DREAD) == 3) {
+			ScrollOfDread sod = new ScrollOfDread();
+			sod.identify().quantity(5).collect();
+		}
+
 		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 1){
 			Dungeon.energy += 15;
 		}
@@ -1094,6 +1256,7 @@ public enum Talent {
 				shield.supercharge(shieldToGive);
 			}
 		}
+
 		if (hero.hasTalent(RESTORED_NATURE)){
 			ArrayList<Integer> grassCells = new ArrayList<>();
 			for (int i : PathFinder.NEIGHBOURS8){
@@ -1277,7 +1440,7 @@ public enum Talent {
 	public static class SuckerPunchTracker extends Buff{};
 	public static class FollowupStrikeTracker extends Buff{};
 
-	public static final int MAX_TALENT_TIERS = 4;
+	public static final int MAX_TALENT_TIERS = 3;
 
 	public static void initClassTalents( Hero hero ){
 		initClassTalents( hero.heroClass, hero.talents, hero.metamorphedTalents );
@@ -1327,6 +1490,9 @@ public enum Talent {
 			case KAGUYAPLAYER:
 				Collections.addAll(tierTalents, GAIN_ALCHEMY_ENERGY, GAIN_RECHARGE, GAIN_CSD, GAIN_WAND);
 				break;
+			case KOGASAPLAYER:
+				Collections.addAll(tierTalents, GAIN_FOOD, GAIN_GOLD, GAIN_KOGASA_HAMMER, GAIN_RANDOM_SECRET_WEAPON);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(0).put(talent, 0);
@@ -1366,6 +1532,9 @@ public enum Talent {
 			case KAGUYAPLAYER:
 				Collections.addAll(tierTalents, HEALWAND_SILENCE, UPGRADE_MAXHT_UP, POTION_PRESERVE, GAIN_POTIONOFHEALING, GAIN_SUNGRASSSEED);
 				break;
+			case KOGASAPLAYER:
+				Collections.addAll(tierTalents, GAIN_BLINK,  GAIN_TELEPORTATION, GAIN_SWAP, GAIN_RANDOM_5TIER_WEAPON, GAIN_UPGRADE);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(1).put(talent, 0);
@@ -1404,6 +1573,9 @@ public enum Talent {
 				break;
 			case KAGUYAPLAYER:
 				Collections.addAll(tierTalents, HEALWAND_SIMPLE, MAXHT_UP);
+				break;
+			case KOGASAPLAYER:
+				Collections.addAll(tierTalents, SLOWED_ACCURACY_UP, SLOWED_EVASION_UP);
 				break;
 		}
 		for (Talent talent : tierTalents) {
@@ -1457,6 +1629,9 @@ public enum Talent {
 			case TIMESTOP:
 				Collections.addAll(tierTalents, HEALWAND_MV_AND_LEV, HEALWAND_LIGHT_AND_BLESS, HEALWAND_THREESPEED);
 				break;
+			case SLOWGIRL:
+				Collections.addAll(tierTalents, SLOWED_ATTACK, SLOWED_SNIPE, SLOWED_UPGRADE);
+				break;
 			case ASSASSIN:
 				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER);
 				break;
@@ -1486,6 +1661,9 @@ public enum Talent {
 				break;
 			case TIMEMOVE:
 				Collections.addAll(tierTalents, MAXHP_SPEED, MAXHP_EVASION, MAXHP_ACC);
+				break;
+			case HORRORGIRL:
+				Collections.addAll(tierTalents, HORROR_ATTACK, HORROR_DEFENSE, GAIN_DREAD);
 				break;
 		}
 		for (Talent talent : tierTalents){

@@ -81,7 +81,7 @@ public class Suika extends Mob {
 	{
 		spriteClass = SuikaSprite.class;
 		
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 400 : 300;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 400 : 300;
 		EXP = 20;
 		defenseSkill = 15;
 		
@@ -429,7 +429,7 @@ public class Suika extends Mob {
 			
 			abilityCooldown--;
 			
-			if (targetAbilityUses() - abilitiesUsed >= 4 && !Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+			if (targetAbilityUses() - abilitiesUsed >= 4 && !Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 				//Very behind in ability uses, use one right away!
 				//but not on bosses challenge, we already cast quickly then
 				abilityCooldown = 0;
@@ -471,7 +471,7 @@ public class Suika extends Mob {
 				abilityToUse = BOMB_ABILITY;
 			} else if (abilitiesUsed == 1){
 				abilityToUse = SHOCKER_ABILITY;
-			} else if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)) {
+			} else if (Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)) {
 				abilityToUse = Random.Int(2)*2; //0 or 2, can't roll fire ability with challenge
 			} else {
 				abilityToUse = Random.Int(3);
@@ -501,7 +501,7 @@ public class Suika extends Mob {
 						break;
 				}
 				//always use the fire ability with the bosses challenge
-				if (abilityUsed && abilityToUse != FIRE_ABILITY && Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+				if (abilityUsed && abilityToUse != FIRE_ABILITY && Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 					throwFire(Suika.this, enemy);
 				}
 			}
@@ -509,7 +509,7 @@ public class Suika extends Mob {
 		}
 		
 		//spend 1 less turn if seriously behind on ability uses
-		if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+		if (Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 			if (targetAbilityUses() - abilitiesUsed >= 4) {
 				//spend no time
 			} else {

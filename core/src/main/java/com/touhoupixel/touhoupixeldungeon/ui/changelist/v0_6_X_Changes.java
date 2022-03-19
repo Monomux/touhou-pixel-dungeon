@@ -142,7 +142,7 @@ public class v0_6_X_Changes {
 				"_-_ Loading screen transitions are now faster in many cases\n\n" +
 				"_-_ Improved the layout of translator credits in landscape"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various rare crash bugs\n" +
 				"_-_ Antimagic applying to elemental damage\n" +
@@ -189,7 +189,7 @@ public class v0_6_X_Changes {
 				"Wayward's accuracy penalty was very extreme, often making it impossible to win fights without doors. Wayward should punish non-guaranteed attacks, but this extent of this has been lessened.\n\n" +
 				"_-_ Reduced wayward accuracy penalty by 50%"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SKELETON, 0, 0, 12, 15), "Skeletons",
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.PATCHOULI, 0, 0, 12, 15), "Skeletons",
 				"Skeletons have been adjusted to be more counterable with armor, and to give less inventory-clogging loot.\n\n" +
 				"_-_ Bone explosion damage up to 6-12 from 2-10\n" +
 				"_-_ Armor is now 2x effective against bone explosion, up from 0.5x\n\n" +
@@ -278,7 +278,7 @@ public class v0_6_X_Changes {
 				"\n" +
 				"_-_ Made adjustments to sending gameplay data. Data use should be slightly reduced."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Crashes involving corrupted mimics\n" +
 				"_-_ Various rare crash bugs\n" +
@@ -421,7 +421,7 @@ public class v0_6_X_Changes {
 				"_-_ Starting weapons can no longer appear in hero's remains\n\n" +
 				"_-_ The ghost hero is no longer unaffected by all buffs, and is also immune to corruption"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various crash bugs\n" +
 				"_-_ Serious memory leaks on android 8.0+\n" +
@@ -600,7 +600,7 @@ public class v0_6_X_Changes {
 				"_-_ Improved older updates in the changes list.\n" +
 				"_-_ Game now mutes during phone calls on android 6.0+"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various crash bugs\n" +
 				"_-_ Various exploits players could use to determine map shape\n" +
@@ -764,7 +764,7 @@ public class v0_6_X_Changes {
 				"_-_ Improvements to pathfinding. Characters are now more prone to take efficient paths to their targets, and will prefer to wait instead of taking a very inefficient path.\n\n" +
 				"_-_ Characters will now more consistently decide who to attack based on distance and who they are being attacked by."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Issues with Android 7.0+ multi-window\n" +
 				"_-_ Rare stability issues on certain devices\n" +

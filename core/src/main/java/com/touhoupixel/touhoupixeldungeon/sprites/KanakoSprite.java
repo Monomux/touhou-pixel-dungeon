@@ -22,84 +22,29 @@
 package com.touhoupixel.touhoupixeldungeon.sprites;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Kanako;
-import com.touhoupixel.touhoupixeldungeon.effects.MagicMissile;
-import com.touhoupixel.touhoupixeldungeon.effects.Speck;
-import com.touhoupixel.touhoupixeldungeon.messages.Messages;
-import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.noosa.TextureFilm;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Callback;
 
 public class KanakoSprite extends MobSprite {
 
 	public KanakoSprite() {
 		super();
 
-		texture( Assets.Sprites.DM200 );
+		texture( Assets.Sprites.KANAKO);
 
-		TextureFilm frames = new TextureFilm( texture, 21, 18 );
+		TextureFilm frames = new TextureFilm( texture, 14, 15 );
 
-		idle = new Animation( 10, true );
-		idle.frames( frames, 0, 1 );
+		idle = new Animation( 2, true );
+		idle.frames( frames, 0, 0, 0, 1, 0, 0, 1, 1 );
 
-		run = new Animation( 10, true );
-		run.frames( frames, 2, 3 );
+		run = new Animation( 12, true );
+		run.frames( frames, 4, 5, 6, 7 );
 
-		attack = new Animation( 15, false );
-		attack.frames( frames, 4, 5, 6 );
+		attack = new Animation( 12, false );
+		attack.frames( frames, 2, 3, 0 );
 
-		zap = new Animation( 15, false );
-		zap.frames( frames, 7, 8, 8, 7 );
-
-		die = new Animation( 8, false );
-		die.frames( frames, 9, 10, 11 );
+		die = new Animation( 12, false );
+		die.frames( frames, 8, 9, 10 );
 
 		play( idle );
 	}
-
-	public void zap( int cell ) {
-
-		turnTo( ch.pos , cell );
-		play( zap );
-
-		MagicMissile.boltFromChar( parent,
-				MagicMissile.TOXIC_VENT,
-				this,
-				cell,
-				new Callback() {
-					@Override
-					public void call() {
-						((Kanako)ch).onZapComplete();
-					}
-				} );
-		Sample.INSTANCE.play( Assets.Sounds.GAS );
-		GLog.w(Messages.get(Kanako.class, "vent"));
-	}
-
-	@Override
-	public void place(int cell) {
-		if (parent != null) parent.bringToFront(this);
-		super.place(cell);
-	}
-
-	@Override
-	public void die() {
-		emitter().burst( Speck.factory( Speck.WOOL ), 8 );
-		super.die();
-	}
-
-	@Override
-	public void onComplete( Animation anim ) {
-		if (anim == zap) {
-			idle();
-		}
-		super.onComplete( anim );
-	}
-
-	@Override
-	public int blood() {
-		return 0xFFFFFF88;
-	}
-
 }

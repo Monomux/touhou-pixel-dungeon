@@ -33,7 +33,7 @@ public class SuikaSprite extends MobSprite {
 	public SuikaSprite() {
 		super();
 		
-		texture( Assets.Sprites.TENGU );
+		texture( Assets.Sprites.SUIKA );
 		
 		TextureFilm frames = new TextureFilm( texture, 14, 16 );
 		

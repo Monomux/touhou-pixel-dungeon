@@ -107,7 +107,7 @@ public class HeroSelectScene extends PixelScene {
 
 		prompt = PixelScene.renderTextBlock(Messages.get(this, "title"), 12);
 		prompt.hardlight(Window.TITLE_COLOR);
-		prompt.setPos( (Camera.main.width - prompt.width())/2f, (Camera.main.height - (HeroBtn.HEIGHT*2) - prompt.height() - 4));
+		prompt.setPos( (Camera.main.width - prompt.width())/2f, (Camera.main.height - (HeroBtn.HEIGHT*3) - prompt.height() - 4));
 		PixelScene.align(prompt);
 		add(prompt);
 
@@ -132,7 +132,7 @@ public class HeroSelectScene extends PixelScene {
 		};
 		startBtn.icon(Icons.get(Icons.ENTER));
 		startBtn.setSize(80, 21);
-		startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height - (HeroBtn.HEIGHT*2) + 2 - startBtn.height()));
+		startBtn.setPos((Camera.main.width - startBtn.width())/2f, (Camera.main.height - (HeroBtn.HEIGHT*3) + 2 - startBtn.height()));
 		add(startBtn);
 		startBtn.visible = false;
 
@@ -162,23 +162,41 @@ public class HeroSelectScene extends PixelScene {
 
 			HeroBtn button = new HeroBtn(cl);
 
-			if (placed >= 11) {
-				if (placed == 11) {
+			if (placed >= 34){
+				if (placed == 34) {
 					curX = (Camera.main.width - btnWidth * (classes.length-4))/2;
 				}
-				button.setRect(curX, Camera.main.height-(HeroBtn.HEIGHT*3)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*6)+3, btnWidth, HeroBtn.HEIGHT);
+				curX += btnWidth;
+			} else if (placed >= 27){
+				if (placed == 27) {
+					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
+				}
+				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*5)+3, btnWidth, HeroBtn.HEIGHT);
+				curX += btnWidth;
+			} else if (placed >= 20){
+				if (placed == 20) {
+					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
+				}
+				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*4)+3, btnWidth, HeroBtn.HEIGHT);
+				curX += btnWidth;
+			} else if (placed >= 13){
+				if (placed == 13) {
+					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
+				}
+				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*3)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else if (placed >= 6){
 				if (placed == 6) {
-					curX = (Camera.main.width - btnWidth * (classes.length-4))/2;
+					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
 				}
-				button.setRect(curX, Camera.main.height-(HeroBtn.HEIGHT*2)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*2)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else {
 				if (placed == 0) {
 					curX = (Camera.main.width - btnWidth * (classes.length-4))/2;
 				}
-				button.setRect(curX, Camera.main.height-HeroBtn.HEIGHT+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+10, Camera.main.height-HeroBtn.HEIGHT+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			}
 

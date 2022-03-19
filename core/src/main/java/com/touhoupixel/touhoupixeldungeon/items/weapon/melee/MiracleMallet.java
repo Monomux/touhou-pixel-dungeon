@@ -54,7 +54,7 @@ public class MiracleMallet extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  9*(tier+1)+
+		return  7*(tier+1)+
 				lvl*(tier+2);
 	}
 

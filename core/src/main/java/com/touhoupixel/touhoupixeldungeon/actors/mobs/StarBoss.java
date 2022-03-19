@@ -38,7 +38,7 @@ public class StarBoss extends Mob {
 	{
 		spriteClass = StarSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 45 : 25;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 45 : 25;
 
 		defenseSkill = 5;
 

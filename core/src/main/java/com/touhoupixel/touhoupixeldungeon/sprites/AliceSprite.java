@@ -29,7 +29,7 @@ public class AliceSprite extends MobSprite {
 	public AliceSprite() {
 		super();
 		
-		texture( Assets.Sprites.SWARM );
+		texture( Assets.Sprites.ALICE );
 		
 		TextureFilm frames = new TextureFilm( texture, 16, 16 );
 		

@@ -31,7 +31,7 @@ public class YuugiSprite extends MobSprite {
 	public YuugiSprite() {
 		super();
 
-		texture( Assets.Sprites.GUARD );
+		texture( Assets.Sprites.YUUGI );
 
 		TextureFilm frames = new TextureFilm( texture, 12, 16 );
 

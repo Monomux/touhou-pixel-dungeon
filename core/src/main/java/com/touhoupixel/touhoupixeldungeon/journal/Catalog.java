@@ -173,7 +173,6 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PhoenixTail;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PotofGreed;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Psalms;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PurificationRod;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Quarterstaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RandomPhone;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RingoDango;
@@ -269,7 +268,6 @@ public enum Catalog {
 		WEAPONS.seen.put( RoundShield.class,                true);
 		WEAPONS.seen.put( Sai.class,                        true);
 		WEAPONS.seen.put( Whip.class,                       true);
-		WEAPONS.seen.put( PurificationRod.class,            true);
 		WEAPONS.seen.put( AkyuuBrush.class,                 true);
 		WEAPONS.seen.put( DoremyDream.class,                true);
 		WEAPONS.seen.put( HecatiaStar.class,                true);

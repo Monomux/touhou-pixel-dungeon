@@ -34,9 +34,9 @@ public class SagumeSprite extends MobSprite {
 	public SagumeSprite() {
 		super();
 		
-		texture( Assets.Sprites.SCORPIO );
+		texture( Assets.Sprites.SAGUME );
 		
-		TextureFilm frames = new TextureFilm( texture, 18, 17 );
+		TextureFilm frames = new TextureFilm( texture, 14, 17 );
 		
 		idle = new Animation( 12, true );
 		idle.frames( frames, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 2 );

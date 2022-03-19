@@ -64,18 +64,15 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageA;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageD;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MurasaInfEvasion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.RingoSurge;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SnipersMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
@@ -124,6 +121,7 @@ import com.touhoupixel.touhoupixeldungeon.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeon.items.keys.Key;
 import com.touhoupixel.touhoupixeldungeon.items.keys.SkeletonKey;
 import com.touhoupixel.touhoupixeldungeon.items.potions.Potion;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfMight;
@@ -186,6 +184,7 @@ import com.touhoupixel.touhoupixeldungeon.ui.AttackIndicator;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeon.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeon.ui.StatusPane;
+import com.touhoupixel.touhoupixeldungeon.utils.BArray;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.touhoupixel.touhoupixeldungeon.windows.WndHero;
 import com.touhoupixel.touhoupixeldungeon.windows.WndMessage;
@@ -301,8 +300,8 @@ public class Hero extends Char {
 			strBonus += 6;
 		}
 
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			strBonus += 15;
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
+			strBonus += 2;
 		}
 
 		strBonus += RingOfMight.strengthBonus( this );
@@ -521,6 +520,32 @@ public class Hero extends Char {
 			accuracy *= 1.5f;
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 0) {
+			accuracy *= 1.2f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 9) {
+			accuracy *= 1.2f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 19) {
+			accuracy *= 1.2f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 29) {
+			accuracy *= 1.2f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 39) {
+			accuracy *= 1.2f;
+		}
+
+		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 1){
+			accuracy *= 1.4f;
+		}
+		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 2){
+			accuracy *= 1.7f;
+		}
+		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 3){
+			accuracy *= 2f;
+		}
+
 		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
 			accuracy *= 0.9f;
 		}
@@ -619,6 +644,10 @@ public class Hero extends Char {
 			evasion *= 2;
 		}
 
+		if (buff(MurasaInfEvasion.class) != null && enemy instanceof Murasa){
+			return INFINITE_EVASION;
+		}
+
 		if (Dungeon.hero.belongings.armor() instanceof PoppinPartyArmor){
 			evasion *= 1.05;
 		}
@@ -657,6 +686,16 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.belongings.weapon() instanceof HellMic) {
 			evasion *= 1.5;
+		}
+
+		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 1){
+			evasion *= 1.14f;
+		}
+		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 2){
+			evasion *= 1.22f;
+		}
+		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 3){
+			evasion *= 1.3f;
 		}
 
 		if (belongings.armor() != null) {
@@ -731,7 +770,60 @@ public class Hero extends Char {
 			speed *= 3f;
 		}
 
+		if (hasTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) && pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 1){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) && pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 2){
+			speed *= 0.95f;
+		}
+
+		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 1){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 2){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 3){
+			speed *= 0.95f;
+		}
+
+		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 1){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 2){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 3){
+			speed *= 0.95f;
+		}
+
+		if (hasTalent(Talent.SLOWED_UPGRADE) && pointsInTalent(Talent.SLOWED_UPGRADE) == 1){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.SLOWED_UPGRADE) && pointsInTalent(Talent.SLOWED_UPGRADE) == 2){
+			speed *= 0.95f;
+		}
+		if (hasTalent(Talent.SLOWED_UPGRADE) && pointsInTalent(Talent.SLOWED_UPGRADE) == 3){
+			speed *= 0.95f;
+		}
+
 		speed *= RingOfHaste.speedMultiplier(this);
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 0) {
+			speed *= 0.9f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 9) {
+			speed *= 0.9f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 19) {
+			speed *= 0.9f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 29) {
+			speed *= 0.9f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 39) {
+			speed *= 0.9f;
+		}
 
 		if (belongings.armor() != null) {
 			speed = belongings.armor().speedFactor(this, speed);
@@ -1327,6 +1419,27 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc(enemy, damage);
 
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 0) {
+			damage *= 1.3f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 9) {
+			damage *= 1.3f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 19) {
+			damage *= 1.3f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 29) {
+			damage *= 1.3f;
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 39) {
+			damage *= 1.3f;
+		}
+
+		if (Dungeon.isChallenged(Challenges.MYSTIA_HIGH_STRESS) && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+			Buff.prolong(this, HighStress.class, HighStress.DURATION);
+			Buff.prolong(this, Blindness.class, Blindness.DURATION/2f);
+		}
+
 		if (Dungeon.hero.belongings.armor() instanceof YorihimeArmor && (Random.Int(50) == 0)){
 			Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION);
 		}
@@ -1363,32 +1476,6 @@ public class Hero extends Char {
 			ScrollOfTeleportation.teleportChar(enemy);
 		}
 
-		if (Dungeon.hero.belongings.weapon() instanceof FireBrand2 && enemy.properties().contains(Char.Property.ANIMAL)){
-			damage *= 2f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof FrostBrand2 && enemy.properties().contains(Char.Property.YOKAI)){
-			damage *= 2f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof FireBrand2 && enemy.buff(Burning.class) != null){
-			damage *= 10f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof FrostBrand2 && enemy.buff(Chill.class) != null){
-			damage *= 10f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof TurnaboutSword && (Random.Int(3) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
-			damage = enemy.HP-1;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof Grayswandir){
-			if (Dungeon.depth == 46 || Dungeon.depth == 47 || Dungeon.depth == 48 || Dungeon.depth == 49 || Dungeon.depth == 50 || Dungeon.depth == 96 || Dungeon.depth == 97 || Dungeon.depth == 98 || Dungeon.depth == 99 || Dungeon.depth == 100){
-				damage *= 2.5f;
-			}
-		}
-
 		if (Dungeon.hero.belongings.weapon() instanceof PlayMat && buff(Weakness.class) != null && enemy.buff(Weakness.class) != null){
 			damage *= 1f;
 		}
@@ -1417,83 +1504,11 @@ public class Hero extends Char {
 			damage *= 1f;
 		}
 
-		if (Dungeon.hero.belongings.weapon() instanceof MomoyoShovel){
-			if (this.HP == 2 || this.HP == 3 || this.HP == 5 || this.HP == 7 || this.HP == 11 || this.HP == 13 || this.HP == 17 || this.HP == 19 || this.HP == 23 || this.HP == 29 || this.HP == 31 || this.HP == 37 || this.HP == 41 || this.HP == 43 || this.HP == 47 || this.HP == 53 || this.HP == 59 || this.HP == 61 || this.HP == 67 || this.HP == 71 || this.HP == 73 || this.HP == 79 || this.HP == 83 || this.HP == 89 || this.HP == 97 || this.HP == 101 || this.HP == 103 || this.HP == 107 || this.HP == 109 || this.HP == 113 || this.HP == 127 || this.HP == 131 || this.HP == 137 || this.HP == 139 || this.HP == 149 || this.HP == 151 || this.HP == 157 || this.HP == 163 || this.HP == 167 || this.HP == 173 || this.HP == 179 || this.HP == 181 || this.HP == 191 || this.HP == 193 || this.HP == 197 || this.HP == 199 || this.HP == 211 || this.HP == 223 || this.HP == 227 || this.HP == 229 || this.HP == 233 || this.HP == 239 || this.HP == 241 || this.HP == 251 || this.HP == 257 || this.HP == 263 || this.HP == 269 || this.HP == 271 || this.HP == 277 || this.HP == 281 || this.HP == 283 || this.HP == 293){
-				damage *= 3f;
-			}
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof WatermelonSword){
-			if (this.HP == 9 || this.HP == 19 || this.HP == 29 || this.HP == 39 || this.HP == 49 || this.HP == 59 || this.HP == 69 || this.HP == 79 || this.HP == 89 || this.HP == 90 || this.HP == 91 || this.HP == 92 || this.HP == 93 || this.HP == 94 || this.HP == 95 || this.HP == 96 || this.HP == 97 || this.HP == 98 || this.HP == 109 || this.HP == 119 || this.HP == 129 || this.HP == 139 || this.HP == 149 || this.HP == 159 || this.HP == 169 || this.HP == 179 || this.HP == 189 || this.HP == 190 || this.HP == 191 || this.HP == 192 || this.HP == 193 || this.HP == 194 || this.HP == 195 || this.HP == 196 || this.HP == 197 || this.HP == 198 || this.HP == 209 || this.HP == 219 || this.HP == 229 || this.HP == 239 || this.HP == 249 || this.HP == 259 || this.HP == 269 || this.HP == 279 || this.HP == 289 || this.HP == 290 || this.HP == 291 || this.HP == 292 || this.HP == 293 || this.HP == 294 || this.HP == 295 || this.HP == 296 || this.HP == 297 || this.HP == 298){
-				damage *= 3f;
-			}
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof WatermelonSword){
-			if (this.HP == 99 || this.HP == 199 || this.HP == 299){
-				damage *= 9f;
-			}
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof RandomPhone && Dungeon.gold > 9999){
-			damage *= 1.2f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof YukinaMic && enemy.properties().contains(Char.Property.ANIMAL)) {
-			damage *= 0.05f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof YukinaMic && !enemy.properties().contains(Char.Property.ANIMAL)) {
-			damage *= 2f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof HellMic && !enemy.properties().contains(Char.Property.ANIMAL)) {
-			damage *= 2.5f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof BlazingStar){
-			if (this.HP == 1 || this.HP == 2 || this.HP == 3 || this.HP == 5 || this.HP == 8 || this.HP == 13 || this.HP == 16 || this.HP == 21 || this.HP == 34 || this.HP == 55 || this.HP == 81 || this.HP == 89 || this.HP == 144 || this.HP == 233 || this.HP == 256 || this.HP == 377 || this.HP == 610 || this.HP == 625 || this.HP == 987){
-				damage *= 4f;
-			}
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof WatermelonSword && enemy.properties().contains(Char.Property.BOSS)){
-				damage *= 0.5f;
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof Flintlock){
-			if (this.HP == 1 || this.HP == 4 || this.HP == 9 || this.HP == 16 || this.HP == 25 || this.HP == 36 || this.HP == 49 || this.HP == 64 || this.HP == 81 || this.HP == 100 || this.HP == 121 || this.HP == 144 || this.HP == 169 || this.HP == 196 || this.HP == 225 || this.HP == 256 || this.HP == 289 || this.HP == 324 || this.HP == 361 || this.HP == 400 || this.HP == 441 || this.HP == 484 || this.HP == 529 || this.HP == 576 || this.HP == 625 || this.HP == 676 || this.HP == 729 || this.HP == 784 || this.HP == 841 || this.HP == 900 || this.HP == 961 || this.HP == 1024){
-				damage *= 5f;
-			}
-		}
-
 		if (Dungeon.hero.belongings.weapon() instanceof FullmoonScythe){
 			if (this.lvl == 1 || this.lvl == 3 || this.lvl == 5 || this.lvl == 7 || this.lvl == 9 || this.lvl == 11 || this.lvl == 13 || this.lvl == 15 || this.lvl == 17 || this.lvl == 19 || this.lvl == 21 || this.lvl == 23 || this.lvl == 25 || this.lvl == 27 || this.lvl == 29 || this.lvl == 31 || this.lvl == 33 || this.lvl == 35 || this.lvl == 37 || this.lvl == 39 || this.lvl == 41 || this.lvl == 43 || this.lvl == 45 || this.lvl == 47 || this.lvl == 49 || this.lvl == 51 || this.lvl == 53 || this.lvl == 55 || this.lvl == 57 || this.lvl == 59 || this.lvl == 61 || this.lvl == 63 || this.lvl == 65 || this.lvl == 67 || this.lvl == 69 || this.lvl == 71 || this.lvl == 73 || this.lvl == 75 || this.lvl == 77 || this.lvl == 79 || this.lvl == 81 || this.lvl == 83 || this.lvl == 85 || this.lvl == 87 || this.lvl == 89 || this.lvl == 91 || this.lvl == 93 || this.lvl == 95 || this.lvl == 97 || this.lvl == 99){
 			damage *= 1.5f;
 				Buff.affect(enemy, Bleeding.class).set(12);
 			}
-		}
-
-		if (Dungeon.hero.belongings.weapon() instanceof RunicBlade && Statistics.amuletObtained){
-			damage *= 2f;
-		}
-
-		if (Dungeon.hero.HP < enemy.HP && Dungeon.hero.belongings.weapon() instanceof TurnaboutCloak){
-			damage *= 2f;
-		}
-
-		if (Dungeon.hero.HP < Dungeon.depth && Dungeon.hero.belongings.weapon() instanceof DoubleSword){
-			damage *= 3f;
-		}
-
-		if (buff(ArisastarRank1.class) != null){
-			damage *= 1.5f;
-		}
-		if (buff(ArisastarRank2.class) != null){
-			damage *= 2f;
-		}
-		if (buff(ArisastarRank3.class) != null){
-			damage *= 3f;
 		}
 
 		if (heroClass == HeroClass.REISENPLAYER && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
@@ -1518,14 +1533,14 @@ public class Hero extends Char {
 			damage *= 1.8f;
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MINDVISION) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MINDVISION) == 1) {
+		if (hasTalent(Talent.CURSED_MINDVISION) && pointsInTalent(Talent.CURSED_MINDVISION) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
 				if (item.cursed) {
 					Buff.prolong(this, MindVision.class, MindVision.DURATION / 20f);
 				}
 			}
 		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MINDVISION) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_MINDVISION) == 2) {
+		if (hasTalent(Talent.CURSED_MINDVISION) && pointsInTalent(Talent.CURSED_MINDVISION) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
 				if (item.cursed) {
 					Buff.prolong(this, MindVision.class, MindVision.DURATION);
@@ -1533,7 +1548,7 @@ public class Hero extends Char {
 			}
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_HASTE) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_HASTE) == 1) {
+		if (hasTalent(Talent.CURSED_HASTE) && pointsInTalent(Talent.CURSED_HASTE) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
 				if (item.cursed) {
 					if ((Random.Int(5) == 0)) {
@@ -1542,7 +1557,7 @@ public class Hero extends Char {
 				}
 			}
 		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_HASTE) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_HASTE) == 2) {
+		if (hasTalent(Talent.CURSED_HASTE) && pointsInTalent(Talent.CURSED_HASTE) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
 				if (item.cursed) {
 					if ((Random.Int(5) == 0)) {
@@ -1552,7 +1567,7 @@ public class Hero extends Char {
 			}
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVU) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVU) == 1) {
+		if (hasTalent(Talent.CURSED_INVU) && pointsInTalent(Talent.CURSED_INVU) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
 				if (item.cursed) {
 					if ((Random.Int(8) == 0)) {
@@ -1561,7 +1576,7 @@ public class Hero extends Char {
 				}
 			}
 		}
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVU) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVU) == 2) {
+		if (hasTalent(Talent.CURSED_INVU) && pointsInTalent(Talent.CURSED_INVU) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
 				if (item.cursed) {
 					if ((Random.Int(8) == 0)) {
@@ -1571,53 +1586,99 @@ public class Hero extends Char {
 			}
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.YUYUKOPLAYER && (Random.Int(12-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.COMING_DEATH)) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
+		if (Dungeon.hero.heroClass == HeroClass.YUYUKOPLAYER && (Random.Int(12-pointsInTalent(Talent.COMING_DEATH)) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(10-pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.AQUA_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
+		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(10-pointsInTalent(Talent.AQUA_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_MEAL)==1 && enemy.properties().contains(Property.ANIMAL)){
+		if (hasTalent(Talent.ANIMAL_MEAL) && pointsInTalent(Talent.ANIMAL_MEAL)==1 && enemy.properties().contains(Property.ANIMAL)){
 			Hunger hunger = Buff.affect(this, Hunger.class);
 			hunger.affectHunger(10);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_MEAL)==2 && enemy.properties().contains(Property.ANIMAL)){
+		if (hasTalent(Talent.ANIMAL_MEAL) && pointsInTalent(Talent.ANIMAL_MEAL)==2 && enemy.properties().contains(Property.ANIMAL)){
 			Hunger hunger = Buff.affect(this, Hunger.class);
 			hunger.affectHunger(15);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_ENHANCED_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_ENHANCED_MEAL)==1 && enemy.properties().contains(Property.ANIMAL)){
+		if (hasTalent(Talent.ANIMAL_ENHANCED_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_ENHANCED_MEAL
+		)==1 && enemy.properties().contains(Property.ANIMAL)){
 			Hunger hunger = Buff.affect(this, Hunger.class);
 			hunger.affectHunger(30);
 			this.HP = Math.min(this.HP + 2, this.HT);
 			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_ENHANCED_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_ENHANCED_MEAL)==2 && enemy.properties().contains(Property.ANIMAL)){
+		if (hasTalent(Talent.ANIMAL_ENHANCED_MEAL) && pointsInTalent(Talent.ANIMAL_ENHANCED_MEAL)==2 && enemy.properties().contains(Property.ANIMAL)){
 			Hunger hunger = Buff.affect(this, Hunger.class);
 			hunger.affectHunger(40);
 			this.HP = Math.min(this.HP + 3, this.HT);
 			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.DOOM_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.DOOM_ATTACK)==1){
+		if (hasTalent(Talent.DOOM_ATTACK) && pointsInTalent(Talent.DOOM_ATTACK)==1){
 			if ((Random.Int(10) == 0))
 				Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.DOOM_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.DOOM_ATTACK)==2){
+		if (hasTalent(Talent.DOOM_ATTACK) && pointsInTalent(Talent.DOOM_ATTACK)==2){
 			if ((Random.Int(8) == 0))
 				Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
 		}
 
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.DOOM_ATTACK) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.DOOM_ATTACK)==3){
+		if (hasTalent(Talent.DOOM_ATTACK) && pointsInTalent(Talent.DOOM_ATTACK)==3){
 			if ((Random.Int(6) == 0))
 				Buff.affect(enemy, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
+		}
+
+		if (hasTalent(Talent.SLOWED_ATTACK) && pointsInTalent(Talent.SLOWED_ATTACK)==1){
+			if ((Random.Int(10) == 0))
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.SLOWED_ATTACK) && pointsInTalent(Talent.SLOWED_ATTACK)==2){
+			if ((Random.Int(8) == 0))
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.SLOWED_ATTACK) && pointsInTalent(Talent.SLOWED_ATTACK)==3){
+			if ((Random.Int(6) == 0))
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.SLOWED_SNIPE) && pointsInTalent(Talent.SLOWED_SNIPE)==1 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
+			if ((Random.Int(5) == 0))
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.SLOWED_SNIPE) && pointsInTalent(Talent.SLOWED_SNIPE)==2 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
+			if ((Random.Int(4) == 0))
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.SLOWED_SNIPE) && pointsInTalent(Talent.SLOWED_SNIPE)==3 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
+			if ((Random.Int(3) == 0))
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.HORROR_ATTACK) && pointsInTalent(Talent.HORROR_ATTACK)==1){
+			if ((Random.Int(10) == 0))
+				Buff.prolong(enemy, Terror.class, Terror.DURATION);
+		}
+
+		if (hasTalent(Talent.HORROR_ATTACK) && pointsInTalent(Talent.HORROR_ATTACK)==2){
+			if ((Random.Int(9) == 0))
+				Buff.prolong(enemy, Terror.class, Terror.DURATION);
+		}
+
+		if (hasTalent(Talent.HORROR_ATTACK) && pointsInTalent(Talent.HORROR_ATTACK)==3){
+			if ((Random.Int(8) == 0))
+				Buff.prolong(enemy, Terror.class, Terror.DURATION);
 		}
 
 		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.EVERYONE_IS_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.EVERYONE_IS_MEAL)==1){
@@ -1737,6 +1798,25 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(5) == 0)){
 			Dungeon.level.setCellToWater(false, pos);
+		}
+
+		if (Dungeon.isChallenged(Challenges.SACRIFICE_WORDS) && this.HP < this.HT/5) {
+			Buff.prolong(this, Silence.class, Silence.DURATION/10f);
+		}
+
+		if (hasTalent(Talent.HORROR_DEFENSE) && pointsInTalent(Talent.HORROR_DEFENSE)==1){
+			if ((Random.Int(10) == 0))
+				Buff.prolong(enemy, Terror.class, Terror.DURATION);
+		}
+
+		if (hasTalent(Talent.HORROR_DEFENSE) && pointsInTalent(Talent.HORROR_DEFENSE)==2){
+			if ((Random.Int(9) == 0))
+				Buff.prolong(enemy, Terror.class, Terror.DURATION);
+		}
+
+		if (hasTalent(Talent.HORROR_DEFENSE) && pointsInTalent(Talent.HORROR_DEFENSE)==3){
+			if ((Random.Int(8) == 0))
+				Buff.prolong(enemy, Terror.class, Terror.DURATION);
 		}
 
 		if (Dungeon.hero.belongings.weapon() instanceof KoishiSword && (Random.Int(4) == 0)){
@@ -2523,6 +2603,37 @@ public class Hero extends Char {
 		boolean wasHighGrass = Dungeon.level.map[step] == Terrain.HIGH_GRASS;
 
 		super.move(step, travelling);
+
+		if (Dungeon.isChallenged(Challenges.REISEN_GAZE)){
+			if (Dungeon.level.distance(Dungeon.hero.pos, pos) <= 1) {
+				BArray.setFalse(Dungeon.level.visited);
+				BArray.setFalse(Dungeon.level.mapped);
+
+				GameScene.updateFog(); //just in case hero wasn't moved
+				Dungeon.observe();
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && Dungeon.hero.belongings.ring() instanceof RingOfHaste){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( this, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( this, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( this, Silence.class, Silence.DURATION*2f);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && Dungeon.hero.belongings.ring() instanceof RingOfFuror){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( this, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( this, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( this, Silence.class, Silence.DURATION*2f);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && Dungeon.hero.belongings.armor() instanceof ToyohimeArmor){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( this, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( this, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( this, Silence.class, Silence.DURATION*2f);
+		}
 
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER) {
 			Buff.affect(this, UnderwaterCurse.class);

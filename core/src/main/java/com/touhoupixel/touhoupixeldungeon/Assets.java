@@ -253,6 +253,7 @@ public class Assets {
 		public static final String MURASAPLAYER	= "splashes/murasaplayer.jpg";
 		public static final String HINAPLAYER     = "splashes/hinaplayer.jpg";
 		public static final String KAGUYAPLAYER     = "splashes/kaguyaplayer.jpg";
+		public static final String KOGASAPLAYER     = "splashes/kogasaplayer.jpg";
 	}
 
 	public static class Sprites {
@@ -269,6 +270,7 @@ public class Assets {
 		public static final String MURASAPLAYER	= "sprites/murasaplayer.png";
 		public static final String HINAPLAYER = "sprites/hinaplayer.png";
 		public static final String KAGUYAPLAYER = "sprites/kaguyaplayer.png";
+		public static final String KOGASAPLAYER = "sprites/kogasaplayer.png";
 		public static final String AVATARS	= "sprites/avatars.png";
 		public static final String PET		= "sprites/pet.png";
 		public static final String AMULET	= "sprites/amulet.png";
@@ -322,37 +324,36 @@ public class Assets {
 		public static final String SHOU		= "sprites/shou.png";
 		public static final String RAT		= "sprites/rat.png";
 		public static final String BRUTE	= "sprites/brute.png";
-		public static final String SPINNER	= "sprites/spinner.png";
-		public static final String DM300	= "sprites/dm300.png";
+		public static final String YAMAME	= "sprites/yamame.png";
+		public static final String TENSHIBOSS	= "sprites/tenshiboss.png";
 		public static final String WRAITH	= "sprites/wraith.png";
 		public static final String UNDEAD	= "sprites/undead.png";
 		public static final String KING		= "sprites/king.png";
-		public static final String PIRANHA	= "sprites/piranha.png";
-		public static final String EYE		= "sprites/eye.png";
-		public static final String GNOLL	= "sprites/gnoll.png";
+		public static final String MURASA	= "sprites/murasa.png";
+		public static final String JUNKO		= "sprites/junko.png";
+		public static final String KISUME	= "sprites/kisume.png";
 		public static final String MAI		= "sprites/mai.png";
 		public static final String SATONO	= "sprites/satono.png";
 		public static final String MEGUMU	= "sprites/megumu.png";
 		public static final String CRAB		= "sprites/crab.png";
-		public static final String GOO		= "sprites/goo.png";
-		public static final String SWARM	= "sprites/swarm.png";
-		public static final String SKELETON	= "sprites/skeleton.png";
+		public static final String CIRNO		= "sprites/cirno.png";
+		public static final String ALICE	= "sprites/alice.png";
+		public static final String PATCHOULI	= "sprites/patchouli.png";
 		public static final String SHAMAN	= "sprites/shaman.png";
 		public static final String THIEF	= "sprites/thief.png";
-		public static final String TENGU	= "sprites/tengu.png";
+		public static final String SUIKA	= "sprites/suika.png";
 		public static final String SHEEP	= "sprites/sheep.png";
 		public static final String KEEPER	= "sprites/shopkeeper.png";
 		public static final String BAT		= "sprites/bat.png";
 		public static final String ELEMENTAL= "sprites/elemental.png";
 		public static final String MONK		= "sprites/monk.png";
-		public static final String WARLOCK	= "sprites/warlock.png";
-		public static final String GOLEM	= "sprites/golem.png";
+		public static final String RAN	= "sprites/ran.png";
+		public static final String KASEN	= "sprites/kasen.png";
 		public static final String STATUE	= "sprites/statue.png";
-		public static final String SUCCUBUS	= "sprites/succubus.png";
-		public static final String SCORPIO	= "sprites/scorpio.png";
+		public static final String REISEN	= "sprites/reisen.png";
+		public static final String SAGUME	= "sprites/sagume.png";
 		public static final String FISTS	= "sprites/yog_fists.png";
 		public static final String YOG		= "sprites/yog.png";
-		public static final String LARVA	= "sprites/larva.png";
 		public static final String GHOST	= "sprites/ghost.png";
 		public static final String MAKER	= "sprites/wandmaker.png";
 		public static final String TROLL	= "sprites/blacksmith.png";
@@ -362,18 +363,18 @@ public class Assets {
 		public static final String MIMIC    = "sprites/mimic.png";
 		public static final String ROT_LASH = "sprites/rot_lasher.png";
 		public static final String ROT_HEART= "sprites/rot_heart.png";
-		public static final String GUARD    = "sprites/guard.png";
+		public static final String YUUGI    = "sprites/yuugi.png";
 		public static final String WARDS    = "sprites/wards.png";
 		public static final String GUARDIAN	= "sprites/guardian.png";
 		public static final String SAKI	= "sprites/saki.png";
 		public static final String SNAKE	= "sprites/snake.png";
-		public static final String NECRO	= "sprites/necromancer.png";
+		public static final String FLANDRE	= "sprites/flandre.png";
 		public static final String GHOUL	= "sprites/ghoul.png";
 		public static final String RIPPER	= "sprites/ripper.png";
 		public static final String SPAWNER	= "sprites/spawner.png";
-		public static final String DM100	= "sprites/dm100.png";
+		public static final String TOJIKO	= "sprites/tojiko.png";
 		public static final String PYLON	= "sprites/pylon.png";
-		public static final String DM200	= "sprites/dm200.png";
+		public static final String KANAKO	= "sprites/kanako.png";
 		public static final String AKYUU	= "sprites/akyuu.png";
 		public static final String KUTAKA	= "sprites/kutaka.png";
 		public static final String KYOUKO	= "sprites/kyouko.png";
@@ -394,10 +395,6 @@ public class Assets {
 		public static final String AUNN	= "sprites/aunn.png";
 		public static final String NEMUNO	= "sprites/nemuno.png";
 		public static final String DESTORB	= "sprites/destorb.png";
-		public static final String FLANDREBOSS	= "sprites/flandreboss.png";
-		public static final String KISUMEBOSS	= "sprites/kisumeboss.png";
 		public static final String LOTUS	= "sprites/lotus.png";
-		public static final String NINJA_LOG= "sprites/ninja_log.png";
-		public static final String SPIRIT_HAWK= "sprites/spirit_hawk.png";
 	}
 }

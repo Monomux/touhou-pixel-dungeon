@@ -131,7 +131,7 @@ public class v0_9_X_Changes {
 				"_-_ Improved icons for several existing talents.\n" +
 				"_-_ Added little icons to the titles of various windows."));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various rare crash issues\n" +
 				"_-_ Various minor VFX/SFX/text issues\n" +
@@ -151,7 +151,7 @@ public class v0_9_X_Changes {
 				"_-_ Ghost hero not saying anything when the hero dies\n" +
 				"_-_ Various rare AI bugs with Ghost hero"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Incendiary darts being instantly used up when used on terrain\n" +
 				"_-_ Wands of regrowth and fireblast using more than 3 charges in rare cases\n" +
@@ -165,7 +165,7 @@ public class v0_9_X_Changes {
 				"_-_ Items with boosted levels being remove-cursable\n" +
 				"_-_ Magical infusion not clearing the degrade debuff"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Giant swarms duplicating in enclosed spaces\n" +
 				"_-_ Giant champions being able to attack through other characters\n" +
@@ -285,7 +285,7 @@ public class v0_9_X_Changes {
 				"_-_ Reduced the intensity of white flash effects, should help photosensitive users\n" +
 				"_-_ The hero now hovers while idling if they are levitating, instead of appearing to stand"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ various rare crash bugs\n" +
 				"_-_ various rare errors with levelgen\n" +
@@ -307,7 +307,7 @@ public class v0_9_X_Changes {
 				"_-_ kinetic enchantment ignoring enemy shields\n" +
 				"_-_ regrowth bombs placing plants in incorrect locations"));
 
-			changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+			changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ combo moves not cancelling invisibility or time freeze\n" +
 				"_-_ cases where Assassin couldn't blink to places he should be able to blink to.\n" +
@@ -328,7 +328,7 @@ public class v0_9_X_Changes {
 		changes.hardlight(CharSprite.POSITIVE);
 		changeInfos.add(changes);
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.TENGU, 0, 0, 14, 16), "Midgame Enemies",
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SUIKA, 0, 0, 14, 16), "Midgame Enemies",
 				"I have given some milder buffs out to enemies in the prison and caves, to help compensate for talents making the hero more powerful. These buffs are targeted at helping out the least lethal enemies, rather than making strong enemies even more oppressive:\n\n" +
 				"_- Necromancers:_ Max HP up to 40 from 35, evasion up to 14 from 13.\n" +
 				"_- Suika:_ Max HP up to 200 from 160, ranged accuracy up to 20 from 18, melee accuracy down to 10 from 12.\n\n" +
@@ -448,7 +448,7 @@ public class v0_9_X_Changes {
 				"_-_ Added some VFX to scroll of transmutation\n\n" +
 				"_-_ Updated translations and translator credits"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various minor audiovisual errors\n" +
 				"_-_ Various rare crash and freeze bugs\n" +
@@ -466,7 +466,7 @@ public class v0_9_X_Changes {
 				"_-_ Large characters entering tunnels when vertigoed\n" +
 				"_-_ Rare AI issues when paths are blocked"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various minor errors relating to time freeze\n" +
 				"_-_ Assassin blink ignoring hero being rooted\n" +
@@ -587,7 +587,7 @@ public class v0_9_X_Changes {
 				"_-_ Long pressing item slots in the alchemy screen now shows the item's description.\n\n" +
 				"_-_ Updated translations and translator credits."));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various visual errors\n" +
 				"_-_ Various rare crash bugs\n" +
@@ -609,7 +609,7 @@ public class v0_9_X_Changes {
 				"_-_ Hero unable to cleanse fire with chill when immune to it, and vice-versa\n" +
 				"_-_ DM-201's attacking while stunned"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed (existed prior to v0.9.0):\n" +
 				"_-_ Suika's abilities being reset by saving/loading\n" +
 				"_-_ Various cases where game win badges would not appear\n" +

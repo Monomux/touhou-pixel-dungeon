@@ -2,7 +2,6 @@ package com.touhoupixel.touhoupixeldungeon.ui.changelist;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroSubClass;
-import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.items.bombs.WoollyBomb;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -10,9 +9,7 @@ import com.touhoupixel.touhoupixeldungeon.scenes.ChangesScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
-import com.touhoupixel.touhoupixeldungeon.sprites.SpectralNecromancerSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.Icons;
-import com.touhoupixel.touhoupixeldungeon.ui.TalentIcon;
 import com.touhoupixel.touhoupixeldungeon.ui.Window;
 import com.watabou.noosa.Image;
 
@@ -67,7 +64,7 @@ public class v1_X_Changes {
 		changes.addButton(new ChangeButton(Icons.get(Icons.PREFS), Messages.get(ChangesScene.class, "misc"),
 				"_-_ Updated translations and translator credits"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed (caused by v1.1.0):\n" +
 				"_-_ Various rare crash bugs\n" +
 				"_-_ Various rare cases of save corruption on Android\n" +
@@ -135,7 +132,7 @@ public class v1_X_Changes {
 
 				"_-_ Newborn elementals no longer have a ranged attack"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various minor/rare visual and textual errors\n" +
 				"_-_ Cases where pausing/resuming the game at precise moments would cancel animations or attacks\n" +
@@ -154,7 +151,7 @@ public class v1_X_Changes {
 				"_-_ Vertigo and teleportation effects rarely interfering\n" +
 				"_-_ Layout issues in the hero info window with long buff names"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Cursed wands being usable to create arcane resin\n" +
 				"_-_ Unblessed ankh revival rarely causing crashes or placing the player on hazards\n" +
@@ -270,10 +267,6 @@ public class v1_X_Changes {
 				"This is partly as a reference to the tome of mastery, which I removed in the previous update, and partly because the game's tutorial functionality has been improved.\n\n" +
 				"Guidebook pages are now a bit shorter and more plentiful, and some of them are now given to the player right at the start of the game. These automatic pages are suggested to the player to read at crucial moments. This way the guidebook does a better job of highlighting info right when it's needed."));
 
-		changes.addButton(new ChangeButton(new Image(new SpectralNecromancerSprite()), "spectral necromancers",
-				"A new rare variant has been added for necromancers: _Spectral Necromancers!_\n\n" +
-				"These necromancers don't care for skeletons, and prefer to summon a bunch of wraiths instead! Dealing with their horde might be tricky, but you'll be rewarded with a scroll of remove curse."));
-
 		changes.addButton(new ChangeButton(new ItemSprite(ItemSpriteSheet.ANKH), "new ankh mechanics",
 				"_Regular Ankhs_ have been totally redesigned, and now give the player a chance to save all of their equipment! Be careful though, you'll have to fight your way back to your lost gear.\n\n" +
 				"_Blessed Ankhs_ have received comparatively minor changes. In addition to the resurrection effect, these ankhs now also give the player 3 turns of invulnerability. This should help give players a moment to heal up after being revived."));
@@ -307,7 +300,7 @@ public class v1_X_Changes {
 				"_-_ Becoming magic immune now also cleanses existing magical buffs and debuffs.\n" +
 				"_-_ Traps that spawn visible or that never deactivate can no longer appear in enclosed spaces"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various rare crash bugs\n" +
 				"_-_ Various minor visual and text errors\n" +
@@ -329,7 +322,7 @@ public class v1_X_Changes {
 				"_-_ rare incorrect interactions between swiftthistle and golden lotus\n" +
 				"_-_ Rings not being renamable if they weren't IDed"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ statues not becoming aggressive when debuffed\n" +
 				"_-_ swapping places with allies reducing momentum\n" +

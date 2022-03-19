@@ -19,39 +19,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeon.sprites;
+package com.touhoupixel.touhoupixeldungeon.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeon.Assets;
-import com.watabou.noosa.TextureFilm;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
+import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 
-public class AcidicSprite extends SagumeSprite {
+public class MurasaInfEvasion extends FlavourBuff {
 	
-	public AcidicSprite() {
-		super();
-		
-		texture( Assets.Sprites.SCORPIO );
-		
-		TextureFilm frames = new TextureFilm( texture, 18, 17 );
-		
-		idle = new Animation( 12, true );
-		idle.frames( frames, 14, 14, 14, 14, 14, 14, 14, 14, 15, 16, 15, 16, 15, 16 );
-		
-		run = new Animation( 4, true );
-		run.frames( frames, 19, 20 );
-		
-		attack = new Animation( 15, false );
-		attack.frames( frames, 14, 17, 18 );
-		
-		zap = attack.clone();
-		
-		die = new Animation( 12, false );
-		die.frames( frames, 14, 21, 22, 23, 24 );
-		
-		play( idle );
+	public static final float DURATION = 20f;
+	
+	{
+		type = buffType.POSITIVE;
+		announced = true;
 	}
 	
 	@Override
-	public int blood() {
-		return 0xFF66FF22;
+	public int icon() {
+		return BuffIndicator.MURASA_INF_EVASION;
+	}
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+	
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+	
+	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
+	}
+	
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
 	}
 }

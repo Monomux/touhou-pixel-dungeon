@@ -43,7 +43,7 @@ public class Hecatia extends Mob {
 	{
 		spriteClass = HecatiaSprite.class;
 
-		HP = HT = Dungeon.depth*2;
+		HP = HT = Dungeon.depth*3;
 		defenseSkill = Dungeon.depth;
 
 		EXP = 0;

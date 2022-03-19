@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.food;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
@@ -30,11 +31,18 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.items.Ankh;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeon.items.quest.Peach;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.utils.Random;
 
 public class TenshiPeach extends Food {
@@ -55,7 +63,12 @@ public class TenshiPeach extends Food {
 	}
 
 	public static void effect(Hero hero) {
-		switch (Random.Int(0)) {
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( hero, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( hero, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( hero, Silence.class, Silence.DURATION*2f);
+		} else switch (Random.Int(0)) {
 			case 0: case 1: case 2: case 3:
 				//GLog.i( Messages.get(MiracleFruit.class, "invis") );
 				Buff.affect(hero, Doublespeed.class, Doublespeed.DURATION);

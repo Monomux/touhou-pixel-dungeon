@@ -35,7 +35,7 @@ public class TenguDartTrap extends PoisonDartTrap {
 	
 	@Override
 	protected int poisonAmount() {
-		if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+		if (Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 			return 15; //50 damage total, equal to poison dart traps on floor 10
 		} else {
 			return 8; //17 damage total

@@ -301,7 +301,7 @@ public class Potion extends Item {
 
 			} else {
 				drink( hero );
-				if (Dungeon.isChallenged(Challenges.SPELLCARD_RULE))
+				if (Dungeon.isChallenged(Challenges.SACRIFICE_WORDS))
 					Buff.affect(curUser, Silence.class, Silence.DURATION/5);
 
 				Buff.detach(hero, ArisastarRank1.class);

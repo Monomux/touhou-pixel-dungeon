@@ -48,9 +48,9 @@ public class CirnoSprite extends MobSprite {
 	public CirnoSprite() {
 		super();
 		
-		texture( Assets.Sprites.GOO );
+		texture( Assets.Sprites.CIRNO );
 		
-		TextureFilm frames = new TextureFilm( texture, 16, 14 );
+		TextureFilm frames = new TextureFilm( texture, 14, 14 );
 		
 		idle = new Animation( 10, true );
 		idle.frames( frames, 2, 1, 0, 0, 1 );

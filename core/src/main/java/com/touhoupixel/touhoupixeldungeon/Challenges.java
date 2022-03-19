@@ -28,14 +28,14 @@ public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
 	public static final int CHAMPION_ENEMIES	= 1;
-	public static final int STRONGER_BOSSES 	= 2;
+	public static final int REISEN_GAZE 	    = 2;
 	public static final int HECATIA_TIME 	    = 4;
-	public static final int NO_FOOD				= 8;
+	public static final int KEINE_TIME			= 8;
 	public static final int EIKI_JUDGEMENT		= 16;
 	public static final int NO_HEALING			= 32;
-	public static final int NO_HERBALISM		= 64;
-	public static final int SWARM_INTELLIGENCE	= 128;
-	public static final int DARKNESS			= 256;
+	public static final int PASTEL_PALETTES		= 64;
+	public static final int MYSTIA_HIGH_STRESS  = 128;
+	public static final int SACRIFICE_WORDS		= 256;
 	public static final int ROSELIA		        = 512;
 	public static final int PACIFIST 	        = 1024;
 	public static final int SPELLCARD_RULE 	    = 2048;
@@ -50,14 +50,14 @@ public class Challenges {
 
 	public static final String[] NAME_IDS = {
 			"champion_enemies",
-			"stronger_bosses",
+			"reisen_gaze",
 			"hecatia_time",
-			"no_food",
+			"keine_time",
 			"eiki_judgement",
 			"no_healing",
-			"no_herbalism",
-			"swarm_intelligence",
-			"darkness",
+			"pastel_palettes",
+			"mystia_high_stress",
+			"sacrifice_words",
 			"roselia",
 			"pacifist",
 			"spellcard_rule",
@@ -70,7 +70,7 @@ public class Challenges {
 	};
 
 	public static final int[] MASKS = {
-			CHAMPION_ENEMIES, STRONGER_BOSSES, HECATIA_TIME, NO_FOOD, EIKI_JUDGEMENT, NO_HEALING, NO_HERBALISM, SWARM_INTELLIGENCE, DARKNESS, ROSELIA, PACIFIST, SPELLCARD_RULE, DEKAI_ENEMIES, ATHEISM, BECOME_FUMO, POPPIN_PARTY, ENEMY_GRAZE, MASTER_SPARK
+			CHAMPION_ENEMIES, REISEN_GAZE, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, NO_HEALING, PASTEL_PALETTES, MYSTIA_HIGH_STRESS, SACRIFICE_WORDS, ROSELIA, PACIFIST, SPELLCARD_RULE, DEKAI_ENEMIES, ATHEISM, BECOME_FUMO, POPPIN_PARTY, ENEMY_GRAZE, MASTER_SPARK
 	};
 
 	public static int activeChallenges(){
@@ -82,11 +82,6 @@ public class Challenges {
 	}
 
 	public static boolean isItemBlocked( Item item ){
-
-		if (Dungeon.isChallenged(NO_HERBALISM) && item instanceof Dewdrop){
-			return true;
-		}
-
 		return false;
 
 	}

@@ -33,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.NoPotion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
+import com.touhoupixel.touhoupixeldungeon.items.MokouRibbon;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.CirnoSprite;
@@ -46,7 +47,7 @@ public class CirnoBoss extends Mob {
 	{
 		spriteClass = CirnoSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 150 : 100;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 150 : 100;
 
 		defenseSkill = 10;
 
@@ -77,6 +78,7 @@ public class CirnoBoss extends Mob {
 	public void die( Object cause ) {
 		super.die( cause );
 		Statistics.mansionbosskillcount += 1;
+		Dungeon.level.drop( new MokouRibbon(), pos ).sprite.drop();
 
 		if (Statistics.mansionbosskillcount > 3){
 			Dungeon.level.unseal();

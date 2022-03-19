@@ -23,9 +23,11 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.items.food.MysteryMeat;
 import com.touhoupixel.touhoupixeldungeon.sprites.AlbinoSprite;
 import com.watabou.utils.Random;
@@ -42,7 +44,7 @@ public class Albino extends Wriggle {
 		EXP = 2;
 		
 		loot = new MysteryMeat();
-		lootChance = 0.8f;
+		lootChance = 0.1f;
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.HAPPY);
@@ -52,8 +54,8 @@ public class Albino extends Wriggle {
 	public int attackProc( Char enemy, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
-			if (Random.Int(2) == 0) {
-				Buff.affect(enemy, Bleeding.class).set(damage);
+			if (Random.Int(4) == 0) {
+				Buff.prolong(enemy, Vertigo.class, Vertigo.DURATION);
 			}
 		}
 		return damage;

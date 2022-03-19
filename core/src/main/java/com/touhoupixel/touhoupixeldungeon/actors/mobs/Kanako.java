@@ -23,14 +23,16 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
-import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
-import com.touhoupixel.touhoupixeldungeon.actors.blobs.ToxicGas;
-import com.touhoupixel.touhoupixeldungeon.items.Generator;
-import com.touhoupixel.touhoupixeldungeon.items.Item;
-import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
-import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfWeakness;
+import com.touhoupixel.touhoupixeldungeon.sprites.KaguyaSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.KanakoSprite;
-import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Kanako extends Mob {
@@ -39,148 +41,55 @@ public class Kanako extends Mob {
 		spriteClass = KanakoSprite.class;
 
 		if (Dungeon.depth > 50){
-			HP = HT = 601;
-		} else HP = HT = 104;
+			HP = HT = 478;
+		} else HP = HT = 67;
 
 		if (Dungeon.depth > 50){
-			defenseSkill = 80;
-		} else defenseSkill = 30;
+			defenseSkill = 75;
+		} else defenseSkill = 25;
 
 		if (Dungeon.depth > 50){
-			EXP = 63;
-		} else EXP = 13;
+			EXP = 61;
+		} else EXP = 11;
 
 		if (Dungeon.depth > 50){
-			maxLvl = 80;
-		} else maxLvl = 30;
+			maxLvl = 75;
+		} else maxLvl = 25;
 
-		loot = Random.oneOf(Generator.Category.WEAPON, Generator.Category.ARMOR);
-		lootChance = 0.125f; //initially, see rollToDropLoot
+		loot = new ScrollOfWeakness();
+		lootChance = 0.05f;
 
 		properties.add(Property.GOD);
 		properties.add(Property.POWERFUL);
-
-		HUNTING = new Hunting();
 	}
 
 	@Override
 	public int damageRoll() {
 		if (Dungeon.depth > 50) {
-			return Random.NormalIntRange(56, 61);
-		} else return Random.NormalIntRange(27, 32);
+			return Random.NormalIntRange(47, 50);
+		} else return Random.NormalIntRange(12, 17);
 	}
 
 	@Override
 	public int attackSkill(Char target) {
 		if (Dungeon.depth > 50) {
-			return 80;
-		} else return 30;
+			return 75;
+		} else return 25;
 	}
 
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 8);
+		return Random.NormalIntRange(0, 2);
 	}
 
 	@Override
-	public void rollToDropLoot() {
-		//each drop makes future drops 1/2 as likely
-		// so loot chance looks like: 1/8, 1/16, 1/32, 1/64, etc.
-		lootChance *= Math.pow(1/2f, Dungeon.LimitedDrops.DM200_EQUIP.count);
-		super.rollToDropLoot();
-	}
-
-	protected Item createLoot() {
-		Dungeon.LimitedDrops.DM200_EQUIP.count++;
-		//uses probability tables for dwarf city
-		if (loot == Generator.Category.WEAPON){
-			return Generator.randomWeapon(4);
-		} else {
-			return Generator.randomArmor(4);
-		}
-	}
-
-	private int ventCooldown = 0;
-
-	private static final String VENT_COOLDOWN = "vent_cooldown";
-
-	@Override
-	public void storeInBundle(Bundle bundle) {
-		super.storeInBundle(bundle);
-		bundle.put(VENT_COOLDOWN, ventCooldown);
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		ventCooldown = bundle.getInt( VENT_COOLDOWN );
-	}
-
-	@Override
-	protected boolean act() {
-		ventCooldown--;
-		return super.act();
-	}
-
-	public void onZapComplete(){
-		zap();
-		next();
-	}
-
-	private void zap( ){
-		spend( TICK );
-		ventCooldown = 30;
-
-		Ballistica trajectory = new Ballistica(pos, enemy.pos, Ballistica.STOP_TARGET);
-
-		for (int i : trajectory.subPath(0, trajectory.dist)){
-			GameScene.add(Blob.seed(i, 20, ToxicGas.class));
-		}
-		GameScene.add(Blob.seed(trajectory.collisionPos, 100, ToxicGas.class));
-
-	}
-
-	private class Hunting extends Mob.Hunting{
-
-		@Override
-		public boolean act(boolean enemyInFOV, boolean justAlerted) {
-			if (!enemyInFOV || canAttack(enemy)) {
-				return super.act(enemyInFOV, justAlerted);
-			} else {
-				enemySeen = true;
-				target = enemy.pos;
-
-				int oldPos = pos;
-
-				if (ventCooldown <= 0 && distance(enemy) >= 1 && Random.Int(100/distance(enemy)) == 0){
-					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						sprite.zap( enemy.pos );
-						return false;
-					} else {
-						zap();
-						return true;
-					}
-
-				} else if (getCloser( target )) {
-					spend( 1 / speed() );
-					return moveSprite( oldPos,  pos );
-
-				} else if (ventCooldown <= 0) {
-					if (sprite != null && (sprite.visible || enemy.sprite.visible)) {
-						sprite.zap( enemy.pos );
-						return false;
-					} else {
-						zap();
-						return true;
-					}
-
-				} else {
-					spend( TICK );
-					return true;
-				}
-
+	public int attackProc( Char hero, int damage ) {
+		damage = super.attackProc( enemy, damage );
+		if (this.buff(Incompetence.class) == null) {
+			if (Random.Int(5) == 0) {
+				Buff.prolong(enemy, Degrade.class, Degrade.DURATION);
 			}
 		}
+		return damage;
 	}
-
 }

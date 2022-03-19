@@ -40,7 +40,7 @@ public class RumiaBoss extends Mob {
 	{
 		spriteClass = RumiaSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 150 : 100;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 150 : 100;
 
 		defenseSkill = 10;
 

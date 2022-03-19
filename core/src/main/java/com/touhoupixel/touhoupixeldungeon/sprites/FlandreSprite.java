@@ -19,7 +19,7 @@ public class FlandreSprite extends MobSprite {
 	public FlandreSprite(){
 		super();
 
-		texture( Assets.Sprites.NECRO );
+		texture( Assets.Sprites.FLANDRE );
 		TextureFilm film = new TextureFilm( texture, 16, 16 );
 
 		int c = 16;

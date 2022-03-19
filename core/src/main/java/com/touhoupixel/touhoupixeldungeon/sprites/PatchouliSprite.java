@@ -31,7 +31,7 @@ public class PatchouliSprite extends MobSprite {
 	public PatchouliSprite() {
 		super();
 		
-		texture( Assets.Sprites.SKELETON );
+		texture( Assets.Sprites.PATCHOULI );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

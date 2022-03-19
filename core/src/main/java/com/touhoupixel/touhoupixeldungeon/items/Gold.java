@@ -63,12 +63,14 @@ public class Gold extends Item {
 	public boolean doPickUp(Hero hero, int pos) {
 
 		Prayer flask = hero.belongings.getItem(Prayer.class);
+		KogasaPrayer kogasaflask = hero.belongings.getItem(KogasaPrayer.class);
 
 		if (flask != null && !flask.isFull()) {
-
 			flask.collectPray(this);
-			GameScene.pickUp(this, hero.pos);
+		}
 
+		if (kogasaflask != null && !kogasaflask.isFull()) {
+			kogasaflask.collectPray(this);
 		}
 
 		Dungeon.gold += quantity;

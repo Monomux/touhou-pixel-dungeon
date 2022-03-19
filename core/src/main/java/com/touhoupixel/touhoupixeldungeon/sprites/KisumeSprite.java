@@ -29,7 +29,7 @@ public class KisumeSprite extends MobSprite {
 	public KisumeSprite() {
 		super();
 		
-		texture( Assets.Sprites.GNOLL );
+		texture( Assets.Sprites.KISUME );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

@@ -21,9 +21,14 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.potions;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
@@ -37,8 +42,13 @@ public class PotionOfHaste extends Potion {
 	@Override
 	public void apply(Hero hero) {
 		identify();
-		
-		GLog.w( Messages.get(this, "energetic") );
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( hero, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( hero, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( hero, Silence.class, Silence.DURATION*2f);
+		} else GLog.w( Messages.get(this, "energetic") );
 		Buff.prolong( hero, Haste.class, Haste.DURATION);
 	}
 	

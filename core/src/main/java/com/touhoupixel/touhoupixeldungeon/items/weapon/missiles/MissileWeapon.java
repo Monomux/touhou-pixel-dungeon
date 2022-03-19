@@ -90,7 +90,7 @@ abstract public class MissileWeapon extends Weapon {
 
 	@Override
 	public int max(int lvl) {
-		return 7*tier+
+		return 6*tier+
 				(tier == 1 ? 2*lvl : tier*lvl);
 	}
 

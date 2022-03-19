@@ -52,7 +52,7 @@ public class TwoSoySauce extends Food {
 		if ( hero.buff(AntiHeal.class) != null ) {
 			hero.damage(hero.HT / 2, hero);
 		} else switch (Random.Int( 0 )) {
-			case 0: case 1:
+			case 0:
 				//GLog.i( Messages.get(MiracleFruit.class, "invis") );
 				hero.HP = Math.min(hero.HP + hero.HT / 2, hero.HT);
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);

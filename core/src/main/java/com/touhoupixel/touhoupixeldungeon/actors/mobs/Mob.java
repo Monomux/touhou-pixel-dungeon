@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Adrenaline;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AllyBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ChampionEnemy;
@@ -77,6 +78,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.darts.Dart;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
+import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.plants.Swiftthistle;
@@ -623,7 +625,14 @@ public abstract class Mob extends Char {
 	public int attackProc( Char enemy, int damage ) {
 
 		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)){
-			damage += Statistics.goldPickedup/5+Statistics.enemiesSlain/40;
+			damage += Statistics.goldPickedup/10+Statistics.enemiesSlain/50;
+		}
+
+		for (int i : PathFinder.NEIGHBOURS4) {
+			if (Dungeon.isChallenged(Challenges.PASTEL_PALETTES) && enemy instanceof Hero && enemy.pos == this.pos+i){
+				damage *= 2f;
+				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
+			}
 		}
 
 		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
@@ -1047,7 +1056,7 @@ public abstract class Mob extends Char {
 				target = Dungeon.level.randomDestination( Mob.this );
 			}
 
-			if (alignment == Alignment.ENEMY && Dungeon.isChallenged(Challenges.SWARM_INTELLIGENCE)) {
+			if (alignment == Alignment.ENEMY && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 				for (Mob mob : Dungeon.level.mobs) {
 					if (mob.paralysed <= 0
 							&& Dungeon.level.distance(pos, mob.pos) <= 8
@@ -1085,7 +1094,7 @@ public abstract class Mob extends Char {
 			state = HUNTING;
 			target = enemy.pos;
 			
-			if (alignment == Alignment.ENEMY && Dungeon.isChallenged( Challenges.SWARM_INTELLIGENCE )) {
+			if (alignment == Alignment.ENEMY && Dungeon.isChallenged( Challenges.HECATIA_TIME )) {
 				for (Mob mob : Dungeon.level.mobs) {
 					if (mob.paralysed <= 0
 							&& Dungeon.level.distance(pos, mob.pos) <= 8

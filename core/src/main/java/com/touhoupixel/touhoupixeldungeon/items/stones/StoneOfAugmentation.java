@@ -21,9 +21,16 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.stones;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Belongings;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
@@ -34,6 +41,7 @@ import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeon.ui.RedButton;
 import com.touhoupixel.touhoupixeldungeon.ui.RenderedTextBlock;
 import com.touhoupixel.touhoupixeldungeon.ui.Window;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.touhoupixel.touhoupixeldungeon.windows.IconTitle;
 
 public class StoneOfAugmentation extends InventoryStone {
@@ -50,13 +58,18 @@ public class StoneOfAugmentation extends InventoryStone {
 
 	@Override
 	protected void onItemSelected(Item item) {
-		
-		GameScene.show(new WndAugment( item));
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( curUser, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( curUser, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( curUser, Silence.class, Silence.DURATION*2f);
+		} else GameScene.show(new WndAugment( item));
 		
 	}
 	
 	public void apply( Weapon weapon, Weapon.Augment augment ) {
-		
+
 		weapon.augment = augment;
 		useAnimation();
 		ScrollOfUpgrade.upgrade(curUser);

@@ -37,7 +37,7 @@ public class YamameSprite extends MobSprite {
 
 		perspectiveRaise = 0f;
 
-		texture( Assets.Sprites.SPINNER );
+		texture( Assets.Sprites.YAMAME );
 		
 		TextureFilm frames = new TextureFilm( texture, 16, 16 );
 		

@@ -49,11 +49,14 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicalSight;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PrismaticGuard;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Recharging;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.RingoSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ScrollEmpower;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ToxicImbue;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
@@ -72,6 +75,7 @@ import com.touhoupixel.touhoupixeldungeon.ui.RenderedTextBlock;
 import com.touhoupixel.touhoupixeldungeon.ui.TalentButton;
 import com.touhoupixel.touhoupixeldungeon.ui.TalentsPane;
 import com.touhoupixel.touhoupixeldungeon.ui.Window;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.touhoupixel.touhoupixeldungeon.windows.IconTitle;
 import com.touhoupixel.touhoupixeldungeon.windows.WndOptions;
 import com.watabou.noosa.audio.Sample;
@@ -99,7 +103,13 @@ public class ScrollOfMetamorphosis extends ExoticScroll {
 			identifiedByUse = false;
 		}
 
-		switch (Random.Int(34)) {
+
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
+			GLog.w( Messages.get(this, "wrath") );
+			Buff.prolong( curUser, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( curUser, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( curUser, Silence.class, Silence.DURATION*2f);
+		} else switch (Random.Int(34)) {
 			case 0:
 			default:
 				Buff.prolong(curUser, Adrenaline.class, Adrenaline.DURATION);

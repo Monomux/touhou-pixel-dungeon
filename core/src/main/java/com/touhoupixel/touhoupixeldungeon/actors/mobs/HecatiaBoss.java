@@ -48,8 +48,7 @@ import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
-import com.touhoupixel.touhoupixeldungeon.sprites.LarvaSprite;
-import com.touhoupixel.touhoupixeldungeon.sprites.YogSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.HecatiaSprite;
 import com.touhoupixel.touhoupixeldungeon.tiles.DungeonTilemap;
 import com.touhoupixel.touhoupixeldungeon.ui.BossHealthBar;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
@@ -66,7 +65,7 @@ import java.util.HashSet;
 public class HecatiaBoss extends Mob {
 
 	{
-		spriteClass = YogSprite.class;
+		spriteClass = HecatiaSprite.class;
 
 		HP = HT = 1000;
 
@@ -123,23 +122,23 @@ public class HecatiaBoss extends Mob {
 
 	private ArrayList<Class> regularSummons = new ArrayList<>();
 	{
-		if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+		if (Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 			for (int i = 0; i < 6; i++){
 				if (i >= 4){
-					regularSummons.add(YogRipper.class);
+					regularSummons.add(HecatiaReisen.class);
 				}
 				if (i >= Statistics.spawnersAlive){
-					regularSummons.add(Larva.class);
+					regularSummons.add(HecatiaSummon.class);
 				} else {
-					regularSummons.add( i % 2 == 0 ? YogEye.class : YogScorpio.class);
+					regularSummons.add( i % 2 == 0 ? HecatiaJunko.class : HecatiaSagume.class);
 				}
 			}
 		} else {
 			for (int i = 0; i < 6; i++){
 				if (i >= Statistics.spawnersAlive){
-					regularSummons.add(Larva.class);
+					regularSummons.add(HecatiaSummon.class);
 				} else {
-					regularSummons.add(YogRipper.class);
+					regularSummons.add(HecatiaReisen.class);
 				}
 			}
 		}
@@ -208,7 +207,7 @@ public class HecatiaBoss extends Mob {
 					Dungeon.observe();
 				}
 				for (Char ch : affected) {
-					if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+					if (Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 						ch.damage(Random.NormalIntRange(30, 50), new Junko.DeathGaze());
 					} else {
 						ch.damage(Random.NormalIntRange(20, 30), new Junko.DeathGaze());
@@ -361,7 +360,7 @@ public class HecatiaBoss extends Mob {
 
 			addFist((HecatiaBody)Reflection.newInstance(fistSummons.remove(0)));
 
-			if (Dungeon.isChallenged(Challenges.STRONGER_BOSSES)){
+			if (Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)){
 				addFist((HecatiaBody)Reflection.newInstance(challengeSummons.remove(0)));
 			}
 
@@ -391,7 +390,7 @@ public class HecatiaBoss extends Mob {
 
 		int targetPos = Dungeon.level.exit + Dungeon.level.width();
 
-		if (!Dungeon.isChallenged(Challenges.STRONGER_BOSSES)
+		if (!Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES)
 				&& Actor.findChar(targetPos) == null){
 			fist.pos = targetPos;
 		} else if (Actor.findChar(targetPos-1) == null){
@@ -438,7 +437,7 @@ public class HecatiaBoss extends Mob {
 	public void aggro(Char ch) {
 		for (Mob mob : (Iterable<Mob>)Dungeon.level.mobs.clone()) {
 			if (Dungeon.level.distance(pos, mob.pos) <= 4 &&
-					(mob instanceof Larva || mob instanceof ReisenMkII)) {
+					(mob instanceof HecatiaSummon || mob instanceof ReisenMkII)) {
 				mob.aggro(ch);
 			}
 		}
@@ -449,7 +448,7 @@ public class HecatiaBoss extends Mob {
 	public void die( Object cause ) {
 
 		for (Mob mob : (Iterable<Mob>)Dungeon.level.mobs.clone()) {
-			if (mob instanceof Larva || mob instanceof ReisenMkII) {
+			if (mob instanceof HecatiaSummon || mob instanceof ReisenMkII) {
 				mob.die( cause );
 			}
 		}
@@ -557,12 +556,12 @@ public class HecatiaBoss extends Mob {
 		}
 	}
 
-	public static class Larva extends Mob {
+	public static class HecatiaSummon extends Mob {
 
 		{
-			spriteClass = LarvaSprite.class;
+			spriteClass = HecatiaSprite.class;
 
-			HP = HT = 300;
+			HP = HT = 150;
 			defenseSkill = 50;
 			viewDistance = Light.DISTANCE;
 
@@ -577,24 +576,24 @@ public class HecatiaBoss extends Mob {
 
 		@Override
 		public int damageRoll() {
-			return Random.NormalIntRange( 15, 25 );
+			return Random.NormalIntRange( 25, 35 );
 		}
 
 		@Override
 		public int drRoll() {
-			return Random.NormalIntRange(100, 300);
+			return Random.NormalIntRange(10, 20);
 		}
 
 	}
 
 	//used so death to yog's ripper demons have their own rankings description
-	public static class YogRipper extends ReisenMkII {}
-	public static class YogEye extends Junko {
+	public static class HecatiaReisen extends ReisenMkII {}
+	public static class HecatiaJunko extends Junko {
 		{
 			maxLvl = -2;
 		}
 	}
-	public static class YogScorpio extends Sagume {
+	public static class HecatiaSagume extends Sagume {
 		{
 			maxLvl = -2;
 		}

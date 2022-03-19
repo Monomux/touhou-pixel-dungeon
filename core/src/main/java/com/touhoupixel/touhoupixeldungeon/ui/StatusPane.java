@@ -119,17 +119,25 @@ public class StatusPane extends Component {
 
 		rawShielding = new Image( Assets.Interfaces.SHLD_BAR );
 		rawShielding.alpha(0.5f);
-		add(rawShielding);
+		if (!Dungeon.isChallenged(Challenges.KEINE_TIME)) {
+			add(rawShielding);
+		}
 
 		shieldedHP = new Image( Assets.Interfaces.SHLD_BAR );
-		add(shieldedHP);
+		if (!Dungeon.isChallenged(Challenges.KEINE_TIME)) {
+			add(shieldedHP);
+		}
 
 		hp = new Image( Assets.Interfaces.HP_BAR );
-		add( hp );
+		if (!Dungeon.isChallenged(Challenges.KEINE_TIME)) {
+			add(hp);
+		}
 
 		hpText = new BitmapText(PixelScene.pixelFont);
 		hpText.alpha(0.6f);
-		add(hpText);
+		if (!Dungeon.isChallenged(Challenges.KEINE_TIME)) {
+			add(hpText);
+		}
 
 		exp = new Image( Assets.Interfaces.XP_BAR );
 		add( exp );

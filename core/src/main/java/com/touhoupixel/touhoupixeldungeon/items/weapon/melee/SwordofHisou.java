@@ -28,11 +28,17 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfDoublespeed;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 
 import java.util.ArrayList;
 
@@ -72,6 +78,12 @@ public class SwordofHisou extends MeleeWeapon {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
+		}
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && Dungeon.hero.belongings.weapon() instanceof SwordofHisou){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( owner, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( owner, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( owner, Silence.class, Silence.DURATION*2f);
 		}
 		return super.damageRoll(owner);
 	}

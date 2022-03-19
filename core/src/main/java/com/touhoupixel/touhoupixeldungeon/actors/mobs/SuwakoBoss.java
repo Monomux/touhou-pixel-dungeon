@@ -37,7 +37,7 @@ public class SuwakoBoss extends Mob {
 	{
 		spriteClass = SuwakoSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 180 : 120;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 180 : 120;
 
 		defenseSkill = 15;
 

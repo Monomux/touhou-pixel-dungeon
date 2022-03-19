@@ -34,7 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeon.items.quest.GooBlob;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
-import com.touhoupixel.touhoupixeldungeon.sprites.FlandreBossSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.FlandreSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.BossHealthBar;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -42,9 +42,9 @@ import com.watabou.utils.Random;
 public class FlandreBoss extends Mob {
 
 	{
-		spriteClass = FlandreBossSprite.class;
+		spriteClass = FlandreSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 2000 : 1600;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 2000 : 1600;
 		defenseSkill = 35;
 
 		EXP = 50;

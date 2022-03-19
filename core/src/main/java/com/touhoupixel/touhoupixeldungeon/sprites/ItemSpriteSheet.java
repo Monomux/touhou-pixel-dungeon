@@ -900,6 +900,7 @@ public class ItemSpriteSheet {
 	public static final int FOODHOLD       = BAGS+8;
 	public static final int ARTIHOLD       = BAGS+9;
 	public static final int TAILSMANHOLD       = BAGS+10;
+	public static final int KOGASAPRAYER       = BAGS+11;
 	static{
 		assignItemRect(WATERSKIN,   16, 14);
 		assignItemRect(BACKPACK,    16, 16);
@@ -912,6 +913,7 @@ public class ItemSpriteSheet {
 		assignItemRect(FOODHOLD,       14, 15);
 		assignItemRect(ARTIHOLD,       14, 15);
 		assignItemRect(TAILSMANHOLD,       14, 15);
+		assignItemRect(KOGASAPRAYER,       7, 13);
 	}
 
 	private static final int XYZ_WEAPON   =                               xy(1, 34);   //8 slots

@@ -205,7 +205,7 @@ public abstract class Scroll extends Item {
 				curUser = hero;
 				curItem = detach(hero.belongings.backpack);
 				doRead();
-				if (Dungeon.isChallenged(Challenges.SPELLCARD_RULE))
+				if (Dungeon.isChallenged(Challenges.SACRIFICE_WORDS))
 					Buff.affect(curUser, Silence.class, Silence.DURATION/5);
 
 				Buff.detach(hero, ArisastarRank1.class);

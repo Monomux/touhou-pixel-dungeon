@@ -21,11 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.potions;
 
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
@@ -41,9 +45,14 @@ public class PotionOfBerserk extends Potion {
 		identify();
 		GLog.i( Messages.get(this, "msg1") );
 		Buff.affect(hero, Might.class, Might.DURATION*5f);
-		Buff.prolong( hero, Haste.class, Haste.DURATION*5f);
 		Buff.affect(hero, Silence.class, Silence.DURATION*3f);
 
+		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
+			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
+			Buff.prolong( hero, Paralysis.class, Paralysis.DURATION);
+			Buff.prolong( hero, Slow.class, Slow.DURATION*10f);
+			Buff.prolong( hero, Silence.class, Silence.DURATION*2f);
+		} else Buff.prolong( hero, Haste.class, Haste.DURATION*5f);
 	}
 	
 	@Override

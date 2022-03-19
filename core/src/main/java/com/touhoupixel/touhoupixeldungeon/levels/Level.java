@@ -125,7 +125,7 @@ public abstract class Level implements Bundlable {
 	public boolean[] mapped;
 	public boolean[] discoverable;
 
-	public int viewDistance = Dungeon.isChallenged( Challenges.DARKNESS ) ? 2 : 8;
+	public int viewDistance = 8;
 	
 	public boolean[] heroFOV;
 	
@@ -188,10 +188,6 @@ public abstract class Level implements Bundlable {
 		if (!(Dungeon.bossLevel())) {
 
 			addItemToSpawn(Generator.random(Generator.Category.FOOD));
-
-			if (Dungeon.isChallenged(Challenges.DARKNESS)){
-				addItemToSpawn( new Torch() );
-			}
 
 			if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER){
 				addItemToSpawn( new ElixirOfAquaticRejuvenation() );
@@ -833,10 +829,6 @@ public abstract class Level implements Bundlable {
 	}
 	
 	public Plant plant( Plant.Seed seed, int pos ) {
-		
-		if (Dungeon.isChallenged(Challenges.NO_HERBALISM)){
-			return null;
-		}
 
 		Plant plant = plants.get( pos );
 		if (plant != null) {

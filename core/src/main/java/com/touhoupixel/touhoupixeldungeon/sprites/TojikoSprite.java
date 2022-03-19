@@ -36,7 +36,7 @@ public class TojikoSprite extends MobSprite {
 	public TojikoSprite() {
 		super();
 		
-		texture( Assets.Sprites.DM100 );
+		texture( Assets.Sprites.TOJIKO );
 		
 		TextureFilm frames = new TextureFilm( texture, 16, 14 );
 		

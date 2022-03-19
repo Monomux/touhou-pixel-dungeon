@@ -33,7 +33,7 @@ public class RanSprite extends MobSprite {
 	public RanSprite() {
 		super();
 		
-		texture( Assets.Sprites.WARLOCK );
+		texture( Assets.Sprites.RAN );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

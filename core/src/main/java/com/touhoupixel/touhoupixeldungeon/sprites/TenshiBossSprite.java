@@ -43,7 +43,7 @@ public class TenshiBossSprite extends MobSprite {
 	public TenshiBossSprite() {
 		super();
 		
-		texture( Assets.Sprites.DM300 );
+		texture( Assets.Sprites.TENSHIBOSS );
 		
 		updateChargeState(false);
 	}

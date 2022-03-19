@@ -42,6 +42,7 @@ import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.ChangesScene;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.HecatiaSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.TojikoSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.TenshiBossSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.ElementalSprite;
@@ -53,7 +54,6 @@ import com.touhoupixel.touhoupixeldungeon.sprites.RemiliaSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.ShamanSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.SpawnerSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.StatueSprite;
-import com.touhoupixel.touhoupixeldungeon.sprites.YogSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIcon;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 import com.touhoupixel.touhoupixeldungeon.ui.Icons;
@@ -156,7 +156,7 @@ public class v0_8_X_Changes {
 				"_-_ Added a new language: Ukranian!\n" +
 				"_-_ Updated translations and translator credits"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various rare crash/freeze errors\n" +
 				"_-_ Various audiovisual errors\n" +
@@ -176,7 +176,7 @@ public class v0_8_X_Changes {
 				"_-_ Suika placing traps over plants\n" +
 				"_-_ Items not being IDed in rankings in rare cases"));
 
-		changes.addButton(new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton(new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Sniper shot incorrectly capping at 2.5x damage instead of 3x\n" +
 				"_-_ Golden Lotus having twice at much HP as intended\n" +
@@ -329,7 +329,7 @@ public class v0_8_X_Changes {
 				"_-_ Equipment drops are now slightly rarer, but are also higher in quality on average. In particular enemy equipment drops can now be above +0.\n" +
 				"_-_ Item drops have been added to DM-200s, Ghouls, and Golems."));
 
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.TENGU, 0, 0, 14, 16), "Boss Changes",
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SUIKA, 0, 0, 14, 16), "Boss Changes",
 				"I'm making some design and balance changes to bosses based on analytics data and feedback:\n\n" +
 				"_Tengu_'s second phase has been removed due to its overall negative reception. In exchange, the traps in Suika's first phase are now more maze-like. Suika now also receives an accuracy penalty when attacking at melee range.\n\n" +
 				"_DM-300_'s boss fight now starts after the player explores its arena, the supercharge sparks now move more quickly, and several dialogue lines have been tweaked. This will hopefully make it easier for the player to understand what to do when DM-300 becomes supercharged.\n\n" +
@@ -356,7 +356,7 @@ public class v0_8_X_Changes {
 				"_-_ Cell checking visual effects have been improved.\n\n" +
 				"_-_ Updated translations."));
 
-		changes.addButton( new ChangeButton(new Image( Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image( Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various visual/textual errors\n" +
 				"_-_ Various rare crash bugs\n" +
@@ -533,7 +533,7 @@ public class v0_8_X_Changes {
 				"_-_ Scorpios now drop potions which are more likely to be rare. They cannot drop healing.\n" +
 				"_-_ Acidic scorpios now inflict ooze and don't reflect damage."));
 
-		i = new Image(new YogSprite());
+		i = new Image(new HecatiaSprite());
 		i.scale.set(0.8f);
 		changes.addButton( new ChangeButton(i, "Yog-Dzewa",
 				"The Yog-Dzewa fight has been reworked! The key ingredients (eye, fists, and larva) are still present, but the specific stats, mechanics, and pacing of the fight have been almost totally redone.\n\n" +
@@ -635,7 +635,7 @@ public class v0_8_X_Changes {
 				"\n" +
 				"_-_ Updated translations and translator credits"));
 
-		changes.addButton( new ChangeButton(new Image( Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image( Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Rare freeze bugs when enemies make ranged attacks\n" +
 				"_-_ Loading screens very rarely freezing\n" +
@@ -652,7 +652,7 @@ public class v0_8_X_Changes {
 				"_-_ Wand of prismatic light rarely revealing areas it shouldn't\n" +
 				"_-_ Upgraded wands not spawning fully charged"));
 
-		changes.addButton( new ChangeButton(new Image( Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image( Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Invisibility not applying if the hero is also shadowmelded\n" +
 				"_-_ Landscape/portrait modes working incorrectly in rare cases\n" +

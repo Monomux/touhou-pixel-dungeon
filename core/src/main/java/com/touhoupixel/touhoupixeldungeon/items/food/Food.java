@@ -109,12 +109,8 @@ public class Food extends Item {
 	}
 
 	protected void satisfy( Hero hero ){
-		if (Dungeon.isChallenged(Challenges.NO_FOOD)){
-			Buff.affect(hero, Hunger.class).satisfy(energy/3f);
-		} else {
-			Buff.affect(hero, Hunger.class).satisfy(energy);
+		Buff.affect(hero, Hunger.class).satisfy(energy);
 		}
-	}
 
 	@Override
 	public boolean isUpgradable() {

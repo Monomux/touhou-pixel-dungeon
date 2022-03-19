@@ -31,7 +31,7 @@ public class ReisenSprite extends MobSprite {
 	public ReisenSprite() {
 		super();
 		
-		texture( Assets.Sprites.SUCCUBUS );
+		texture( Assets.Sprites.REISEN );
 		
 		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		

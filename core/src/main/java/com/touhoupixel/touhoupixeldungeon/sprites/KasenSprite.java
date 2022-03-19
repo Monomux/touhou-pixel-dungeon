@@ -38,9 +38,9 @@ public class KasenSprite extends MobSprite {
 	public KasenSprite() {
 		super();
 		
-		texture( Assets.Sprites.GOLEM );
+		texture( Assets.Sprites.KASEN );
 		
-		TextureFilm frames = new TextureFilm( texture, 17, 19 );
+		TextureFilm frames = new TextureFilm( texture, 14, 16 );
 		
 		idle = new Animation( 4, true );
 		idle.frames( frames, 0, 1 );

@@ -39,7 +39,7 @@ public class RemiliaSprite extends MobSprite {
 	public RemiliaSprite(){
 		super();
 		
-		texture( Assets.Sprites.NECRO );
+		texture( Assets.Sprites.FLANDRE );
 		TextureFilm film = new TextureFilm( texture, 16, 16 );
 		
 		idle = new Animation( 1, true );

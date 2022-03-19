@@ -37,7 +37,7 @@ public class HinaBoss extends Mob {
 	{
 		spriteClass = HinaSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 189 : 89;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 189 : 89;
 
 		defenseSkill = 15;
 

@@ -88,7 +88,7 @@ public class v0_7_X_Changes {
 				"Cirno's level has also received significant changes. It now uses a new unique level layout pattern, and Cirno itself always spawns in a new unique room type.\n\n" +
 				"I have also made slight balance changes to the Cirno fight itself. 1x1 pillars have been mostly removed from Cirno's arena to reduce surprise-attack spam, but Cirno's damage has been reduced by 20% to compensate."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.TENGU, 0, 0, 14, 16), "Prison Enemies",
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SUIKA, 0, 0, 14, 16), "Prison Enemies",
 				"_Necromancers_ have been added to the prison! These powerful enemies fight by summoning and buffing undead.\n\n" +
 				"The _Tengu_ boss fight has been totally reworked! The fight still takes place over 3 stages, and has a similar core theme, but I have totally ditched the tedious maze and chasing mechanics from stages 2&3, and have given Suika several new abilities. Watch your step!\n\n" +
 				"As a part of this rework, Suika's stats have also been adjusted:\n" +
@@ -121,7 +121,7 @@ public class v0_7_X_Changes {
 				"_-_ Various improvements to wording on the supporter menu for Google Play users.\n\n" +
 				"_-_ Various internal code improvements"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various stability issues caused by the libGDX conversion\n" +
 				"_-_ Bolts from wand of lightning not spreading in many cases where they should\n" +
@@ -230,7 +230,7 @@ public class v0_7_X_Changes {
 				"_-_ Shattered Pixel Dungeon now requires Android 2.3+ to run, up from Android 2.2+.\n" +
 				"_-_ Google Play Games and sharing gameplay data now requires android 4.1+, up from 4.0+."));
 
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Talisman of foresight warn effect not being saved/loaded\n" +
 				"_-_ Level visuals (e.g. prison torches) rarely bugging out\n" +
@@ -359,7 +359,7 @@ public class v0_7_X_Changes {
 				"_-_ Scrolls of transmutation can now be used on thrown weapons.\n\n" +
 				"_-_ Improved the coloration of crystal keys. They should now be more distinct from iron keys."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Prismatic images causing errors when falling into pits\n" +
 				"_-_ Secret rooms never spawning in the earlier parts of a region\n" +
@@ -501,7 +501,7 @@ public class v0_7_X_Changes {
 				"_-_ Meat Pie recipe cost reduced from 9 to 6, total healing reduced from 45 to 25\n\n" +
 				"_-_ Added a privacy policy link to the Google Play edition of Shattered."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various rare crash bugs\n" +
 				"_-_ Various minor visual bugs\n" +
@@ -533,7 +533,7 @@ public class v0_7_X_Changes {
 				"_-_ Improved how the game handles orientation changes and window resizing.\n" +
 				"_-_ Shocking enchantment no longer visually arcs lightning to the hero."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed (existed before 0.7.2):\n" +
 				"_-_ Cloak of Shadows very rarely consuming more charges than it should\n" +
 				"_-_ Assassin's blink not working on enemies standing on traps\n" +
@@ -650,7 +650,7 @@ public class v0_7_X_Changes {
 				"Added item stats to the item catalog.\n\n" +
 				"Dropping an item now takes 1 turn, up from 0.5 turns."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ various crash bugs\n" +
 				"_-_ various minor visual bugs\n" +
@@ -835,7 +835,7 @@ public class v0_7_X_Changes {
 				"_-_ Improved payment & sync functions on Google Play version.\n\n" +
 				"_-_ Adjusted bone pile functionality to make it more clear that a spawning wraith means an item is cursed."));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various rare crash and freeze bugs\n" +
 				"_-_ Various audio and visual bugs\n" +
@@ -857,7 +857,7 @@ public class v0_7_X_Changes {
 				"_-_ 'Faith is my armor' deleting class armors\n" +
 				"_-_ Various cases where the player can be ontop of enemies"));
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.SPINNER, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.YAMAME, 144, 0, 16, 16), Messages.get(ChangesScene.class, "bugfixes"),
 				"Fixed:\n" +
 				"_-_ Various screen layout issues in power saver mode\n" +
 				"_-_ Crashes when tengu is healed above 1/2 health\n" +

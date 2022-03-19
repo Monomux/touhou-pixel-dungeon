@@ -47,7 +47,7 @@ import java.util.ArrayList;
 
 public class Prayer extends Item {
 
-	private static final int MAX_VOLUME	= 10;
+	private static final int MAX_VOLUME	= 20;
 
 	private static final String AC_DRINK	= "DRINK";
 
@@ -84,7 +84,7 @@ public class Prayer extends Item {
 		ArrayList<String> actions = super.actions( hero );
 		actions.remove(AC_DROP);
 		actions.remove(AC_THROW);
-		if (volume > 9) {
+		if (volume > 19) {
 			actions.add( AC_DRINK );
 		}
 		return actions;
@@ -100,8 +100,7 @@ public class Prayer extends Item {
 				GLog.i(Messages.get(this, "gehennom"));
 			} else if (hero.buff( Silence.class ) != null) {
 				GLog.w(Messages.get(this, "silence"));
-			} else
-			if (volume > 9) {
+			} else if (volume > 19) {
 				if ( hero.buff(AntiHeal.class) != null ){
 					hero.damage(hero.HP/2, this);
 				} else

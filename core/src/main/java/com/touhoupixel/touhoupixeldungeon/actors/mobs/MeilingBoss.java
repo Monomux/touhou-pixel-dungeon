@@ -43,7 +43,7 @@ public class MeilingBoss extends Mob {
 	{
 		spriteClass = MeilingSprite.class;
 
-		HP = HT = Dungeon.isChallenged(Challenges.STRONGER_BOSSES) ? 75 : 50;
+		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 75 : 50;
 
 		defenseSkill = 10;
 

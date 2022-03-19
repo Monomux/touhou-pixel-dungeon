@@ -54,7 +54,7 @@ public class Eirin extends Mob implements Callback {
 
 		if (Dungeon.depth > 50){
 			HP = HT = 604;
-		} else HP = HT = 136;
+		} else HP = HT = 138;
 
 		if (Dungeon.depth > 50){
 			defenseSkill = 88;

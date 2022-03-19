@@ -74,6 +74,7 @@ public class Badges {
 		UNLOCK_MURASAPLAYER               ( 27 ),
 		UNLOCK_HINAPLAYER           ( 19 ),
 		UNLOCK_KAGUYAPLAYER         ( 20 ),
+		UNLOCK_KOGASAPLAYER         ( 21 ),
 		SHOPKEEPERS                 ( 28 ),
 		TOYOHIMES                   ( 29 ),
 		YORIHIMES                   ( 30 ),
@@ -141,6 +142,7 @@ public class Badges {
 		VICTORY_MURASAPLAYER,
 		VICTORY_HINAPLAYER,
 		VICTORY_KAGUYAPLAYER,
+		VICTORY_KOGASAPLAYER,
 		VICTORY_ALL_CLASSES         ( 98, true ),
 		GAMES_PLAYED_3              ( 99, true ),
 		CHAMPION_1                  ( 100 ),
@@ -296,6 +298,10 @@ public class Badges {
 		}
 		if (!local.contains( Badge.MONSTERS_SLAIN_4 ) && Statistics.enemiesSlain >= 250) {
 			badge = Badge.MONSTERS_SLAIN_4;
+			local.add( badge );
+		}
+		if (!local.contains( Badge.UNLOCK_KOGASAPLAYER ) && Statistics.enemiesSlain >= 500) {
+			badge = Badge.UNLOCK_KOGASAPLAYER;
 			local.add( badge );
 		}
 

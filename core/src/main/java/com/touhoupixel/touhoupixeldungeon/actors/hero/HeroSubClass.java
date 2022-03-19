@@ -60,7 +60,10 @@ public enum HeroSubClass {
 	CURSEGOD(HeroIcon.CURSEGOD),
 
 	TIMESTOP(HeroIcon.TIMESTOP),
-	TIMEMOVE(HeroIcon.TIMEMOVE);
+	TIMEMOVE(HeroIcon.TIMEMOVE),
+
+	SLOWGIRL(HeroIcon.SLOWGIRL),
+	HORRORGIRL(HeroIcon.HORRORGIRL);
 
 	int icon;
 

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.actors.buffs;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
@@ -40,18 +41,20 @@ public class Invisibility extends FlavourBuff {
 		type = buffType.POSITIVE;
 		announced = true;
 	}
-	
+
 	@Override
 	public boolean attachTo( Char target ) {
-		if (super.attachTo( target )) {
+		if (Dungeon.isChallenged(Challenges.SPELLCARD_RULE)){
+			Buff.prolong(target, MurasaInfEvasion.class, MurasaInfEvasion.DURATION);
+		} else if (super.attachTo( target )) {
 			target.invisible++;
 			if (target instanceof Hero && ((Hero) target).subClass == HeroSubClass.ASSASSIN){
 				Buff.affect(target, Preparation.class);
 			}
 			return true;
 		} else {
-			return false;
 		}
+		return false;
 	}
 	
 	@Override
