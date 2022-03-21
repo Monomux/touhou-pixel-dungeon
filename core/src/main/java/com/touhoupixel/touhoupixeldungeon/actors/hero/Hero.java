@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
@@ -49,6 +50,8 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Combo;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Drowsy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireImbue;
@@ -62,12 +65,17 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.HoldFast;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MurasaInfEvasion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDamage;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Regeneration;
@@ -304,6 +312,10 @@ public class Hero extends Char {
 			strBonus += 2;
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			strBonus += 6;
+		}
+
 		strBonus += RingOfMight.strengthBonus( this );
 
 		AdrenalineSurge buff = buff(AdrenalineSurge.class);
@@ -325,7 +337,6 @@ public class Hero extends Char {
 
 	private static final String CLASS       = "class";
 	private static final String SUBCLASS    = "subClass";
-	private static final String ABILITY     = "armorAbility";
 
 	private static final String ATTACK		= "attackSkill";
 	private static final String DEFENSE		= "defenseSkill";
@@ -520,6 +531,12 @@ public class Hero extends Char {
 			accuracy *= 1.5f;
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 2 || this.lvl == 4 || this.lvl == 6 || this.lvl == 8 || this.lvl == 10 || this.lvl == 12 || this.lvl == 14 || this.lvl == 16 || this.lvl == 18 || this.lvl == 20 || this.lvl == 22 || this.lvl == 24 || this.lvl == 26 || this.lvl == 28 || this.lvl == 30 || this.lvl == 32 || this.lvl == 34 || this.lvl == 36 || this.lvl == 38 || this.lvl == 40 || this.lvl == 42 || this.lvl == 44 || this.lvl == 46 || this.lvl == 48 || this.lvl == 50 || this.lvl == 52 || this.lvl == 54 || this.lvl == 56 || this.lvl == 58 || this.lvl == 60 || this.lvl == 62 || this.lvl == 64 || this.lvl == 66 || this.lvl == 68 || this.lvl == 70 || this.lvl == 72 || this.lvl == 74 || this.lvl == 76 || this.lvl == 78 || this.lvl == 80 || this.lvl == 82 || this.lvl == 84 || this.lvl == 86 || this.lvl == 88 || this.lvl == 90 || this.lvl == 92 || this.lvl == 94 || this.lvl == 96 || this.lvl == 98){
+				accuracy *= 1.2f;
+			}
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 0) {
 			accuracy *= 1.2f;
 		}
@@ -639,6 +656,12 @@ public class Hero extends Char {
 		float evasion = defenseSkill;
 
 		evasion *= RingOfEvasion.evasionMultiplier( this );
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 3 || this.lvl == 6 || this.lvl == 9 || this.lvl == 12 || this.lvl == 15 || this.lvl == 18 || this.lvl == 21 || this.lvl == 24 || this.lvl == 27 || this.lvl == 30 || this.lvl == 33 || this.lvl == 36 || this.lvl == 39 || this.lvl == 32 || this.lvl == 45 || this.lvl == 48 || this.lvl == 51 || this.lvl == 54 || this.lvl == 57 || this.lvl == 60 || this.lvl == 63 || this.lvl == 66 || this.lvl == 69 || this.lvl == 72 || this.lvl == 75 || this.lvl == 78 || this.lvl == 81 || this.lvl == 84 || this.lvl == 87 || this.lvl == 90 || this.lvl == 93 || this.lvl == 96 || this.lvl == 99){
+				evasion *= 1.2;
+			}
+		}
 
 		if (buff(Doubleevasion.class) != null){
 			evasion *= 2;
@@ -1419,6 +1442,121 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc(enemy, damage);
 
+		if (pointsInTalent(Talent.TELEPORT_HEAL) == 1 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(enemy);
+			this.HP = Math.min(this.HP + 15, this.HT);
+			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+		if (pointsInTalent(Talent.TELEPORT_HEAL) == 2 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(enemy);
+			this.HP = Math.min(this.HP + 22, this.HT);
+			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+		if (pointsInTalent(Talent.TELEPORT_HEAL) == 3 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(enemy);
+			this.HP = Math.min(this.HP + 29, this.HT);
+			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 1 || this.lvl == 3 || this.lvl == 5 || this.lvl == 7 || this.lvl == 9 || this.lvl == 11 || this.lvl == 13 || this.lvl == 15 || this.lvl == 17 || this.lvl == 19 || this.lvl == 21 || this.lvl == 23 || this.lvl == 25 || this.lvl == 27 || this.lvl == 29 || this.lvl == 31 || this.lvl == 33 || this.lvl == 35 || this.lvl == 37 || this.lvl == 39 || this.lvl == 41 || this.lvl == 43 || this.lvl == 45 || this.lvl == 47 || this.lvl == 49 || this.lvl == 51 || this.lvl == 53 || this.lvl == 55 || this.lvl == 57 || this.lvl == 59 || this.lvl == 61 || this.lvl == 63 || this.lvl == 65 || this.lvl == 67 || this.lvl == 69 || this.lvl == 71 || this.lvl == 73 || this.lvl == 75 || this.lvl == 77 || this.lvl == 79 || this.lvl == 81 || this.lvl == 83 || this.lvl == 85 || this.lvl == 87 || this.lvl == 89 || this.lvl == 91 || this.lvl == 93 || this.lvl == 95 || this.lvl == 97 || this.lvl == 99){
+				damage *= 1.2f;
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV4_BURN) == 1){
+			if (this.lvl == 4 || this.lvl == 8 || this.lvl == 12 || this.lvl == 16 || this.lvl == 20 || this.lvl == 24 || this.lvl == 28 || this.lvl == 32 || this.lvl == 36 || this.lvl == 40 || this.lvl == 44 || this.lvl == 48 || this.lvl == 52 || this.lvl == 56 || this.lvl == 60 || this.lvl == 64 || this.lvl == 68 || this.lvl == 72 || this.lvl == 76 || this.lvl == 80 || this.lvl == 84 || this.lvl == 88 || this.lvl == 92 || this.lvl == 96){
+				Buff.affect( enemy, Burning.class ).reignite(enemy, 5f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV4_BURN) == 2){
+			if (this.lvl == 4 || this.lvl == 8 || this.lvl == 12 || this.lvl == 16 || this.lvl == 20 || this.lvl == 24 || this.lvl == 28 || this.lvl == 32 || this.lvl == 36 || this.lvl == 40 || this.lvl == 44 || this.lvl == 48 || this.lvl == 52 || this.lvl == 56 || this.lvl == 60 || this.lvl == 64 || this.lvl == 68 || this.lvl == 72 || this.lvl == 76 || this.lvl == 80 || this.lvl == 84 || this.lvl == 88 || this.lvl == 92 || this.lvl == 96){
+				Buff.affect( enemy, Burning.class ).reignite(enemy, 10f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV5_SLOW) == 1){
+			if (this.lvl == 5 || this.lvl == 10 || this.lvl == 15 || this.lvl == 20 || this.lvl == 25 || this.lvl == 30 || this.lvl == 35 || this.lvl == 40 || this.lvl == 45 || this.lvl == 50 || this.lvl == 55 || this.lvl == 60 || this.lvl == 65 || this.lvl == 70 || this.lvl == 75 || this.lvl == 80 || this.lvl == 85 || this.lvl == 90 || this.lvl == 95){
+				Buff.prolong(enemy, Slow.class, Slow.DURATION/2f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV5_SLOW) == 2){
+			if (this.lvl == 5 || this.lvl == 10 || this.lvl == 15 || this.lvl == 20 || this.lvl == 25 || this.lvl == 30 || this.lvl == 35 || this.lvl == 40 || this.lvl == 45 || this.lvl == 50 || this.lvl == 55 || this.lvl == 60 || this.lvl == 65 || this.lvl == 70 || this.lvl == 75 || this.lvl == 80 || this.lvl == 85 || this.lvl == 90 || this.lvl == 95){
+				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV7_DOUBLERAINBOW) == 1){
+			if (this.lvl == 7 || this.lvl == 14 || this.lvl == 21 || this.lvl == 28 || this.lvl == 35 || this.lvl == 42 || this.lvl == 49 || this.lvl == 56 || this.lvl == 63 || this.lvl == 70 || this.lvl == 77 || this.lvl == 84 || this.lvl == 91 || this.lvl == 98){
+				Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION/5f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV7_DOUBLERAINBOW) == 2){
+			if (this.lvl == 7 || this.lvl == 14 || this.lvl == 21 || this.lvl == 28 || this.lvl == 35 || this.lvl == 42 || this.lvl == 49 || this.lvl == 56 || this.lvl == 63 || this.lvl == 70 || this.lvl == 77 || this.lvl == 84 || this.lvl == 91 || this.lvl == 98){
+				Buff.prolong(this, Doublerainbow.class, Doublerainbow.DURATION);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV8_DOUBLEEVASION) == 2){
+			if (this.lvl == 8 || this.lvl == 16 || this.lvl == 24 || this.lvl == 32 || this.lvl == 40 || this.lvl == 48 || this.lvl == 56 || this.lvl == 64 || this.lvl == 72 || this.lvl == 80 || this.lvl == 88 || this.lvl == 96){
+				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION/5f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && pointsInTalent(Talent.LV8_DOUBLEEVASION) == 2){
+			if (this.lvl == 8 || this.lvl == 16 || this.lvl == 24 || this.lvl == 32 || this.lvl == 40 || this.lvl == 48 || this.lvl == 56 || this.lvl == 64 || this.lvl == 72 || this.lvl == 80 || this.lvl == 88 || this.lvl == 96){
+				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV7_ONEDEFDAMAGE) == 1 && Random.Int(6) == 0){
+			if (this.lvl == 7 || this.lvl == 14 || this.lvl == 21 || this.lvl == 28 || this.lvl == 35 || this.lvl == 42 || this.lvl == 49 || this.lvl == 56 || this.lvl == 63 || this.lvl == 70 || this.lvl == 77 || this.lvl == 84 || this.lvl == 91 || this.lvl == 98){
+				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/5f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV7_ONEDEFDAMAGE) == 2 && Random.Int(6) == 0){
+			if (this.lvl == 7 || this.lvl == 14 || this.lvl == 21 || this.lvl == 28 || this.lvl == 35 || this.lvl == 42 || this.lvl == 49 || this.lvl == 56 || this.lvl == 63 || this.lvl == 70 || this.lvl == 77 || this.lvl == 84 || this.lvl == 91 || this.lvl == 98){
+				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION/2f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV7_ONEDEFDAMAGE) == 3 && Random.Int(6) == 0){
+			if (this.lvl == 7 || this.lvl == 14 || this.lvl == 21 || this.lvl == 28 || this.lvl == 35 || this.lvl == 42 || this.lvl == 49 || this.lvl == 56 || this.lvl == 63 || this.lvl == 70 || this.lvl == 77 || this.lvl == 84 || this.lvl == 91 || this.lvl == 98){
+				Buff.prolong(this, OneDefDamage.class, OneDefDamage.DURATION);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV8_ONEDAMAGE) == 1 && Random.Int(6) == 0){
+			if (this.lvl == 8 || this.lvl == 16 || this.lvl == 24 || this.lvl == 32 || this.lvl == 40 || this.lvl == 48 || this.lvl == 56 || this.lvl == 64 || this.lvl == 72 || this.lvl == 80 || this.lvl == 88 || this.lvl == 96){
+				Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION/5f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV8_ONEDAMAGE) == 2 && Random.Int(6) == 0){
+			if (this.lvl == 8 || this.lvl == 16 || this.lvl == 24 || this.lvl == 32 || this.lvl == 40 || this.lvl == 48 || this.lvl == 56 || this.lvl == 64 || this.lvl == 72 || this.lvl == 80 || this.lvl == 88 || this.lvl == 96){
+				Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION/2f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV8_ONEDAMAGE) == 3 && Random.Int(6) == 0){
+			if (this.lvl == 8 || this.lvl == 16 || this.lvl == 24 || this.lvl == 32 || this.lvl == 40 || this.lvl == 48 || this.lvl == 56 || this.lvl == 64 || this.lvl == 72 || this.lvl == 80 || this.lvl == 88 || this.lvl == 96){
+				Buff.prolong(enemy, OneDamage.class, OneDamage.DURATION);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV9_HIGHSTRESS) == 1 && Random.Int(6) == 0){
+			if (this.lvl == 9 || this.lvl == 18 || this.lvl == 27 || this.lvl == 36 || this.lvl == 45 || this.lvl == 54 || this.lvl == 63 || this.lvl == 72 || this.lvl == 81 || this.lvl == 90 || this.lvl == 99){
+				Buff.prolong(enemy, HighStress.class, HighStress.DURATION/5f);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV9_HIGHSTRESS) == 2 && Random.Int(6) == 0){
+			if (this.lvl == 9 || this.lvl == 18 || this.lvl == 27 || this.lvl == 36 || this.lvl == 45 || this.lvl == 54 || this.lvl == 63 || this.lvl == 72 || this.lvl == 81 || this.lvl == 90 || this.lvl == 99){
+				Buff.prolong(enemy, HighStress.class, HighStress.DURATION);
+			}
+		}
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER && !enemy.properties().contains(Char.Property.BOSS) && pointsInTalent(Talent.LV9_HIGHSTRESS) == 3 && Random.Int(6) == 0){
+			if (this.lvl == 9 || this.lvl == 18 || this.lvl == 27 || this.lvl == 36 || this.lvl == 45 || this.lvl == 54 || this.lvl == 63 || this.lvl == 72 || this.lvl == 81 || this.lvl == 90 || this.lvl == 99){
+				Buff.prolong(enemy, HighStress.class, HighStress.DURATION);
+				Buff.prolong(enemy, Hex.class, Hex.DURATION);
+			}
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 0) {
 			damage *= 1.3f;
 		}
@@ -1804,16 +1942,30 @@ public class Hero extends Char {
 			Buff.prolong(this, Silence.class, Silence.DURATION/10f);
 		}
 
+		if (pointsInTalent(Talent.EMER_TELEPORT) == 1 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(this);
+			this.HP = Math.min(this.HP + 15, this.HT);
+			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+		if (pointsInTalent(Talent.EMER_TELEPORT) == 2 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(this);
+			this.HP = Math.min(this.HP + 22, this.HT);
+			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+		if (pointsInTalent(Talent.EMER_TELEPORT) == 3 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
+			ScrollOfTeleportation.teleportChar(this);
+			this.HP = Math.min(this.HP + 29, this.HT);
+			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+
 		if (hasTalent(Talent.HORROR_DEFENSE) && pointsInTalent(Talent.HORROR_DEFENSE)==1){
 			if ((Random.Int(10) == 0))
 				Buff.prolong(enemy, Terror.class, Terror.DURATION);
 		}
-
 		if (hasTalent(Talent.HORROR_DEFENSE) && pointsInTalent(Talent.HORROR_DEFENSE)==2){
 			if ((Random.Int(9) == 0))
 				Buff.prolong(enemy, Terror.class, Terror.DURATION);
 		}
-
 		if (hasTalent(Talent.HORROR_DEFENSE) && pointsInTalent(Talent.HORROR_DEFENSE)==3){
 			if ((Random.Int(8) == 0))
 				Buff.prolong(enemy, Terror.class, Terror.DURATION);
@@ -2516,6 +2668,70 @@ public class Hero extends Char {
 
 	@Override
 	public boolean isAlive() {
+
+		//yukari buff zone//
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 1 || this.lvl == 3 || this.lvl == 5 || this.lvl == 7 || this.lvl == 9 || this.lvl == 11 || this.lvl == 13 || this.lvl == 15 || this.lvl == 17 || this.lvl == 19 || this.lvl == 21 || this.lvl == 23 || this.lvl == 25 || this.lvl == 27 || this.lvl == 29 || this.lvl == 31 || this.lvl == 33 || this.lvl == 35 || this.lvl == 37 || this.lvl == 39 || this.lvl == 41 || this.lvl == 43 || this.lvl == 45 || this.lvl == 47 || this.lvl == 49 || this.lvl == 51 || this.lvl == 53 || this.lvl == 55 || this.lvl == 57 || this.lvl == 59 || this.lvl == 61 || this.lvl == 63 || this.lvl == 65 || this.lvl == 67 || this.lvl == 69 || this.lvl == 71 || this.lvl == 73 || this.lvl == 75 || this.lvl == 77 || this.lvl == 79 || this.lvl == 81 || this.lvl == 83 || this.lvl == 85 || this.lvl == 87 || this.lvl == 89 || this.lvl == 91 || this.lvl == 93 || this.lvl == 95 || this.lvl == 97 || this.lvl == 99){
+				Buff.prolong(this, Light.class, Light.DURATION/250f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 2 || this.lvl == 4 || this.lvl == 6 || this.lvl == 8 || this.lvl == 10 || this.lvl == 12 || this.lvl == 14 || this.lvl == 16 || this.lvl == 18 || this.lvl == 20 || this.lvl == 22 || this.lvl == 24 || this.lvl == 26 || this.lvl == 28 || this.lvl == 30 || this.lvl == 32 || this.lvl == 34 || this.lvl == 36 || this.lvl == 38 || this.lvl == 40 || this.lvl == 42 || this.lvl == 44 || this.lvl == 46 || this.lvl == 48 || this.lvl == 50 || this.lvl == 52 || this.lvl == 54 || this.lvl == 56 || this.lvl == 58 || this.lvl == 60 || this.lvl == 62 || this.lvl == 64 || this.lvl == 66 || this.lvl == 68 || this.lvl == 70 || this.lvl == 72 || this.lvl == 74 || this.lvl == 76 || this.lvl == 78 || this.lvl == 80 || this.lvl == 82 || this.lvl == 84 || this.lvl == 86 || this.lvl == 88 || this.lvl == 90 || this.lvl == 92 || this.lvl == 94 || this.lvl == 96 || this.lvl == 98){
+				Buff.prolong(this, Levitation.class, Levitation.DURATION/50f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 3 || this.lvl == 6 || this.lvl == 9 || this.lvl == 12 || this.lvl == 15 || this.lvl == 18 || this.lvl == 21 || this.lvl == 24 || this.lvl == 27 || this.lvl == 30 || this.lvl == 33 || this.lvl == 36 || this.lvl == 39 || this.lvl == 32 || this.lvl == 45 || this.lvl == 48 || this.lvl == 51 || this.lvl == 54 || this.lvl == 57 || this.lvl == 60 || this.lvl == 63 || this.lvl == 66 || this.lvl == 69 || this.lvl == 72 || this.lvl == 75 || this.lvl == 78 || this.lvl == 81 || this.lvl == 84 || this.lvl == 87 || this.lvl == 90 || this.lvl == 93 || this.lvl == 96 || this.lvl == 99){
+				Buff.prolong(this, MindVision.class, MindVision.DURATION/20f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 4 || this.lvl == 8 || this.lvl == 12 || this.lvl == 16 || this.lvl == 20 || this.lvl == 24 || this.lvl == 28 || this.lvl == 32 || this.lvl == 36 || this.lvl == 40 || this.lvl == 44 || this.lvl == 48 || this.lvl == 52 || this.lvl == 56 || this.lvl == 60 || this.lvl == 64 || this.lvl == 68 || this.lvl == 72 || this.lvl == 76 || this.lvl == 80 || this.lvl == 84 || this.lvl == 88 || this.lvl == 92 || this.lvl == 96){
+				Buff.prolong(this, Bless.class, Bless.DURATION/30f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 5 || this.lvl == 10 || this.lvl == 15 || this.lvl == 20 || this.lvl == 25 || this.lvl == 30 || this.lvl == 35 || this.lvl == 40 || this.lvl == 45 || this.lvl == 50 || this.lvl == 55 || this.lvl == 60 || this.lvl == 65 || this.lvl == 70 || this.lvl == 75 || this.lvl == 80 || this.lvl == 85 || this.lvl == 90 || this.lvl == 95){
+				Buff.prolong(this, FrostImbue.class, FrostImbue.DURATION/50f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 7 || this.lvl == 14 || this.lvl == 21 || this.lvl == 28 || this.lvl == 35 || this.lvl == 42 || this.lvl == 49 || this.lvl == 56 || this.lvl == 63 || this.lvl == 70 || this.lvl == 77 || this.lvl == 84 || this.lvl == 91 || this.lvl == 98){
+				Buff.prolong(this, Haste.class, Haste.DURATION/20f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 8 || this.lvl == 16 || this.lvl == 24 || this.lvl == 32 || this.lvl == 40 || this.lvl == 48 || this.lvl == 56 || this.lvl == 64 || this.lvl == 72 || this.lvl == 80 || this.lvl == 88 || this.lvl == 96){
+				Buff.prolong(this, Foresight.class, Foresight.DURATION/250f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 9 || this.lvl == 18 || this.lvl == 27 || this.lvl == 36 || this.lvl == 45 || this.lvl == 54 || this.lvl == 63 || this.lvl == 72 || this.lvl == 81 || this.lvl == 90 || this.lvl == 99){
+				Buff.prolong(this, Might.class, Might.DURATION/20f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 10 || this.lvl == 20 || this.lvl == 30 || this.lvl == 40 || this.lvl == 50 || this.lvl == 60 || this.lvl == 70 || this.lvl == 80 || this.lvl == 90){
+				Buff.prolong(this, PotionPreserve.class, PotionPreserve.DURATION/5f);
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
+			if (this.lvl == 2 || this.lvl == 3 || this.lvl == 5 || this.lvl == 7 || this.lvl == 11 || this.lvl == 13 || this.lvl == 17 || this.lvl == 19 || this.lvl == 23 || this.lvl == 29 || this.lvl == 31 || this.lvl == 37 || this.lvl == 41 || this.lvl == 43 || this.lvl == 47 || this.lvl == 53 || this.lvl == 59 || this.lvl == 61 || this.lvl == 67 || this.lvl == 71 || this.lvl == 73 || this.lvl == 79 || this.lvl == 83 || this.lvl == 89 || this.lvl == 97){
+				Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION/20f);
+			}
+		}
+
+		//yukari buff zone//
 
 		int resa = 0;
 		int resb = 0;

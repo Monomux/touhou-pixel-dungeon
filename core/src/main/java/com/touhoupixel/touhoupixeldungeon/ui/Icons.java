@@ -82,6 +82,7 @@ public enum Icons {
 	HINAPLAYER,
 	KAGUYAPLAYER,
 	KOGASAPLAYER,
+	YUKARIPLAYER,
 	
 	//main menu icons
 	ENTER,
@@ -260,6 +261,9 @@ public enum Icons {
 		case KOGASAPLAYER:
 			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
 			break;
+		case YUKARIPLAYER:
+			icon.frame( icon.texture.uvRect( 64, 48, 80, 64 ) );
+			break;
 		
 		case ENTER:
 			icon.frame( icon.texture.uvRect( 0, 64, 16, 80 ) );
@@ -346,6 +350,8 @@ public enum Icons {
 			return get( KAGUYAPLAYER );
 		case KOGASAPLAYER:
 			return get( KOGASAPLAYER );
+		case YUKARIPLAYER:
+			return get( YUKARIPLAYER );
 		default:
 			return null;
 		}

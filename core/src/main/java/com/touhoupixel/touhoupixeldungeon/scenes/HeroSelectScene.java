@@ -166,37 +166,37 @@ public class HeroSelectScene extends PixelScene {
 				if (placed == 34) {
 					curX = (Camera.main.width - btnWidth * (classes.length-4))/2;
 				}
-				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*6)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+20, Camera.main.height-(HeroBtn.HEIGHT*6)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else if (placed >= 27){
 				if (placed == 27) {
 					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
 				}
-				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*5)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+20, Camera.main.height-(HeroBtn.HEIGHT*5)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else if (placed >= 20){
 				if (placed == 20) {
 					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
 				}
-				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*4)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+20, Camera.main.height-(HeroBtn.HEIGHT*4)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else if (placed >= 13){
 				if (placed == 13) {
 					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
 				}
-				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*3)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+20, Camera.main.height-(HeroBtn.HEIGHT*3)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else if (placed >= 6){
 				if (placed == 6) {
 					curX = (Camera.main.width - btnWidth * (classes.length - 4)) / 2;
 				}
-				button.setRect(curX+10, Camera.main.height-(HeroBtn.HEIGHT*2)+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+20, Camera.main.height-(HeroBtn.HEIGHT*2)+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			} else {
 				if (placed == 0) {
 					curX = (Camera.main.width - btnWidth * (classes.length-4))/2;
 				}
-				button.setRect(curX+10, Camera.main.height-HeroBtn.HEIGHT+3, btnWidth, HeroBtn.HEIGHT);
+				button.setRect(curX+20, Camera.main.height-HeroBtn.HEIGHT+3, btnWidth, HeroBtn.HEIGHT);
 				curX += btnWidth;
 			}
 

@@ -26,12 +26,14 @@ import com.touhoupixel.touhoupixeldungeon.Badges;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.QuickSlot;
+import com.touhoupixel.touhoupixeldungeon.items.Amulet;
 import com.touhoupixel.touhoupixeldungeon.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.KogasaPrayer;
 import com.touhoupixel.touhoupixeldungeon.items.MokouRibbon;
 import com.touhoupixel.touhoupixeldungeon.items.Prayer;
 import com.touhoupixel.touhoupixeldungeon.items.Waterskin;
+import com.touhoupixel.touhoupixeldungeon.items.YukariMemo;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.LeatherArmor;
@@ -83,6 +85,7 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfSirensSon
 import com.touhoupixel.touhoupixeldungeon.items.spells.KogasaHammer;
 import com.touhoupixel.touhoupixeldungeon.items.spells.Recycle;
 import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfAugmentation;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.ChaosTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfHealWounds;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
@@ -94,6 +97,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.NitoriRod;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SmallSeiranHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SwordofHisou;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WornShortsword;
@@ -117,7 +121,8 @@ public enum HeroClass {
 	MURASAPLAYER( HeroSubClass.CAPTAIN, HeroSubClass.SHIPGHOST ),
 	HINAPLAYER( HeroSubClass.SPINGOD, HeroSubClass.CURSEGOD ),
 	KAGUYAPLAYER( HeroSubClass.TIMESTOP, HeroSubClass.TIMEMOVE ),
-	KOGASAPLAYER( HeroSubClass.SLOWGIRL, HeroSubClass.HORRORGIRL );
+	KOGASAPLAYER( HeroSubClass.SLOWGIRL, HeroSubClass.HORRORGIRL ),
+	YUKARIPLAYER( HeroSubClass.GAPMASTER, HeroSubClass.BORDERMASTER );
 
 	private HeroSubClass[] subClasses;
 
@@ -230,6 +235,10 @@ public enum HeroClass {
 
 			case KOGASAPLAYER:
 				initKogasaplayer( hero );
+				break;
+
+			case YUKARIPLAYER:
+				initYukariplayer( hero );
 				break;
 		}
 
@@ -396,12 +405,20 @@ public enum HeroClass {
 		food.quantity(9).collect();
 
 		KogasaPrayer kogasapray = new KogasaPrayer();
-		kogasapray.identify().collect();
+		kogasapray.collect();
 		Dungeon.quickslot.setSlot(0, kogasapray);
 
 		new PotionOfHaste().identify();
 		new PotionOfBerserk().identify();
 		new PotionOfDoublespeed().identify();
+	}
+
+	private static void initYukariplayer( Hero hero ) {
+		(hero.belongings.weapon = new RunicBlade()).identify();
+
+		YukariMemo ym = new YukariMemo();
+		ym.collect();
+		Dungeon.quickslot.setSlot(0, ym);
 	}
 
 	public String title() {
@@ -440,6 +457,8 @@ public enum HeroClass {
 				return Assets.Sprites.KAGUYAPLAYER;
 			case KOGASAPLAYER:
 				return Assets.Sprites.KOGASAPLAYER;
+			case YUKARIPLAYER:
+				return Assets.Sprites.YUKARIPLAYER;
 		}
 	}
 
@@ -467,6 +486,8 @@ public enum HeroClass {
 				return Assets.Splashes.KAGUYAPLAYER;
 			case KOGASAPLAYER:
 				return Assets.Splashes.KOGASAPLAYER;
+			case YUKARIPLAYER:
+				return Assets.Splashes.YUKARIPLAYER;
 		}
 	}
 
@@ -560,6 +581,14 @@ public enum HeroClass {
 						Messages.get(HeroClass.class, "kogasaplayer_perk4"),
 						Messages.get(HeroClass.class, "kogasaplayer_perk5"),
 				};
+			case YUKARIPLAYER:
+				return new String[]{
+						Messages.get(HeroClass.class, "yukariplayer_perk1"),
+						Messages.get(HeroClass.class, "yukariplayer_perk2"),
+						Messages.get(HeroClass.class, "yukariplayer_perk3"),
+						Messages.get(HeroClass.class, "yukariplayer_perk4"),
+						Messages.get(HeroClass.class, "yukariplayer_perk5"),
+				};
 		}
 	}
 
@@ -591,6 +620,8 @@ public enum HeroClass {
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_KAGUYAPLAYER);
 			case KOGASAPLAYER:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_KOGASAPLAYER);
+			case YUKARIPLAYER:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_YUKARIPLAYER);
 		}
 	}
 
@@ -619,6 +650,8 @@ public enum HeroClass {
 				return Messages.get(HeroClass.class, "kaguyaplayer_unlock");
 			case KOGASAPLAYER:
 				return Messages.get(HeroClass.class, "kogasaplayer_unlock");
+			case YUKARIPLAYER:
+				return Messages.get(HeroClass.class, "yukariplayer_unlock");
 		}
 	}
 

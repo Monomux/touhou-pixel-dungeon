@@ -254,6 +254,7 @@ public class Assets {
 		public static final String HINAPLAYER     = "splashes/hinaplayer.jpg";
 		public static final String KAGUYAPLAYER     = "splashes/kaguyaplayer.jpg";
 		public static final String KOGASAPLAYER     = "splashes/kogasaplayer.jpg";
+		public static final String YUKARIPLAYER     = "splashes/yukariplayer.jpg";
 	}
 
 	public static class Sprites {
@@ -271,6 +272,7 @@ public class Assets {
 		public static final String HINAPLAYER = "sprites/hinaplayer.png";
 		public static final String KAGUYAPLAYER = "sprites/kaguyaplayer.png";
 		public static final String KOGASAPLAYER = "sprites/kogasaplayer.png";
+		public static final String YUKARIPLAYER = "sprites/yukariplayer.png";
 		public static final String AVATARS	= "sprites/avatars.png";
 		public static final String PET		= "sprites/pet.png";
 		public static final String AMULET	= "sprites/amulet.png";
@@ -353,7 +355,6 @@ public class Assets {
 		public static final String REISEN	= "sprites/reisen.png";
 		public static final String SAGUME	= "sprites/sagume.png";
 		public static final String FISTS	= "sprites/yog_fists.png";
-		public static final String YOG		= "sprites/yog.png";
 		public static final String GHOST	= "sprites/ghost.png";
 		public static final String MAKER	= "sprites/wandmaker.png";
 		public static final String TROLL	= "sprites/blacksmith.png";

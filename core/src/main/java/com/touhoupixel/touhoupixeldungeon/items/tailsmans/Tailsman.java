@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PinCushion;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
+import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;

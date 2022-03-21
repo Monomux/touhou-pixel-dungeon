@@ -112,6 +112,7 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRage;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRemoveCurse;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRouteChange;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfSlowness;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTransmutation;
@@ -123,6 +124,7 @@ import com.touhoupixel.touhoupixeldungeon.items.spells.AquaBlast;
 import com.touhoupixel.touhoupixeldungeon.items.spells.CurseInfusion;
 import com.touhoupixel.touhoupixeldungeon.items.spells.KogasaHammer;
 import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfBlink;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.ChaosTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfHealWounds;
@@ -277,7 +279,18 @@ public enum Talent {
 	//Slowgirl T3
 	SLOWED_ATTACK(181, 3), SLOWED_SNIPE(182, 3), SLOWED_UPGRADE(183, 3),
 	//Horrorgirl T3
-	HORROR_ATTACK(184, 3), HORROR_DEFENSE(185, 3), GAIN_DREAD(186, 3);
+	HORROR_ATTACK(184, 3), HORROR_DEFENSE(185, 3), GAIN_DREAD(186, 3),
+
+	//Yukari T1
+	GAP_HEAL(187), LV4_BURN(188), MAXHP_FOOD_TRIPLESPEED(189), GAIN_TRA(190),
+	//Yukari T2
+	GAP_TAILSMAN(191), LV5_SLOW(192), LV7_DOUBLERAINBOW(193), LV8_DOUBLEEVASION(194), GAIN_CHAOS(195),
+	//Yukari T3
+	GAP_TRIPLESPEED(196, 3), GAP_HISOU(197, 3),
+	//Gapmaster T3
+	GAIN_ROUTECHANGE(198, 3), TELEPORT_HEAL(199, 3), EMER_TELEPORT(200, 3),
+	//Bordermaster T3
+	LV7_ONEDEFDAMAGE(201, 3), LV8_ONEDAMAGE(202, 3), LV9_HIGHSTRESS(203, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff {
 		public int icon() {
@@ -979,6 +992,15 @@ public enum Talent {
 			st.quantity(12).collect();
 		}
 
+		if (talent == GAIN_CHAOS && hero.pointsInTalent(GAIN_CHAOS) == 1) {
+			ChaosTailsman ct = new ChaosTailsman();
+			ct.quantity(12).collect();
+		}
+		if (talent == GAIN_CHAOS && hero.pointsInTalent(GAIN_CHAOS) == 2) {
+			ChaosTailsman ct = new ChaosTailsman();
+			ct.quantity(12).collect();
+		}
+
 		if (talent == GAIN_RANDOM_5TIER_WEAPON && hero.pointsInTalent(GAIN_RANDOM_5TIER_WEAPON) == 1) {
 			Generator.Category c = Generator.Category.WEP_T5;
 			MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
@@ -1025,11 +1047,39 @@ public enum Talent {
 			sod.identify().quantity(5).collect();
 		}
 
-		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 1){
+		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 1) {
 			Dungeon.energy += 15;
 		}
 		if (talent == GAIN_ALCHEMY_ENERGY && hero.pointsInTalent(GAIN_ALCHEMY_ENERGY) == 2) {
 			Dungeon.energy += 15;
+		}
+
+		if (talent == GAIN_TRA && hero.pointsInTalent(GAIN_TRA) == 1) {
+			Dungeon.energy += 8;
+			ScrollOfTeleportation sot = new ScrollOfTeleportation();
+			sot.quantity(2).identify().collect();
+			ScrollOfRouteChange sorc = new ScrollOfRouteChange();
+			sorc.quantity(2).identify().collect();
+		}
+		if (talent == GAIN_TRA && hero.pointsInTalent(GAIN_TRA) == 2) {
+			Dungeon.energy += 8;
+			ScrollOfTeleportation sot = new ScrollOfTeleportation();
+			sot.quantity(2).identify().collect();
+			ScrollOfRouteChange sorc = new ScrollOfRouteChange();
+			sorc.quantity(2).identify().collect();
+		}
+
+		if (talent == GAIN_ROUTECHANGE && hero.pointsInTalent(GAIN_ROUTECHANGE) == 1) {
+			ScrollOfRouteChange sorc = new ScrollOfRouteChange();
+			sorc.quantity(5).identify().collect();
+		}
+		if (talent == GAIN_ROUTECHANGE && hero.pointsInTalent(GAIN_ROUTECHANGE) == 2) {
+			ScrollOfRouteChange sorc = new ScrollOfRouteChange();
+			sorc.quantity(5).identify().collect();
+		}
+		if (talent == GAIN_ROUTECHANGE && hero.pointsInTalent(GAIN_ROUTECHANGE) == 3) {
+			ScrollOfRouteChange sorc = new ScrollOfRouteChange();
+			sorc.quantity(5).identify().collect();
 		}
 
 		if (talent == THIEFS_INTUITION && hero.pointsInTalent(THIEFS_INTUITION) == 2){
@@ -1077,6 +1127,7 @@ public enum Talent {
 				hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(HEARTY_MEAL));
 			}
 		}
+
 		if (hero.hasTalent(EIENTEI_MEAL)) {
 			//3/5 HP healed, when hero is below 25% health
 			if (hero.HP <= hero.HT / 2) {
@@ -1125,7 +1176,6 @@ public enum Talent {
 			if (Random.Int(2) == 0)
 				Buff.prolong( hero, Hex.class, Hex.DURATION );
 		}
-
 
 		if (hero.hasTalent(CURSED_MEAL)) {
 			for (Item item : Dungeon.hero.belongings) {
@@ -1198,6 +1248,14 @@ public enum Talent {
 		if (hero.hasTalent(MAGIC_IMMUNE_MEAL) && hero.pointsInTalent(MAGIC_IMMUNE_MEAL) == 3) {
 			Buff.prolong(hero, MagicImmune.class, MagicImmune.DURATION);
 			Buff.prolong(hero, Might.class, Might.DURATION);
+		}
+
+		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_FOOD_TRIPLESPEED) == 1){
+			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION/2f);
+		}
+
+		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_FOOD_TRIPLESPEED) == 2){
+			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
 		}
 
 		if (hero.hasTalent(IRON_STOMACH)){
@@ -1493,6 +1551,9 @@ public enum Talent {
 			case KOGASAPLAYER:
 				Collections.addAll(tierTalents, GAIN_FOOD, GAIN_GOLD, GAIN_KOGASA_HAMMER, GAIN_RANDOM_SECRET_WEAPON);
 				break;
+			case YUKARIPLAYER:
+				Collections.addAll(tierTalents, GAP_HEAL, LV4_BURN, MAXHP_FOOD_TRIPLESPEED, GAIN_TRA);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(0).put(talent, 0);
@@ -1533,7 +1594,10 @@ public enum Talent {
 				Collections.addAll(tierTalents, HEALWAND_SILENCE, UPGRADE_MAXHT_UP, POTION_PRESERVE, GAIN_POTIONOFHEALING, GAIN_SUNGRASSSEED);
 				break;
 			case KOGASAPLAYER:
-				Collections.addAll(tierTalents, GAIN_BLINK,  GAIN_TELEPORTATION, GAIN_SWAP, GAIN_RANDOM_5TIER_WEAPON, GAIN_UPGRADE);
+				Collections.addAll(tierTalents, GAIN_BLINK, GAIN_TELEPORTATION, GAIN_SWAP, GAIN_RANDOM_5TIER_WEAPON, GAIN_UPGRADE);
+				break;
+			case YUKARIPLAYER:
+				Collections.addAll(tierTalents, GAP_TAILSMAN, LV5_SLOW, LV7_DOUBLERAINBOW, LV8_DOUBLEEVASION, GAIN_CHAOS);
 				break;
 		}
 		for (Talent talent : tierTalents) {
@@ -1576,6 +1640,9 @@ public enum Talent {
 				break;
 			case KOGASAPLAYER:
 				Collections.addAll(tierTalents, SLOWED_ACCURACY_UP, SLOWED_EVASION_UP);
+				break;
+			case YUKARIPLAYER:
+				Collections.addAll(tierTalents, GAP_TRIPLESPEED, GAP_HISOU);
 				break;
 		}
 		for (Talent talent : tierTalents) {
@@ -1632,6 +1699,10 @@ public enum Talent {
 			case SLOWGIRL:
 				Collections.addAll(tierTalents, SLOWED_ATTACK, SLOWED_SNIPE, SLOWED_UPGRADE);
 				break;
+			case GAPMASTER:
+				Collections.addAll(tierTalents, GAIN_ROUTECHANGE, TELEPORT_HEAL, EMER_TELEPORT);
+				break;
+
 			case ASSASSIN:
 				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER);
 				break;
@@ -1664,6 +1735,9 @@ public enum Talent {
 				break;
 			case HORRORGIRL:
 				Collections.addAll(tierTalents, HORROR_ATTACK, HORROR_DEFENSE, GAIN_DREAD);
+				break;
+			case BORDERMASTER:
+				Collections.addAll(tierTalents, LV7_ONEDEFDAMAGE, LV8_ONEDAMAGE, LV9_HIGHSTRESS);
 				break;
 		}
 		for (Talent talent : tierTalents){

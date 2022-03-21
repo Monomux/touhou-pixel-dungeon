@@ -75,6 +75,7 @@ public class Badges {
 		UNLOCK_HINAPLAYER           ( 19 ),
 		UNLOCK_KAGUYAPLAYER         ( 20 ),
 		UNLOCK_KOGASAPLAYER         ( 21 ),
+		UNLOCK_YUKARIPLAYER         ( 22 ),
 		SHOPKEEPERS                 ( 28 ),
 		TOYOHIMES                   ( 29 ),
 		YORIHIMES                   ( 30 ),
@@ -143,6 +144,7 @@ public class Badges {
 		VICTORY_HINAPLAYER,
 		VICTORY_KAGUYAPLAYER,
 		VICTORY_KOGASAPLAYER,
+		VICTORY_YUKARIPLAYER,
 		VICTORY_ALL_CLASSES         ( 98, true ),
 		GAMES_PLAYED_3              ( 99, true ),
 		CHAMPION_1                  ( 100 ),
@@ -713,6 +715,9 @@ public class Badges {
 			case KAGUYAPLAYER:
 				badge = Badge.VICTORY_KAGUYAPLAYER;
 				break;
+			case YUKARIPLAYER:
+				badge = Badge.VICTORY_YUKARIPLAYER;
+				break;
 		}
 		local.add( badge );
 		if (!global.contains( badge )) {
@@ -729,6 +734,7 @@ public class Badges {
 				global.contains( Badge.VICTORY_MURASAPLAYER ) &&
 				global.contains( Badge.VICTORY_HINAPLAYER ) &&
 				global.contains( Badge.VICTORY_KAGUYAPLAYER ) &&
+				global.contains( Badge.VICTORY_YUKARIPLAYER ) &&
 				global.contains( Badge.VICTORY_HUNTRESS )) {
 
 			badge = Badge.VICTORY_ALL_CLASSES;
@@ -807,6 +813,13 @@ public class Badges {
 				saveNeeded = true;
 			}
 			badge = Badge.CHAMPION_4;
+		}
+		if (challenges >= 10){
+			if (!global.contains(badge)){
+				global.add(badge);
+				saveNeeded = true;
+			}
+			badge = Badge.UNLOCK_YUKARIPLAYER;
 		}
 		if (challenges >= 15){
 			if (!global.contains(badge)){

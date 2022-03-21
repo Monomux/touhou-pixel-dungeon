@@ -27,12 +27,17 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.effects.Flare;
 import com.touhoupixel.touhoupixeldungeon.effects.Identification;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.SwapTailsman;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.TormentTailsman;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
@@ -51,8 +56,76 @@ public class ScrollOfRouteChange extends Scroll {
 	public void doRead() {
 		if (Statistics.altRoute){
 			Statistics.altRoute = false;
+			if (curUser.pointsInTalent(Talent.GAP_TAILSMAN) == 1){
+				TormentTailsman tt = new TormentTailsman();
+				tt.quantity(2).collect();
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TAILSMAN) == 2){
+				TormentTailsman tt = new TormentTailsman();
+				tt.quantity(3).collect();
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HEAL) == 1){
+				curUser.HP = Math.min(curUser.HP + 20, curUser.HT);
+				curUser.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HEAL) == 2){
+				curUser.HP = Math.min(curUser.HP + 30, curUser.HT);
+				curUser.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TRIPLESPEED) == 1) {
+				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION/5f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TRIPLESPEED) == 2) {
+				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION/2f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TRIPLESPEED) == 3) {
+				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HISOU) == 1) {
+				Buff.prolong(curUser, Hisou.class, Hisou.DURATION/5f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HISOU) == 2) {
+				Buff.prolong(curUser, Hisou.class, Hisou.DURATION/2f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HISOU) == 3) {
+				Buff.prolong(curUser, Hisou.class, Hisou.DURATION);
+			}
 		} else {
 			Statistics.altRoute = true;
+			if (curUser.pointsInTalent(Talent.GAP_TAILSMAN) == 1){
+				TormentTailsman tt = new TormentTailsman();
+				tt.quantity(2).collect();
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TAILSMAN) == 2){
+				TormentTailsman tt = new TormentTailsman();
+				tt.quantity(3).collect();
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HEAL) == 1){
+				curUser.HP = Math.min(curUser.HP + 20, curUser.HT);
+				curUser.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HEAL) == 2){
+				curUser.HP = Math.min(curUser.HP + 30, curUser.HT);
+				curUser.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TRIPLESPEED) == 1) {
+				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION/5f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TRIPLESPEED) == 2) {
+				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION/2f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_TRIPLESPEED) == 3) {
+				Buff.prolong(curUser, Triplespeed.class, Triplespeed.DURATION);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HISOU) == 1) {
+				Buff.prolong(curUser, Hisou.class, Hisou.DURATION/5f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HISOU) == 2) {
+				Buff.prolong(curUser, Hisou.class, Hisou.DURATION/2f);
+			}
+			if (curUser.pointsInTalent(Talent.GAP_HISOU) == 3) {
+				Buff.prolong(curUser, Hisou.class, Hisou.DURATION);
+			}
 		}
 
 		identify();

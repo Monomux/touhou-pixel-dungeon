@@ -37,6 +37,8 @@ public class HeroIcon extends Image {
 	public static final int TIMEMOVE      = 19;
 	public static final int SLOWGIRL      = 20;
 	public static final int HORRORGIRL      = 21;
+	public static final int GAPMASTER      = 22;
+	public static final int BORDERMASTER      = 23;
 
 	public HeroIcon(HeroSubClass subCls){
 		super( Assets.Interfaces.HERO_ICONS );

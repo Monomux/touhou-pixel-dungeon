@@ -62,6 +62,7 @@ public class WndHeroInfo extends WndTabbed {
 			case MURASAPLAYER:
 			case HINAPLAYER:
 			case KAGUYAPLAYER:
+			case YUKARIPLAYER:
 			case KOGASAPLAYER: default:
 				tabIcon = new ItemSprite(ItemSpriteSheet.SEAL, null);
 				break;
@@ -141,6 +142,7 @@ public class WndHeroInfo extends WndTabbed {
 				case MURASAPLAYER:
 				case HINAPLAYER:
 				case KAGUYAPLAYER:
+				case YUKARIPLAYER:
 				case KOGASAPLAYER: default:
 					icons = new Image[]{ new ItemSprite(ItemSpriteSheet.SEAL),
 							new ItemSprite(ItemSpriteSheet.WORN_SHORTSWORD),
