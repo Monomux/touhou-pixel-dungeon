@@ -557,19 +557,14 @@ public class Dungeon {
 	}
 
 	public static boolean souNeeded() {
-		//2 SOU each floor set
-		int souLeftThisSet = 2 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 2);
+		int souLeftThisSet;
+		//3 SOU each floor set, 1.5 (rounded) on forbidden runes challenge
+			souLeftThisSet = 3 - (LimitedDrops.UPGRADE_SCROLLS.count - (depth / 5) * 3);
 		if (souLeftThisSet <= 0) return false;
 
 		int floorThisSet = (depth % 5);
-
-		//sou drops every two floors, (numbers 1-2, and 3-4) with a 50% chance for the earlier one each time.
-		int targetSOULeft = 2 - floorThisSet/2;
-		if (floorThisSet % 2 == 1 && Random.Int(2) == 0) targetSOULeft --;
-
-		if (targetSOULeft < souLeftThisSet) return true;
-		else return false;
-
+		//chance is floors left / scrolls left
+		return Random.Int(5 - floorThisSet) < souLeftThisSet;
 	}
 
 	public static boolean asNeeded() {

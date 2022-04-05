@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.TPDAction;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.journal.Document;
@@ -71,18 +72,11 @@ public class StatusPane extends Component {
 	private int lastLvl = -1;
 
 	private BitmapText level;
-	private BitmapText depth;
 
-	private DangerIndicator danger;
 	private BuffIndicator buffs;
 	private Compass compass;
 
-	private JournalButton btnJournal;
-	private MenuButton btnMenu;
-
 	private Toolbar.PickedUpItem pickedUp;
-
-	private BitmapText version;
 
 	@Override
 	protected void createChildren() {
@@ -96,18 +90,7 @@ public class StatusPane extends Component {
 				Camera.main.panTo( Dungeon.hero.sprite.center(), 5f );
 				GameScene.show( new WndHero() );
 			}
-
-			@Override
-			public GameAction keyAction() {
-				return TPDAction.HERO_INFO;
-			}
 		}.setRect( 0, 1, 30, 30 ));
-
-		btnJournal = new JournalButton();
-		add( btnJournal );
-
-		btnMenu = new MenuButton();
-		add( btnMenu );
 
 		avatar = HeroSprite.avatar( Dungeon.hero.heroClass, lastTier );
 		add( avatar );
@@ -149,22 +132,10 @@ public class StatusPane extends Component {
 		level.hardlight( 0xFFFFAA );
 		add( level );
 
-		depth = new BitmapText( Integer.toString( Dungeon.depth ), PixelScene.pixelFont);
-		depth.hardlight( 0xCACFC2 );
-		depth.measure();
-		add( depth );
-
-		danger = new DangerIndicator();
-		add( danger );
-
-		buffs = new BuffIndicator( Dungeon.hero );
+		buffs = new BuffIndicator(Dungeon.hero);
 		add( buffs );
 
 		add( pickedUp = new Toolbar.PickedUpItem());
-
-		version = new BitmapText( "v" + Game.version, PixelScene.pixelFont);
-		version.alpha( 0.5f );
-		add(version);
 	}
 
 	@Override
@@ -193,23 +164,7 @@ public class StatusPane extends Component {
 
 		bossHP.setPos( 6 + (width - bossHP.width())/2, 20);
 
-		depth.x = width - 35.5f - depth.width() / 2f;
-		depth.y = 8f - depth.baseLine() / 2f;
-		PixelScene.align(depth);
-
-		danger.setPos( width - danger.width(), 37 );
-
 		buffs.setPos( 31, 9 );
-
-		btnJournal.setPos( width - 42, 1 );
-
-		btnMenu.setPos( width - btnMenu.width(), 1 );
-
-		version.scale.set(PixelScene.align(0.5f));
-		version.measure();
-		version.x = width - version.width();
-		version.y = btnMenu.bottom() + (4 - version.baseLine());
-		PixelScene.align(version);
 	}
 
 	private static final int[] warningColors = new int[]{0x660000, 0xCC0000, 0x660000};
@@ -275,26 +230,10 @@ public class StatusPane extends Component {
 		emitter.burst( Speck.factory( Speck.STAR ), 12 );
 	}
 
-	public void pickup( Item item, int cell) {
-		pickedUp.reset( item,
-				cell,
-				btnJournal.journalIcon.x + btnJournal.journalIcon.width()/2f,
-				btnJournal.journalIcon.y + btnJournal.journalIcon.height()/2f);
-	}
-
-	public void flashForPage( String page ){
-		btnJournal.flashingPage = page;
-	}
-
-	public void updateKeys(){
-		btnJournal.updateKeyDisplay();
-	}
-
 	private static class JournalButton extends Button {
 
 		private Image bg;
 		private Image journalIcon;
-		private KeyDisplay keyIcon;
 
 		private String flashingPage = null;
 
@@ -306,11 +245,6 @@ public class StatusPane extends Component {
 		}
 
 		@Override
-		public GameAction keyAction() {
-			return TPDAction.JOURNAL;
-		}
-
-		@Override
 		protected void createChildren() {
 			super.createChildren();
 
@@ -319,10 +253,6 @@ public class StatusPane extends Component {
 
 			journalIcon = new Image( Assets.Interfaces.MENU, 31, 0, 11, 7);
 			add( journalIcon );
-
-			keyIcon = new KeyDisplay();
-			add(keyIcon);
-			updateKeyDisplay();
 		}
 
 		@Override
@@ -335,12 +265,6 @@ public class StatusPane extends Component {
 			journalIcon.x = bg.x + (bg.width() - journalIcon.width())/2f;
 			journalIcon.y = bg.y + (bg.height() - journalIcon.height())/2f;
 			PixelScene.align(journalIcon);
-
-			keyIcon.x = bg.x + 1;
-			keyIcon.y = bg.y + 1;
-			keyIcon.width = bg.width - 2;
-			keyIcon.height = bg.height - 2;
-			PixelScene.align(keyIcon);
 		}
 
 		private float time;
@@ -351,21 +275,9 @@ public class StatusPane extends Component {
 
 			if (flashingPage != null){
 				journalIcon.am = (float)Math.abs(Math.cos( FLASH_RATE * (time += Game.elapsed) ));
-				keyIcon.am = journalIcon.am;
 				if (time >= Math.PI/FLASH_RATE) {
 					time = 0;
 				}
-			}
-		}
-
-		public void updateKeyDisplay() {
-			keyIcon.updateKeys();
-			keyIcon.visible = keyIcon.keyCount() > 0;
-			journalIcon.visible = !keyIcon.visible;
-			if (keyIcon.keyCount() > 0) {
-				bg.brightness(.8f - (Math.min(6, keyIcon.keyCount()) / 20f));
-			} else {
-				bg.resetColor();
 			}
 		}
 
@@ -377,17 +289,12 @@ public class StatusPane extends Component {
 
 		@Override
 		protected void onPointerUp() {
-			if (keyIcon.keyCount() > 0) {
-				bg.brightness(.8f - (Math.min(6, keyIcon.keyCount()) / 20f));
-			} else {
 				bg.resetColor();
-			}
 		}
 
 		@Override
 		protected void onClick() {
 			time = 0;
-			keyIcon.am = journalIcon.am = 1;
 			if (flashingPage != null){
 				if (Document.ADVENTURERS_GUIDE.pageNames().contains(flashingPage)){
 					GameScene.show( new WndStory( WndJournal.GuideTab.iconForPage(flashingPage),

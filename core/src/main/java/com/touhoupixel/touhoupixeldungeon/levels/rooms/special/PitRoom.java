@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.keys.CrystalKey;
 import com.touhoupixel.touhoupixeldungeon.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -37,18 +38,22 @@ public class PitRoom extends SpecialRoom {
 
 	@Override //increase min size slightly to prevent tiny 3x3 wraith fights
 	public int minWidth() { return 6; }
-	public int minHeight() {
-		return 6;
-	}
+	public int minHeight() { return 6; }
+
+	@Override //reduce max size to ensure well is visible in normal circumstances
+	public int maxWidth() { return 9; }
+	public int maxHeight() { return 9; }
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
-		
+
 		Door entrance = entrance();
-		entrance.set( Door.Type.LOCKED );
-		
+		entrance.set( Door.Type.CRYSTAL );
+
 		Point well = null;
 		if (entrance.x == left) {
 			well = new Point( right-1, Random.Int( 2 ) == 0 ? top + 1 : bottom - 1 );
@@ -60,13 +65,10 @@ public class PitRoom extends SpecialRoom {
 			well = new Point( Random.Int( 2 ) == 0 ? left + 1 : right - 1, top+1 );
 		}
 		Painter.set( level, well, Terrain.EMPTY_WELL );
-		
-		int remains = level.pointToCell(random());
-		while (level.map[remains] == Terrain.EMPTY_WELL) {
-			remains = level.pointToCell(random());
-		}
-		
-		level.drop( new IronKey( Dungeon.depth ), remains ).type = Heap.Type.SKELETON;
+
+		int remains = level.pointToCell(center());
+
+		level.drop( new CrystalKey( Dungeon.depth ), remains ).type = Heap.Type.SKELETON;
 		Item mainLoot = null;
 		do {
 			switch (Random.Int(3)){
@@ -84,33 +86,31 @@ public class PitRoom extends SpecialRoom {
 			}
 		} while ( mainLoot == null || Challenges.isItemBlocked(mainLoot));
 		level.drop(mainLoot, remains).setHauntedIfCursed();
-		
+
 		int n = Random.IntRange( 1, 2 );
 		for (int i=0; i < n; i++) {
 			level.drop( prize( level ), remains ).setHauntedIfCursed();
 		}
 	}
-	
+
 	private static Item prize( Level level ) {
-		
-		if (Random.Int(2) != 0){
-			Item prize = level.findPrizeItem();
-			if (prize != null)
-				return prize;
-		}
-		
 		return Generator.random( Random.oneOf(
-			Generator.Category.POTION,
-			Generator.Category.SCROLL,
-			Generator.Category.FOOD,
-			Generator.Category.GOLD
+				Generator.Category.POTION,
+				Generator.Category.SCROLL,
+				Generator.Category.FOOD,
+				Generator.Category.GOLD
 		) );
 	}
-	
+
 	@Override
 	public boolean canPlaceTrap(Point p) {
 		//the player is already weak after landing, and will likely need to kite the ghost.
 		//having traps here just seems unfair
 		return false;
+	}
+
+	@Override
+	public boolean canPlaceGrass(Point p) {
+		return false; //We want the player to be able to see the well through the door
 	}
 }

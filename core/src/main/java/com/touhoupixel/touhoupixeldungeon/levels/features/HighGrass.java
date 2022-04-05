@@ -28,7 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.ArmoredStatue;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.ArmoredNarumi;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.LeafParticle;
 import com.touhoupixel.touhoupixeldungeon.items.Dewdrop;
@@ -130,8 +130,8 @@ public class HighGrass {
 				if (ghost.armor() != null && ghost.armor().hasGlyph(Camouflage.class, ghost)){
 					Camouflage.activate(ghost, ghost.armor().buffedLvl());
 				}
-			} else if (ch instanceof ArmoredStatue){
-				ArmoredStatue statue = (ArmoredStatue) ch;
+			} else if (ch instanceof ArmoredNarumi){
+				ArmoredNarumi statue = (ArmoredNarumi) ch;
 				if (statue.armor() != null && statue.armor().hasGlyph(Camouflage.class, statue)){
 					Camouflage.activate(statue, statue.armor().buffedLvl());
 				}

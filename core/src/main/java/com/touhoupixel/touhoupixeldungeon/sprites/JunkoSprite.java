@@ -44,7 +44,7 @@ public class JunkoSprite extends MobSprite {
 		
 		texture( Assets.Sprites.JUNKO );
 		
-		TextureFilm frames = new TextureFilm( texture, 12, 16 );
+		TextureFilm frames = new TextureFilm( texture, 12, 15 );
 		
 		idle = new Animation( 8, true );
 		idle.frames( frames, 0, 1, 2 );

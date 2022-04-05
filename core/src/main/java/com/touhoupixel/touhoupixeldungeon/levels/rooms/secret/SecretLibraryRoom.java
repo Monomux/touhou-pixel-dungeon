@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.secret;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfLullaby;
@@ -42,17 +44,17 @@ import com.watabou.utils.Reflection;
 import java.util.HashMap;
 
 public class SecretLibraryRoom extends SecretRoom {
-	
+
 	@Override
 	public int minWidth() {
 		return Math.max(7, super.minWidth());
 	}
-	
+
 	@Override
 	public int minHeight() {
 		return Math.max(7, super.minHeight());
 	}
-	
+
 	private static HashMap<Class<? extends Scroll>, Float> scrollChances = new HashMap<>();
 	static{
 		scrollChances.put( ScrollOfIdentify.class,      1f );
@@ -67,14 +69,16 @@ public class SecretLibraryRoom extends SecretRoom {
 		scrollChances.put( ScrollOfTerror.class,        4f );
 		scrollChances.put( ScrollOfTransmutation.class, 6f );
 	}
-	
+
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.BOOKSHELF );
-		
+
 		Painter.fillEllipse(level, this, 2, Terrain.EMPTY_SP);
-		
+
 		Door entrance = entrance();
 		if (entrance.x == left || entrance.x == right){
 			Painter.drawInside(level, this, entrance, (width() - 3) / 2, Terrain.EMPTY_SP);
@@ -82,7 +86,7 @@ public class SecretLibraryRoom extends SecretRoom {
 			Painter.drawInside(level, this, entrance, (height() - 3) / 2, Terrain.EMPTY_SP);
 		}
 		entrance.set( Door.Type.HIDDEN );
-		
+
 		int n = Random.IntRange( 2, 3 );
 		HashMap<Class<? extends Scroll>, Float> chances = new HashMap<>(scrollChances);
 		for (int i=0; i < n; i++) {
@@ -90,11 +94,11 @@ public class SecretLibraryRoom extends SecretRoom {
 			do {
 				pos = level.pointToCell(random());
 			} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
-			
+
 			Class<?extends Scroll> scrollCls = Random.chances(chances);
 			chances.put(scrollCls, 0f);
 			level.drop( Reflection.newInstance(scrollCls), pos );
 		}
 	}
-	
+
 }

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.secret;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.items.food.ChargrilledMeat;
@@ -33,31 +34,33 @@ import com.touhoupixel.touhoupixeldungeon.plants.BlandfruitBush;
 import com.watabou.utils.Point;
 
 public class SecretLarderRoom extends SecretRoom {
-	
+
 	@Override
 	public int minHeight() {
 		return 6;
 	}
-	
+
 	@Override
 	public int minWidth() {
 		return 6;
 	}
-	
+
 	@Override
 	public void paint(Level level) {
-		Painter.fill(level, this, Terrain.WALL);
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill(level, this, 1, Terrain.EMPTY_SP);
-		
+
 		Point c = center();
-		
+
 		Painter.fill(level, c.x-1, c.y-1, 3, 3, Terrain.WATER);
 		Painter.set(level, c, Terrain.GRASS);
-		
+
 		level.plant(new BlandfruitBush.Seed(), level.pointToCell(c));
-		
+
 		int extraFood = (int)(Hunger.STARVING - Hunger.HUNGRY) * (1 + Dungeon.depth / 5);
-		
+
 		while (extraFood > 0){
 			Food food;
 			if (extraFood >= Hunger.STARVING){
@@ -73,9 +76,9 @@ public class SecretLarderRoom extends SecretRoom {
 			} while (level.map[foodPos] != Terrain.EMPTY_SP || level.heaps.get(foodPos) != null);
 			level.drop(food, foodPos);
 		}
-		
+
 		entrance().set(Door.Type.HIDDEN);
 	}
-	
-	
+
+
 }

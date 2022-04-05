@@ -24,6 +24,7 @@ package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
@@ -65,11 +66,11 @@ public class MeleeWeapon extends Weapon {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.POPPIN_PARTY) && tier > 3) {
+		if (Dungeon.isChallenged(Challenges.REVERSE_HIERARCHY) && tier > 3) {
 			Buff.prolong(owner, Weakness.class, Weakness.DURATION);
 			Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
 			Buff.prolong(owner, Hex.class, Hex.DURATION);
-			Buff.prolong(owner, Cripple.class, Cripple.DURATION);
+			Buff.prolong(owner, AntiSneakattack.class, AntiSneakattack.DURATION);
 		}
 		
 		return damage;

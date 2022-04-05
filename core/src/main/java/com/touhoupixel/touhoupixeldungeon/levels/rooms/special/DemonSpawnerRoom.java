@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.ReisenSpawner;
@@ -38,7 +39,9 @@ public class DemonSpawnerRoom extends SpecialRoom {
 	@Override
 	public void paint(Level level) {
 
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
 
 		Point c = center();

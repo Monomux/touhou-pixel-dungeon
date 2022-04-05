@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,16 +25,20 @@ import com.watabou.input.GameAction;
 import com.watabou.input.KeyBindings;
 import com.watabou.input.KeyEvent;
 import com.watabou.input.PointerEvent;
+import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.PointerArea;
+import com.watabou.noosa.ui.Component;
 import com.watabou.utils.Signal;
+
+import java.util.ArrayList;
 
 public class Button extends Component {
 
 	public static float longClick = 0.5f;
-	
+
 	protected PointerArea hotArea;
-	
+
 	protected boolean pressed;
 	protected float pressTime;
 	protected boolean processed;
@@ -56,37 +60,55 @@ public class Button extends Component {
 			}
 			@Override
 			protected void onClick( PointerEvent event ) {
-				if (!processed) {
-					Button.this.onClick();
+					switch (event.button){
+						case PointerEvent.LEFT: default:
+							Button.this.onClick();
+							break;
+						case PointerEvent.RIGHT:
+							Button.this.onRightClick();
+							break;
+						case PointerEvent.MIDDLE:
+							Button.this.onMiddleClick();
+							break;
+					}
+
 				}
-			}
 		};
 		add( hotArea );
-		
+
 		KeyEvent.addKeyListener( keyListener = new Signal.Listener<KeyEvent>() {
 			@Override
 			public boolean onSignal ( KeyEvent event ) {
-				if ( active && event.pressed && KeyBindings.getActionForKey( event ) == keyAction()){
-					onClick();
+				if ( active && KeyBindings.getActionForKey( event ) == keyAction()){
+					if (event.pressed){
+						pressed = true;
+						pressTime = 0;
+						processed = false;
+						Button.this.onPointerDown();
+					} else {
+						Button.this.onPointerUp();
+						if (pressed && !processed) onClick();
+						pressed = false;
+					}
 					return true;
 				}
 				return false;
 			}
 		});
 	}
-	
+
 	private Signal.Listener<KeyEvent> keyListener;
-	
+
 	public GameAction keyAction(){
 		return null;
 	}
-	
+
 	@Override
 	public void update() {
 		super.update();
-		
+
 		hotArea.active = visible;
-		
+
 		if (pressed) {
 			if ((pressTime += Game.elapsed) >= longClick) {
 				pressed = false;
@@ -95,20 +117,26 @@ public class Button extends Component {
 					hotArea.reset();
 					processed = true;
 					onPointerUp();
-					
+
 					Game.vibrate( 50 );
 				}
 			}
 		}
 	}
-	
+
 	protected void onPointerDown() {}
 	protected void onPointerUp() {}
-	protected void onClick() {}
+	protected void onClick() {} //left click, default key type
+	protected void onRightClick() {}
+	protected void onMiddleClick() {}
 	protected boolean onLongClick() {
 		return false;
 	}
-	
+
+	protected String hoverText() {
+		return null;
+	}
+
 	@Override
 	protected void layout() {
 		hotArea.x = x;
@@ -116,11 +144,11 @@ public class Button extends Component {
 		hotArea.width = width;
 		hotArea.height = height;
 	}
-	
+
 	@Override
 	public synchronized void destroy () {
 		super.destroy();
 		KeyEvent.removeKeyListener( keyListener );
 	}
-	
+
 }

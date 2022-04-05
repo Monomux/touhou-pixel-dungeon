@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,12 +78,11 @@ public class SupporterScene extends PixelScene {
 			@Override
 			protected void onClick() {
 				super.onClick();
-				String link = "https://www.gift-gift.jp/inquiry/";
-				//tracking codes, so that the website knows where this pageview came from
-				DeviceCompat.openURI(link);
+				String link = "https://www.gift-gift.jp/inquiry";
+				TouhouPixelDungeon.platform.openURI(link);
 			}
 		};
-		link.icon(Icons.get(Icons.YUYUKOPLAYER));
+		link.icon(Icons.get(Icons.ENERGY_SML));
 		link.textColor(Window.TITLE_COLOR);
 		link.setSize(elementWidth, BTN_HEIGHT);
 		add(link);
@@ -122,13 +121,12 @@ public class SupporterScene extends PixelScene {
 			if (Messages.lang() != Languages.ENGLISH) {
 				message += "\n" + Messages.get(SupporterScene.class, "patreon_english");
 			}
-			message += "\n\n";
 
 			text = PixelScene.renderTextBlock(message, 6);
 			add(text);
 
-			icon = Icons.get(Icons.YUYUKOPLAYER);
-			add(icon);
+			icon = Icons.get(Icons.SHPX);
+			//add(icon);
 
 		}
 
@@ -150,7 +148,5 @@ public class SupporterScene extends PixelScene {
 			bg.size(width, height);
 
 		}
-
 	}
-
 }

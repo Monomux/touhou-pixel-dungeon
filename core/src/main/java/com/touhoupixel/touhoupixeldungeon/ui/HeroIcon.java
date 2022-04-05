@@ -39,6 +39,8 @@ public class HeroIcon extends Image {
 	public static final int HORRORGIRL      = 21;
 	public static final int GAPMASTER      = 22;
 	public static final int BORDERMASTER      = 23;
+	public static final int PURITYGOD      = 24;
+	public static final int PUREGOD      = 25;
 
 	public HeroIcon(HeroSubClass subCls){
 		super( Assets.Interfaces.HERO_ICONS );

@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -29,7 +31,7 @@ import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
 public class BurnedRoom extends PatchRoom {
-	
+
 	@Override
 	public float[] sizeCatProbs() {
 		return new float[]{4, 1, 0};
@@ -40,20 +42,22 @@ public class BurnedRoom extends PatchRoom {
 		int cell = l.pointToCell(pointInside(p, 1));
 		return l.map[cell] == Terrain.EMPTY;
 	}
-	
+
 	@Override
 	public void paint(Level level) {
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
 		for (Door door : connected.values()) {
 			door.set( Door.Type.REGULAR );
 		}
-		
+
 		//past 8x8 each point of width/height decreases fill by 3%
 		// e.g. a 14x14 burned room has a fill of 54%
 		float fill = Math.min( 1f, 1.48f - (width()+height())*0.03f);
 		setupPatch(level, fill, 2, false );
-		
+
 		for (int i=top + 1; i < bottom; i++) {
 			for (int j=left + 1; j < right; j++) {
 				if (!patch[xyToPatchCoords(j, i)])
@@ -86,7 +90,7 @@ public class BurnedRoom extends PatchRoom {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean canPlaceWater(Point p) {
 		return !inside(p) || !patch[xyToPatchCoords(p.x, p.y)];
@@ -101,5 +105,5 @@ public class BurnedRoom extends PatchRoom {
 	public boolean canPlaceTrap(Point p) {
 		return !inside(p) || !patch[xyToPatchCoords(p.x, p.y)];
 	}
-	
+
 }

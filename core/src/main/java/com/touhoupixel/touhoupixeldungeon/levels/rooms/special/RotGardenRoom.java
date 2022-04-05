@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.RotHeart;
@@ -33,10 +34,10 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 public class RotGardenRoom extends SpecialRoom {
-	
+
 	@Override
 	public int minWidth() { return 7; }
-	
+
 	@Override
 	public int minHeight() { return 7; }
 
@@ -46,7 +47,9 @@ public class RotGardenRoom extends SpecialRoom {
 		entrance.set(Door.Type.LOCKED);
 		level.addItemToSpawn(new IronKey(Dungeon.depth));
 
-		Painter.fill(level, this, Terrain.WALL);
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill(level, this, 1, Terrain.GRASS);
 
 

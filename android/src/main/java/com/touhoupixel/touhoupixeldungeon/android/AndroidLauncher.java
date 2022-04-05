@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ public class AndroidLauncher extends Activity {
 			finish();
 		} catch (Exception e){
 			TextView text = new TextView(this);
-			text.setText("Touhou Pixel Dungeon cannot start because some of its code is missing!\n\n" +
+			text.setText("Shattered Pixel Dungeon cannot start because some of its code is missing!\n\n" +
 					"This usually happens when the Google Play version of the game is installed from somewhere outside of Google Play.\n\n" +
 					"If you're unsure of how to fix this, please email the developer (Evan@ShatteredPixel.com), and include this error message:\n\n" +
 					e.getMessage());

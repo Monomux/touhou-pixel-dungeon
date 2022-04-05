@@ -79,7 +79,7 @@ public class SakuyaBoss extends Mob {
 	}
 
 	@Override
-	public float attackDelay() { return super.attackDelay()*0.34f; }
+	public float attackDelay() { return super.attackDelay()*0.5f; }
 	
 	@Override
 	protected boolean getCloser( int target ) {
@@ -131,7 +131,7 @@ public class SakuyaBoss extends Mob {
 	
 	@Override
 	public int drRoll() {
-		return Random.NormalIntRange(0, 10);
+		return Random.NormalIntRange(0, 2);
 	}
 
 	@Override

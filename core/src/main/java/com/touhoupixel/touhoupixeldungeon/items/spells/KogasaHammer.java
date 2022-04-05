@@ -30,6 +30,7 @@ import com.touhoupixel.touhoupixeldungeon.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
+import com.touhoupixel.touhoupixeldungeon.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
@@ -39,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HinaRibbon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HisoutenMankind;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.JeweledBranch;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MiracleMallet;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Psalms;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SmallSeiranHammer;
@@ -60,7 +62,8 @@ public class KogasaHammer extends InventorySpell {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return (item instanceof WornShortsword || item instanceof MagesStaff || item instanceof Dagger || item instanceof Gloves || item instanceof SmallSeiranHammer || item instanceof HinaRibbon || item instanceof ClothArmor|| item instanceof JeweledBranch || item instanceof MiracleMallet || item instanceof ToyohimeFan || item instanceof YorihimeSword || item instanceof HisoutenMankind || item instanceof Psalms);
+		return item instanceof MeleeWeapon && ((MeleeWeapon) item).tier == 1 ||
+				item instanceof ClothArmor;
 	}
 
 	@Override

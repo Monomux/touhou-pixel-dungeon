@@ -25,6 +25,7 @@ import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeon.windows.WndInfoBuff;
@@ -136,6 +137,7 @@ public class BuffIndicator extends Component {
 	public static final int MESSAGE_T         = 87;
 	public static final int MESSAGE_H         = 88;
 	public static final int MURASA_INF_EVASION         = 89;
+	public static final int STABLENESS         = 90;
 
 	public static final int SIZE    = 7;
 
@@ -221,7 +223,9 @@ public class BuffIndicator extends Component {
 		int pos = 0;
 		for (BuffButton icon : buffButtons.values()){
 			icon.updateIcon();
-			icon.setRect(x + pos * (SIZE + 2), y, 9, 12);
+			if (ch instanceof Hero) {
+				icon.setRect(x + pos * (SIZE + 2), y, 9, 12);
+			} else icon.setRect(x + pos * (SIZE + 2), y-8, 9, 12);
 			PixelScene.align(icon);
 			pos++;
 		}

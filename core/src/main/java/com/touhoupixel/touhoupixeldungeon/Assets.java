@@ -88,7 +88,8 @@ public class Assets {
 		public static final String DIFFI3	= "interfaces/difficulty3.png";
 		public static final String DIFFI4	= "interfaces/difficulty4.png";
 		public static final String DIFFI5	= "interfaces/difficulty5.png";
-		public static final String MENU		= "interfaces/menu_button.png";
+		public static final String MENU		= "interfaces/menu_pane.png";
+		public static final String MENU_BTN = "interfaces/menu_button.png";
 		public static final String HP_BAR	= "interfaces/hp_bar.png";
 		public static final String SHLD_BAR = "interfaces/shield_bar.png";
 		public static final String XP_BAR	= "interfaces/exp_bar.png";
@@ -255,6 +256,7 @@ public class Assets {
 		public static final String KAGUYAPLAYER     = "splashes/kaguyaplayer.jpg";
 		public static final String KOGASAPLAYER     = "splashes/kogasaplayer.jpg";
 		public static final String YUKARIPLAYER     = "splashes/yukariplayer.jpg";
+		public static final String JUNKOPLAYER     = "splashes/junkoplayer.jpg";
 	}
 
 	public static class Sprites {
@@ -273,6 +275,7 @@ public class Assets {
 		public static final String KAGUYAPLAYER = "sprites/kaguyaplayer.png";
 		public static final String KOGASAPLAYER = "sprites/kogasaplayer.png";
 		public static final String YUKARIPLAYER = "sprites/yukariplayer.png";
+		public static final String JUNKOPLAYER = "sprites/junkoplayer.png";
 		public static final String AVATARS	= "sprites/avatars.png";
 		public static final String PET		= "sprites/pet.png";
 		public static final String AMULET	= "sprites/amulet.png";
@@ -324,7 +327,7 @@ public class Assets {
 		public static final String HINA		= "sprites/hina.png";
 		public static final String SAKUYA	= "sprites/sakuya.png";
 		public static final String SHOU		= "sprites/shou.png";
-		public static final String RAT		= "sprites/rat.png";
+		public static final String WRIGGLE		= "sprites/wriggle.png";
 		public static final String BRUTE	= "sprites/brute.png";
 		public static final String YAMAME	= "sprites/yamame.png";
 		public static final String TENSHIBOSS	= "sprites/tenshiboss.png";
@@ -397,5 +400,6 @@ public class Assets {
 		public static final String NEMUNO	= "sprites/nemuno.png";
 		public static final String DESTORB	= "sprites/destorb.png";
 		public static final String LOTUS	= "sprites/lotus.png";
+		public static final String RED_SENTRY = "sprites/red_sentry.png";
 	}
 }

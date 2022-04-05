@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,16 +30,16 @@ public class HealthBar extends Component {
 	private static final int COLOR_BG	= 0xFFCC0000;
 	private static final int COLOR_HP	= 0xFF00EE00;
 	private static final int COLOR_SHLD = 0xFFBBEEBB;
-	
+
 	private static final int HEIGHT	= 2;
-	
+
 	private ColorBlock Bg;
 	private ColorBlock Shld;
 	private ColorBlock Hp;
-	
+
 	private float health;
 	private float shield;
-	
+
 	@Override
 	protected void createChildren() {
 		Bg = new ColorBlock( 1, 1, COLOR_BG );
@@ -47,28 +47,28 @@ public class HealthBar extends Component {
 
 		Shld = new ColorBlock( 1, 1, COLOR_SHLD );
 		add( Shld );
-		
+
 		Hp = new ColorBlock( 1, 1, COLOR_HP );
 		add( Hp );
-		
+
 		height = HEIGHT;
 	}
-	
+
 	@Override
 	protected void layout() {
-		
+
 		Bg.x = Shld.x = Hp.x = x;
 		Bg.y = Shld.y = Hp.y = y;
-		
+
 		Bg.size( width, height );
-		
+
 		//logic here rounds up to the nearest pixel
 		float pixelWidth = width;
 		if (camera() != null) pixelWidth *= camera().zoom;
 		Shld.size( width * (float)Math.ceil(shield * pixelWidth)/pixelWidth, height );
 		Hp.size( width * (float)Math.ceil(health * pixelWidth)/pixelWidth, height );
 	}
-	
+
 	public void level( float value ) {
 		level( value, 0f );
 	}

@@ -105,7 +105,7 @@ public class v0_7_X_Changes {
 		changes.hardlight( CharSprite.WARNING );
 		changeInfos.add(changes);
 		
-		changes.addButton( new ChangeButton(new Image(Assets.Sprites.RAT, 0, 15, 16, 15), "Enemy Changes",
+		changes.addButton( new ChangeButton(new Image(Assets.Sprites.WRIGGLE, 0, 15, 16, 15), "Enemy Changes",
 				"_-_ Significantly improved the consistency of enemy spawns (large numbers of the same enemy and large enemy groups should be less common)\n\n" +
 				"_-_ Adjusted enemy spawn chances on floors 1-10 to make room for new enemies\n\n" +
 				"_-_ Skeletons no longer rarely appear on floor 4\n\n" +

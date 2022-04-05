@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,44 +22,44 @@
 package com.watabou.noosa;
 
 public class Gizmo {
-	
+
 	public boolean exists;
 	public boolean alive;
 	public boolean active;
 	public boolean visible;
-	
+
 	public Group parent;
-	
+
 	public Camera camera;
-	
+
 	public Gizmo() {
 		exists	= true;
 		alive	= true;
 		active	= true;
 		visible	= true;
 	}
-	
+
 	public void destroy() {
 		parent = null;
 	}
-	
+
 	public void update() {
 	}
-	
+
 	public void draw() {
 	}
-	
+
 	public void kill() {
 		alive = false;
 		exists = false;
 	}
-	
+
 	// Not exactly opposite to "kill" method
 	public void revive() {
 		alive = true;
 		exists = true;
 	}
-	
+
 	public Camera camera() {
 		if (camera != null) {
 			return camera;
@@ -69,7 +69,7 @@ public class Gizmo {
 			return null;
 		}
 	}
-	
+
 	public boolean isVisible() {
 		if (parent == null) {
 			return visible;
@@ -77,7 +77,7 @@ public class Gizmo {
 			return visible && parent.isVisible();
 		}
 	}
-	
+
 	public boolean isActive() {
 		if (parent == null) {
 			return active;
@@ -85,14 +85,14 @@ public class Gizmo {
 			return active && parent.isActive();
 		}
 	}
-	
+
 	public void killAndErase() {
 		kill();
 		if (parent != null) {
 			parent.erase( this );
 		}
 	}
-	
+
 	public void remove() {
 		if (parent != null) {
 			parent.remove( this );

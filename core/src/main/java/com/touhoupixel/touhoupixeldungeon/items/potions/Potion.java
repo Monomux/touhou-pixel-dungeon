@@ -59,6 +59,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.effects.Splash;
+import com.touhoupixel.touhoupixeldungeon.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.ItemStatusHandler;
@@ -310,7 +311,7 @@ public class Potion extends Item {
 
 				if (hero.pointsInTalent(Talent.CURSED_PRESERVE) == 1) {
 					for (Item item : Dungeon.hero.belongings) {
-						if (item.cursed) {
+						if (item instanceof EquipableItem && item.cursed) {
 							if (Random.Int(10) == 0) {
 								Buff.prolong(hero, PotionPreserve.class, PotionPreserve.DURATION);
 							}
@@ -319,7 +320,7 @@ public class Potion extends Item {
 				}
 				if (hero.pointsInTalent(Talent.CURSED_PRESERVE) == 2) {
 					for (Item item : Dungeon.hero.belongings) {
-						if (item.cursed) {
+						if (item instanceof EquipableItem && item.cursed) {
 							if (Random.Int(8) == 0) {
 								Buff.prolong(hero, PotionPreserve.class, PotionPreserve.DURATION);
 							}
@@ -328,7 +329,7 @@ public class Potion extends Item {
 				}
 				if (hero.pointsInTalent(Talent.CURSED_PRESERVE) == 3) {
 					for (Item item : Dungeon.hero.belongings) {
-						if (item.cursed) {
+						if (item instanceof EquipableItem && item.cursed) {
 							if (Random.Int(6) == 0) {
 								Buff.prolong(hero, PotionPreserve.class, PotionPreserve.DURATION);
 							}
@@ -414,11 +415,6 @@ public class Potion extends Item {
 		if (hero.buff(PotionPreserve.class) != null && Random.Int(2) == 0) {
 			GLog.i(Messages.get(Potion.class, "potionpreserve"));
 		} else detach(hero.belongings.backpack);
-
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			hero.spend( TIME_TO_DRINK );
-			hero.spend( TIME_TO_DRINK );
-		}
 
 		hero.spend( TIME_TO_DRINK );
 		hero.busy();

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
@@ -34,14 +35,16 @@ import com.watabou.utils.Random;
 public class TreasuryRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
-		
+
 		Painter.set( level, center(), Terrain.STATUE );
-		
+
 		Heap.Type heapType = Random.Int( 2 ) == 0 ? Heap.Type.CHEST : Heap.Type.HEAP;
-		
+
 		int n = Random.IntRange( 2, 3 );
 		for (int i=0; i < n; i++) {
 			int pos;
@@ -54,7 +57,7 @@ public class TreasuryRoom extends SpecialRoom {
 				level.drop( new Gold().random(), pos ).type = heapType;
 			}
 		}
-		
+
 		if (heapType == Heap.Type.HEAP) {
 			for (int i=0; i < 6; i++) {
 				int pos;
@@ -64,7 +67,7 @@ public class TreasuryRoom extends SpecialRoom {
 				level.drop( new Gold( Random.IntRange( 5, 12 ) ), pos );
 			}
 		}
-		
+
 		entrance().set( Door.Type.LOCKED );
 		level.addItemToSpawn( new IronKey( Dungeon.depth ) );
 	}

@@ -219,10 +219,6 @@ public abstract class Scroll extends Item {
 	public abstract void doRead();
 
 	protected void readAnimation() {
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			curUser.spend( TIME_TO_READ );
-			curUser.spend( TIME_TO_READ );
-		}
 		Invisibility.dispel();
 		curUser.spend( TIME_TO_READ );
 		curUser.busy();

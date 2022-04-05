@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,9 +31,9 @@ import com.watabou.noosa.Game;
 import java.util.HashMap;
 
 public abstract class PlatformSupport {
-	
+
 	public abstract void updateDisplaySize();
-	
+
 	public abstract void updateSystemUI();
 
 	public abstract boolean connectedToUnmeteredNetwork();
@@ -43,13 +43,21 @@ public abstract class PlatformSupport {
 		Gdx.input.vibrate( millis );
 	}
 
+	public void setHonorSilentSwitch( boolean value ){
+		//does nothing by default
+	}
+
+	public boolean openURI( String uri ){
+		return Gdx.net.openURI( uri );
+	}
+
 	//TODO should consider spinning this into its own class, rather than platform support getting ever bigger
 	protected static HashMap<FreeTypeFontGenerator, HashMap<Integer, BitmapFont>> fonts;
 
 	protected int pageSize;
 	protected PixmapPacker packer;
 	protected boolean systemfont;
-	
+
 	public abstract void setupFontGenerators(int pageSize, boolean systemFont );
 
 	protected abstract FreeTypeFontGenerator getGeneratorForString( String input );

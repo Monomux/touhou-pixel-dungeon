@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,28 +31,28 @@ import com.touhoupixel.touhoupixeldungeon.ui.RenderedTextBlock;
 import com.watabou.noosa.ui.Component;
 
 public class WndInfoMob extends WndTitledMessage {
-	
+
 	public WndInfoMob( Mob mob ) {
 
 		super( new MobTitle( mob ), mob.info() );
-		
+
 	}
-	
+
 	private static class MobTitle extends Component {
 
 		private static final int GAP	= 2;
-		
+
 		private CharSprite image;
 		private RenderedTextBlock name;
 		private HealthBar health;
 		private BuffIndicator buffs;
-		
+
 		public MobTitle( Mob mob ) {
-			
+
 			name = PixelScene.renderTextBlock( Messages.titleCase( mob.name() ), 9 );
 			name.hardlight( TITLE_COLOR );
 			add( name );
-			
+
 			image = mob.sprite();
 			add( image );
 
@@ -60,13 +60,13 @@ public class WndInfoMob extends WndTitledMessage {
 			health.level(mob);
 			add( health );
 
-			buffs = new BuffIndicator( mob );
+			buffs = new BuffIndicator( mob);
 			add( buffs );
 		}
-		
+
 		@Override
 		protected void layout() {
-			
+
 			image.x = 0;
 			image.y = Math.max( 0, name.height() + health.height() - image.height() );
 
@@ -79,8 +79,8 @@ public class WndInfoMob extends WndTitledMessage {
 			health.setRect(image.width() + GAP, name.bottom() + GAP, w, health.height());
 
 			buffs.setPos(
-				name.right() + GAP-1,
-				name.bottom() - BuffIndicator.SIZE-2
+					name.right() + GAP-1,
+					name.bottom() -2
 			);
 
 			height = health.bottom();

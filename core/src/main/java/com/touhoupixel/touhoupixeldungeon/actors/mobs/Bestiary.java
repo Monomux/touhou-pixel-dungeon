@@ -54,10 +54,10 @@ public class Bestiary {
 							Wriggle.class, Shinmyomaru.class, Nazrin.class, Mike.class));
 				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Mystia.class, Kisume.class, Albino.class, Aunn.class));
+							Mystia.class, Kisume.class, Larva.class, Aunn.class));
 				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Mystia.class, Kisume.class, Albino.class, Aunn.class));
+							Mystia.class, Kisume.class, Larva.class, Aunn.class));
 				}
 			case 3:
 			case 4:
@@ -73,10 +73,10 @@ public class Bestiary {
 							Wriggle.class, Shinmyomaru.class, Nazrin.class, Ringo.class, Mike.class));
 				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Mystia.class, Kisume.class, Albino.class, Saki.class, Aunn.class));
+							Hecatia.class, Mystia.class, Kisume.class, Larva.class, Saki.class, Aunn.class));
 				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Mystia.class, Kisume.class, Albino.class, Saki.class, Aunn.class));
+							Mystia.class, Kisume.class, Larva.class, Saki.class, Aunn.class));
 				}
 			case 6:
 				if (Statistics.amuletObtained) {
@@ -504,10 +504,10 @@ public class Bestiary {
 							Wriggle.class, Shinmyomaru.class, Nazrin.class, Mike.class));
 				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Mystia.class, Kisume.class, Albino.class, Aunn.class));
+							Hecatia.class, Mystia.class, Kisume.class, Larva.class, Aunn.class));
 				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Mystia.class, Kisume.class, Albino.class, Aunn.class));
+							Mystia.class, Kisume.class, Larva.class, Aunn.class));
 				}
 			case 53:
 			case 54:
@@ -523,10 +523,10 @@ public class Bestiary {
 							Wriggle.class, Shinmyomaru.class, Nazrin.class, Ringo.class, Mike.class));
 				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Mystia.class, Kisume.class, Albino.class, Saki.class, Aunn.class));
+							Hecatia.class, Mystia.class, Kisume.class, Larva.class, Saki.class, Aunn.class));
 				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
 					return new ArrayList<>(Arrays.asList(
-							Mystia.class, Kisume.class, Albino.class, Saki.class, Aunn.class));
+							Mystia.class, Kisume.class, Larva.class, Saki.class, Aunn.class));
 				}
 			case 56:
 			case 57:

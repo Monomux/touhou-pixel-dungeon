@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -32,8 +33,10 @@ import com.watabou.utils.Point;
 public class AltarRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Dungeon.bossLevel( Dungeon.depth + 1 ) ? Terrain.HIGH_GRASS : Terrain.CHASM );
 
 		Point c = center();
@@ -49,7 +52,7 @@ public class AltarRoom extends SpecialRoom {
 				Painter.set( level, p, Terrain.EMPTY_SP );
 			}
 		}
-		
+
 		Painter.fill( level, c.x - 1, c.y - 1, 3, 3, Terrain.EMBERS );
 		Painter.set( level, c, Terrain.PEDESTAL );
 

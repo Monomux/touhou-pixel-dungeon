@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -35,15 +36,17 @@ import com.watabou.utils.Random;
 public class WeakFloorRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.CHASM );
-		
+
 		Door door = entrance();
 		door.set( Door.Type.REGULAR );
-		
+
 		Point well = null;
-		
+
 		if (door.x == left) {
 			for (int i=top + 1; i < bottom; i++) {
 				Painter.drawInside( level, this, new Point( left, i ), Random.IntRange( 1, width() - 4 ), Terrain.EMPTY_SP );
@@ -65,7 +68,7 @@ public class WeakFloorRoom extends SpecialRoom {
 			}
 			well = new Point( Random.Int( 2 ) == 0 ? left + 1 : right - 1, top+2 );
 		}
-		
+
 		Painter.set(level, well, Terrain.CHASM);
 		CustomTilemap vis = new HiddenWell();
 		vis.pos(well.x, well.y);

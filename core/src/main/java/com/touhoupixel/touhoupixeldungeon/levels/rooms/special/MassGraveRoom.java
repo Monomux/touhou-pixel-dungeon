@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Patchouli;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
@@ -41,20 +43,22 @@ import com.watabou.utils.Random;
 import java.util.ArrayList;
 
 public class MassGraveRoom extends SpecialRoom {
-	
+
 	@Override
 	public int minWidth() { return 7; }
-	
+
 	@Override
 	public int minHeight() { return 7; }
-	
+
 	public void paint(Level level){
 
 		Door entrance = entrance();
 		entrance.set(Door.Type.BARRICADE);
 		level.addItemToSpawn(new PotionOfLiquidFlame());
 
-		Painter.fill(level, this, Terrain.WALL);
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill(level, this, 1, Terrain.EMPTY_SP);
 
 		Bones b = new Bones();

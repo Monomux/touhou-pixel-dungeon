@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ public class DungeonTerrainTilemap extends DungeonTilemap {
 						(pos+1) % mapWidth != 0 ?   map[pos + 1] : -1,
 						pos + mapWidth < size ?     map[pos + mapWidth] : -1,
 						pos % mapWidth != 0 ?       map[pos - 1] : -1
-						);
+				);
 			} else if (tile == Terrain.SIGN) {
 				return DungeonTileSheet.RAISED_SIGN;
 			} else if (tile == Terrain.STATUE) {

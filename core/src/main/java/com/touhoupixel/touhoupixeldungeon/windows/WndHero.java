@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.windows;
 
+import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
@@ -40,8 +41,11 @@ import com.touhoupixel.touhoupixeldungeon.ui.StatusPane;
 import com.touhoupixel.touhoupixeldungeon.ui.TalentButton;
 import com.touhoupixel.touhoupixeldungeon.ui.TalentsPane;
 import com.touhoupixel.touhoupixeldungeon.ui.Window;
+import com.watabou.gltextures.SmartTexture;
+import com.watabou.gltextures.TextureCache;
 import com.watabou.noosa.Group;
 import com.watabou.noosa.Image;
+import com.watabou.noosa.TextureFilm;
 import com.watabou.noosa.ui.Component;
 
 import java.util.ArrayList;
@@ -76,14 +80,14 @@ public class WndHero extends WndTabbed {
 		buffs.setRect(0, 0, WIDTH, HEIGHT);
 		buffs.setupList();
 
-		add( new LabeledTab( Messages.get(this, "stats") ) {
+		add( new IconTab( Icons.get(Icons.RANKINGS) ) {
 			protected void select( boolean value ) {
 				super.select( value );
 				if (selected) lastIdx = 0;
 				stats.visible = stats.active = selected;
 			}
 		} );
-		add( new LabeledTab( Messages.get(this, "talents") ) {
+		add( new IconTab( Icons.get(Icons.TALENT) ) {
 			protected void select( boolean value ) {
 				super.select( value );
 				if (selected) lastIdx = 1;
@@ -91,7 +95,7 @@ public class WndHero extends WndTabbed {
 				talents.visible = talents.active = selected;
 			}
 		} );
-		add( new LabeledTab( Messages.get(this, "buffs") ) {
+		add( new IconTab( Icons.get(Icons.BUFFS) ) {
 			protected void select( boolean value ) {
 				super.select( value );
 				if (selected) lastIdx = 2;
@@ -106,6 +110,13 @@ public class WndHero extends WndTabbed {
 		talents.layout();
 
 		select( lastIdx );
+	}
+
+	@Override
+	public void offset(int xOffset, int yOffset) {
+		super.offset(xOffset, yOffset);
+		talents.layout();
+		buffs.layout();
 	}
 
 	private class StatsTab extends Group {
@@ -273,10 +284,12 @@ public class WndHero extends WndTabbed {
 			protected void layout() {
 				super.layout();
 				icon.y = this.y;
+				txt.maxWidth((int)(width - icon.width()));
 				txt.setPos(
 						icon.width + GAP,
 						this.y + (icon.height - txt.height()) / 2
 				);
+				PixelScene.align(txt);
 			}
 
 			protected boolean onClick ( float x, float y ) {

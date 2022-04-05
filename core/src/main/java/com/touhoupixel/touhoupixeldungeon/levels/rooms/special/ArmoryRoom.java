@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -35,10 +36,12 @@ import com.watabou.utils.Random;
 public class ArmoryRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
-		
+
 		Door entrance = entrance();
 		Point statue = null;
 		if (entrance.x == left) {
@@ -53,7 +56,7 @@ public class ArmoryRoom extends SpecialRoom {
 		if (statue != null) {
 			Painter.set( level, statue, Terrain.STATUE );
 		}
-		
+
 		int n = Random.IntRange( 2, 3 );
 		prizeCats = new float[]{1,1,1,1};
 		for (int i=0; i < n; i++) {
@@ -63,7 +66,7 @@ public class ArmoryRoom extends SpecialRoom {
 			} while (level.map[pos] != Terrain.EMPTY || level.heaps.get( pos ) != null);
 			level.drop( prize( level ), pos );
 		}
-		
+
 		entrance.set( Door.Type.LOCKED );
 		level.addItemToSpawn( new IronKey( Dungeon.depth ) );
 	}

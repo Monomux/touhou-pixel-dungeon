@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.secret;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.WaterOfAwareness;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.WaterOfHealth;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.WellWater;
@@ -42,8 +44,10 @@ public class SecretWellRoom extends SecretRoom {
 	}
 	
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Point door = entrance();
 		Point well;
 		if (door.x == left){

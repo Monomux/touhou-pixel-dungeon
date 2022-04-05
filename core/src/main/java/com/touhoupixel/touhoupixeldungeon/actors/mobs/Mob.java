@@ -43,6 +43,8 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.HighStress;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Immolation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
@@ -53,9 +55,11 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Preparation;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SoulMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.npcs.DirectableAlly;
@@ -70,6 +74,9 @@ import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
+import com.touhoupixel.touhoupixeldungeon.items.keys.CrystalKey;
+import com.touhoupixel.touhoupixeldungeon.items.keys.GoldenKey;
+import com.touhoupixel.touhoupixeldungeon.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeon.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfAggression;
@@ -77,6 +84,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.darts.Dart;
+import com.touhoupixel.touhoupixeldungeon.journal.Notes;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Chasm;
@@ -625,14 +633,28 @@ public abstract class Mob extends Char {
 	public int attackProc( Char enemy, int damage ) {
 
 		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)){
-			damage += Statistics.goldPickedup/10+Statistics.enemiesSlain/50;
+			damage += Statistics.goldPickedup/12+Statistics.enemiesSlain/80;
+		}
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Buff.prolong(enemy, Silence.class, Silence.DURATION/50f);
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (Dungeon.isChallenged(Challenges.PASTEL_PALETTES) && enemy instanceof Hero && enemy.pos == this.pos+i){
-				damage *= 2f;
+				damage *= 1.5f;
 				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
 			}
+		}
+
+		if (Dungeon.isChallenged(Challenges.NITORI_CURSED_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0) {
+			damage *= 1.25f;
+		}
+		if (Dungeon.isChallenged(Challenges.NITORI_CURSED_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0) {
+			damage *= 1.25f;
+		}
+		if (Dungeon.isChallenged(Challenges.NITORI_CURSED_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+			damage *= 1.25f;
 		}
 
 		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
@@ -658,73 +680,73 @@ public abstract class Mob extends Char {
 
 		//res damage zone//
 		if (Statistics.fireres == 1 && properties().contains(Char.Property.FIRE)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.fireres == 2 && properties().contains(Char.Property.FIRE)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.fireres > 2 && properties().contains(Char.Property.FIRE)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 
 		if (Statistics.coldres == 1 && properties().contains(Char.Property.COLD)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.coldres == 2 && properties().contains(Char.Property.COLD)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.coldres > 2 && properties().contains(Char.Property.COLD)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 
 		if (Statistics.warpres == 1 && properties().contains(Char.Property.WARP)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.warpres == 2 && properties().contains(Char.Property.WARP)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.warpres > 2 && properties().contains(Char.Property.WARP)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 
 		if (Statistics.powerfulres == 1 && properties().contains(Char.Property.POWERFUL)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.powerfulres == 2 && properties().contains(Char.Property.POWERFUL)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.powerfulres > 2 && properties().contains(Char.Property.POWERFUL)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 
 		if (Statistics.coolres == 1 && properties().contains(Char.Property.COOL)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.coolres == 2 && properties().contains(Char.Property.COOL)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.coolres > 2 && properties().contains(Char.Property.COOL)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 
 		if (Statistics.pureres == 1 && properties().contains(Char.Property.PURE)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.pureres == 2 && properties().contains(Char.Property.PURE)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.pureres > 2 && properties().contains(Char.Property.PURE)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 
 		if (Statistics.happyres == 1 && properties().contains(Char.Property.HAPPY)) {
-			damage = Math.round(damage * 0.5f);
+			damage = Math.round(damage * 0.8f);
 		}
 		if (Statistics.happyres == 2 && properties().contains(Char.Property.HAPPY)) {
-			damage = Math.round(damage * 0.33f);
+			damage = Math.round(damage * 0.6f);
 		}
 		if (Statistics.happyres > 2 && properties().contains(Char.Property.HAPPY)) {
-			damage = Math.round(damage * 0.2f);
+			damage = Math.round(damage * 0.4f);
 		}
 		//res damage zone//
 		return damage;
@@ -732,6 +754,10 @@ public abstract class Mob extends Char {
 
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
+
+		if (buff(HighStress.class) != null){
+			HP = 1;
+		}
 		
 		if (enemy instanceof Hero
 				&& ((Hero) enemy).belongings.weapon() instanceof MissileWeapon
@@ -839,6 +865,14 @@ public abstract class Mob extends Char {
 	
 	@Override
 	public void die( Object cause ) {
+
+		for (int i : PathFinder.NEIGHBOURS9) {
+			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
+				if (Dungeon.isChallenged(Challenges.AFTERGLOW) && mob.pos == this.pos + i) {
+					Buff.prolong(mob, Triplespeed.class, Triplespeed.DURATION);
+				}
+			}
+		}
 
 		if (buff(Immolation.class) != null){
 			for (int i : PathFinder.NEIGHBOURS9){

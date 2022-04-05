@@ -75,8 +75,8 @@ public class Remilia extends Mob {
 	
 	protected boolean firstSummon = true;
 	
-	private NecroSkeleton mySkeleton;
-	private int storedSkeletonID = -1;
+	private NecroPatchouli myPatchouli;
+	private int storedpatchouliID = -1;
 
 	@Override
 	protected boolean act() {
@@ -106,16 +106,16 @@ public class Remilia extends Mob {
 	
 	@Override
 	public void die(Object cause) {
-		if (storedSkeletonID != -1){
-			Actor ch = Actor.findById(storedSkeletonID);
-			storedSkeletonID = -1;
-			if (ch instanceof NecroSkeleton){
-				mySkeleton = (NecroSkeleton) ch;
+		if (storedpatchouliID != -1){
+			Actor ch = Actor.findById(storedpatchouliID);
+			storedpatchouliID = -1;
+			if (ch instanceof NecroPatchouli){
+				myPatchouli = (NecroPatchouli) ch;
 			}
 		}
 		
-		if (mySkeleton != null && mySkeleton.isAlive()){
-			mySkeleton.die(null);
+		if (myPatchouli != null && myPatchouli.isAlive()){
+			myPatchouli.die(null);
 		}
 		
 		super.die(cause);
@@ -129,7 +129,7 @@ public class Remilia extends Mob {
 	private static final String SUMMONING = "summoning";
 	private static final String FIRST_SUMMON = "first_summon";
 	private static final String SUMMONING_POS = "summoning_pos";
-	private static final String MY_SKELETON = "my_skeleton";
+	private static final String MY_PATCHOULI = "my_patchouli";
 	
 	@Override
 	public void storeInBundle(Bundle bundle) {
@@ -139,10 +139,10 @@ public class Remilia extends Mob {
 		if (summoning){
 			bundle.put( SUMMONING_POS, summoningPos);
 		}
-		if (mySkeleton != null){
-			bundle.put( MY_SKELETON, mySkeleton.id() );
-		} else if (storedSkeletonID != -1){
-			bundle.put( MY_SKELETON, storedSkeletonID );
+		if (myPatchouli != null){
+			bundle.put( MY_PATCHOULI, myPatchouli.id() );
+		} else if (storedpatchouliID != -1){
+			bundle.put( MY_PATCHOULI, storedpatchouliID );
 		}
 	}
 	
@@ -154,34 +154,33 @@ public class Remilia extends Mob {
 		if (summoning){
 			summoningPos = bundle.getInt( SUMMONING_POS );
 		}
-		if (bundle.contains( MY_SKELETON )){
-			storedSkeletonID = bundle.getInt( MY_SKELETON );
+		if (bundle.contains( MY_PATCHOULI )){
+			storedpatchouliID = bundle.getInt( MY_PATCHOULI );
 		}
 	}
 	
 	public void onZapComplete(){
-		if (mySkeleton == null || mySkeleton.sprite == null || !mySkeleton.isAlive()){
+		if (myPatchouli == null || myPatchouli.sprite == null || !myPatchouli.isAlive()){
 			return;
 		}
-		
-		//heal skeleton first
-		if (mySkeleton.HP < mySkeleton.HT){
 
-			if (sprite.visible || mySkeleton.sprite.visible) {
-				sprite.parent.add(new Beam.HealthRay(sprite.center(), mySkeleton.sprite.center()));
+		if (myPatchouli.HP < myPatchouli.HT){
+
+			if (sprite.visible || myPatchouli.sprite.visible) {
+				sprite.parent.add(new Beam.HealthRay(sprite.center(), myPatchouli.sprite.center()));
 			}
-			
-			mySkeleton.HP = Math.min(mySkeleton.HP + 5, mySkeleton.HT);
-			if (mySkeleton.sprite.visible) mySkeleton.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
+
+			myPatchouli.HP = Math.min(myPatchouli.HP + 5, myPatchouli.HT);
+			if (myPatchouli.sprite.visible) myPatchouli.sprite.emitter().burst( Speck.factory( Speck.HEALING ), 1 );
 			
 		//otherwise give it adrenaline
-		} else if (mySkeleton.buff(Adrenaline.class) == null) {
+		} else if (myPatchouli.buff(Adrenaline.class) == null) {
 
-			if (sprite.visible || mySkeleton.sprite.visible) {
-				sprite.parent.add(new Beam.HealthRay(sprite.center(), mySkeleton.sprite.center()));
+			if (sprite.visible || myPatchouli.sprite.visible) {
+				sprite.parent.add(new Beam.HealthRay(sprite.center(), myPatchouli.sprite.center()));
 			}
 			
-			Buff.affect(mySkeleton, Adrenaline.class, 3f);
+			Buff.affect(myPatchouli, Adrenaline.class, 3f);
 		}
 		
 		next();
@@ -221,17 +220,17 @@ public class Remilia extends Mob {
 
 		summoning = firstSummon = false;
 
-		mySkeleton = new NecroSkeleton();
-		mySkeleton.pos = summoningPos;
-		GameScene.add( mySkeleton );
-		Dungeon.level.occupyCell( mySkeleton );
+		myPatchouli = new NecroPatchouli();
+		myPatchouli.pos = summoningPos;
+		GameScene.add( myPatchouli );
+		Dungeon.level.occupyCell( myPatchouli );
 		((RemiliaSprite)sprite).finishSummoning();
 
 		for (Buff b : buffs(AllyBuff.class)){
-			Buff.affect(mySkeleton, b.getClass());
+			Buff.affect(myPatchouli, b.getClass());
 		}
 		for (Buff b : buffs(ChampionEnemy.class)){
-			Buff.affect( mySkeleton, b.getClass());
+			Buff.affect( myPatchouli, b.getClass());
 		}
 	}
 	
@@ -241,11 +240,11 @@ public class Remilia extends Mob {
 		public boolean act(boolean enemyInFOV, boolean justAlerted) {
 			enemySeen = enemyInFOV;
 			
-			if (storedSkeletonID != -1){
-				Actor ch = Actor.findById(storedSkeletonID);
-				storedSkeletonID = -1;
-				if (ch instanceof NecroSkeleton){
-					mySkeleton = (NecroSkeleton) ch;
+			if (storedpatchouliID != -1){
+				Actor ch = Actor.findById(storedpatchouliID);
+				storedpatchouliID = -1;
+				if (ch instanceof NecroPatchouli){
+					myPatchouli = (NecroPatchouli) ch;
 				}
 			}
 			
@@ -254,15 +253,14 @@ public class Remilia extends Mob {
 				return true;
 			}
 			
-			if (mySkeleton != null &&
-					(!mySkeleton.isAlive()
-					|| !Dungeon.level.mobs.contains(mySkeleton)
-					|| mySkeleton.alignment != alignment)){
-				mySkeleton = null;
+			if (myPatchouli != null &&
+					(!myPatchouli.isAlive()
+					|| !Dungeon.level.mobs.contains(myPatchouli)
+					|| myPatchouli.alignment != alignment)){
+				myPatchouli = null;
 			}
-			
-			//if enemy is seen, and enemy is within range, and we haven no skeleton, summon a skeleton!
-			if (enemySeen && Dungeon.level.distance(pos, enemy.pos) <= 4 && mySkeleton == null){
+
+			if (enemySeen && Dungeon.level.distance(pos, enemy.pos) <= 4 && myPatchouli == null){
 				
 				summoningPos = -1;
 				for (int c : PathFinder.NEIGHBOURS8){
@@ -286,17 +284,14 @@ public class Remilia extends Mob {
 				}
 				
 				return true;
-			//otherwise, if enemy is seen, and we have a skeleton...
-			} else if (enemySeen && mySkeleton != null){
+			} else if (enemySeen && myPatchouli != null){
 				
 				target = enemy.pos;
 				spend(TICK);
 				
-				if (!fieldOfView[mySkeleton.pos]){
-					
-					//if the skeleton is not next to the enemy
-					//teleport them to the closest spot next to the enemy that can be seen
-					if (!Dungeon.level.adjacent(mySkeleton.pos, enemy.pos)){
+				if (!fieldOfView[myPatchouli.pos]){
+
+					if (!Dungeon.level.adjacent(myPatchouli.pos, enemy.pos)){
 						int telePos = -1;
 						for (int c : PathFinder.NEIGHBOURS8){
 							if (Actor.findChar(enemy.pos+c) == null
@@ -309,8 +304,8 @@ public class Remilia extends Mob {
 						
 						if (telePos != -1){
 							
-							ScrollOfTeleportation.appear(mySkeleton, telePos);
-							mySkeleton.teleportSpend();
+							ScrollOfTeleportation.appear(myPatchouli, telePos);
+							myPatchouli.teleportSpend();
 							
 							if (sprite != null && sprite.visible){
 								sprite.zap(telePos);
@@ -324,11 +319,10 @@ public class Remilia extends Mob {
 					return true;
 					
 				} else {
-					
-					//zap skeleton
-					if (mySkeleton.HP < mySkeleton.HT || mySkeleton.buff(Adrenaline.class) == null) {
+
+					if (myPatchouli.HP < myPatchouli.HT || myPatchouli.buff(Adrenaline.class) == null) {
 						if (sprite != null && sprite.visible){
-							sprite.zap(mySkeleton.pos);
+							sprite.zap(myPatchouli.pos);
 							return false;
 						} else {
 							onZapComplete();
@@ -346,12 +340,12 @@ public class Remilia extends Mob {
 		}
 	}
 	
-	public static class NecroSkeleton extends Patchouli {
+	public static class NecroPatchouli extends Patchouli {
 		
 		{
 			state = WANDERING;
 			
-			spriteClass = NecroSkeletonSprite.class;
+			spriteClass = NecroPatchouliSprite.class;
 			
 			//no loot or exp
 			maxLvl = -5;
@@ -369,9 +363,9 @@ public class Remilia extends Mob {
 			spend(TICK);
 		}
 		
-		public static class NecroSkeletonSprite extends PatchouliSprite {
+		public static class NecroPatchouliSprite extends PatchouliSprite {
 			
-			public NecroSkeletonSprite(){
+			public NecroPatchouliSprite(){
 				super();
 				brightness(0.75f);
 			}

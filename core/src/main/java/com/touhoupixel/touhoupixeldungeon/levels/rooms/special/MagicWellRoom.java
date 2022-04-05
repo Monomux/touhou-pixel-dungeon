@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.WaterOfAwareness;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.WaterOfHealth;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.WellWater;
@@ -33,27 +35,29 @@ import com.watabou.utils.Random;
 public class MagicWellRoom extends SpecialRoom {
 
 	private static final Class<?>[] WATERS =
-		{WaterOfAwareness.class, WaterOfHealth.class};
-	
+			{WaterOfAwareness.class, WaterOfHealth.class};
+
 	public Class<?extends WellWater> overrideWater = null;
-	
+
 	public void paint( Level level ) {
 
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
-		
+
 		Point c = center();
 		Painter.set( level, c.x, c.y, Terrain.WELL );
-		
+
 		@SuppressWarnings("unchecked")
 		Class<? extends WellWater> waterClass =
-			overrideWater != null ?
-			overrideWater :
-			(Class<? extends WellWater>)Random.element( WATERS );
-			
-		
+				overrideWater != null ?
+						overrideWater :
+						(Class<? extends WellWater>)Random.element( WATERS );
+
+
 		WellWater.seed(c.x + level.width() * c.y, 1, waterClass, level);
-		
+
 		entrance().set( Door.Type.REGULAR );
 	}
 }

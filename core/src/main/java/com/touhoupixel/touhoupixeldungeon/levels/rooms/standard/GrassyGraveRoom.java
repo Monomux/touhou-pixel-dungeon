@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
@@ -30,23 +32,25 @@ import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Random;
 
 public class GrassyGraveRoom extends StandardRoom {
-	
+
 	@Override
 	public void paint(Level level) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		for (Door door : connected.values()) {
 			door.set( Door.Type.REGULAR );
 		}
-		
+
 		Painter.fill( level, this, 1 , Terrain.GRASS );
-		
+
 		int w = width() - 2;
 		int h = height() - 2;
 		int nGraves = Math.max( w, h ) / 2;
-		
+
 		int index = Random.Int( nGraves );
-		
+
 		int shift = Random.Int( 2 );
 		for (int i=0; i < nGraves; i++) {
 			int pos = w > h ?

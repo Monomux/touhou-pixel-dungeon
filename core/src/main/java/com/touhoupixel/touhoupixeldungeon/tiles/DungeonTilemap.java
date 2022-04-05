@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ public abstract class DungeonTilemap extends Tilemap {
 			super.updateMapCell(cell - mapWidth - 1);
 			super.updateMapCell(cell + mapWidth + 1);
 
-		//unless we're at the level's edge, then just do the one tile.
+			//unless we're at the level's edge, then just do the one tile.
 		} else {
 			data[cell] = getTileVisual(cell, map[cell], false);
 			super.updateMapCell(cell);
@@ -83,9 +83,9 @@ public abstract class DungeonTilemap extends Tilemap {
 	// currently this happens if the bottom 1/4 of the wall tile is pressed.
 	public int screenToTile(int x, int y, boolean wallAssist ) {
 		PointF p = camera().screenToCamera( x, y ).
-			offset( this.point().negate() ).
-			invScale( SIZE );
-		
+				offset( this.point().negate() ).
+				invScale( SIZE );
+
 		//snap to the edges of the tilemap
 		p.x = GameMath.gate(0, p.x, Dungeon.level.width()-0.001f);
 		p.y = GameMath.gate(0, p.y, Dungeon.level.height()-0.001f);
@@ -106,23 +106,23 @@ public abstract class DungeonTilemap extends Tilemap {
 
 		return cell;
 	}
-	
+
 	@Override
 	public boolean overlapsPoint( float x, float y ) {
 		return true;
 	}
-	
+
 	public void discover( int pos, int oldValue ) {
-		
+
 		int visual = getTileVisual( pos, oldValue, false);
 		if (visual < 0) return;
-		
+
 		final Image tile = new Image( texture );
 		tile.frame( tileset.get( getTileVisual( pos, oldValue, false)));
 		tile.point( tileToWorld( pos ) );
 
 		parent.add( tile );
-		
+
 		parent.add( new AlphaTweener( tile, 0, 0.6f ) {
 			protected void onComplete() {
 				tile.killAndErase();
@@ -130,15 +130,15 @@ public abstract class DungeonTilemap extends Tilemap {
 			}
 		} );
 	}
-	
+
 	public static PointF tileToWorld( int pos ) {
 		return new PointF( pos % Dungeon.level.width(), pos / Dungeon.level.width()  ).scale( SIZE );
 	}
-	
+
 	public static PointF tileCenterToWorld( int pos ) {
 		return new PointF(
-			(pos % Dungeon.level.width() + 0.5f) * SIZE,
-			(pos / Dungeon.level.width() + 0.5f) * SIZE );
+				(pos % Dungeon.level.width() + 0.5f) * SIZE,
+				(pos / Dungeon.level.width() + 0.5f) * SIZE );
 	}
 
 	public static PointF raisedTileCenterToWorld( int pos ) {
@@ -146,7 +146,7 @@ public abstract class DungeonTilemap extends Tilemap {
 				(pos % Dungeon.level.width() + 0.5f) * SIZE,
 				(pos / Dungeon.level.width() + 0.1f) * SIZE );
 	}
-	
+
 	@Override
 	public boolean overlapsScreenPoint( int x, int y ) {
 		return true;

@@ -24,14 +24,14 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
-import com.touhoupixel.touhoupixeldungeon.sprites.RatSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.WriggleSprite;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Wriggle extends Mob {
 
 	{
-		spriteClass = RatSprite.class;
+		spriteClass = WriggleSprite.class;
 
 		if (Dungeon.depth > 50){
 			HP = HT = 386;

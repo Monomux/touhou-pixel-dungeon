@@ -83,6 +83,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.RingoSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SnipersMark;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stableness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
@@ -91,6 +92,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.*;
+import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.CheckedCell;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.effects.SpellSprite;
@@ -144,6 +146,7 @@ import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeon.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfLivingEarth;
@@ -190,6 +193,7 @@ import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.AttackIndicator;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
+import com.touhoupixel.touhoupixeldungeon.ui.KeyDisplay;
 import com.touhoupixel.touhoupixeldungeon.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeon.ui.StatusPane;
 import com.touhoupixel.touhoupixeldungeon.utils.BArray;
@@ -275,10 +279,7 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)) {
-			HT = 30 + 3 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
-		} else
-			HT = 30 + 5 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
+		HT = 30 + 5 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 
@@ -314,6 +315,10 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
 			strBonus += 6;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER){
+			strBonus += 8;
 		}
 
 		strBonus += RingOfMight.strengthBonus( this );
@@ -563,18 +568,14 @@ public class Hero extends Char {
 			accuracy *= 2f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK)){
-			accuracy *= 0.9f;
-		}
-
 		if (buff(ArisastarRank1.class) != null){
-			accuracy *= 1.5f;
+			accuracy *= 1.1f;
 		}
 		if (buff(ArisastarRank2.class) != null){
-			accuracy *= 2f;
+			accuracy *= 1.2f;
 		}
 		if (buff(ArisastarRank3.class) != null){
-			accuracy *= 3f;
+			accuracy *= 1.3f;
 		}
 
 		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_ACC) == 1){
@@ -605,21 +606,21 @@ public class Hero extends Char {
 
 		if (this.pointsInTalent(Talent.CURSED_ACC) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					accuracy *= 2.5f;
 				}
 			}
 		}
 		if (this.pointsInTalent(Talent.CURSED_ACC) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					accuracy *= 2.75f;
 				}
 			}
 		}
 		if (this.pointsInTalent(Talent.CURSED_ACC) == 3) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					accuracy *= 3f;
 				}
 			}
@@ -676,13 +677,13 @@ public class Hero extends Char {
 		}
 
 		if (buff(ArisastarRank1.class) != null){
-			evasion *= 1.5;
+			evasion *= 1.1;
 		}
 		if (buff(ArisastarRank2.class) != null){
-			evasion *= 2;
+			evasion *= 1.2;
 		}
 		if (buff(ArisastarRank3.class) != null){
-			evasion *= 3;
+			evasion *= 1.3;
 		}
 
 		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_EVASION) == 1){
@@ -861,13 +862,13 @@ public class Hero extends Char {
 		}
 
 		if (buff(ArisastarRank1.class) != null){
-			speed *= 1.5f;
+			speed *= 1.1f;
 		}
 		if (buff(ArisastarRank2.class) != null){
-			speed *= 2f;
+			speed *= 1.2f;
 		}
 		if (buff(ArisastarRank3.class) != null){
-			speed *= 3f;
+			speed *= 1.3f;
 		}
 
 		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_SPEED) == 1){
@@ -887,7 +888,6 @@ public class Hero extends Char {
 	public boolean canSurpriseAttack(){
 		if (belongings.weapon() == null || !(belongings.weapon() instanceof Weapon))    return true;
 		if (STR() < ((Weapon)belongings.weapon()).STRReq())                             return false;
-		if (Dungeon.isChallenged(Challenges.MASTER_SPARK))                              return false;
 		if (this.hasTalent(Talent.CURSED_SNEAKATTACK))                                  return false;
 		if (buff(AntiSneakattack.class) != null)                                        return false;
 		if (belongings.weapon() instanceof Flail || belongings.weapon() instanceof Log) return false;
@@ -1281,6 +1281,11 @@ public class Hero extends Char {
 
 				hasKey = true;
 
+			} else if (door == Terrain.CRYSTAL_DOOR
+					&& Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0) {
+
+				hasKey = true;
+
 			} else if (door == Terrain.LOCKED_EXIT
 					&& Notes.keyCount(new SkeletonKey(Dungeon.depth)) > 0) {
 
@@ -1442,6 +1447,22 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc(enemy, damage);
 
+		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER && !(enemy.HP == enemy.HT) && !enemy.properties().contains(Char.Property.BOSS)) {
+			damage *= 2f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER && (Random.Int(4) == 0) && buff(Stableness.class) == null){
+			CursedWand.cursedEffect(null, this, enemy);
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER) {
+			Ballistica trajectory = new Ballistica(this.pos, enemy.pos, Ballistica.STOP_TARGET);
+			//trim it to just be the part that goes past them
+			trajectory = new Ballistica(trajectory.collisionPos, trajectory.path.get(trajectory.path.size() - 1), Ballistica.PROJECTILE);
+			//knock them back along that ballistica
+			WandOfBlastWave.throwChar(enemy, trajectory, 1);
+		}
+
 		if (pointsInTalent(Talent.TELEPORT_HEAL) == 1 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
 			ScrollOfTeleportation.teleportChar(enemy);
 			this.HP = Math.min(this.HP + 15, this.HT);
@@ -1573,9 +1594,18 @@ public class Hero extends Char {
 			damage *= 1.3f;
 		}
 
+		if (Dungeon.isChallenged(Challenges.NITORI_CURSED_KEY) && Notes.keyCount(new IronKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+			damage *= 0.75f;
+		}
+		if (Dungeon.isChallenged(Challenges.NITORI_CURSED_KEY) && Notes.keyCount(new GoldenKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+			damage *= 0.75f;
+		}
+		if (Dungeon.isChallenged(Challenges.NITORI_CURSED_KEY) && Notes.keyCount(new CrystalKey(Dungeon.depth)) > 0 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
+			damage *= 0.75f;
+		}
+
 		if (Dungeon.isChallenged(Challenges.MYSTIA_HIGH_STRESS) && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
 			Buff.prolong(this, HighStress.class, HighStress.DURATION);
-			Buff.prolong(this, Blindness.class, Blindness.DURATION/2f);
 		}
 
 		if (Dungeon.hero.belongings.armor() instanceof YorihimeArmor && (Random.Int(50) == 0)){
@@ -1673,14 +1703,14 @@ public class Hero extends Char {
 
 		if (hasTalent(Talent.CURSED_MINDVISION) && pointsInTalent(Talent.CURSED_MINDVISION) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					Buff.prolong(this, MindVision.class, MindVision.DURATION / 20f);
 				}
 			}
 		}
 		if (hasTalent(Talent.CURSED_MINDVISION) && pointsInTalent(Talent.CURSED_MINDVISION) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					Buff.prolong(this, MindVision.class, MindVision.DURATION);
 				}
 			}
@@ -1688,7 +1718,7 @@ public class Hero extends Char {
 
 		if (hasTalent(Talent.CURSED_HASTE) && pointsInTalent(Talent.CURSED_HASTE) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					if ((Random.Int(5) == 0)) {
 						Buff.prolong(this, Haste.class, Haste.DURATION / 2f);
 					}
@@ -1697,7 +1727,7 @@ public class Hero extends Char {
 		}
 		if (hasTalent(Talent.CURSED_HASTE) && pointsInTalent(Talent.CURSED_HASTE) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					if ((Random.Int(5) == 0)) {
 						Buff.prolong(this, Haste.class, Haste.DURATION);
 					}
@@ -1707,7 +1737,7 @@ public class Hero extends Char {
 
 		if (hasTalent(Talent.CURSED_INVU) && pointsInTalent(Talent.CURSED_INVU) == 1) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					if ((Random.Int(8) == 0)) {
 						Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION / 2f);
 					}
@@ -1716,7 +1746,7 @@ public class Hero extends Char {
 		}
 		if (hasTalent(Talent.CURSED_INVU) && pointsInTalent(Talent.CURSED_INVU) == 2) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					if ((Random.Int(8) == 0)) {
 						Buff.prolong(this, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
 					}
@@ -1934,6 +1964,14 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
+		if (buff(HighStress.class) != null){
+			HP = 1;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER) {
+			Buff.prolong(this, Silence.class, Silence.DURATION*2f);
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(5) == 0)){
 			Dungeon.level.setCellToWater(false, pos);
 		}
@@ -1977,21 +2015,21 @@ public class Hero extends Char {
 
 		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVISIBILITY)==1) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					Buff.prolong(this, Invisibility.class, Invisibility.DURATION / 4f);
 				}
 			}
 		}
 		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVISIBILITY)==2) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					Buff.prolong(this, Invisibility.class, Invisibility.DURATION / 2f);
 				}
 			}
 		}
 		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVISIBILITY) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.CURSED_INVISIBILITY)==3){
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					Buff.prolong(this, Invisibility.class, Invisibility.DURATION);
 				}
 			}
@@ -2070,10 +2108,6 @@ public class Hero extends Char {
 			this.HP = Math.min(this.HP + 9, this.HT);
 		}
 
-		if ( buff(HighStress.class) != null ){
-			HP = 1;
-		}
-
 		if (belongings.armor() != null) {
 			damage = belongings.armor().proc( enemy, this, damage );
 		}
@@ -2131,12 +2165,7 @@ public class Hero extends Char {
 		if (Dungeon.hero.belongings.weapon() instanceof AlchemyHat){
 			dmg += 2;
 		}
-		if (Dungeon.hero.belongings.armor() instanceof HanasakigawaArmor){
-			dmg -= 2;
-		}
-		if (Dungeon.hero.belongings.armor() instanceof MaxwellArmor){
-			dmg -= 3;
-		}
+
 		if (buff(FireBrandBuff.class) != null){
 			dmg += 1;
 		}
@@ -2377,7 +2406,7 @@ public class Hero extends Char {
 					curAction = new HeroAction.OpenChest( cell );
 			}
 
-		} else if (Dungeon.level.map[cell] == Terrain.LOCKED_DOOR || Dungeon.level.map[cell] == Terrain.LOCKED_EXIT) {
+		} else if (Dungeon.level.map[cell] == Terrain.LOCKED_DOOR || Dungeon.level.map[cell] == Terrain.CRYSTAL_DOOR || Dungeon.level.map[cell] == Terrain.LOCKED_EXIT) {
 
 			curAction = new HeroAction.Unlock( cell );
 
@@ -2652,7 +2681,13 @@ public class Hero extends Char {
 			}
 		}
 
-		GameScene.gameOver();
+		Game.runOnRenderThread(new Callback() {
+			@Override
+			public void call() {
+				GameScene.gameOver();
+				Sample.INSTANCE.play( Assets.Sounds.DEATH );
+			}
+		});
 
 		if (cause instanceof Hero.Doom) {
 			((Hero.Doom)cause).onDeath();
@@ -2923,6 +2958,13 @@ public class Hero extends Char {
 				if (door == Terrain.LOCKED_DOOR) {
 					hasKey = Notes.remove(new IronKey(Dungeon.depth));
 					if (hasKey) Level.set(doorCell, Terrain.DOOR);
+				} else if (door == Terrain.CRYSTAL_DOOR) {
+					hasKey = Notes.remove(new CrystalKey(Dungeon.depth));
+					if (hasKey) {
+						Level.set(doorCell, Terrain.EMPTY);
+						Sample.INSTANCE.play(Assets.Sounds.TELEPORT);
+						CellEmitter.get( doorCell ).start( Speck.factory( Speck.DISCOVER ), 0.025f, 20 );
+					}
 				} else {
 					hasKey = Notes.remove(new SkeletonKey(Dungeon.depth));
 					if (hasKey) Level.set(doorCell, Terrain.UNLOCKED_EXIT);
@@ -2930,7 +2972,6 @@ public class Hero extends Char {
 
 				if (hasKey) {
 					GameScene.updateKeyDisplay();
-					Level.set(doorCell, door == Terrain.LOCKED_DOOR ? Terrain.DOOR : Terrain.UNLOCKED_EXIT);
 					GameScene.updateMap(doorCell);
 					spend(Key.TIME_TO_UNLOCK);
 				}

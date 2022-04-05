@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.secret;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.Alchemy;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeon.items.EnergyCrystal;
@@ -46,7 +48,7 @@ import com.watabou.utils.Reflection;
 import java.util.HashMap;
 
 public class SecretLaboratoryRoom extends SecretRoom {
-	
+
 	private static HashMap<Class<? extends Potion>, Float> potionChances = new HashMap<>();
 	static{
 		potionChances.put(PotionOfHealing.class,        1f);
@@ -61,17 +63,19 @@ public class SecretLaboratoryRoom extends SecretRoom {
 		potionChances.put(PotionOfPurity.class,         4f);
 		potionChances.put(PotionOfExperience.class,     6f);
 	}
-	
+
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY_SP );
-		
+
 		entrance().set( Door.Type.HIDDEN );
-		
+
 		Point pot = center();
 		Painter.set( level, pot, Terrain.ALCHEMY );
-		
+
 		Blob.seed( pot.x + level.width() * pot.y, 1+Random.NormalIntRange(20, 30), Alchemy.class, level );
 
 		int pos;
@@ -86,12 +90,12 @@ public class SecretLaboratoryRoom extends SecretRoom {
 			do {
 				pos = level.pointToCell(random());
 			} while (level.map[pos] != Terrain.EMPTY_SP || level.heaps.get( pos ) != null);
-			
+
 			Class<?extends Potion> potionCls = Random.chances(chances);
 			chances.put(potionCls, 0f);
 			level.drop( Reflection.newInstance(potionCls), pos );
 		}
-		
+
 	}
-	
+
 }

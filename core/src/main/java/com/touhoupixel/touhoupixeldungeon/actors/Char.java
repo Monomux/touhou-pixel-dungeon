@@ -36,6 +36,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Barkskin;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Berserk;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bleeding;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ChampionEnemy;
@@ -54,6 +55,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostImbue;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Fury;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LifeLink;
@@ -84,6 +86,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.mobs.Elemental;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.AntiMagic;
 import com.touhoupixel.touhoupixeldungeon.items.armor.glyphs.Potential;
+import com.touhoupixel.touhoupixeldungeon.items.giftcard.ReimuCard;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfElements;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRetribution;
@@ -98,12 +101,14 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Blocking;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Grim;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Shocking;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DeadBeacon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand2;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flintlock;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand2;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Grayswandir;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HellMic;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.LunaClock;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RandomPhone;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
@@ -129,6 +134,7 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashSet;
 
 public abstract class Char extends Actor {
@@ -526,17 +532,17 @@ public abstract class Char extends Actor {
 		}
 		if (Dungeon.hero.belongings.weapon() instanceof MomoyoShovel){
 			if (this.HP == 2 || this.HP == 3 || this.HP == 5 || this.HP == 7 || this.HP == 11 || this.HP == 13 || this.HP == 17 || this.HP == 19 || this.HP == 23 || this.HP == 29 || this.HP == 31 || this.HP == 37 || this.HP == 41 || this.HP == 43 || this.HP == 47 || this.HP == 53 || this.HP == 59 || this.HP == 61 || this.HP == 67 || this.HP == 71 || this.HP == 73 || this.HP == 79 || this.HP == 83 || this.HP == 89 || this.HP == 97 || this.HP == 101 || this.HP == 103 || this.HP == 107 || this.HP == 109 || this.HP == 113 || this.HP == 127 || this.HP == 131 || this.HP == 137 || this.HP == 139 || this.HP == 149 || this.HP == 151 || this.HP == 157 || this.HP == 163 || this.HP == 167 || this.HP == 173 || this.HP == 179 || this.HP == 181 || this.HP == 191 || this.HP == 193 || this.HP == 197 || this.HP == 199 || this.HP == 211 || this.HP == 223 || this.HP == 227 || this.HP == 229 || this.HP == 233 || this.HP == 239 || this.HP == 241 || this.HP == 251 || this.HP == 257 || this.HP == 263 || this.HP == 269 || this.HP == 271 || this.HP == 277 || this.HP == 281 || this.HP == 283 || this.HP == 293){
-				damage *= 3f;
+				damage *= 2f;
 			}
 		}
 		if (Dungeon.hero.belongings.weapon() instanceof WatermelonSword){
 			if (this.HP == 9 || this.HP == 19 || this.HP == 29 || this.HP == 39 || this.HP == 49 || this.HP == 59 || this.HP == 69 || this.HP == 79 || this.HP == 89 || this.HP == 90 || this.HP == 91 || this.HP == 92 || this.HP == 93 || this.HP == 94 || this.HP == 95 || this.HP == 96 || this.HP == 97 || this.HP == 98 || this.HP == 109 || this.HP == 119 || this.HP == 129 || this.HP == 139 || this.HP == 149 || this.HP == 159 || this.HP == 169 || this.HP == 179 || this.HP == 189 || this.HP == 190 || this.HP == 191 || this.HP == 192 || this.HP == 193 || this.HP == 194 || this.HP == 195 || this.HP == 196 || this.HP == 197 || this.HP == 198 || this.HP == 209 || this.HP == 219 || this.HP == 229 || this.HP == 239 || this.HP == 249 || this.HP == 259 || this.HP == 269 || this.HP == 279 || this.HP == 289 || this.HP == 290 || this.HP == 291 || this.HP == 292 || this.HP == 293 || this.HP == 294 || this.HP == 295 || this.HP == 296 || this.HP == 297 || this.HP == 298){
-				damage *= 3f;
+				damage *= 2f;
 			}
 		}
 		if (Dungeon.hero.belongings.weapon() instanceof WatermelonSword){
 			if (this.HP == 99 || this.HP == 199 || this.HP == 299){
-				damage *= 9f;
+				damage *= 3f;
 			}
 		}
 		if (Dungeon.hero.belongings.weapon() instanceof BlazingStar){
@@ -548,6 +554,13 @@ public abstract class Char extends Actor {
 			if (this.HP == 1 || this.HP == 4 || this.HP == 9 || this.HP == 16 || this.HP == 25 || this.HP == 36 || this.HP == 49 || this.HP == 64 || this.HP == 81 || this.HP == 100 || this.HP == 121 || this.HP == 144 || this.HP == 169 || this.HP == 196 || this.HP == 225 || this.HP == 256 || this.HP == 289 || this.HP == 324 || this.HP == 361 || this.HP == 400 || this.HP == 441 || this.HP == 484 || this.HP == 529 || this.HP == 576 || this.HP == 625 || this.HP == 676 || this.HP == 729 || this.HP == 784 || this.HP == 841 || this.HP == 900 || this.HP == 961 || this.HP == 1024){
 				damage *= 5f;
 			}
+		}
+		final Calendar calendar = Calendar.getInstance();
+		if (Dungeon.hero.belongings.weapon() instanceof LunaClock && calendar.get(Calendar.HOUR_OF_DAY) < 7) {
+			damage *= 2f;
+		}
+		if (Dungeon.hero.belongings.weapon() instanceof DeadBeacon && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+			damage *= 2f;
 		}
 		if (Dungeon.hero.belongings.weapon() instanceof FireBrand2 && enemy.properties().contains(Char.Property.ANIMAL)){
 			damage *= 2f;
@@ -597,10 +610,10 @@ public abstract class Char extends Actor {
 			damage *= 1.5f;
 		}
 		if (buff(ArisastarRank2.class) != null){
-			damage *= 2f;
+			damage *= 1.75f;
 		}
 		if (buff(ArisastarRank3.class) != null){
-			damage *= 3f;
+			damage *= 2f;
 		}
 
 		for (ChampionEnemy buff : buffs(ChampionEnemy.class)){

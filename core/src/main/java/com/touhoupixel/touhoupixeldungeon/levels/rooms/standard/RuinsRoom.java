@@ -21,13 +21,15 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
 import com.watabou.utils.Point;
 
 public class RuinsRoom extends PatchRoom {
-	
+
 	@Override
 	public float[] sizeCatProbs() {
 		return new float[]{4, 2, 1};
@@ -40,7 +42,9 @@ public class RuinsRoom extends PatchRoom {
 
 	@Override
 	public void paint(Level level) {
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1 , Terrain.EMPTY );
 		for (Door door : connected.values()) {
 			door.set( Door.Type.REGULAR );
@@ -51,10 +55,10 @@ public class RuinsRoom extends PatchRoom {
 		// large    ~30% to ~40%
 		// giant    ~40% to ~50%
 		float fill = 0.20f + (width()*height())/1024f;
-		
+
 		setupPatch(level, fill, 0, true);
 		cleanDiagonalEdges();
-		
+
 		for (int i = top + 1; i < bottom; i++) {
 			for (int j = left + 1; j < right; j++) {
 				if (patch[xyToPatchCoords(j, i)]) {

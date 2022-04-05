@@ -62,7 +62,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 
 	@Override
 	protected boolean usableOnItem(Item item) {
-		return item instanceof MeleeWeapon ||
+		return item instanceof MeleeWeapon && ((MeleeWeapon) item).tier < 6 ||
 				(item instanceof MissileWeapon && (!(item instanceof Dart) || item instanceof TippedDart)) ||
 				(item instanceof Potion && !(item instanceof Elixir || item instanceof Brew || item instanceof AlchemicalCatalyst)) ||
 				item instanceof Scroll ||

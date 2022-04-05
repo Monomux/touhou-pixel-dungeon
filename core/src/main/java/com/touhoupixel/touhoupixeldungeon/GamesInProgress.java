@@ -132,8 +132,12 @@ public class GamesInProgress {
 		info.str = hero.STR;
 		info.strBonus = hero.STR() - hero.STR;
 		info.exp = hero.exp;
-		info.hp = hero.HP;
-		info.ht = hero.HT;
+		if (!Dungeon.isChallenged(Challenges.KEINE_TIME)) {
+			info.hp = hero.HP;
+		}
+		if (!Dungeon.isChallenged(Challenges.KEINE_TIME)) {
+			info.ht = hero.HT;
+		}
 		info.shld = hero.shielding();
 		info.heroClass = hero.heroClass;
 		info.subClass = hero.subClass;

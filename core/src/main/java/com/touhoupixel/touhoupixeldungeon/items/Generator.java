@@ -145,8 +145,11 @@ import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfLightning;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfLivingEarth;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfMagicMissile;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfPrismaticLight;
+import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfPurityBeam;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfRegrowth;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfReverseGravity;
+import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfSetsunatrip;
+import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfStableness;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfTransfusion;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfWarding;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfWishing;
@@ -160,6 +163,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BattleAxe;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Crossbow;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dagger;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DeadBeacon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dirk;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoremyDream;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
@@ -191,6 +195,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KyoukoBroom;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Levatein;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Longsword;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.LunaClock;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Mace;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
@@ -397,7 +402,7 @@ public class Generator {
 					ScrollOfSilence.class,
 					ScrollOfRouteChange.class
 			};
-			SCROLL.defaultProbs = new float[]{ 0, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1};
+			SCROLL.defaultProbs = new float[]{ 0, 5, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1};
 			SCROLL.probs = SCROLL.defaultProbs.clone();
 			
 			STONE.classes = new Class<?>[]{
@@ -450,10 +455,13 @@ public class Generator {
 					WandOfAntiEmber.class,
 					WandOfWishing.class,
 					WandOfHealWounds.class,
+					WandOfPurityBeam.class,
 					WandOfDestOrb.class,
 					WandOfDeath.class,
+					WandOfStableness.class,
+					WandOfSetsunatrip.class,
 					WandOfRegrowth.class };
-			WAND.probs = new float[]{ 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3, 5, 5, 5, 0, 5, 1, 2 };
+			WAND.probs = new float[]{ 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 6, 6, 6, 0, 0, 6, 1, 0, 4, 1 };
 
 			//see generator.randomWeapon
 			WEAPON.classes = new Class<?>[]{};
@@ -503,9 +511,10 @@ public class Generator {
 					PlayMat.class,
 					RandomPhone.class,
 					TenkyuuCloak.class,
-					AlchemySword.class
+					AlchemySword.class,
+					DeadBeacon.class
 			};
-			WEP_T3.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 4, 5, 4, 1, 4, 5, 5, 5, 5, 5 };
+			WEP_T3.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 4, 5, 4, 1, 4, 5, 5, 5, 5, 5, 5 };
 
 			WEP_T4.classes = new Class<?>[]{
 					Longsword.class,
@@ -555,9 +564,10 @@ public class Generator {
 					HoshigumaHorn.class,
 					AutumnKatana.class,
 					HorouBook.class,
-					Grayswandir.class
+					Grayswandir.class,
+					LunaClock.class
 			};
-			WEP_T5.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5 };
+			WEP_T5.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5, 5 };
 
 			//see generator.randomWeapon
 			ARMOR.classes = new Class<?>[]{};

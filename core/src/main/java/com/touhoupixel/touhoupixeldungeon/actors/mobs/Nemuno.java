@@ -47,11 +47,11 @@ public class Nemuno extends Mob {
 
 		if (Dungeon.depth > 50){
 			HP = HT = 464;
-		} else HP = HT = 13;
+		} else HP = HT = 18;
 
 		if (Dungeon.depth > 50){
-			defenseSkill = 59;
-		} else defenseSkill = 9;
+			defenseSkill = 54;
+		} else defenseSkill = 4;
 
 		if (Dungeon.depth > 50){
 			EXP = 55;

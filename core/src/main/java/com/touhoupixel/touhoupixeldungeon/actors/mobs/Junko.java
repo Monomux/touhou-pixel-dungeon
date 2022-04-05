@@ -68,7 +68,7 @@ public class Junko extends Mob {
 		HUNTING = new Hunting();
 		
 		loot = new Dewdrop();
-		lootChance = 0.5f;
+		lootChance = 0.2f;
 
 		properties.add(Property.GOD);
 		properties.add(Property.PURE);

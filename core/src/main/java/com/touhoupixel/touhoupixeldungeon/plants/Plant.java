@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,8 +51,6 @@ import java.util.ArrayList;
 
 public abstract class Plant implements Bundlable {
 
-	public String plantName = Messages.get(this, "name");
-	
 	public int image;
 	public int pos;
 
@@ -74,9 +72,9 @@ public abstract class Plant implements Bundlable {
 		wither();
 		activate( ch );
 	}
-	
+
 	public abstract void activate( Char ch );
-	
+
 	public void wither() {
 		Dungeon.level.uproot( pos );
 
@@ -99,9 +97,9 @@ public abstract class Plant implements Bundlable {
 				Dungeon.level.drop(Reflection.newInstance(seedClass), pos).sprite.drop();
 			}
 		}
-		
+
 	}
-	
+
 	private static final String POS	= "pos";
 
 	@Override
@@ -113,7 +111,11 @@ public abstract class Plant implements Bundlable {
 	public void storeInBundle( Bundle bundle ) {
 		bundle.put( POS, pos );
 	}
-	
+
+	public String name(){
+		return Messages.get(this, "name");
+	}
+
 	public String desc() {
 		String desc = Messages.get(this, "desc");
 		if (Dungeon.hero.subClass == HeroSubClass.WARDEN){
@@ -121,27 +123,27 @@ public abstract class Plant implements Bundlable {
 		}
 		return desc;
 	}
-	
+
 	public static class Seed extends Item {
 
 		public static final String AC_PLANT	= "PLANT";
-		
+
 		private static final float TIME_TO_PLANT = 1f;
-		
+
 		{
 			stackable = true;
 			defaultAction = AC_THROW;
 		}
-		
+
 		protected Class<? extends Plant> plantClass;
-		
+
 		@Override
 		public ArrayList<String> actions( Hero hero ) {
 			ArrayList<String> actions = super.actions( hero );
 			actions.add( AC_PLANT );
 			return actions;
 		}
-		
+
 		@Override
 		protected void onThrow( int cell ) {
 			if (Dungeon.level.map[cell] == Terrain.ALCHEMY
@@ -163,7 +165,7 @@ public abstract class Plant implements Bundlable {
 				}
 			}
 		}
-		
+
 		@Override
 		public void execute( Hero hero, String action ) {
 
@@ -176,10 +178,10 @@ public abstract class Plant implements Bundlable {
 				hero.spend( TIME_TO_PLANT );
 
 				hero.sprite.operate( hero.pos );
-				
+
 			}
 		}
-		
+
 		public Plant couch( int pos, Level level ) {
 			if (level != null && level.heroFOV != null && level.heroFOV[pos]) {
 				Sample.INSTANCE.play(Assets.Sounds.PLANT);
@@ -188,17 +190,17 @@ public abstract class Plant implements Bundlable {
 			plant.pos = pos;
 			return plant;
 		}
-		
+
 		@Override
 		public boolean isUpgradable() {
 			return false;
 		}
-		
+
 		@Override
 		public boolean isIdentified() {
 			return true;
 		}
-		
+
 		@Override
 		public int value() {
 			return 10 * quantity;
@@ -222,18 +224,18 @@ public abstract class Plant implements Bundlable {
 		public String info() {
 			return Messages.get( Seed.class, "info", desc() );
 		}
-		
+
 		public static class PlaceHolder extends Seed {
-			
+
 			{
 				image = ItemSpriteSheet.SEED_HOLDER;
 			}
-			
+
 			@Override
 			public boolean isSimilar(Item item) {
 				return item instanceof Plant.Seed;
 			}
-			
+
 			@Override
 			public String info() {
 				return "";

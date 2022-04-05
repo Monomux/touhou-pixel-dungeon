@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.journal.GuidePage;
 import com.touhoupixel.touhoupixeldungeon.items.journal.Guidebook;
@@ -33,12 +34,12 @@ import com.watabou.utils.Point;
 import com.watabou.utils.Random;
 
 public class EntranceRoom extends StandardRoom {
-	
+
 	@Override
 	public int minWidth() {
 		return Math.max(super.minWidth(), 5);
 	}
-	
+
 	@Override
 	public int minHeight() {
 		return Math.max(super.minHeight(), 5);
@@ -50,10 +51,12 @@ public class EntranceRoom extends StandardRoom {
 	}
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
-		
+
 		for (Room.Door door : connected.values()) {
 			door.set( Room.Door.Type.REGULAR );
 		}
@@ -100,5 +103,5 @@ public class EntranceRoom extends StandardRoom {
 		if (room instanceof ExitRoom)   return false;
 		else                            return super.connect(room);
 	}
-	
+
 }

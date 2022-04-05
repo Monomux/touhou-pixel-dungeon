@@ -290,7 +290,18 @@ public enum Talent {
 	//Gapmaster T3
 	GAIN_ROUTECHANGE(198, 3), TELEPORT_HEAL(199, 3), EMER_TELEPORT(200, 3),
 	//Bordermaster T3
-	LV7_ONEDEFDAMAGE(201, 3), LV8_ONEDAMAGE(202, 3), LV9_HIGHSTRESS(203, 3);
+	LV7_ONEDEFDAMAGE(201, 3), LV8_ONEDAMAGE(202, 3), LV9_HIGHSTRESS(203, 3),
+
+	//Junko T1
+	MINOR_EVASION_UP(204), MINOR_ACCURACY_UP(205), MAXHP_FOOD_DOUBLEEVASION(206), SILENCE_TIME_REDUCE(207),
+	//Junko T2
+	MAJOR_EVASION_UP(208), MAJOR_ACCURACY_UP(209), GAIN_BLOWAWAY(210), GAIN_INVISIBILITY(211), ATTACK_MINDVISION(212),
+	//Junko T3
+	ATTACK_HEX(213, 3), SILENCE_TIME_MORE_REDUCE(214, 3),
+	//Puritygod T3
+	BEAM_VERTIGO(215, 3), BEAM_SLOW(216, 3), BEAM_ONEDAMAGE(217, 3),
+	//Puregod T3
+	ATTACK_DOUBLEEVASION(218, 3), EXPLOSION_SNIPE(219, 3), FOOD_INVULNERABILITY(220, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff {
 		public int icon() {
@@ -382,8 +393,8 @@ public enum Talent {
 	int icon;
 	int maxPoints;
 
-	// tiers 1/2/3/4 start at levels 2/7/13/21
-	public static int[] tierLevelThresholds = new int[]{0, 2, 7, 13, 21, 31};
+	// tiers 1/2/3 start at levels 2/7/13
+	public static int[] tierLevelThresholds = new int[]{0, 2, 7, 13, 21};
 
 	Talent(int icon) {
 		this(icon, 2);
@@ -1163,7 +1174,7 @@ public enum Talent {
 
 		if (hero.hasTalent(KAPPA_MEAL)) {
 			Buff.prolong( hero, Stamina.class, Stamina.DURATION/10f );
-			hero.HP = Math.min(hero.HP + 4 + 5 * hero.pointsInTalent(KAPPA_MEAL), hero.HT);
+			hero.HP = Math.min(hero.HP + 1 + 2 * hero.pointsInTalent(KAPPA_MEAL), hero.HT);
 			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(KAPPA_MEAL));
 			if (Random.Int(2) == 0)
 				Buff.prolong( hero, Hex.class, Hex.DURATION );
@@ -1171,7 +1182,7 @@ public enum Talent {
 
 		if (hero.hasTalent(KAPPA_ENHANCE_MEAL)) {
 			Buff.prolong( hero, Stamina.class, Stamina.DURATION/10f );
-			hero.HP = Math.min(hero.HP + 9 + 6 * hero.pointsInTalent(KAPPA_ENHANCE_MEAL), hero.HT);
+			hero.HP = Math.min(hero.HP + 2 + 4 * hero.pointsInTalent(KAPPA_ENHANCE_MEAL), hero.HT);
 			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(KAPPA_ENHANCE_MEAL));
 			if (Random.Int(2) == 0)
 				Buff.prolong( hero, Hex.class, Hex.DURATION );
@@ -1179,7 +1190,7 @@ public enum Talent {
 
 		if (hero.hasTalent(CURSED_MEAL)) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					hero.HP = Math.min(hero.HP + 10 + 5 * hero.pointsInTalent(CURSED_MEAL), hero.HT);
 					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(CURSED_MEAL));
 				}
@@ -1188,7 +1199,7 @@ public enum Talent {
 
 		if (hero.hasTalent(CURSED_EXTRA_MEAL)) {
 			for (Item item : Dungeon.hero.belongings) {
-				if (item.cursed) {
+				if (item instanceof EquipableItem && item.cursed) {
 					hero.HP = Math.min(hero.HP + 20 + 10 * hero.pointsInTalent(CURSED_EXTRA_MEAL), hero.HT);
 					hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(CURSED_EXTRA_MEAL));
 				}
@@ -1428,7 +1439,7 @@ public enum Talent {
 		}
 
 		if (hero.hasTalent(CURSED_IDENTIFY)) {
-			hero.HP = Math.min(hero.HP + 5 + 10 * hero.pointsInTalent(CURSED_IDENTIFY), hero.HT);
+			hero.HP = Math.min(hero.HP + 3 + 4 * hero.pointsInTalent(CURSED_IDENTIFY), hero.HT);
 			Buff.prolong(hero, Slow.class, Slow.DURATION);
 		}
 
@@ -1554,6 +1565,9 @@ public enum Talent {
 			case YUKARIPLAYER:
 				Collections.addAll(tierTalents, GAP_HEAL, LV4_BURN, MAXHP_FOOD_TRIPLESPEED, GAIN_TRA);
 				break;
+			//case JUNKOPLAYER:
+				//Collections.addAll(tierTalents, MINOR_EVASION_UP, MINOR_ACCURACY_UP, MAXHP_FOOD_DOUBLEEVASION, SILENCE_TIME_REDUCE);
+				//break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(0).put(talent, 0);

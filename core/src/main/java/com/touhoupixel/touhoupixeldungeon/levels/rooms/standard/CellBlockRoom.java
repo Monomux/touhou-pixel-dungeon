@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -36,7 +38,9 @@ public class CellBlockRoom extends StandardRoom {
 
 	@Override
 	public void paint(Level level) {
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
 		Painter.fill( level, this, 3, Terrain.WALL );
 

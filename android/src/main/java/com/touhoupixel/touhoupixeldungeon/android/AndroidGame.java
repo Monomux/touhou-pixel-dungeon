@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,6 @@ import com.touhoupixel.touhoupixeldungeon.services.updates.UpdateImpl;
 import com.touhoupixel.touhoupixeldungeon.services.updates.Updates;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.ui.Button;
-import com.watabou.utils.DeviceCompat;
 import com.watabou.utils.FileUtils;
 
 public class AndroidGame extends AndroidApplication {
@@ -83,7 +82,7 @@ public class AndroidGame extends AndroidApplication {
 			// so that we don't need to rely on Gdx.app, which isn't initialized yet.
 			// Note that we use a different prefs name on android for legacy purposes,
 			// this is the default prefs filename given to an android app (.xml is automatically added to it)
-			TPDSettings.set(instance.getPreferences("TouhouPixelDungeon"));
+			TPDSettings.set(instance.getPreferences("ShatteredPixelDungeon"));
 
 		} else {
 			instance = this;

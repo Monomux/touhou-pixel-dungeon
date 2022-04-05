@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -214,26 +214,26 @@ public class AboutScene extends PixelScene {
 				null,
 				"Shattered Pixel Dungeon uses the following sound samples from _freesound.org_:\n\n" +
 
-				"Creative Commons Attribution License:\n" +
-				"_SFX ATTACK SWORD 001.wav_ by _JoelAudio_\n" +
-				"_Pack: Slingshots and Longbows_ by _saturdaysoundguy_\n" +
-				"_Cracking/Crunching, A.wav_ by _InspectorJ_\n" +
-				"_Extracting a sword.mp3_ by _Taira Komori_\n" +
-				"_Pack: Uni Sound Library_ by _timmy h123_\n\n" +
+						"Creative Commons Attribution License:\n" +
+						"_SFX ATTACK SWORD 001.wav_ by _JoelAudio_\n" +
+						"_Pack: Slingshots and Longbows_ by _saturdaysoundguy_\n" +
+						"_Cracking/Crunching, A.wav_ by _InspectorJ_\n" +
+						"_Extracting a sword.mp3_ by _Taira Komori_\n" +
+						"_Pack: Uni Sound Library_ by _timmy h123_\n\n" +
 
-				"Creative Commons Zero License:\n" +
-				"_Pack: Movie Foley: Swords_ by _Black Snow_\n" +
-				"_machine gun shot 2.flac_ by _qubodup_\n" +
-				"_m240h machine gun burst 4.flac_ by _qubodup_\n" +
-				"_Pack: Onomatopoeia_ by _Adam N_\n" +
-				"_Pack: Watermelon_ by _lolamadeus_\n" +
-				"_metal chain_ by _Mediapaja2009_\n" +
-				"_Pack: Sword Clashes Pack_ by _JohnBuhr_\n" +
-				"_Pack: Metal Clangs and Pings_ by _wilhellboy_\n" +
-				"_Pack: Stabbing Stomachs & Crushing Skulls_ by _TheFilmLook_\n" +
-				"_Sheep bleating_ by _zachrau_\n" +
-				"_Lemon,Juicy,Squeeze,Fruit.wav_ by _Filipe Chagas_\n" +
-				"_Lemon,Squeeze,Squishy,Fruit.wav_ by _Filipe Chagas_",
+						"Creative Commons Zero License:\n" +
+						"_Pack: Movie Foley: Swords_ by _Black Snow_\n" +
+						"_machine gun shot 2.flac_ by _qubodup_\n" +
+						"_m240h machine gun burst 4.flac_ by _qubodup_\n" +
+						"_Pack: Onomatopoeia_ by _Adam N_\n" +
+						"_Pack: Watermelon_ by _lolamadeus_\n" +
+						"_metal chain_ by _Mediapaja2009_\n" +
+						"_Pack: Sword Clashes Pack_ by _JohnBuhr_\n" +
+						"_Pack: Metal Clangs and Pings_ by _wilhellboy_\n" +
+						"_Pack: Stabbing Stomachs & Crushing Skulls_ by _TheFilmLook_\n" +
+						"_Sheep bleating_ by _zachrau_\n" +
+						"_Lemon,Juicy,Squeeze,Fruit.wav_ by _Filipe Chagas_\n" +
+						"_Lemon,Squeeze,Squishy,Fruit.wav_ by _Filipe Chagas_",
 				"www.freesound.org",
 				"https://www.freesound.org");
 		freesound.setRect(transifex.left()-10, transifex.bottom() + 8, colWidth+20, 0);
@@ -250,7 +250,7 @@ public class AboutScene extends PixelScene {
 
 		//fadeIn();
 	}
-	
+
 	@Override
 	protected void onBackPressed() {
 		TouhouPixelDungeon.switchScene(TitleScene.class);
@@ -315,7 +315,7 @@ public class AboutScene extends PixelScene {
 				linkButton = new PointerArea(0, 0, 0, 0){
 					@Override
 					protected void onClick( PointerEvent event ) {
-						DeviceCompat.openURI( linkUrl );
+						TouhouPixelDungeon.platform.openURI( linkUrl );
 					}
 				};
 				add(linkButton);

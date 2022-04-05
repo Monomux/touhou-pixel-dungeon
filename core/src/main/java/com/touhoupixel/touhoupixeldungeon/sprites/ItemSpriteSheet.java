@@ -275,7 +275,7 @@ public class ItemSpriteSheet {
 	public static final int SAI             = WEP_TIER3+4;
 	public static final int WHIP            = WEP_TIER3+5;
 	public static final int AKYUUBRUSH      = WEP_TIER3+6;
-	public static final int PURIFICATIONROD = WEP_TIER3+7;
+	public static final int PURITYBEAM = WEP_TIER3+7;
 	static{
 		assignItemRect(SWORD,           9, 9);
 		assignItemRect(MACE,            13, 13);
@@ -284,7 +284,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SAI,             13, 13);
 		assignItemRect(WHIP,            13, 13);
 		assignItemRect(AKYUUBRUSH,      13, 13);
-		assignItemRect(PURIFICATIONROD, 13, 13);
+		assignItemRect(PURITYBEAM, 16, 16);
 	}
 
 	private static final int WEP_TIER4      =                               xy(9, 8);   //8 slots
@@ -525,8 +525,10 @@ public class ItemSpriteSheet {
 	public static final int WAND_HEALWOUNDS    = WANDS+305;
 	public static final int WAND_DESTORB    = WANDS+306;
 	public static final int WAND_DEATH    = WANDS+307;
+	public static final int WAND_STABLENESS    = WANDS+308;
+	public static final int WAND_SETSUNATRIP    = WANDS+309;
 	static {
-		for (int i = WANDS; i < WANDS+308; i++)
+		for (int i = WANDS; i < WANDS+312; i++)
 			assignItemRect(i, 14, 14);
 	}
 
@@ -762,7 +764,12 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 14);
 	}
 
-	//16 free slots
+	private static final int GIFTCARD     =                               xy(1, 26);  //16 slots
+	public static final int BIRTHDAY_CARD     = GIFTCARD+0;
+	static{
+		for (int i = GIFTCARD; i < GIFTCARD+16; i++)
+			assignItemRect(i, 15, 11);
+	}
 
 	private static final int SPELLS         =                               xy(1, 27);  //16 slots
 	public static final int MAGIC_PORTER    = SPELLS+0;
@@ -944,9 +951,13 @@ public class ItemSpriteSheet {
 	public static final int ALCHEMY_SWORD        = WEP_TIER5_PART2+6;
 	public static final int POT_OF_GREED        = WEP_TIER5_PART2+7;
 	public static final int ALCHEMY_HAT        = WEP_TIER5_PART2+8;
-	public static final int BLACK_FAN        = WEP_TIER5_PART2+9;
+
 	public static final int SMALL_SEIRAN_HAMMER    = WEP_TIER5_PART2+10;
 	public static final int HINA_RIBBON        = WEP_TIER5_PART2+11;
+	public static final int LUNA_CLOCK        = WEP_TIER5_PART2+12;
+	public static final int DEAD_BEACON        = WEP_TIER5_PART2+13;
+	public static final int GREEN_SWORD        = WEP_TIER5_PART2+14;
+	public static final int BLACK_FAN        = WEP_TIER5_PART2+15;
 	static{
 		assignItemRect(RANDOMPHONE, 8, 12);
 		assignItemRect(TENKYUUCLOAK,    16, 14);
@@ -957,9 +968,13 @@ public class ItemSpriteSheet {
 		assignItemRect(ALCHEMY_SWORD,      13, 13);
 		assignItemRect(POT_OF_GREED,      12, 12);
 		assignItemRect(ALCHEMY_HAT,      11, 10);
-		assignItemRect(BLACK_FAN,      10, 10);
+
 		assignItemRect(SMALL_SEIRAN_HAMMER,      10, 10);
 		assignItemRect(HINA_RIBBON,      13, 6);
+		assignItemRect(LUNA_CLOCK,      13, 16);
+		assignItemRect(DEAD_BEACON,      16, 16);
+		assignItemRect(GREEN_SWORD,      13, 13);
+		assignItemRect(BLACK_FAN,      10, 10);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite

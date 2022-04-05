@@ -64,7 +64,7 @@ public class Yuugi extends Mob {
 		} else maxLvl = 16;
 
 		loot = Generator.Category.ARMOR;
-		lootChance = 0.2f; //by default, see rollToDropLoot()
+		lootChance = 0.15f; //by default, see rollToDropLoot()
 
 		properties.add(Property.POWERFUL);
 		

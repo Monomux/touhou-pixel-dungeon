@@ -125,12 +125,7 @@ public class Toolbar extends Component {
 					Dungeon.hero.search(true);
 				}
 			}
-			
-			@Override
-			public GameAction keyAction() {
-				return TPDAction.SEARCH;
-			}
-			
+
 			@Override
 			protected boolean onLongClick() {
 				Dungeon.hero.search(true);
@@ -361,13 +356,13 @@ public class Toolbar extends Component {
 			}
 		}
 	}
-	
+
 	private static class QuickslotTool extends Tool {
-		
+
 		private QuickSlotButton slot;
 		private int borderLeft = 2;
 		private int borderRight = 2;
-		
+
 		public QuickslotTool( int x, int y, int width, int height, int slotNum ) {
 			super( x, y, width, height );
 
@@ -380,13 +375,14 @@ public class Toolbar extends Component {
 			borderRight = right;
 			layout();
 		}
-		
+
 		@Override
 		protected void layout() {
 			super.layout();
-			slot.setRect( x + borderLeft, y + 2, width - borderLeft-borderRight, height - 4 );
+			slot.setRect( x, y, width, height );
+			slot.slotMargins(borderLeft, 2, borderRight, 2);
 		}
-		
+
 		@Override
 		public void enable( boolean value ) {
 			super.enable( value );

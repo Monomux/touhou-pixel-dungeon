@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,11 +27,11 @@ import com.touhoupixel.touhoupixeldungeon.plants.Plant;
 import com.touhoupixel.touhoupixeldungeon.tiles.TerrainFeaturesTilemap;
 
 public class WndInfoPlant extends WndTitledMessage {
-	
+
 	public WndInfoPlant( Plant plant ) {
-		
+
 		super(TerrainFeaturesTilemap.tile( plant.pos, Dungeon.level.map[plant.pos]),
-				Messages.titleCase(plant.plantName), plant.desc());
+				Messages.titleCase(plant.name()), plant.desc());
 
 	}
 }

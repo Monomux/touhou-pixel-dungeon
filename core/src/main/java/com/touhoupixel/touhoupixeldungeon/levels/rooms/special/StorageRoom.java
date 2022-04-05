@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -35,8 +37,10 @@ public class StorageRoom extends SpecialRoom {
 	public void paint( Level level ) {
 		
 		final int floor = Terrain.EMPTY_SP;
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, floor );
 
 		boolean honeyPot = Random.Int( 2 ) == 0;

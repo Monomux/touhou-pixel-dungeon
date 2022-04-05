@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -31,24 +33,26 @@ public class CaveRoom extends PatchRoom {
 	public float[] sizeCatProbs() {
 		return new float[]{4, 2, 1};
 	}
-	
+
 	@Override
 	public void paint(Level level) {
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1 , Terrain.EMPTY );
 		for (Door door : connected.values()) {
 			door.set( Door.Type.REGULAR );
 		}
-		
+
 		//fill scales from ~30% at 4x4, to ~60% at 18x18
 		// normal   ~30% to ~40%
 		// large    ~40% to ~50%
 		// giant    ~50% to ~60%
 		float fill = 0.30f + (width()*height())/1024f;
-		
+
 		setupPatch(level, fill, 3, true);
 		cleanDiagonalEdges();
-		
+
 		for (int i = top + 1; i < bottom; i++) {
 			for (int j = left + 1; j < right; j++) {
 				if (patch[xyToPatchCoords(j, i)]) {
@@ -58,5 +62,5 @@ public class CaveRoom extends PatchRoom {
 			}
 		}
 	}
-	
+
 }

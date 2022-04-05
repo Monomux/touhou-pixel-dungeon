@@ -178,7 +178,7 @@ public class Narumi extends Mob {
 
 	public static Narumi random(){
 		if (Random.Int(10) == 0){
-			return new ArmoredStatue();
+			return new ArmoredNarumi();
 		} else {
 			return new Narumi();
 		}

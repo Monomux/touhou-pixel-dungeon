@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -28,30 +30,32 @@ import com.touhoupixel.touhoupixeldungeon.levels.rooms.Room;
 import com.watabou.utils.Point;
 
 public class ExitRoom extends StandardRoom {
-	
+
 	@Override
 	public int minWidth() {
 		return Math.max(super.minWidth(), 5);
 	}
-	
+
 	@Override
 	public int minHeight() {
 		return Math.max(super.minHeight(), 5);
 	}
-	
+
 	public void paint(Level level) {
 
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
-		
+
 		for (Room.Door door : connected.values()) {
 			door.set( Room.Door.Type.REGULAR );
 		}
-		
+
 		level.exit = level.pointToCell(random( 2 ));
 		Painter.set( level, level.exit, Terrain.EXIT );
 	}
-	
+
 	@Override
 	public boolean canPlaceCharacter(Point p, Level l) {
 		return super.canPlaceCharacter(p, l) && l.pointToCell(p) != l.exit;

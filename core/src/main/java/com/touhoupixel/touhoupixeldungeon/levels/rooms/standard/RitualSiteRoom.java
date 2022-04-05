@@ -22,6 +22,8 @@
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.quest.CeremonialCandle;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
@@ -32,12 +34,12 @@ import com.watabou.noosa.Tilemap;
 import com.watabou.utils.Point;
 
 public class RitualSiteRoom extends StandardRoom {
-	
+
 	@Override
 	public int minWidth() {
 		return Math.max(super.minWidth(), 5);
 	}
-	
+
 	@Override
 	public int minHeight() {
 		return Math.max(super.minHeight(), 5);
@@ -49,7 +51,9 @@ public class RitualSiteRoom extends StandardRoom {
 			door.set( Door.Type.REGULAR );
 		}
 
-		Painter.fill(level, this, Terrain.WALL);
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill(level, this, 1, Terrain.EMPTY);
 
 		RitualMarker vis = new RitualMarker();
@@ -57,7 +61,7 @@ public class RitualSiteRoom extends StandardRoom {
 		vis.pos(c.x - 1, c.y - 1);
 
 		level.customTiles.add(vis);
-		
+
 		Painter.fill(level, c.x-1, c.y-1, 3, 3, Terrain.EMPTY_DECO);
 
 		level.addItemToSpawn(new CeremonialCandle());
@@ -69,13 +73,13 @@ public class RitualSiteRoom extends StandardRoom {
 	}
 
 	public static class RitualMarker extends CustomTilemap {
-		
+
 		{
 			texture = Assets.Environment.PRISON_QUEST;
-			
+
 			tileW = tileH = 3;
 		}
-		
+
 		final int TEX_WIDTH = 64;
 
 		@Override

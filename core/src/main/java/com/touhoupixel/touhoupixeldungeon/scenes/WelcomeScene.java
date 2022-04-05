@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeon.scenes;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Badges;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Chrome;
 import com.touhoupixel.touhoupixeldungeon.GamesInProgress;
 import com.touhoupixel.touhoupixeldungeon.Rankings;
@@ -31,11 +32,15 @@ import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
 import com.touhoupixel.touhoupixeldungeon.effects.BannerSprites;
 import com.touhoupixel.touhoupixeldungeon.effects.Fireball;
 import com.touhoupixel.touhoupixeldungeon.journal.Document;
+import com.touhoupixel.touhoupixeldungeon.messages.Languages;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.ui.Archs;
 import com.touhoupixel.touhoupixeldungeon.ui.Icons;
 import com.touhoupixel.touhoupixeldungeon.ui.RenderedTextBlock;
 import com.touhoupixel.touhoupixeldungeon.ui.StyledButton;
+import com.touhoupixel.touhoupixeldungeon.windows.WndError;
+import com.touhoupixel.touhoupixeldungeon.windows.WndHardNotification;
+import com.touhoupixel.touhoupixeldungeon.windows.WndMessage;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.ColorBlock;
@@ -44,15 +49,32 @@ import com.watabou.noosa.Image;
 import com.watabou.noosa.audio.Music;
 import com.watabou.utils.FileUtils;
 
+import java.util.ArrayList;
+
 public class WelcomeScene extends PixelScene {
 
-	private static final int LATEST_UPDATE = TouhouPixelDungeon.v0_9_0b;
+	private static final int LATEST_UPDATE = TouhouPixelDungeon.v1_1_0;
 
 	@Override
 	public void create() {
 		super.create();
 
 		final int previousVersion = TPDSettings.version();
+
+		if (FileUtils.cleanTempFiles()){
+			add(new WndHardNotification(Icons.get(Icons.WARNING),
+					Messages.get(WndError.class, "title"),
+					Messages.get(this, "save_warning"),
+					Messages.get(this, "continue"),
+					5){
+				@Override
+				public void hide() {
+					super.hide();
+					TouhouPixelDungeon.resetScene();
+				}
+			});
+			return;
+		}
 
 		if (TouhouPixelDungeon.versionCode == previousVersion && !TPDSettings.intro()) {
 			TouhouPixelDungeon.switchNoFade(TitleScene.class);
@@ -162,13 +184,13 @@ public class WelcomeScene extends PixelScene {
 				message += "\n";
 				//message += "\n" + Messages.get(this, "patch_balance");
 				message += "\n" + Messages.get(this, "patch_bugfixes");
-				//message += "\n" + Messages.get(this, "patch_translations");
+				message += "\n" + Messages.get(this, "patch_translations");
 
 			}
 		} else {
 			message = Messages.get(this, "what_msg");
 		}
-		text.text(message, w-20);
+		text.text(message, Math.min(w-20, 300));
 		float textSpace = okay.top() - topRegion - 4;
 		text.setPos((w - text.width()) / 2f, (topRegion + 2) + (textSpace - text.height())/2);
 		add(text);
@@ -206,7 +228,7 @@ public class WelcomeScene extends PixelScene {
 
 		}
 
-		//if the player has beaten Cirno, automatically give all guidebook pages
+		//if the player has beaten Goo, automatically give all guidebook pages
 		if (previousVersion <= TouhouPixelDungeon.v0_9_3c){
 			Badges.loadGlobal();
 			if (Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_1)){
@@ -215,8 +237,6 @@ public class WelcomeScene extends PixelScene {
 				}
 			}
 		}
-
 		TPDSettings.version(TouhouPixelDungeon.versionCode);
 	}
-
 }

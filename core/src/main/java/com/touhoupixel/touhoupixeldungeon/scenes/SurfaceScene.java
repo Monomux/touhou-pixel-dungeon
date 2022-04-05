@@ -33,7 +33,7 @@ import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.EarthGuardianSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.GhostSprite;
-import com.touhoupixel.touhoupixeldungeon.sprites.RatSprite;
+import com.touhoupixel.touhoupixeldungeon.sprites.WriggleSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.WardSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.Archs;
 import com.touhoupixel.touhoupixeldungeon.ui.RedButton;
@@ -397,7 +397,7 @@ public class SurfaceScene extends PixelScene {
 		}
 	}
 	
-	private static class Pet extends RatSprite {
+	private static class Pet extends WriggleSprite {
 		
 		public void jump() {
 			play( run );

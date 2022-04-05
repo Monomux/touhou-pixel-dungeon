@@ -50,7 +50,9 @@ public class TrapsRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
 
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 
 		Class<? extends Trap> trapClass;
 		switch (Random.Int(4)){

@@ -25,8 +25,7 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Albino;
-import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bandit;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Larva;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Bestiary;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mimic;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.Mob;
@@ -52,7 +51,7 @@ public class DistortionTrap extends Trap{
 	}
 
 	private static final ArrayList<Class<?extends Mob>> RARE = new ArrayList<>(Arrays.asList(
-			Albino.class, Bandit.class));
+			Larva.class, Larva.class));
 
 	@Override
 	public void activate() {

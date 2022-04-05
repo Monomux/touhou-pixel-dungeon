@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.windows;
 
 import com.touhoupixel.touhoupixeldungeon.TPDSettings;
+import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
 import com.touhoupixel.touhoupixeldungeon.messages.Languages;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
@@ -66,7 +67,7 @@ public class WndSupportPrompt extends Window {
 				link += "?utm_source=shatteredpd";
 				link += "&utm_medium=supporter_prompt";
 				link += "&utm_campaign=ingame_link";
-				DeviceCompat.openURI(link);
+				TouhouPixelDungeon.platform.openURI(link);
 				TPDSettings.supportNagged(true);
 				WndSupportPrompt.super.hide();
 			}

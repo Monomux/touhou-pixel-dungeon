@@ -34,6 +34,7 @@ public class Terrain {
 	public static final int EXIT			= 8;
 	public static final int EMBERS			= 9;
 	public static final int LOCKED_DOOR		= 10;
+	public static final int CRYSTAL_DOOR	= 31;
 	public static final int PEDESTAL		= 11;
 	public static final int WALL_DECO		= 12;
 	public static final int BARRICADE		= 13;
@@ -57,7 +58,7 @@ public class Terrain {
 	public static final int ALCHEMY			= 28;
 
 	public static final int WATER		    = 29;
-	
+
 	public static final int PASSABLE		= 0x01;
 	public static final int LOS_BLOCKING	= 0x02;
 	public static final int FLAMABLE		= 0x04;
@@ -66,7 +67,7 @@ public class Terrain {
 	public static final int AVOID			= 0x20;
 	public static final int LIQUID			= 0x40;
 	public static final int PIT				= 0x80;
-	
+
 	public static final int[] flags = new int[256];
 	static {
 		flags[CHASM]		= AVOID	| PIT;
@@ -81,6 +82,7 @@ public class Terrain {
 		flags[EXIT]			= PASSABLE;
 		flags[EMBERS]		= PASSABLE;
 		flags[LOCKED_DOOR]	= LOS_BLOCKING | SOLID;
+		flags[CRYSTAL_DOOR]	= SOLID;
 		flags[PEDESTAL]		= PASSABLE;
 		flags[WALL_DECO]	= flags[WALL];
 		flags[BARRICADE]	= FLAMABLE | SOLID | LOS_BLOCKING;
@@ -107,12 +109,12 @@ public class Terrain {
 
 	public static int discover( int terr ) {
 		switch (terr) {
-		case SECRET_DOOR:
-			return DOOR;
-		case SECRET_TRAP:
-			return TRAP;
-		default:
-			return terr;
+			case SECRET_DOOR:
+				return DOOR;
+			case SECRET_TRAP:
+				return TRAP;
+			default:
+				return terr;
 		}
 	}
 

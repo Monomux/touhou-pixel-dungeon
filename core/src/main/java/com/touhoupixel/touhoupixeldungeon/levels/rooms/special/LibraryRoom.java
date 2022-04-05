@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.special;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -36,15 +37,17 @@ import com.watabou.utils.Random;
 public class LibraryRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
-		
-		Painter.fill( level, this, Terrain.WALL );
+
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY_SP );
-		
+
 		Door entrance = entrance();
-		
+
 		Painter.fill( level, left + 1, top+1, width() - 2, 1 , Terrain.BOOKSHELF );
 		Painter.drawInside(level, this, entrance, 1, Terrain.EMPTY_SP );
-		
+
 		int n = Random.NormalIntRange( 1, 3 );
 		for (int i=0; i < n; i++) {
 			int pos;
@@ -58,18 +61,18 @@ public class LibraryRoom extends SpecialRoom {
 				item = prize( level );
 			level.drop( item, pos );
 		}
-		
+
 		entrance.set( Door.Type.LOCKED );
-		
+
 		level.addItemToSpawn( new IronKey( Dungeon.depth ) );
 	}
-	
+
 	private static Item prize( Level level ) {
-		
+
 		Item prize = level.findPrizeItem( Scroll.class );
 		if (prize == null)
 			prize = Generator.random( Generator.Category.SCROLL );
-		
+
 		return prize;
 	}
 }

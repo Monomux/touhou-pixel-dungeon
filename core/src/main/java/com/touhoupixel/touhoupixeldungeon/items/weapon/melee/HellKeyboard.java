@@ -72,15 +72,15 @@ public class HellKeyboard extends MeleeWeapon {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
-			if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank1.class) == null && hero.buff(ArisastarRank2.class) == null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
+			if (Dungeon.hero.belongings.weapon() instanceof HellKeyboard && hero.buff(ArisastarRank1.class) == null && hero.buff(ArisastarRank2.class) == null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
 				Buff.prolong(owner, ArisastarRank1.class, ArisastarRank1.DURATION);
-			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank1.class) != null && hero.buff(ArisastarRank2.class) == null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
+			} else if (Dungeon.hero.belongings.weapon() instanceof HellKeyboard && hero.buff(ArisastarRank1.class) != null && hero.buff(ArisastarRank2.class) == null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
 				Buff.detach(hero, ArisastarRank1.class);
 				Buff.prolong(owner, ArisastarRank2.class, ArisastarRank2.DURATION);
-			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank1.class) == null && hero.buff(ArisastarRank2.class) != null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
+			} else if (Dungeon.hero.belongings.weapon() instanceof HellKeyboard && hero.buff(ArisastarRank1.class) == null && hero.buff(ArisastarRank2.class) != null && hero.buff(ArisastarRank3.class) == null && (Random.Int(2) == 0)) {
 				Buff.detach(hero, ArisastarRank2.class);
 				Buff.prolong(owner, ArisastarRank3.class, ArisastarRank3.DURATION);
-			} else if (Dungeon.hero.belongings.weapon() instanceof ArisaKeyboard && hero.buff(ArisastarRank3.class) != null && (Random.Int(2) == 0)) {
+			} else if (Dungeon.hero.belongings.weapon() instanceof HellKeyboard && hero.buff(ArisastarRank3.class) != null && (Random.Int(2) == 0)) {
 				Buff.prolong(owner, ArisastarRank3.class, ArisastarRank3.DURATION);
 			}
 		}

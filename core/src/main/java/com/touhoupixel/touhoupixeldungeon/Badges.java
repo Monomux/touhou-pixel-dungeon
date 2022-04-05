@@ -76,6 +76,7 @@ public class Badges {
 		UNLOCK_KAGUYAPLAYER         ( 20 ),
 		UNLOCK_KOGASAPLAYER         ( 21 ),
 		UNLOCK_YUKARIPLAYER         ( 22 ),
+		UNLOCK_JUNKOPLAYER          ( 23 ),
 		SHOPKEEPERS                 ( 28 ),
 		TOYOHIMES                   ( 29 ),
 		YORIHIMES                   ( 30 ),
@@ -145,6 +146,7 @@ public class Badges {
 		VICTORY_KAGUYAPLAYER,
 		VICTORY_KOGASAPLAYER,
 		VICTORY_YUKARIPLAYER,
+		VICTORY_JUNKOPLAYER,
 		VICTORY_ALL_CLASSES         ( 98, true ),
 		GAMES_PLAYED_3              ( 99, true ),
 		CHAMPION_1                  ( 100 ),
@@ -378,6 +380,10 @@ public class Badges {
 		}
 		if (!local.contains( Badge.STRENGTH_ATTAINED_4 ) && Dungeon.hero.STR >= 19) {
 			badge = Badge.STRENGTH_ATTAINED_4;
+			local.add( badge );
+		}
+		if (!local.contains( Badge.UNLOCK_JUNKOPLAYER ) && Dungeon.hero.STR >= 35) {
+			badge = Badge.UNLOCK_JUNKOPLAYER;
 			local.add( badge );
 		}
 
@@ -718,6 +724,9 @@ public class Badges {
 			case YUKARIPLAYER:
 				badge = Badge.VICTORY_YUKARIPLAYER;
 				break;
+			case JUNKOPLAYER:
+				badge = Badge.VICTORY_JUNKOPLAYER;
+				break;
 		}
 		local.add( badge );
 		if (!global.contains( badge )) {
@@ -735,6 +744,7 @@ public class Badges {
 				global.contains( Badge.VICTORY_HINAPLAYER ) &&
 				global.contains( Badge.VICTORY_KAGUYAPLAYER ) &&
 				global.contains( Badge.VICTORY_YUKARIPLAYER ) &&
+				global.contains( Badge.VICTORY_JUNKOPLAYER ) &&
 				global.contains( Badge.VICTORY_HUNTRESS )) {
 
 			badge = Badge.VICTORY_ALL_CLASSES;

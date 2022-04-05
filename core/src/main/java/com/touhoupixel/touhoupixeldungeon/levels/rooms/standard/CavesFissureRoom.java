@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -65,7 +67,9 @@ public class CavesFissureRoom extends StandardRoom {
 		PathFinder.setMapSize(width()-2, height()-2);
 
 		do {
-			Painter.fill(level, this, Terrain.WALL);
+			if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+				Painter.fill(level, this, Terrain.BOOKSHELF);
+			} else Painter.fill(level, this, Terrain.WALL);
 			Painter.fill(level, this, 1, Terrain.EMPTY);
 
 			for (Door door : connected.values()) {
@@ -264,7 +268,7 @@ public class CavesFissureRoom extends StandardRoom {
 				}
 			}
 
-		//vertical bridge
+			//vertical bridge
 		} else {
 			int X;
 			if (dX > 0) X = Random.IntRange((int)center.x+centerMargin, right-edgemargin);

@@ -112,7 +112,6 @@ public abstract class StandardRoom extends Room {
 	static {
 		rooms.add(EmptyRoom.class);
 
-
 		rooms.add(SewerPipeRoom.class);
 		rooms.add(RingRoom.class);
 		rooms.add(CircleBasinRoom.class);

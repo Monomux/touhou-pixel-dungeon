@@ -21,6 +21,8 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
@@ -66,48 +68,50 @@ public class SewerPipeRoom extends StandardRoom {
 	@Override
 	public void paint(Level level) {
 
-		Painter.fill( level, this, Terrain.WALL );
+		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
+			Painter.fill(level, this, Terrain.BOOKSHELF);
+		} else Painter.fill(level, this, Terrain.WALL);
 
 		Rect c = getConnectionSpace();
 
 		if (connected.size() <= 2) {
 			for (Door door : connected.values()) {
-				
+
 				Point start;
 				Point mid;
 				Point end;
-				
+
 				start = new Point(door);
 				if (start.x == left) start.x += 2;
 				else if (start.y == top) start.y += 2;
 				else if (start.x == right) start.x -= 2;
 				else if (start.y == bottom) start.y -= 2;
-				
+
 				int rightShift;
 				int downShift;
-				
+
 				if (start.x < c.left) rightShift = c.left - start.x;
 				else if (start.x > c.right) rightShift = c.right - start.x;
 				else rightShift = 0;
-				
+
 				if (start.y < c.top) downShift = c.top - start.y;
 				else if (start.y > c.bottom) downShift = c.bottom - start.y;
 				else downShift = 0;
-				
+
 				//always goes inward first
 				if (door.x == left || door.x == right) {
 					mid = new Point(start.x + rightShift, start.y);
 					end = new Point(mid.x, mid.y + downShift);
-					
+
 				} else {
 					mid = new Point(start.x, start.y + downShift);
 					end = new Point(mid.x + rightShift, mid.y);
-					
+
 				}
-				
+
 				Painter.drawLine(level, start, mid, Terrain.WATER);
 				Painter.drawLine(level, mid, end, Terrain.WATER);
-				
+
 			}
 		} else {
 			ArrayList<Point> pointsToFill = new ArrayList<>();
@@ -124,10 +128,10 @@ public class SewerPipeRoom extends StandardRoom {
 				}
 				pointsToFill.add( p );
 			}
-			
+
 			ArrayList<Point> pointsFilled = new ArrayList<>();
 			pointsFilled.add(pointsToFill.remove(0));
-			
+
 			Point from = null, to = null;
 			int shortestDistance;
 			while(!pointsToFill.isEmpty()){
@@ -153,6 +157,9 @@ public class SewerPipeRoom extends StandardRoom {
 			if (level.map[cell] == Terrain.WATER){
 				for (int i : PathFinder.NEIGHBOURS8){
 					if (level.map[cell + i] == Terrain.WALL){
+						Painter.set(level, cell + i, Terrain.EMPTY);
+					}
+					if (level.map[cell + i] == Terrain.BOOKSHELF){
 						Painter.set(level, cell + i, Terrain.EMPTY);
 					}
 				}

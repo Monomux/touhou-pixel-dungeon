@@ -3,7 +3,7 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2021 Evan Debenham
+ * Copyright (C) 2014-2022 Evan Debenham
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,27 +31,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Notes {
-	
+
 	public static abstract class Record implements Comparable<Record>, Bundlable {
-		
+
 		protected int depth;
 
 		public int depth(){
 			return depth;
 		}
-		
+
 		public abstract String desc();
-		
+
 		@Override
 		public abstract boolean equals(Object obj);
-		
+
 		@Override
 		public int compareTo( Record another ) {
 			return another.depth() - depth();
 		}
-		
+
 		private static final String DEPTH	= "depth";
-		
+
 		@Override
 		public void restoreFromBundle( Bundle bundle ) {
 			depth = bundle.getInt( DEPTH );
@@ -62,7 +62,7 @@ public class Notes {
 			bundle.put( DEPTH, depth );
 		}
 	}
-	
+
 	public enum Landmark {
 		WELL_OF_HEALTH,
 		WELL_OF_AWARENESS,
@@ -71,127 +71,127 @@ public class Notes {
 		GARDEN,
 		STATUE,
 		SHOP,
-		
+
 		GHOST,
 		WANDMAKER,
 		TROLL,
 		IMP;
-		
+
 		public String desc() {
 			return Messages.get(this, name());
 		}
 	}
-	
+
 	public static class LandmarkRecord extends Record {
-		
+
 		protected Landmark landmark;
-		
+
 		public LandmarkRecord() {}
-		
+
 		public LandmarkRecord(Landmark landmark, int depth ) {
 			this.landmark = landmark;
 			this.depth = depth;
 		}
-		
+
 		@Override
 		public String desc() {
 			return landmark.desc();
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			return (obj instanceof LandmarkRecord)
 					&& landmark == ((LandmarkRecord) obj).landmark
 					&& depth() == ((LandmarkRecord) obj).depth();
 		}
-		
+
 		private static final String LANDMARK	= "landmark";
-		
+
 		@Override
 		public void restoreFromBundle(Bundle bundle) {
 			super.restoreFromBundle(bundle);
 			landmark = Landmark.valueOf(bundle.getString(LANDMARK));
 		}
-		
+
 		@Override
 		public void storeInBundle(Bundle bundle) {
 			super.storeInBundle(bundle);
 			bundle.put( LANDMARK, landmark.toString() );
 		}
 	}
-	
+
 	public static class KeyRecord extends Record {
-		
+
 		protected Key key;
-		
+
 		public KeyRecord() {}
-		
+
 		public KeyRecord( Key key ){
 			this.key = key;
 		}
-		
+
 		@Override
 		public int depth() {
 			return key.depth;
 		}
-		
+
 		@Override
 		public String desc() {
 			return key.toString();
 		}
-		
+
 		public Class<? extends Key> type(){
 			return key.getClass();
 		}
-		
+
 		public int quantity(){
 			return key.quantity();
 		}
-		
+
 		public void quantity(int num){
 			key.quantity(num);
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
 			return (obj instanceof KeyRecord)
 					&& key.isSimilar(((KeyRecord) obj).key);
 		}
-		
+
 		private static final String KEY	= "key";
-		
+
 		@Override
 		public void restoreFromBundle(Bundle bundle) {
 			super.restoreFromBundle(bundle);
 			key = (Key) bundle.get(KEY);
 		}
-		
+
 		@Override
 		public void storeInBundle(Bundle bundle) {
 			super.storeInBundle(bundle);
 			bundle.put( KEY, key );
 		}
 	}
-	
+
 	private static ArrayList<Record> records;
-	
+
 	public static void reset() {
 		records = new ArrayList<>();
 	}
-	
+
 	private static final String RECORDS	= "records";
-	
+
 	public static void storeInBundle( Bundle bundle ) {
 		bundle.put( RECORDS, records );
 	}
-	
+
 	public static void restoreFromBundle( Bundle bundle ) {
 		records = new ArrayList<>();
 		for (Bundlable rec : bundle.getCollection( RECORDS ) ) {
 			records.add( (Record) rec );
 		}
 	}
-	
+
 	public static boolean add( Landmark landmark ) {
 		LandmarkRecord l = new LandmarkRecord( landmark, Dungeon.depth );
 		if (!records.contains(l)) {
@@ -201,11 +201,11 @@ public class Notes {
 		}
 		return false;
 	}
-	
+
 	public static boolean remove( Landmark landmark ) {
 		return records.remove( new LandmarkRecord(landmark, Dungeon.depth) );
 	}
-	
+
 	public static boolean add( Key key ){
 		KeyRecord k = new KeyRecord(key);
 		if (!records.contains(k)){
@@ -218,7 +218,7 @@ public class Notes {
 			return true;
 		}
 	}
-	
+
 	public static boolean remove( Key key ){
 		KeyRecord k = new KeyRecord( key );
 		if (records.contains(k)){
@@ -231,7 +231,7 @@ public class Notes {
 		}
 		return false;
 	}
-	
+
 	public static int keyCount( Key key ){
 		KeyRecord k = new KeyRecord( key );
 		if (records.contains(k)){
@@ -241,11 +241,11 @@ public class Notes {
 			return 0;
 		}
 	}
-	
+
 	public static ArrayList<Record> getRecords(){
 		return getRecords(Record.class);
 	}
-	
+
 	public static <T extends Record> ArrayList<T> getRecords( Class<T> recordType ){
 		ArrayList<T> filtered = new ArrayList<>();
 		for (Record rec : records){
@@ -255,9 +255,9 @@ public class Notes {
 		}
 		return filtered;
 	}
-	
+
 	public static void remove( Record rec ){
 		records.remove(rec);
 	}
-	
+
 }

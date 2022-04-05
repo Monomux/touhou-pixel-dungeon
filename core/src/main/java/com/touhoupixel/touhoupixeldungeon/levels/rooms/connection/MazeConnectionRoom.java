@@ -21,34 +21,38 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.rooms.connection;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
+import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Maze;
 import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
 
 public class MazeConnectionRoom extends ConnectionRoom {
-	
+
 	@Override
 	public void paint(Level level) {
 		Painter.fill(level, this, 1, Terrain.EMPTY);
-		
+
 		//true = space, false = wall
 		Maze.allowDiagonals = false;
 		boolean[][] maze = Maze.generate(this);
-		
+
 		Painter.fill(level, this, 1, Terrain.EMPTY);
 		for (int x = 0; x < maze.length; x++)
 			for (int y = 0; y < maze[0].length; y++) {
 				if (maze[x][y] == Maze.FILLED) {
-					Painter.fill(level, x + left, y + top, 1, 1, Terrain.WALL);
+					if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)) {
+						Painter.fill(level, x + left, y + top, 1, 1, Terrain.BOOKSHELF);
+					} else Painter.fill(level, x + left, y + top, 1, 1, Terrain.WALL);
 				}
 			}
-		
+
 		for (Door door : connected.values()) {
 			door.set( Door.Type.HIDDEN );
 		}
 	}
-	
+
 	@Override
 	public int maxConnections(int direction) {
 		return 2;

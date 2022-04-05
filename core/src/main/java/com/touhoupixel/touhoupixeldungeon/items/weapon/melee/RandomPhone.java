@@ -100,8 +100,8 @@ public class RandomPhone extends MeleeWeapon {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
 			Statistics.happyworldCounter += 1;
-			Dungeon.gold -= 25;
 				if (Dungeon.hero.belongings.weapon() instanceof RandomPhone && (Dungeon.gold > 24) && !enemy.properties().contains(Char.Property.BOSS)) {
+					Dungeon.gold -= 25;
 					if (Statistics.happyworldCounter > 10) {
 						Statistics.happyworldCounter = 0;
 						switch (Random.Int(7)) {
