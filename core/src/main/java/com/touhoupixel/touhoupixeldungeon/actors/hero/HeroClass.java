@@ -167,11 +167,6 @@ public enum HeroClass {
 			kh.quantity(10).collect();
 		}
 
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-			WandOfFireblast wofb = new WandOfFireblast();
-			wofb.identify().collect();
-		}
-
 		//test zone//
 
 		//test zone//

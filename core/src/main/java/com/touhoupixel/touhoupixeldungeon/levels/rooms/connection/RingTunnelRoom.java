@@ -51,9 +51,7 @@ public class RingTunnelRoom extends TunnelRoom {
 		Rect ring = getConnectionSpace();
 
 		Painter.fill( level, ring.left, ring.top, 3, 3,  floor);
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)) {
-			Painter.fill(level, ring.left + 1, ring.top + 1, 1, 1, Terrain.BOOKSHELF);
-		} else Painter.fill(level, ring.left + 1, ring.top + 1, 1, 1, Terrain.WALL);
+		Painter.fill(level, ring.left + 1, ring.top + 1, 1, 1, Terrain.WALL);
 	}
 
 	//caches the value so multiple calls will always return the same.

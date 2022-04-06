@@ -35,8 +35,24 @@ public class v1_X_Changes {
 
 	//just the one update this time
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_5_2_Changes(changeInfos);
 		add_v1_5_1_Changes(changeInfos);
 		add_v1_5_Changes(changeInfos);
+	}
+
+	public static void add_v1_5_2_Changes( ArrayList<ChangeInfo> changeInfos ){
+		ChangeInfo changes = new ChangeInfo("v1.5.2", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Challenges rework",
+				"_-_ Added new challenge, re:birth day which replaces double rainbow challenge.\n" +
+						"_-_ Added new challenge, puppet dance performance which replaces devil mansion's library.\n" +
+						"_-_ Pastel palettes challenge nerfed. Now deals 1.25x damage when a condition met.\n" +
+						"_-_ Roselia challenge nerfed. Now works with 1/2 chance.\n" +
+						"_-_ Hakkero of transfusion is completely removed from the game, since it is meaningless.\n" +
+						"_-_ Many other minor changes.\n" +
+						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_5_1_Changes( ArrayList<ChangeInfo> changeInfos ){
@@ -49,7 +65,7 @@ public class v1_X_Changes {
 						"_-_ Res. damage reduction were nerfed.\n" +
 						"_-_ Devil mansion's library challenge reworked.\n" +
 						"_-_ New hakkero, hakkero of setsuna trip.\n" +
-						"_-_ On may, Tiles will reworked. so please wait!.\n" +
+						"_-_ On may, Tiles will reworked. so please wait!\n" +
 						"_-_ Many bugfixes.\n" +
 						"_-_ Many other minor changes.\n" +
 						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));

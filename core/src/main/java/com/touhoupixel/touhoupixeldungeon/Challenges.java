@@ -27,28 +27,28 @@ import com.touhoupixel.touhoupixeldungeon.items.Item;
 public class Challenges {
 
 	//Some of these internal IDs are outdated and don't represent what these challenges do
-	public static final int CHAMPION_ENEMIES	  = 1;
-	public static final int REISEN_GAZE 	      = 2;
-	public static final int AFTERGLOW             = 4;
-	public static final int PASTEL_PALETTES		  = 8;
-	public static final int ROSELIA		          = 16;
-	public static final int HECATIA_TIME 	      = 32;
-	public static final int KEINE_TIME			  = 64;
-	public static final int EIKI_JUDGEMENT		  = 128;
-	public static final int NO_HEALING			  = 256;
-	public static final int MYSTIA_HIGH_STRESS    = 512;
-	public static final int SACRIFICE_WORDS		  = 1024;
-	public static final int PACIFIST 	          = 2048;
-	public static final int SPELLCARD_RULE 	      = 4096;
-	public static final int DEKAI_ENEMIES 	      = 8192;
-	public static final int ATHEISM 	          = 16384;
-	public static final int BECOME_FUMO 	      = 32768;
-	public static final int REVERSE_HIERARCHY 	  = 65536;
-	public static final int ENEMY_GRAZE 	      = 131072;
-	public static final int NITORI_CURSED_KEY     = 262144;
-	public static final int DEVIL_MANSION_LIBRARY = 524288;
+	public static final int CHAMPION_ENEMIES	     = 1;
+	public static final int REISEN_GAZE 	         = 2;
+	public static final int AFTERGLOW                = 4;
+	public static final int PASTEL_PALETTES		     = 8;
+	public static final int ROSELIA		             = 16;
+	public static final int HECATIA_TIME 	         = 32;
+	public static final int KEINE_TIME			     = 64;
+	public static final int EIKI_JUDGEMENT		     = 128;
+	public static final int NO_HEALING			     = 256;
+	public static final int MYSTIA_HIGH_STRESS       = 512;
+	public static final int SACRIFICE_WORDS		     = 1024;
+	public static final int PACIFIST 	             = 2048;
+	public static final int SPELLCARD_RULE 	         = 4096;
+	public static final int DEKAI_ENEMIES 	         = 8192;
+	public static final int ATHEISM 	             = 16384;
+	public static final int BECOME_FUMO 	         = 32768;
+	public static final int REVERSE_HIERARCHY 	     = 65536;
+	public static final int REBIRTH_DAY 	         = 131072;
+	public static final int NITORI_CURSED_KEY        = 262144;
+	public static final int PUPPET_DANCE_PERFORMANCE = 524288;
 
-	public static final int MAX_VALUE             = 1048575;
+	public static final int MAX_VALUE                = 1048575;
 
 	public static final String[] NAME_IDS = {
 			"champion_enemies",
@@ -68,13 +68,13 @@ public class Challenges {
 			"atheism",
 			"become_fumo",
 			"reverse_hierarchy",
-			"enemy_graze",
+			"rebirth_day",
 			"nitori_cursed_key",
-			"devil_mansion_library"
+			"puppet_dance_performance"
 	};
 
 	public static final int[] MASKS = {
-			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, NO_HEALING, MYSTIA_HIGH_STRESS, SACRIFICE_WORDS, PACIFIST, SPELLCARD_RULE, DEKAI_ENEMIES, ATHEISM, BECOME_FUMO, REVERSE_HIERARCHY, ENEMY_GRAZE, NITORI_CURSED_KEY, DEVIL_MANSION_LIBRARY
+			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, NO_HEALING, MYSTIA_HIGH_STRESS, SACRIFICE_WORDS, PACIFIST, SPELLCARD_RULE, DEKAI_ENEMIES, ATHEISM, BECOME_FUMO, REVERSE_HIERARCHY, REBIRTH_DAY, NITORI_CURSED_KEY, PUPPET_DANCE_PERFORMANCE
 	};
 
 	public static int activeChallenges(){

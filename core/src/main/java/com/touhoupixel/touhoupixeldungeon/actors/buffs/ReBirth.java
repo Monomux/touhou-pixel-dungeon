@@ -19,23 +19,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.touhoupixel.touhoupixeldungeon.levels.rooms.standard;
+package com.touhoupixel.touhoupixeldungeon.actors.buffs;
 
-import com.touhoupixel.touhoupixeldungeon.Challenges;
-import com.touhoupixel.touhoupixeldungeon.Dungeon;
-import com.touhoupixel.touhoupixeldungeon.levels.Level;
-import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
-import com.touhoupixel.touhoupixeldungeon.levels.painters.Painter;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
+import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 
-public class EmptyRoom extends StandardRoom {
+public class ReBirth extends FlavourBuff {
+	
+	public static final float DURATION = 10f;
+	
+	{
+		type = buffType.POSITIVE;
+		announced = true;
+	}
+	
+	@Override
+	public int icon() {
+		return BuffIndicator.REBIRTH;
+	}
 
 	@Override
-	public void paint(Level level) {
-		Painter.fill(level, this, Terrain.WALL);
-		Painter.fill( level, this, 1 , Terrain.EMPTY );
-
-		for (Door door : connected.values()) {
-			door.set( Door.Type.REGULAR );
-		}
+	public float iconFadePercent() {
+		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
+	}
+	
+	@Override
+	public String toString() {
+		return Messages.get(this, "name");
+	}
+	
+	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
+	}
+	
+	@Override
+	public String desc() {
+		return Messages.get(this, "desc", dispTurns());
 	}
 }

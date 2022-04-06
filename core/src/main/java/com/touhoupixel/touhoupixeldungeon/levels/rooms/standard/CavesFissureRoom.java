@@ -67,9 +67,7 @@ public class CavesFissureRoom extends StandardRoom {
 		PathFinder.setMapSize(width()-2, height()-2);
 
 		do {
-			if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-				Painter.fill(level, this, Terrain.BOOKSHELF);
-			} else Painter.fill(level, this, Terrain.WALL);
+			Painter.fill(level, this, Terrain.WALL);
 			Painter.fill(level, this, 1, Terrain.EMPTY);
 
 			for (Door door : connected.values()) {

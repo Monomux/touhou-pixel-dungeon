@@ -364,7 +364,6 @@ public enum Catalog {
 		WANDS.seen.put( WandOfFrost.class,                  true);
 		WANDS.seen.put( WandOfPrismaticLight.class,         true);
 		WANDS.seen.put( WandOfWarding.class,                true);
-		WANDS.seen.put( WandOfTransfusion.class,            true);
 		WANDS.seen.put( WandOfCorruption.class,             true);
 		WANDS.seen.put( WandOfRegrowth.class,               true);
 		WANDS.seen.put( WandOfReverseGravity.class,         true);

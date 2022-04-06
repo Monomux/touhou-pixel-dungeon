@@ -46,9 +46,7 @@ public class PitRoom extends SpecialRoom {
 
 	public void paint( Level level ) {
 
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-			Painter.fill(level, this, Terrain.BOOKSHELF);
-		} else Painter.fill(level, this, Terrain.WALL);
+		Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, Terrain.EMPTY );
 
 		Door entrance = entrance();

@@ -21,6 +21,7 @@
 
 package com.touhoupixel.touhoupixeldungeon.levels.features;
 
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
@@ -39,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeon.items.artifacts.SandalsOfNature;
 import com.touhoupixel.touhoupixeldungeon.items.food.Berry;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.watabou.utils.Random;
 
@@ -53,6 +55,10 @@ public class HighGrass {
 		if (freezeTrample) return;
 		
 		Char ch = Actor.findChar(pos);
+
+		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.PUPPET_DANCE_PERFORMANCE) && (Random.Int(5) == 0)){
+			new SummoningTrap().set(pos).activate();
+		}
 		
 		if (level.map[pos] == Terrain.FURROWED_GRASS){
 			if (ch instanceof Hero && ((Hero) ch).heroClass == HeroClass.HUNTRESS){

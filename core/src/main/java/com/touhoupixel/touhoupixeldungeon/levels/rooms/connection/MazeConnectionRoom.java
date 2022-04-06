@@ -42,9 +42,7 @@ public class MazeConnectionRoom extends ConnectionRoom {
 		for (int x = 0; x < maze.length; x++)
 			for (int y = 0; y < maze[0].length; y++) {
 				if (maze[x][y] == Maze.FILLED) {
-					if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)) {
-						Painter.fill(level, x + left, y + top, 1, 1, Terrain.BOOKSHELF);
-					} else Painter.fill(level, x + left, y + top, 1, 1, Terrain.WALL);
+					Painter.fill(level, x + left, y + top, 1, 1, Terrain.WALL);
 				}
 			}
 

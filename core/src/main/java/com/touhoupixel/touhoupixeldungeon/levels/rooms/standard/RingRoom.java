@@ -46,16 +46,12 @@ public class RingRoom extends StandardRoom {
 
 	@Override
 	public void paint(Level level) {
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-			Painter.fill(level, this, Terrain.BOOKSHELF);
-		} else Painter.fill(level, this, Terrain.WALL);
+		Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1 , Terrain.EMPTY );
 
 		int minDim = Math.min(width(), height());
 		int passageWidth = (int)Math.floor(0.25f*(minDim+1));
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)) {
-			Painter.fill(level, this, passageWidth + 1, Terrain.BOOKSHELF);
-		} else Painter.fill(level, this, passageWidth+1, Terrain.WALL);
+		Painter.fill(level, this, passageWidth+1, Terrain.WALL);
 
 		for (Door door : connected.values()) {
 			door.set( Door.Type.REGULAR );

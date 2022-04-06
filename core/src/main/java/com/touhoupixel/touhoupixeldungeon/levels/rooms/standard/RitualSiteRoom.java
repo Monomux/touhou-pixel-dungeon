@@ -51,9 +51,7 @@ public class RitualSiteRoom extends StandardRoom {
 			door.set( Door.Type.REGULAR );
 		}
 
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-			Painter.fill(level, this, Terrain.BOOKSHELF);
-		} else Painter.fill(level, this, Terrain.WALL);
+		Painter.fill(level, this, Terrain.WALL);
 		Painter.fill(level, this, 1, Terrain.EMPTY);
 
 		RitualMarker vis = new RitualMarker();

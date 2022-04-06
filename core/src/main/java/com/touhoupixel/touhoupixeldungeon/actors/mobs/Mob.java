@@ -43,6 +43,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corruption;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
@@ -54,7 +55,9 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Preparation;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SoulMark;
@@ -69,6 +72,7 @@ import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.effects.Surprise;
 import com.touhoupixel.touhoupixeldungeon.effects.Wound;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
+import com.touhoupixel.touhoupixeldungeon.effects.particles.ShaftParticle;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -88,6 +92,7 @@ import com.touhoupixel.touhoupixeldungeon.journal.Notes;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Chasm;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
@@ -606,25 +611,11 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.ENEMY_GRAZE) && !(this instanceof DriedRose.GhostHero) && !properties().contains(Char.Property.BOSS)) {
-			switch (Random.Int(5)) {
-				case 0:
-				default:
-					Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION);
-					break;
-				case 1:
-					Buff.prolong(this, Might.class, Might.DURATION);
-					break;
-				case 2:
-					Buff.prolong(this, Haste.class, Haste.DURATION);
-					break;
-				case 3:
-					Buff.prolong(this, Bless.class, Bless.DURATION);
-					break;
-				case 4:
-					Buff.prolong(this, MagicImmune.class, MagicImmune.DURATION);
-					break;
-			}
+		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && (Random.Int(2) == 0) && !properties().contains(Char.Property.BOSS) && !(this instanceof Wraith)){
+			Buff.prolong(this, ReBirth.class, ReBirth.DURATION);
+			Buff.prolong(this, Haste.class, Haste.DURATION);
+			Buff.prolong(this, Bless.class, Bless.DURATION);
+			Buff.prolong(this, MagicImmune.class, MagicImmune.DURATION);
 		}
 		return Messages.get(this, "def_verb");
 	}
@@ -636,13 +627,13 @@ public abstract class Mob extends Char {
 			damage += Statistics.goldPickedup/12+Statistics.enemiesSlain/80;
 		}
 
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-			Buff.prolong(enemy, Silence.class, Silence.DURATION/50f);
+		if (Dungeon.isChallenged(Challenges.PUPPET_DANCE_PERFORMANCE) && (Random.Int(10) == 0)){
+			new SummoningTrap().set(target).activate();
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
 			if (Dungeon.isChallenged(Challenges.PASTEL_PALETTES) && enemy instanceof Hero && enemy.pos == this.pos+i){
-				damage *= 1.5f;
+				damage *= 1.25f;
 				Buff.prolong(enemy, Blindness.class, Blindness.DURATION);
 			}
 		}
@@ -657,7 +648,7 @@ public abstract class Mob extends Char {
 			damage *= 1.25f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
+		if (Dungeon.isChallenged(Challenges.ROSELIA) && (Random.Int(2) == 0) && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
 			switch (Random.Int(5)) {
 				case 0:
 				default:
@@ -884,7 +875,9 @@ public abstract class Mob extends Char {
 
 		if (cause == Chasm.class){
 			//50% chance to round up, 50% to round down
-			if (EXP % 2 == 1) EXP += Random.Int(2);
+			if (Dungeon.isChallenged(Challenges.PUPPET_DANCE_PERFORMANCE)){
+				EXP = 0;
+			} else if (EXP % 2 == 1) EXP += Random.Int(2);
 			EXP /= 2;
 		}
 
@@ -904,7 +897,11 @@ public abstract class Mob extends Char {
 
 		boolean soulMarked = buff(SoulMark.class) != null;
 
-		super.die( cause );
+		if (buff(ReBirth.class) != null){
+			CellEmitter.get( pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+			Buff.detach(this, ReBirth.class);
+			this.HP = this.HT;
+		} else super.die( cause );
 
 		if (!(this instanceof Wraith)
 				&& soulMarked

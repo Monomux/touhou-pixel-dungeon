@@ -38,9 +38,7 @@ public class StorageRoom extends SpecialRoom {
 		
 		final int floor = Terrain.EMPTY_SP;
 
-		if (Dungeon.isChallenged(Challenges.DEVIL_MANSION_LIBRARY)){
-			Painter.fill(level, this, Terrain.BOOKSHELF);
-		} else Painter.fill(level, this, Terrain.WALL);
+		Painter.fill(level, this, Terrain.WALL);
 		Painter.fill( level, this, 1, floor );
 
 		boolean honeyPot = Random.Int( 2 ) == 0;
