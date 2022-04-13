@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -84,10 +85,12 @@ public class Sakuya extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
-			if (Dungeon.depth > 50 && Random.Int(6) == 0) {
-				new TimeManiTrap().set(target).activate();
-			} else if (Random.Int(10) == 0) {
-				new TimeManiTrap().set(target).activate();
+			if (hero.buff(LostInventory.class) == null) {
+				if (Dungeon.depth > 50 && Random.Int(6) == 0) {
+					new TimeManiTrap().set(target).activate();
+				} else if (Random.Int(10) == 0) {
+					new TimeManiTrap().set(target).activate();
+				}
 			}
 		}
 		return damage;

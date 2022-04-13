@@ -766,6 +766,7 @@ public class ItemSpriteSheet {
 
 	private static final int GIFTCARD     =                               xy(1, 26);  //16 slots
 	public static final int BIRTHDAY_CARD     = GIFTCARD+0;
+	public static final int SPCARD     = GIFTCARD+1;
 	static{
 		for (int i = GIFTCARD; i < GIFTCARD+16; i++)
 			assignItemRect(i, 15, 11);
@@ -909,6 +910,7 @@ public class ItemSpriteSheet {
 	public static final int TAILSMANHOLD       = BAGS+10;
 	public static final int KOGASAPRAYER       = BAGS+11;
 	public static final int YUKARIMEMO       = BAGS+12;
+	public static final int RENKOMEMO       = BAGS+13;
 	static{
 		assignItemRect(WATERSKIN,   16, 14);
 		assignItemRect(BACKPACK,    16, 16);
@@ -923,6 +925,7 @@ public class ItemSpriteSheet {
 		assignItemRect(TAILSMANHOLD,       14, 15);
 		assignItemRect(KOGASAPRAYER,       7, 13);
 		assignItemRect(YUKARIMEMO,       13, 16);
+		assignItemRect(RENKOMEMO,       13, 16);
 	}
 
 	private static final int XYZ_WEAPON   =                               xy(1, 34);   //8 slots

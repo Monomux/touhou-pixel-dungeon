@@ -55,7 +55,7 @@ public class KeyBindings {
 		}
 		return acceptUnbound || bindings.containsKey( keyCode ) || hardBindings.containsKey( keyCode );
 	}
-	
+
 	public static GameAction getActionForKey(KeyEvent event){
 		if (bindings.containsKey( event.code )){
 			return bindings.get( event.code );

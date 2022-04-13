@@ -29,12 +29,9 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
-import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
-import com.touhoupixel.touhoupixeldungeon.items.scrolls.exotic.ScrollOfTorment;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.NemunoSprite;
-import com.touhoupixel.touhoupixeldungeon.sprites.SannyoSprite;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.PathFinder;
@@ -92,7 +89,7 @@ public class Nemuno extends Mob {
 		damage = super.attackProc(enemy, damage);
 		if (this.buff(Incompetence.class) == null) {
 			if (Random.Int(10) == 0) {
-				if (Dungeon.isChallenged(Challenges.BECOME_FUMO)) {
+				if (Dungeon.isChallenged(Challenges.RINGING_BLOOM)) {
 					damage = Math.max(damage, hero.HP / 4);
 				} else {
 					damage = Math.max(damage, hero.HP / 2);

@@ -124,6 +124,7 @@ import com.touhoupixel.touhoupixeldungeon.items.spells.AquaBlast;
 import com.touhoupixel.touhoupixeldungeon.items.spells.CurseInfusion;
 import com.touhoupixel.touhoupixeldungeon.items.spells.KogasaHammer;
 import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfBlink;
+import com.touhoupixel.touhoupixeldungeon.items.tailsmans.BlowawayTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.tailsmans.ChaosTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.tailsmans.SwapTailsman;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
@@ -297,11 +298,22 @@ public enum Talent {
 	//Junko T2
 	MAJOR_EVASION_UP(208), MAJOR_ACCURACY_UP(209), GAIN_BLOWAWAY(210), GAIN_INVISIBILITY(211), ATTACK_MINDVISION(212),
 	//Junko T3
-	ATTACK_HEX(213, 3), SILENCE_TIME_MORE_REDUCE(214, 3),
+	ATTACK_HEX(213, 3), ITEM_CONFUSION(214, 3),
 	//Puritygod T3
-	BEAM_VERTIGO(215, 3), BEAM_SLOW(216, 3), BEAM_ONEDAMAGE(217, 3),
+	BEAM_DROWSY(215, 3), BEAM_SLOW(216, 3), BEAM_ONEDAMAGE(217, 3),
 	//Puregod T3
 	ATTACK_DOUBLEEVASION(218, 3), EXPLOSION_SNIPE(219, 3), FOOD_INVULNERABILITY(220, 3);
+
+	//Renko T1
+	//MINOR_EVASION_UP(221), MINOR_ACCURACY_UP(222), MAXHP_FOOD_DOUBLEEVASION(223), SILENCE_TIME_REDUCE(224),
+	//Renko T2
+	//MAJOR_EVASION_UP(225), MAJOR_ACCURACY_UP(226), GAIN_BLOWAWAY(227), GAIN_INVISIBILITY(228), ATTACK_MINDVISION(229),
+	//Renko T3
+	//ATTACK_HEX(230, 3), ITEM_CONFUSION(231, 3),
+	//Starseeker T3
+	//BEAM_DROWSY(232, 3), BEAM_SLOW(233, 3), BEAM_ONEDAMAGE(234, 3),
+	//Lunarseeker T3
+	//ATTACK_DOUBLEEVASION(235, 3), EXPLOSION_SNIPE(236, 3), FOOD_INVULNERABILITY(237, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff {
 		public int icon() {
@@ -994,6 +1006,15 @@ public enum Talent {
 			sot.identify().quantity(3).collect();
 		}
 
+		if (talent == GAIN_INVISIBILITY && hero.pointsInTalent(GAIN_INVISIBILITY) == 1) {
+			PotionOfInvisibility poi = new PotionOfInvisibility();
+			poi.identify().quantity(3).collect();
+		}
+		if (talent == GAIN_INVISIBILITY && hero.pointsInTalent(GAIN_INVISIBILITY) == 2) {
+			PotionOfInvisibility poi = new PotionOfInvisibility();
+			poi.identify().quantity(3).collect();
+		}
+
 		if (talent == GAIN_SWAP && hero.pointsInTalent(GAIN_SWAP) == 1) {
 			SwapTailsman st = new SwapTailsman();
 			st.quantity(12).collect();
@@ -1010,6 +1031,15 @@ public enum Talent {
 		if (talent == GAIN_CHAOS && hero.pointsInTalent(GAIN_CHAOS) == 2) {
 			ChaosTailsman ct = new ChaosTailsman();
 			ct.quantity(12).collect();
+		}
+
+		if (talent == GAIN_BLOWAWAY && hero.pointsInTalent(GAIN_BLOWAWAY) == 1) {
+			BlowawayTailsman bt = new BlowawayTailsman();
+			bt.quantity(12).collect();
+		}
+		if (talent == GAIN_BLOWAWAY && hero.pointsInTalent(GAIN_BLOWAWAY) == 2) {
+			BlowawayTailsman bt = new BlowawayTailsman();
+			bt.quantity(12).collect();
 		}
 
 		if (talent == GAIN_RANDOM_5TIER_WEAPON && hero.pointsInTalent(GAIN_RANDOM_5TIER_WEAPON) == 1) {
@@ -1161,8 +1191,20 @@ public enum Talent {
 			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(EXHAUSTIVE_FOOD));
 		}
 
-		if (hero.hasTalent(Talent.QUICK_MEAL) && hero.pointsInTalent(Talent.QUICK_MEAL)==2){
+		if (hero.hasTalent(Talent.QUICK_MEAL) && hero.pointsInTalent(Talent.QUICK_MEAL) == 2){
 			Buff.prolong(hero, Haste.class, Haste.DURATION / 4f);
+		}
+
+		if (hero.hasTalent(Talent.FOOD_INVULNERABILITY) && hero.pointsInTalent(Talent.FOOD_INVULNERABILITY) == 1){
+			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/3f);
+		}
+
+		if (hero.hasTalent(Talent.FOOD_INVULNERABILITY) && hero.pointsInTalent(Talent.FOOD_INVULNERABILITY) == 2){
+			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/2f);
+		}
+
+		if (hero.hasTalent(Talent.FOOD_INVULNERABILITY) && hero.pointsInTalent(Talent.FOOD_INVULNERABILITY) == 3){
+			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION);
 		}
 
 		if (hero.hasTalent(CUCUMBER_HEAL) && foodSource instanceof Cucumber) {
@@ -1173,7 +1215,7 @@ public enum Talent {
 		}
 
 		if (hero.hasTalent(KAPPA_MEAL)) {
-			Buff.prolong( hero, Stamina.class, Stamina.DURATION/10f );
+			Buff.prolong( hero, Stamina.class, Stamina.DURATION/10f);
 			hero.HP = Math.min(hero.HP + 1 + 2 * hero.pointsInTalent(KAPPA_MEAL), hero.HT);
 			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), hero.pointsInTalent(KAPPA_MEAL));
 			if (Random.Int(2) == 0)
@@ -1267,6 +1309,14 @@ public enum Talent {
 
 		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_FOOD_TRIPLESPEED) == 2){
 			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
+		}
+
+		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_FOOD_DOUBLEEVASION) == 1){
+			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION/2f);
+		}
+
+		if (Dungeon.hero.HP == Dungeon.hero.HT && Dungeon.hero.pointsInTalent(Talent.MAXHP_FOOD_DOUBLEEVASION) == 2){
+			Buff.prolong(hero, Doubleevasion.class, Doubleevasion.DURATION);
 		}
 
 		if (hero.hasTalent(IRON_STOMACH)){
@@ -1565,9 +1615,9 @@ public enum Talent {
 			case YUKARIPLAYER:
 				Collections.addAll(tierTalents, GAP_HEAL, LV4_BURN, MAXHP_FOOD_TRIPLESPEED, GAIN_TRA);
 				break;
-			//case JUNKOPLAYER:
-				//Collections.addAll(tierTalents, MINOR_EVASION_UP, MINOR_ACCURACY_UP, MAXHP_FOOD_DOUBLEEVASION, SILENCE_TIME_REDUCE);
-				//break;
+			case JUNKOPLAYER:
+				Collections.addAll(tierTalents, MINOR_EVASION_UP, MINOR_ACCURACY_UP, MAXHP_FOOD_DOUBLEEVASION, SILENCE_TIME_REDUCE);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(0).put(talent, 0);
@@ -1613,6 +1663,9 @@ public enum Talent {
 			case YUKARIPLAYER:
 				Collections.addAll(tierTalents, GAP_TAILSMAN, LV5_SLOW, LV7_DOUBLERAINBOW, LV8_DOUBLEEVASION, GAIN_CHAOS);
 				break;
+			case JUNKOPLAYER:
+				Collections.addAll(tierTalents, MAJOR_EVASION_UP, MAJOR_ACCURACY_UP, GAIN_BLOWAWAY, GAIN_INVISIBILITY, ATTACK_MINDVISION);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(1).put(talent, 0);
@@ -1657,6 +1710,9 @@ public enum Talent {
 				break;
 			case YUKARIPLAYER:
 				Collections.addAll(tierTalents, GAP_TRIPLESPEED, GAP_HISOU);
+				break;
+			case JUNKOPLAYER:
+				Collections.addAll(tierTalents, ATTACK_HEX, ITEM_CONFUSION);
 				break;
 		}
 		for (Talent talent : tierTalents) {
@@ -1716,6 +1772,9 @@ public enum Talent {
 			case GAPMASTER:
 				Collections.addAll(tierTalents, GAIN_ROUTECHANGE, TELEPORT_HEAL, EMER_TELEPORT);
 				break;
+			case PURITYGOD:
+				Collections.addAll(tierTalents, BEAM_DROWSY, BEAM_SLOW, BEAM_ONEDAMAGE);
+				break;
 
 			case ASSASSIN:
 				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER);
@@ -1752,6 +1811,9 @@ public enum Talent {
 				break;
 			case BORDERMASTER:
 				Collections.addAll(tierTalents, LV7_ONEDEFDAMAGE, LV8_ONEDAMAGE, LV9_HIGHSTRESS);
+				break;
+			case PUREGOD:
+				Collections.addAll(tierTalents, ATTACK_DOUBLEEVASION, EXPLOSION_SNIPE, FOOD_INVULNERABILITY);
 				break;
 		}
 		for (Talent talent : tierTalents){

@@ -132,7 +132,7 @@ public class Chasm implements Hero.Doom {
 		Dungeon.level.occupyCell(hero );
 		Buff.prolong( hero, Cripple.class, Cripple.DURATION );
 
-		if (Dungeon.isChallenged(Challenges.BECOME_FUMO)) {
+		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM)) {
 			Buff.affect(hero, FallBleed.class).set(1);
 			hero.damage(Math.max(hero.HP / 4, Random.NormalIntRange(hero.HP / 4, hero.HT / 8)), new Chasm());
 		} else {

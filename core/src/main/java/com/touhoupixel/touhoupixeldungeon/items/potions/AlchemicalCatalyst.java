@@ -60,7 +60,7 @@ public class AlchemicalCatalyst extends Potion {
 	@Override
 	public void apply(Hero hero) {
 		Potion p = Reflection.newInstance(Random.chances(potionChances));
-		while (Dungeon.isChallenged(Challenges.NO_HEALING) && p instanceof PotionOfHealing){
+		while (Dungeon.isChallenged(Challenges.CURSED_HOURAI_ELIXIR) && p instanceof PotionOfHealing){
 			p = Reflection.newInstance(Random.chances(potionChances));
 		}
 		p.anonymize();

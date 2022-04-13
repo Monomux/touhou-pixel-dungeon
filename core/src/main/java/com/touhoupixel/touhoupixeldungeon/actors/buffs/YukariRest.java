@@ -24,30 +24,30 @@ package com.touhoupixel.touhoupixeldungeon.actors.buffs;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 
-public class OneDefDamage extends FlavourBuff {
-	
-	public static final float DURATION = 20f;
-	
+public class YukariRest extends FlavourBuff {
+
 	{
 		type = buffType.POSITIVE;
 		announced = true;
 	}
-	
+
+	public static final float DURATION = 50f;
+
 	@Override
 	public int icon() {
-		return BuffIndicator.ONEDEFDAMAGE;
+		return BuffIndicator.YUKARI_REST;
 	}
 
 	@Override
 	public float iconFadePercent() {
 		return Math.max(0, (DURATION - visualcooldown()) / DURATION);
 	}
-	
+
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
 	}
-	
+
 	@Override
 	public String desc() {
 		return Messages.get(this, "desc", dispTurns());

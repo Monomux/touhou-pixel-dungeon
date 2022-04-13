@@ -57,7 +57,7 @@ public class Shinmyomaru extends Mob {
 			maxLvl = 60;
 		} else maxLvl = 10;
 
-		if (!Dungeon.isChallenged(Challenges.BECOME_FUMO)) {
+		if (!Dungeon.isChallenged(Challenges.RINGING_BLOOM)) {
 			loot = Generator.Category.SCROLL;
 			lootChance = 0.05f;
 		} else loot = new MiracleMallet();

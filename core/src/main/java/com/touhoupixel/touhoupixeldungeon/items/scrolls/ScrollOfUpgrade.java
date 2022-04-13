@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeon.Badges;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
@@ -58,7 +59,9 @@ public class ScrollOfUpgrade extends InventoryScroll {
 
 		upgrade( curUser );
 
-		Degrade.detach( curUser, Degrade.class );
+		if (!Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
+			Degrade.detach(curUser, Degrade.class);
+		}
 
 		//logic for telling the user when item properties change from upgrades
 		//...yes this is rather messy

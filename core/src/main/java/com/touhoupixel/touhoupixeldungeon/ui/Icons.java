@@ -42,9 +42,6 @@ public enum Icons {
 	//rankings and hero select icons, spacing for 16x16
 	STAIRS,
 	WARRIOR,
-	MAGE,
-	ROGUE,
-	HUNTRESS,
 
 	//grey icons, mainly used for buttons, spacing for 16x16
 	EXIT,

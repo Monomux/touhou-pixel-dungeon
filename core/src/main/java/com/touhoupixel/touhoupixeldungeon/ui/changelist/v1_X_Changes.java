@@ -35,9 +35,49 @@ public class v1_X_Changes {
 
 	//just the one update this time
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_5_4_Changes(changeInfos);
+		add_v1_5_3_Changes(changeInfos);
 		add_v1_5_2_Changes(changeInfos);
 		add_v1_5_1_Changes(changeInfos);
 		add_v1_5_Changes(changeInfos);
+	}
+
+	public static void add_v1_5_4_Changes( ArrayList<ChangeInfo> changeInfos ){
+		ChangeInfo changes = new ChangeInfo("v1.5.4", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Major bug fixes&Challenges rework part III",
+				"_-_ Fixed an issue when sakuya warpes time while you dropped inventory via unblessed life, then you lose loventory forever.\n" +
+						"_-_ Fixed a softlock for yuyuko boss when re:birth day challenge is activated.\n" +
+						"_-_ Rebirth now doesn't work for the fallen enemy.\n" +
+						"_-_ Spellcard rule challenge is now merged with cursed hourai elixir challenge.\n" +
+						"_-_ Added new challenge, yuuma's power drain which replaces pacifist.\n" +
+						"_-_ Added new challenge, cherry blossom bloom which replaces spellcard rule.\n" +
+						"_-_ Added new challenge, wizard of gensokyo.\n" +
+						"_-_ Junko's talents were added. (Other two are still WIP)\n" +
+						"_-_ I'm very disappointed of become fumo dev's abnormal behaviors. You are ruining touhou fumos.\n" +
+						"_-_ Many other minor changes.\n" +
+						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));
+	}
+
+	public static void add_v1_5_3_Changes( ArrayList<ChangeInfo> changeInfos ){
+		ChangeInfo changes = new ChangeInfo("v1.5.3", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Challenges rework part II",
+				"_-_ Afterglow challenge nerfed. Now grants triplespeed for 2 turns, from 10 turns. and only for 4 directions.\n" +
+						"_-_ Pacifist challenge nerfed. Now starts with hakkero of corrosion.\n" +
+						"_-_ Puppet dance performance challenge nerfed. Now don't summon enemies when enemy attacks.\n" +
+						"_-_ Dekafumo challenge renamed. Now it's genso wanderer.\n" +
+						"_-_ Become fumo challenge name renamed. Now it's ringing bloom.\n" +
+						"_-_ (Talents WIP) Two new character renko and seija is added.\n" +
+						"_-_ Hakkero of reverse gravity is now seija's special item and no longer random drops.\n" +
+						"_-_ Fixed an issue that rod of repentance is not increasing its ATK.\n" +
+						"_-_ I'm very disappointed of become fumo dev's abnormal behaviors. You are ruining touhou fumos.\n" +
+						"_-_ Many other minor changes.\n" +
+						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_5_2_Changes( ArrayList<ChangeInfo> changeInfos ){
@@ -60,7 +100,7 @@ public class v1_X_Changes {
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
 
-		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Minor Bug Fix",
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Minor bugfix",
 				"_-_ Fixed an issue that some texts were korean.\n" +
 						"_-_ Res. damage reduction were nerfed.\n" +
 						"_-_ Devil mansion's library challenge reworked.\n" +
@@ -76,7 +116,7 @@ public class v1_X_Changes {
 		changes.hardlight(Window.TITLE_COLOR);
 		changeInfos.add(changes);
 
-		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Massive Balance Fix",
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Massive balance fix",
 				"_-_ Spellcards of upgrade now appear three for five floors each, from two.\n" +
 						"_-_ Many weapons were nerfed for its damage modifiers.\n" +
 						"_-_ Hana. uniform and maxwell's armor are nerfed, for removing its DR.\n" +

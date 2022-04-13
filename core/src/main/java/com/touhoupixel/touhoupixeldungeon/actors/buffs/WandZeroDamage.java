@@ -24,18 +24,18 @@ package com.touhoupixel.touhoupixeldungeon.actors.buffs;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 
-public class OneDefDamage extends FlavourBuff {
+public class WandZeroDamage extends FlavourBuff {
 	
-	public static final float DURATION = 20f;
+	public static final float DURATION = 50f;
 	
 	{
-		type = buffType.POSITIVE;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.ONEDEFDAMAGE;
+		return BuffIndicator.WAND_ZERODAMAGE;
 	}
 
 	@Override

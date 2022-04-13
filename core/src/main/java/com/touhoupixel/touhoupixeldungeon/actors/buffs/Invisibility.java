@@ -44,7 +44,7 @@ public class Invisibility extends FlavourBuff {
 
 	@Override
 	public boolean attachTo( Char target ) {
-		if (Dungeon.isChallenged(Challenges.SPELLCARD_RULE)){
+		if (Dungeon.isChallenged(Challenges.CURSED_HOURAI_ELIXIR)){
 			Buff.prolong(target, MurasaInfEvasion.class, MurasaInfEvasion.DURATION);
 		} else if (super.attachTo( target )) {
 			target.invisible++;

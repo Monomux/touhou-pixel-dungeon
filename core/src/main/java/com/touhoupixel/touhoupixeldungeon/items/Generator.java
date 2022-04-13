@@ -460,7 +460,7 @@ public class Generator {
 					WandOfStableness.class,
 					WandOfSetsunatrip.class,
 					WandOfRegrowth.class };
-			WAND.probs = new float[]{ 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3, 6, 6, 6, 0, 0, 6, 1, 0, 4, 1 };
+			WAND.probs = new float[]{ 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6, 0, 0, 6, 1, 0, 4, 1 };
 
 			//see generator.randomWeapon
 			WEAPON.classes = new Class<?>[]{};

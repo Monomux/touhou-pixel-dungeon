@@ -41,6 +41,10 @@ public class HeroIcon extends Image {
 	public static final int BORDERMASTER      = 23;
 	public static final int PURITYGOD      = 24;
 	public static final int PUREGOD      = 25;
+	public static final int STARSEEKER      = 26;
+	public static final int LUNARSEEKER      = 27;
+	public static final int TURNMASTER      = 28;
+	public static final int GRAVMASTER      = 29;
 
 	public HeroIcon(HeroSubClass subCls){
 		super( Assets.Interfaces.HERO_ICONS );

@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperDegrade;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
@@ -588,6 +589,21 @@ public class Item implements Bundlable {
 											Sample.INSTANCE.play(Assets.Sounds.HIT);
 											Buff.affect(enemy, Blindness.class, 1f + curUser.pointsInTalent(Talent.IMPROVISED_PROJECTILES));
 											Buff.affect(curUser, Talent.ImprovisedProjectileCooldown.class, 50f);
+										}
+									}
+									if (curUser.hasTalent(Talent.ITEM_CONFUSION)
+											&& !(Item.this instanceof MissileWeapon)){
+										if (enemy != null && enemy.alignment != curUser.alignment && curUser.pointsInTalent(Talent.ITEM_CONFUSION) == 1) {
+											Sample.INSTANCE.play(Assets.Sounds.HIT);
+											Buff.affect(enemy, Vertigo.class, Vertigo.DURATION);
+										}
+										if (enemy != null && enemy.alignment != curUser.alignment && curUser.pointsInTalent(Talent.ITEM_CONFUSION) == 2) {
+											Sample.INSTANCE.play(Assets.Sounds.HIT);
+											Buff.affect(enemy, Vertigo.class, Vertigo.DURATION*3f);
+										}
+										if (enemy != null && enemy.alignment != curUser.alignment && curUser.pointsInTalent(Talent.ITEM_CONFUSION) == 3) {
+											Sample.INSTANCE.play(Assets.Sounds.HIT);
+											Buff.affect(enemy, Vertigo.class, Vertigo.DURATION*5f);
 										}
 									}
 									if (user.buff(Talent.LethalMomentumTracker.class) != null) {

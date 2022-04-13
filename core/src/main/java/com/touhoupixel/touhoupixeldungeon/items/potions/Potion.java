@@ -29,6 +29,7 @@ import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.Fire;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank3;
@@ -42,6 +43,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
@@ -54,6 +56,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperOoze;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
@@ -302,12 +305,28 @@ public class Potion extends Item {
 
 			} else {
 				drink( hero );
-				if (Dungeon.isChallenged(Challenges.SACRIFICE_WORDS))
-					Buff.affect(curUser, Silence.class, Silence.DURATION/5);
+				Statistics.extraSTRcheck += 1;
+				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
+					Buff.prolong(curUser, Degrade.class, Degrade.DURATION/2f);
+					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
+				}
+
+				if (Dungeon.isChallenged(Challenges.CHERRY_BLOSSOM_BLOOM)) {
+					Hunger hunger = Buff.affect(curUser, Hunger.class);
+					hunger.affectHunger(10);
+				}
 
 				Buff.detach(hero, ArisastarRank1.class);
 				Buff.detach(hero, ArisastarRank2.class);
 				Buff.detach(hero, ArisastarRank3.class);
+
+				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && Statistics.extraSTRcheck > 4) {
+					Statistics.extraSTRcheck = 0;
+					GameScene.flash(0x80FFFFFF);
+					if (Dungeon.hero.STR > 5) {
+						hero.STR--;
+					}
+				}
 
 				if (hero.pointsInTalent(Talent.CURSED_PRESERVE) == 1) {
 					for (Item item : Dungeon.hero.belongings) {
@@ -639,7 +658,7 @@ public class Potion extends Item {
 			}
 
 			while (result instanceof PotionOfHealing
-					&& (Dungeon.isChallenged(Challenges.NO_HEALING)
+					&& (Dungeon.isChallenged(Challenges.CURSED_HOURAI_ELIXIR)
 					|| Random.Int(10) < Dungeon.LimitedDrops.COOKING_HP.count)) {
 
 				result = (Potion) Generator.randomUsingDefaults(Generator.Category.POTION);

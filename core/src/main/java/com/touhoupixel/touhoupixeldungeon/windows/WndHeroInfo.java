@@ -64,17 +64,10 @@ public class WndHeroInfo extends WndTabbed {
 			case KAGUYAPLAYER:
 			case YUKARIPLAYER:
 			case JUNKOPLAYER:
-			case KOGASAPLAYER: default:
+			case RENKOPLAYER:
+			case KOGASAPLAYER:
+			case SEIJAPLAYER: default:
 				tabIcon = new ItemSprite(ItemSpriteSheet.SEAL, null);
-				break;
-			case MAGE:
-				tabIcon = new ItemSprite(ItemSpriteSheet.MAGES_STAFF, null);
-				break;
-			case ROGUE:
-				tabIcon = new ItemSprite(ItemSpriteSheet.ARTIFACT_CLOAK, null);
-				break;
-			case HUNTRESS:
-				tabIcon = new ItemSprite(ItemSpriteSheet.SPIRIT_BOW, null);
 				break;
 		}
 
@@ -145,6 +138,8 @@ public class WndHeroInfo extends WndTabbed {
 				case KAGUYAPLAYER:
 				case YUKARIPLAYER:
 				case JUNKOPLAYER:
+				case RENKOPLAYER:
+				case SEIJAPLAYER:
 				case KOGASAPLAYER: default:
 					icons = new Image[]{ new ItemSprite(ItemSpriteSheet.SEAL),
 							new ItemSprite(ItemSpriteSheet.WORN_SHORTSWORD),

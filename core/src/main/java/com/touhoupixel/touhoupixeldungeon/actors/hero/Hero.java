@@ -31,10 +31,11 @@ import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
 import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Actor;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
+import com.touhoupixel.touhoupixeldungeon.actors.blobs.Regrowth;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AdrenalineSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Amok;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AnkhInvulnerability;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiHeal;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
@@ -47,8 +48,8 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.Chill;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Combo;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
@@ -68,7 +69,6 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
-import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
@@ -78,6 +78,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Paralysis;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.PotionPreserve;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ReBirth;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Regeneration;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.RingoSurge;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
@@ -90,7 +91,9 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.UnderwaterCurse;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.YukariRest;
 import com.touhoupixel.touhoupixeldungeon.actors.mobs.*;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.CheckedCell;
@@ -105,8 +108,6 @@ import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Heap.Type;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.KindOfWeapon;
-import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
-import com.touhoupixel.touhoupixeldungeon.items.armor.MaxwellArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.PoppinPartyArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ToyohimeArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.YorihimeArmor;
@@ -155,31 +156,25 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand2;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flail;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flintlock;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand2;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FullmoonScythe;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Grayswandir;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HellMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KoishiSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MomoyoShovel;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RandomPhone;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutSword;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WatermelonSword;
-import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YukinaMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeon.journal.Document;
 import com.touhoupixel.touhoupixeldungeon.journal.Notes;
 import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Chasm;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.AlarmTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.CursingTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.ExplosiveTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.Trap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.WizardTrap;
 import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeon.mechanics.ShadowCaster;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -193,7 +188,6 @@ import com.touhoupixel.touhoupixeldungeon.sprites.CharSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeon.ui.AttackIndicator;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
-import com.touhoupixel.touhoupixeldungeon.ui.KeyDisplay;
 import com.touhoupixel.touhoupixeldungeon.ui.QuickSlotButton;
 import com.touhoupixel.touhoupixeldungeon.ui.StatusPane;
 import com.touhoupixel.touhoupixeldungeon.utils.BArray;
@@ -212,6 +206,7 @@ import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 
@@ -258,6 +253,8 @@ public class Hero extends Char {
 	public int exp = 0;
 
 	public int HTBoost = 0;
+
+	final Calendar calendar = Calendar.getInstance();
 
 	private ArrayList<Mob> visibleEnemies;
 
@@ -319,6 +316,14 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER){
 			strBonus += 8;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER){
+			strBonus += 4;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.SEIJAPLAYER){
+			strBonus += 6;
 		}
 
 		strBonus += RingOfMight.strengthBonus( this );
@@ -536,9 +541,19 @@ public class Hero extends Char {
 			accuracy *= 1.5f;
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+			accuracy *= 1.2f;
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
 			if (this.lvl == 2 || this.lvl == 4 || this.lvl == 6 || this.lvl == 8 || this.lvl == 10 || this.lvl == 12 || this.lvl == 14 || this.lvl == 16 || this.lvl == 18 || this.lvl == 20 || this.lvl == 22 || this.lvl == 24 || this.lvl == 26 || this.lvl == 28 || this.lvl == 30 || this.lvl == 32 || this.lvl == 34 || this.lvl == 36 || this.lvl == 38 || this.lvl == 40 || this.lvl == 42 || this.lvl == 44 || this.lvl == 46 || this.lvl == 48 || this.lvl == 50 || this.lvl == 52 || this.lvl == 54 || this.lvl == 56 || this.lvl == 58 || this.lvl == 60 || this.lvl == 62 || this.lvl == 64 || this.lvl == 66 || this.lvl == 68 || this.lvl == 70 || this.lvl == 72 || this.lvl == 74 || this.lvl == 76 || this.lvl == 78 || this.lvl == 80 || this.lvl == 82 || this.lvl == 84 || this.lvl == 86 || this.lvl == 88 || this.lvl == 90 || this.lvl == 92 || this.lvl == 94 || this.lvl == 96 || this.lvl == 98){
 				accuracy *= 1.2f;
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER) {
+			if (this.HP < 30) {
+				accuracy *= 2f;
 			}
 		}
 
@@ -566,6 +581,20 @@ public class Hero extends Char {
 		}
 		if (hasTalent(Talent.SLOWED_ACCURACY_UP) && pointsInTalent(Talent.SLOWED_ACCURACY_UP) == 3){
 			accuracy *= 2f;
+		}
+
+		if (hasTalent(Talent.MINOR_ACCURACY_UP) && pointsInTalent(Talent.MINOR_ACCURACY_UP) == 1){
+			accuracy *= 1.06f;
+		}
+		if (hasTalent(Talent.MINOR_ACCURACY_UP) && pointsInTalent(Talent.MINOR_ACCURACY_UP) == 2){
+			accuracy *= 1.12f;
+		}
+
+		if (hasTalent(Talent.MINOR_ACCURACY_UP) && pointsInTalent(Talent.MINOR_ACCURACY_UP) == 1){
+			accuracy *= 1.12f;
+		}
+		if (hasTalent(Talent.MINOR_ACCURACY_UP) && pointsInTalent(Talent.MINOR_ACCURACY_UP) == 2){
+			accuracy *= 1.24f;
 		}
 
 		if (buff(ArisastarRank1.class) != null){
@@ -664,8 +693,22 @@ public class Hero extends Char {
 			}
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER){
+			if (this.HP == 9 || this.HP == 19 || this.HP == 29 || this.HP == 39 || this.HP == 49 || this.HP == 59 || this.HP == 69 || this.HP == 79 || this.HP == 89 || this.HP == 90 || this.HP == 91 || this.HP == 92 || this.HP == 93 || this.HP == 94 || this.HP == 95 || this.HP == 96 || this.HP == 97 || this.HP == 98 || this.HP == 109 || this.HP == 119 || this.HP == 129 || this.HP == 139 || this.HP == 149 || this.HP == 159 || this.HP == 169 || this.HP == 179 || this.HP == 189 || this.HP == 190 || this.HP == 191 || this.HP == 192 || this.HP == 193 || this.HP == 194 || this.HP == 195 || this.HP == 196 || this.HP == 197 || this.HP == 198 || this.HP == 209 || this.HP == 219 || this.HP == 229 || this.HP == 239 || this.HP == 249 || this.HP == 259 || this.HP == 269 || this.HP == 279 || this.HP == 289 || this.HP == 290 || this.HP == 291 || this.HP == 292 || this.HP == 293 || this.HP == 294 || this.HP == 295 || this.HP == 296 || this.HP == 297 || this.HP == 298){
+				evasion *= 1.5f;
+			}
+		}
+
 		if (buff(Doubleevasion.class) != null){
 			evasion *= 2;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+			evasion *= 1.1f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+			evasion *= 1.5f;
 		}
 
 		if (buff(MurasaInfEvasion.class) != null && enemy instanceof Murasa){
@@ -720,6 +763,20 @@ public class Hero extends Char {
 		}
 		if (hasTalent(Talent.SLOWED_EVASION_UP) && pointsInTalent(Talent.SLOWED_EVASION_UP) == 3){
 			evasion *= 1.3f;
+		}
+
+		if (hasTalent(Talent.MINOR_EVASION_UP) && pointsInTalent(Talent.MINOR_EVASION_UP) == 1){
+			evasion *= 1.04f;
+		}
+		if (hasTalent(Talent.MINOR_EVASION_UP) && pointsInTalent(Talent.MINOR_EVASION_UP) == 2){
+			evasion *= 1.08f;
+		}
+
+		if (hasTalent(Talent.MAJOR_EVASION_UP) && pointsInTalent(Talent.MAJOR_EVASION_UP) == 1){
+			evasion *= 1.06f;
+		}
+		if (hasTalent(Talent.MAJOR_EVASION_UP) && pointsInTalent(Talent.MAJOR_EVASION_UP) == 2){
+			evasion *= 1.12f;
 		}
 
 		if (belongings.armor() != null) {
@@ -790,8 +847,20 @@ public class Hero extends Char {
 
 		float speed = super.speed();
 
+		speed *= RingOfHaste.speedMultiplier(this);
+
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && Dungeon.level.water[pos]) {
 			speed *= 3f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+			speed *= 1.25f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER) {
+			if (this.HP > 100) {
+				speed *= 1.25f;
+			}
 		}
 
 		if (hasTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) && pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 1){
@@ -830,8 +899,6 @@ public class Hero extends Char {
 		if (hasTalent(Talent.SLOWED_UPGRADE) && pointsInTalent(Talent.SLOWED_UPGRADE) == 3){
 			speed *= 0.95f;
 		}
-
-		speed *= RingOfHaste.speedMultiplier(this);
 
 		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && this.lvl > 0) {
 			speed *= 0.9f;
@@ -890,6 +957,8 @@ public class Hero extends Char {
 		if (STR() < ((Weapon)belongings.weapon()).STRReq())                             return false;
 		if (this.hasTalent(Talent.CURSED_SNEAKATTACK))                                  return false;
 		if (buff(AntiSneakattack.class) != null)                                        return false;
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) return false;
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) return false;
 		if (belongings.weapon() instanceof Flail || belongings.weapon() instanceof Log) return false;
 
 		return true;
@@ -915,7 +984,9 @@ public class Hero extends Char {
 	}
 
 	public float attackDelay() {
-		if (buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.LethalMomentumTracker.class) != null){
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
+			return 0.5f;
+		} else if (buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.LethalMomentumTracker.class) != null){
 			buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.LethalMomentumTracker.class).detach();
 			return 0;
 		}
@@ -1451,6 +1522,20 @@ public class Hero extends Char {
 			damage *= 2f;
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER){
+			if (this.HP == 2 || this.HP == 3 || this.HP == 5 || this.HP == 7 || this.HP == 11 || this.HP == 13 || this.HP == 17 || this.HP == 19 || this.HP == 23 || this.HP == 29 || this.HP == 31 || this.HP == 37 || this.HP == 41 || this.HP == 43 || this.HP == 47 || this.HP == 53 || this.HP == 59 || this.HP == 61 || this.HP == 67 || this.HP == 71 || this.HP == 73 || this.HP == 79 || this.HP == 83 || this.HP == 89 || this.HP == 97 || this.HP == 101 || this.HP == 103 || this.HP == 107 || this.HP == 109 || this.HP == 113 || this.HP == 127 || this.HP == 131 || this.HP == 137 || this.HP == 139 || this.HP == 149 || this.HP == 151 || this.HP == 157 || this.HP == 163 || this.HP == 167 || this.HP == 173 || this.HP == 179 || this.HP == 181 || this.HP == 191 || this.HP == 193 || this.HP == 197 || this.HP == 199 || this.HP == 211 || this.HP == 223 || this.HP == 227 || this.HP == 229 || this.HP == 233 || this.HP == 239 || this.HP == 241 || this.HP == 251 || this.HP == 257 || this.HP == 263 || this.HP == 269 || this.HP == 271 || this.HP == 277 || this.HP == 281 || this.HP == 283 || this.HP == 293){
+				damage *= 1.5f;
+			}
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+			damage *= 1.2f;
+		}
+
+		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+			damage *= 1.5f;
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER && (Random.Int(4) == 0) && buff(Stableness.class) == null){
 			CursedWand.cursedEffect(null, this, enemy);
 		}
@@ -1636,14 +1721,6 @@ public class Hero extends Char {
 			damage *= 2.5f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.PACIFIST)){
-			damage *= 0f;
-		}
-
-		if (Dungeon.isChallenged(Challenges.PACIFIST) && Random.Int(5) == 0) {
-			ScrollOfTeleportation.teleportChar(enemy);
-		}
-
 		if (Dungeon.hero.belongings.weapon() instanceof PlayMat && buff(Weakness.class) != null && enemy.buff(Weakness.class) != null){
 			damage *= 1f;
 		}
@@ -1695,6 +1772,13 @@ public class Hero extends Char {
 		}
 		if (this.pointsInTalent(Talent.CURSED_SNEAKATTACK) == 3) {
 			damage *= 1.8f;
+		}
+
+		if (this.pointsInTalent(Talent.SILENCE_TIME_REDUCE) == 1) {
+			damage *= 0.92f;
+		}
+		if (this.pointsInTalent(Talent.SILENCE_TIME_REDUCE) == 2) {
+			damage *= 0.85f;
 		}
 
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && Dungeon.level.water[pos]) {
@@ -1759,6 +1843,11 @@ public class Hero extends Char {
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
 		}
 
+		if (Dungeon.hero.heroClass == HeroClass.SEIJAPLAYER && (Random.Int(8) == 0) && !enemy.properties().contains(Char.Property.BOSS)){
+			damage = enemy.HP-1;
+			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(10-pointsInTalent(Talent.AQUA_INSTAKILL)) == 0) && Dungeon.level.water[enemy.pos] && !enemy.properties().contains(Char.Property.BOSS)){
 			enemy.damage(enemy.HP, this);
 			enemy.sprite.emitter().burst(ShadowParticle.UP, 5);
@@ -1774,8 +1863,7 @@ public class Hero extends Char {
 			hunger.affectHunger(15);
 		}
 
-		if (hasTalent(Talent.ANIMAL_ENHANCED_MEAL) && pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.ANIMAL_ENHANCED_MEAL
-		)==1 && enemy.properties().contains(Property.ANIMAL)){
+		if (hasTalent(Talent.ANIMAL_ENHANCED_MEAL) && pointsInTalent(Talent.ANIMAL_ENHANCED_MEAL)==1 && enemy.properties().contains(Property.ANIMAL)){
 			Hunger hunger = Buff.affect(this, Hunger.class);
 			hunger.affectHunger(30);
 			this.HP = Math.min(this.HP + 2, this.HT);
@@ -1787,6 +1875,30 @@ public class Hero extends Char {
 			hunger.affectHunger(40);
 			this.HP = Math.min(this.HP + 3, this.HT);
 			this.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1);
+		}
+
+		if (hasTalent(Talent.ATTACK_MINDVISION) && pointsInTalent(Talent.ATTACK_MINDVISION)==1){
+			if ((Random.Int(5) == 0))
+				Buff.prolong(this, MindVision.class, MindVision.DURATION/20f);
+		}
+
+		if (hasTalent(Talent.ATTACK_MINDVISION) && pointsInTalent(Talent.ATTACK_MINDVISION)==2){
+			Buff.prolong(this, MindVision.class, MindVision.DURATION/20f);
+		}
+
+		if (hasTalent(Talent.ATTACK_HEX) && pointsInTalent(Talent.ATTACK_HEX)==1){
+			if ((Random.Int(3) == 0))
+			Buff.prolong(enemy, Hex.class, Hex.DURATION/6f);
+		}
+
+		if (hasTalent(Talent.ATTACK_HEX) && pointsInTalent(Talent.ATTACK_HEX)==2){
+			if ((Random.Int(3) == 0))
+			Buff.prolong(enemy, Hex.class, Hex.DURATION/2f);
+		}
+
+		if (hasTalent(Talent.ATTACK_HEX) && pointsInTalent(Talent.ATTACK_HEX)==3){
+			if ((Random.Int(3) == 0))
+			Buff.prolong(enemy, Hex.class, Hex.DURATION);
 		}
 
 		if (hasTalent(Talent.DOOM_ATTACK) && pointsInTalent(Talent.DOOM_ATTACK)==1){
@@ -1832,6 +1944,36 @@ public class Hero extends Char {
 		if (hasTalent(Talent.SLOWED_SNIPE) && pointsInTalent(Talent.SLOWED_SNIPE)==3 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
 			if ((Random.Int(3) == 0))
 				Buff.prolong(enemy, Slow.class, Slow.DURATION);
+		}
+
+		if (hasTalent(Talent.ATTACK_DOUBLEEVASION) && pointsInTalent(Talent.ATTACK_DOUBLEEVASION)==1){
+			if ((Random.Int(7) == 0))
+				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
+		}
+
+		if (hasTalent(Talent.ATTACK_DOUBLEEVASION) && pointsInTalent(Talent.ATTACK_DOUBLEEVASION)==2){
+			if ((Random.Int(6) == 0))
+				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
+		}
+
+		if (hasTalent(Talent.ATTACK_DOUBLEEVASION) && pointsInTalent(Talent.ATTACK_DOUBLEEVASION)==3){
+			if ((Random.Int(5) == 0))
+				Buff.prolong(this, Doubleevasion.class, Doubleevasion.DURATION);
+		}
+
+		if (hasTalent(Talent.EXPLOSION_SNIPE) && pointsInTalent(Talent.EXPLOSION_SNIPE)==1 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
+			new ExplosiveTrap().set(enemy.pos).activate();
+		}
+
+		if (hasTalent(Talent.EXPLOSION_SNIPE) && pointsInTalent(Talent.EXPLOSION_SNIPE)==2 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
+			new ExplosiveTrap().set(enemy.pos).activate();
+			new ExplosiveTrap().set(enemy.pos).activate();
+		}
+
+		if (hasTalent(Talent.EXPLOSION_SNIPE) && pointsInTalent(Talent.EXPLOSION_SNIPE)==3 && Dungeon.hero.belongings.weapon() instanceof MissileWeapon){
+			new ExplosiveTrap().set(enemy.pos).activate();
+			new ExplosiveTrap().set(enemy.pos).activate();
+			new ExplosiveTrap().set(enemy.pos).activate();
 		}
 
 		if (hasTalent(Talent.HORROR_ATTACK) && pointsInTalent(Talent.HORROR_ATTACK)==1){
@@ -1968,16 +2110,21 @@ public class Hero extends Char {
 			HP = 1;
 		}
 
-		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER) {
-			Buff.prolong(this, Silence.class, Silence.DURATION*2f);
+		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER && pointsInTalent(Talent.SILENCE_TIME_REDUCE) == 1) {
+			Buff.prolong(this, Silence.class, Silence.DURATION/2f);
+		} else if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER && pointsInTalent(Talent.SILENCE_TIME_REDUCE) == 2) {
+			Buff.prolong(this, Silence.class, Silence.DURATION/5f);
+		} else if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER) {
+			Buff.prolong(this, Silence.class, Silence.DURATION);
 		}
 
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(5) == 0)){
 			Dungeon.level.setCellToWater(false, pos);
 		}
 
-		if (Dungeon.isChallenged(Challenges.SACRIFICE_WORDS) && this.HP < this.HT/5) {
-			Buff.prolong(this, Silence.class, Silence.DURATION/10f);
+		if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && this.HP < this.HT/5) {
+			Buff.prolong(this, Degrade.class, Degrade.DURATION/2f);
+			Buff.prolong(this, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
 		}
 
 		if (pointsInTalent(Talent.EMER_TELEPORT) == 1 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
@@ -2705,7 +2852,6 @@ public class Hero extends Char {
 	public boolean isAlive() {
 
 		//yukari buff zone//
-
 		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
 			if (this.lvl == 1 || this.lvl == 3 || this.lvl == 5 || this.lvl == 7 || this.lvl == 9 || this.lvl == 11 || this.lvl == 13 || this.lvl == 15 || this.lvl == 17 || this.lvl == 19 || this.lvl == 21 || this.lvl == 23 || this.lvl == 25 || this.lvl == 27 || this.lvl == 29 || this.lvl == 31 || this.lvl == 33 || this.lvl == 35 || this.lvl == 37 || this.lvl == 39 || this.lvl == 41 || this.lvl == 43 || this.lvl == 45 || this.lvl == 47 || this.lvl == 49 || this.lvl == 51 || this.lvl == 53 || this.lvl == 55 || this.lvl == 57 || this.lvl == 59 || this.lvl == 61 || this.lvl == 63 || this.lvl == 65 || this.lvl == 67 || this.lvl == 69 || this.lvl == 71 || this.lvl == 73 || this.lvl == 75 || this.lvl == 77 || this.lvl == 79 || this.lvl == 81 || this.lvl == 83 || this.lvl == 85 || this.lvl == 87 || this.lvl == 89 || this.lvl == 91 || this.lvl == 93 || this.lvl == 95 || this.lvl == 97 || this.lvl == 99){
 				Buff.prolong(this, Light.class, Light.DURATION/250f);
@@ -2765,7 +2911,6 @@ public class Hero extends Char {
 				Buff.prolong(this, Doublespeed.class, Doublespeed.DURATION/20f);
 			}
 		}
-
 		//yukari buff zone//
 
 		int resa = 0;
@@ -2865,6 +3010,28 @@ public class Hero extends Char {
 			}
 		}
 
+		if (Dungeon.isChallenged(Challenges.WIZARD_OF_GENSOKYO) && buff(YukariRest.class) == null) {
+			new WizardTrap().set(pos).activate();
+			switch (Random.Int(5)) {
+				case 0:
+				default:
+					Buff.prolong(this, YukariRest.class, YukariRest.DURATION);
+					break;
+				case 1:
+					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 2f);
+					break;
+				case 2:
+					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 3f);
+					break;
+				case 3:
+					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 4f);
+					break;
+				case 4:
+					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 5f);
+					break;
+			}
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER && Dungeon.hero.belongings.ring() instanceof RingOfHaste){
 			GLog.w( Messages.get(PotionOfDoublespeed.class, "wrath") );
 			Buff.prolong( this, Paralysis.class, Paralysis.DURATION);
@@ -2898,7 +3065,7 @@ public class Hero extends Char {
 			damage(10, this);
 		}
 
-		if (Dungeon.isChallenged(Challenges.BECOME_FUMO) && !(Dungeon.hero.heroClass == HeroClass.MURASAPLAYER)) {
+		if (Dungeon.isChallenged(Challenges.RINGING_BLOOM) && !(Dungeon.hero.heroClass == HeroClass.MURASAPLAYER)) {
 			Buff.affect(this, com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom.class);
 			this.sprite.add(CharSprite.State.DARKENED);
 		}

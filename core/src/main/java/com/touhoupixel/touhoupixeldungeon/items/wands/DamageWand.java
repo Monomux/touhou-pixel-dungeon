@@ -28,6 +28,8 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandEmpower;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandZeroDamage;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.watabou.noosa.audio.Sample;
@@ -66,7 +68,7 @@ public abstract class DamageWand extends Wand{
 		}
 		Hero hero = (Hero) curUser;
 		Char enemy = hero.enemy();
-		if (Dungeon.isChallenged(Challenges.PACIFIST)){
+		if (hero.buff(WandZeroDamage.class) != null){
 			dmg *= 0f;
 		}
 		return dmg;

@@ -37,7 +37,6 @@ public class Scimitar extends MeleeWeapon {
 		hitSoundPitch = 1.2f;
 
 		tier = 3;
-		ACC = 0.9f;//1.25x speed
 	}
 
 	@Override
@@ -54,9 +53,7 @@ public class Scimitar extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  Math.round((Statistics.goldCollected)*0.002f+4f*(tier+1)) +    //20 base, up from 15
-				lvl*Math.round(1.33f*(tier+1)); //+4 per level, up from +3
+		return  Math.round((Statistics.goldCollected)*0.002f+4f*(tier+1)) +
+				lvl*Math.round(1.33f*(tier+1));
 	}
-
 }
-

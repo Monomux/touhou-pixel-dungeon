@@ -89,7 +89,7 @@ public class Sannyo extends Mob {
 		damage = super.attackProc(enemy, damage);
 		if (this.buff(Incompetence.class) == null) {
 			if (Random.Int(2) == 0) {
-				if (Dungeon.isChallenged(Challenges.BECOME_FUMO)) {
+				if (Dungeon.isChallenged(Challenges.RINGING_BLOOM)) {
 					damage = Math.max(damage, hero.HP / 4);
 				} else {
 					damage = Math.max(damage, hero.HP / 2);

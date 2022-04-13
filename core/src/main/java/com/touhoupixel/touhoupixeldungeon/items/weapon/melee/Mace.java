@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.weapon.melee;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
@@ -36,7 +37,6 @@ public class Mace extends MeleeWeapon {
 		hitSoundPitch = 1f;
 
 		tier = 3;
-		ACC = 1.28f; //28% boost to accuracy
 	}
 
 	@Override
@@ -53,8 +53,7 @@ public class Mace extends MeleeWeapon {
 
 	@Override
 	public int max(int lvl) {
-		return  4*(tier+1) +    //16 base, down from 20
-				lvl*(tier+1);   //scaling unchanged
+		return  Math.round((Statistics.enemiesSlain)*0.05f+4f*(tier+1)) +
+				lvl*Math.round(1.33f*(tier+1));
 	}
-
 }

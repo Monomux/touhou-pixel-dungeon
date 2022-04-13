@@ -58,6 +58,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Preparation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ReBirth;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ReBirthDone;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Sleep;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SoulMark;
@@ -84,6 +85,7 @@ import com.touhoupixel.touhoupixeldungeon.items.keys.IronKey;
 import com.touhoupixel.touhoupixeldungeon.items.rings.Ring;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfWealth;
 import com.touhoupixel.touhoupixeldungeon.items.stones.StoneOfAggression;
+import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfBlastWave;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.enchantments.Lucky;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
@@ -93,6 +95,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.Level;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.levels.features.Chasm;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.SummoningTrap;
+import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.plants.Swiftthistle;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
@@ -611,11 +614,8 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && (Random.Int(2) == 0) && !properties().contains(Char.Property.BOSS) && !(this instanceof Wraith)){
-			Buff.prolong(this, ReBirth.class, ReBirth.DURATION);
-			Buff.prolong(this, Haste.class, Haste.DURATION);
-			Buff.prolong(this, Bless.class, Bless.DURATION);
-			Buff.prolong(this, MagicImmune.class, MagicImmune.DURATION);
+		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && buff(ReBirthDone.class) == null && !properties().contains(Char.Property.BOSS) && !(this instanceof Wraith) && !(Dungeon.depth == 40) && !(Dungeon.depth == 45) && !(Dungeon.depth == 50)){
+			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10000f);
 		}
 		return Messages.get(this, "def_verb");
 	}
@@ -625,10 +625,6 @@ public abstract class Mob extends Char {
 
 		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)){
 			damage += Statistics.goldPickedup/12+Statistics.enemiesSlain/80;
-		}
-
-		if (Dungeon.isChallenged(Challenges.PUPPET_DANCE_PERFORMANCE) && (Random.Int(10) == 0)){
-			new SummoningTrap().set(target).activate();
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
@@ -671,73 +667,73 @@ public abstract class Mob extends Char {
 
 		//res damage zone//
 		if (Statistics.fireres == 1 && properties().contains(Char.Property.FIRE)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.fireres == 2 && properties().contains(Char.Property.FIRE)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.fireres > 2 && properties().contains(Char.Property.FIRE)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 
 		if (Statistics.coldres == 1 && properties().contains(Char.Property.COLD)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.coldres == 2 && properties().contains(Char.Property.COLD)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.coldres > 2 && properties().contains(Char.Property.COLD)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 
 		if (Statistics.warpres == 1 && properties().contains(Char.Property.WARP)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.warpres == 2 && properties().contains(Char.Property.WARP)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.warpres > 2 && properties().contains(Char.Property.WARP)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 
 		if (Statistics.powerfulres == 1 && properties().contains(Char.Property.POWERFUL)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.powerfulres == 2 && properties().contains(Char.Property.POWERFUL)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.powerfulres > 2 && properties().contains(Char.Property.POWERFUL)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 
 		if (Statistics.coolres == 1 && properties().contains(Char.Property.COOL)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.coolres == 2 && properties().contains(Char.Property.COOL)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.coolres > 2 && properties().contains(Char.Property.COOL)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 
 		if (Statistics.pureres == 1 && properties().contains(Char.Property.PURE)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.pureres == 2 && properties().contains(Char.Property.PURE)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.pureres > 2 && properties().contains(Char.Property.PURE)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 
 		if (Statistics.happyres == 1 && properties().contains(Char.Property.HAPPY)) {
-			damage = Math.round(damage * 0.8f);
+			damage = Math.round(damage * 0.85f);
 		}
 		if (Statistics.happyres == 2 && properties().contains(Char.Property.HAPPY)) {
-			damage = Math.round(damage * 0.6f);
+			damage = Math.round(damage * 0.7f);
 		}
 		if (Statistics.happyres > 2 && properties().contains(Char.Property.HAPPY)) {
-			damage = Math.round(damage * 0.4f);
+			damage = Math.round(damage * 0.5f);
 		}
 		//res damage zone//
 		return damage;
@@ -857,10 +853,10 @@ public abstract class Mob extends Char {
 	@Override
 	public void die( Object cause ) {
 
-		for (int i : PathFinder.NEIGHBOURS9) {
+		for (int i : PathFinder.NEIGHBOURS4) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (Dungeon.isChallenged(Challenges.AFTERGLOW) && mob.pos == this.pos + i) {
-					Buff.prolong(mob, Triplespeed.class, Triplespeed.DURATION);
+					Buff.prolong(mob, Triplespeed.class, Triplespeed.DURATION/5f);
 				}
 			}
 		}
@@ -897,9 +893,10 @@ public abstract class Mob extends Char {
 
 		boolean soulMarked = buff(SoulMark.class) != null;
 
-		if (buff(ReBirth.class) != null){
+		if (buff(ReBirth.class) != null && !(cause == Chasm.class) && !properties().contains(Char.Property.BOSS) && !(this instanceof Wraith) && !(Dungeon.depth == 40) && !(Dungeon.depth == 45) && !(Dungeon.depth == 50)){
 			CellEmitter.get( pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
 			Buff.detach(this, ReBirth.class);
+			Buff.prolong(this, ReBirthDone.class, ReBirthDone.DURATION*10000f);
 			this.HP = this.HT;
 		} else super.die( cause );
 

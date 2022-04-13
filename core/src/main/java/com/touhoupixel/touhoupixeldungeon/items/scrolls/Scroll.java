@@ -23,12 +23,14 @@ package com.touhoupixel.touhoupixeldungeon.items.scrolls;
 
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.Statistics;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank1;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank2;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ArisastarRank3;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Bless;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FireBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.FrostBrandBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
@@ -37,6 +39,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Poison;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ScrollEmpower;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
@@ -67,6 +70,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeon.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
+import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.HeroSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
@@ -204,13 +208,24 @@ public abstract class Scroll extends Item {
 			} else {
 				curUser = hero;
 				curItem = detach(hero.belongings.backpack);
+				Statistics.extraSTRcheck += 1;
 				doRead();
-				if (Dungeon.isChallenged(Challenges.SACRIFICE_WORDS))
-					Buff.affect(curUser, Silence.class, Silence.DURATION/5);
+				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
+					Buff.prolong(curUser, Degrade.class, Degrade.DURATION/2f);
+					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
+				}
 
 				Buff.detach(hero, ArisastarRank1.class);
 				Buff.detach(hero, ArisastarRank2.class);
 				Buff.detach(hero, ArisastarRank3.class);
+
+				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && Statistics.extraSTRcheck > 4) {
+					Statistics.extraSTRcheck = 0;
+					GameScene.flash(0x80FFFFFF);
+					if (Dungeon.hero.STR > 5) {
+						hero.STR--;
+					}
+				}
 			}
 
 		}

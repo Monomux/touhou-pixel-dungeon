@@ -127,9 +127,7 @@ public class Prayer extends Item {
 				hero.sprite.operate(hero.pos);
 
 				updateQuickslot();
-			}
-			else
-				GLog.i( Messages.get(this, "notready") );
+			} else GLog.i( Messages.get(this, "notready") );
 		}
 	}
 

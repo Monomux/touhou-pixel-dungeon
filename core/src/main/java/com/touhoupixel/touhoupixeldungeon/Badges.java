@@ -68,15 +68,17 @@ public class Badges {
 		DEATH_FROM_GAS              ( 16 ),
 		DEATH_FROM_HUNGER           ( 17 ),
 		DEATH_FROM_FALLING          ( 18 ),
-		UNLOCK_REISENPLAYER               ( 24 ),
-		UNLOCK_NITORIPLAYER               ( 25 ),
-		UNLOCK_YUYUKOPLAYER               ( 26 ),
-		UNLOCK_MURASAPLAYER               ( 27 ),
+		UNLOCK_REISENPLAYER         ( 24 ),
+		UNLOCK_NITORIPLAYER         ( 25 ),
+		UNLOCK_YUYUKOPLAYER         ( 26 ),
+		UNLOCK_MURASAPLAYER         ( 27 ),
 		UNLOCK_HINAPLAYER           ( 19 ),
 		UNLOCK_KAGUYAPLAYER         ( 20 ),
 		UNLOCK_KOGASAPLAYER         ( 21 ),
 		UNLOCK_YUKARIPLAYER         ( 22 ),
 		UNLOCK_JUNKOPLAYER          ( 23 ),
+		UNLOCK_RENKOPLAYER          ( 56 ),
+		UNLOCK_SEIJAPLAYER          ( 57 ),
 		SHOPKEEPERS                 ( 28 ),
 		TOYOHIMES                   ( 29 ),
 		YORIHIMES                   ( 30 ),
@@ -147,6 +149,8 @@ public class Badges {
 		VICTORY_KOGASAPLAYER,
 		VICTORY_YUKARIPLAYER,
 		VICTORY_JUNKOPLAYER,
+		VICTORY_RENKOPLAYER,
+		VICTORY_SEIJAPLAYER,
 		VICTORY_ALL_CLASSES         ( 98, true ),
 		GAMES_PLAYED_3              ( 99, true ),
 		CHAMPION_1                  ( 100 ),
@@ -329,6 +333,10 @@ public class Badges {
 		}
 		if (!local.contains( Badge.GOLD_COLLECTED_4 ) && Statistics.goldCollected >= 7500) {
 			badge = Badge.GOLD_COLLECTED_4;
+			local.add( badge );
+		}
+		if (!local.contains( Badge.UNLOCK_SEIJAPLAYER ) && Statistics.goldCollected >= 100000) {
+			badge = Badge.UNLOCK_SEIJAPLAYER;
 			local.add( badge );
 		}
 
@@ -677,6 +685,12 @@ public class Badges {
 		}
 	}
 
+	public static void validateRenkoUnlock(){
+		if (Statistics.toyohimesKilled >= 5 && !global.contains(Badge.UNLOCK_RENKOPLAYER)){
+			displayBadge( Badge.UNLOCK_RENKOPLAYER );
+		}
+	}
+
 	public static void validateMasteryCombo( int n ) {
 		if (!local.contains( Badge.MASTERY_COMBO ) && n == 10) {
 			Badge badge = Badge.MASTERY_COMBO;
@@ -727,6 +741,12 @@ public class Badges {
 			case JUNKOPLAYER:
 				badge = Badge.VICTORY_JUNKOPLAYER;
 				break;
+			case RENKOPLAYER:
+				badge = Badge.VICTORY_RENKOPLAYER;
+				break;
+			case SEIJAPLAYER:
+				badge = Badge.VICTORY_SEIJAPLAYER;
+				break;
 		}
 		local.add( badge );
 		if (!global.contains( badge )) {
@@ -745,6 +765,8 @@ public class Badges {
 				global.contains( Badge.VICTORY_KAGUYAPLAYER ) &&
 				global.contains( Badge.VICTORY_YUKARIPLAYER ) &&
 				global.contains( Badge.VICTORY_JUNKOPLAYER ) &&
+				global.contains( Badge.VICTORY_RENKOPLAYER ) &&
+				global.contains( Badge.VICTORY_SEIJAPLAYER ) &&
 				global.contains( Badge.VICTORY_HUNTRESS )) {
 
 			badge = Badge.VICTORY_ALL_CLASSES;

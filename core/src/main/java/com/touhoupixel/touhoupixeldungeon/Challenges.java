@@ -21,7 +21,6 @@
 
 package com.touhoupixel.touhoupixeldungeon;
 
-import com.touhoupixel.touhoupixeldungeon.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 
 public class Challenges {
@@ -35,18 +34,18 @@ public class Challenges {
 	public static final int HECATIA_TIME 	         = 32;
 	public static final int KEINE_TIME			     = 64;
 	public static final int EIKI_JUDGEMENT		     = 128;
-	public static final int NO_HEALING			     = 256;
+	public static final int CURSED_HOURAI_ELIXIR	 = 256;
 	public static final int MYSTIA_HIGH_STRESS       = 512;
-	public static final int SACRIFICE_WORDS		     = 1024;
-	public static final int PACIFIST 	             = 2048;
-	public static final int SPELLCARD_RULE 	         = 4096;
-	public static final int DEKAI_ENEMIES 	         = 8192;
-	public static final int ATHEISM 	             = 16384;
-	public static final int BECOME_FUMO 	         = 32768;
-	public static final int REVERSE_HIERARCHY 	     = 65536;
-	public static final int REBIRTH_DAY 	         = 131072;
-	public static final int NITORI_CURSED_KEY        = 262144;
-	public static final int PUPPET_DANCE_PERFORMANCE = 524288;
+	public static final int YUUMA_POWER_DRAIN 		 = 1024;
+	public static final int CHERRY_BLOSSOM_BLOOM     = 2048;
+	public static final int DEKAI_ENEMIES 	         = 4096;
+	public static final int ATHEISM 	             = 8192;
+	public static final int RINGING_BLOOM            = 16384;
+	public static final int REVERSE_HIERARCHY 	     = 32768;
+	public static final int REBIRTH_DAY 	         = 65536;
+	public static final int NITORI_CURSED_KEY        = 131072;
+	public static final int PUPPET_DANCE_PERFORMANCE = 262144;
+	public static final int WIZARD_OF_GENSOKYO       = 524288;
 
 	public static final int MAX_VALUE                = 1048575;
 
@@ -59,22 +58,22 @@ public class Challenges {
 			"hecatia_time",
 			"keine_time",
 			"eiki_judgement",
-			"no_healing",
+			"cursed_hourai_elixir",
 			"mystia_high_stress",
-			"sacrifice_words",
-			"pacifist",
-			"spellcard_rule",
+			"yuuma_power_drain",
+			"cherry_blossom_bloom",
 			"dekai_enemies",
 			"atheism",
 			"become_fumo",
 			"reverse_hierarchy",
 			"rebirth_day",
 			"nitori_cursed_key",
-			"puppet_dance_performance"
+			"puppet_dance_performance",
+			"wizard_of_gensokyo"
 	};
 
 	public static final int[] MASKS = {
-			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, NO_HEALING, MYSTIA_HIGH_STRESS, SACRIFICE_WORDS, PACIFIST, SPELLCARD_RULE, DEKAI_ENEMIES, ATHEISM, BECOME_FUMO, REVERSE_HIERARCHY, REBIRTH_DAY, NITORI_CURSED_KEY, PUPPET_DANCE_PERFORMANCE
+			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, CURSED_HOURAI_ELIXIR, MYSTIA_HIGH_STRESS, YUUMA_POWER_DRAIN, CHERRY_BLOSSOM_BLOOM, DEKAI_ENEMIES, ATHEISM, RINGING_BLOOM, REVERSE_HIERARCHY, REBIRTH_DAY, NITORI_CURSED_KEY, PUPPET_DANCE_PERFORMANCE, WIZARD_OF_GENSOKYO
 	};
 
 	public static int activeChallenges(){

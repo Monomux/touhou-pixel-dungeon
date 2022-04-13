@@ -28,8 +28,14 @@ import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.Web;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Blindness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doom;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Drowsy;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDamage;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.effects.Beam;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.PurpleParticle;
@@ -53,7 +59,6 @@ public class WandOfPurityBeam extends DamageWand {
 		unique = true;
 		bones = false;
 	}
-
 
 	public int min(int lvl){
 		return 6+lvl+Dungeon.depth*2;
@@ -121,10 +126,52 @@ public class WandOfPurityBeam extends DamageWand {
 		int lvl = level + (chars.size()-1) + terrainBonus;
 		for (Char ch : chars) {
 			wandProc(ch, chargesPerCast());
-			ch.damage( damageRoll(lvl), this );
-			ch.sprite.centerEmitter().burst( PurpleParticle.BURST, Random.IntRange( 1, 2 ) );
+			ch.damage(damageRoll(lvl), this);
+			ch.sprite.centerEmitter().burst(PurpleParticle.BURST, Random.IntRange(1, 2));
 			ch.sprite.flash();
 			Buff.prolong(ch, Blindness.class, Blindness.DURATION);
+
+			if (curUser.pointsInTalent(Talent.BEAM_DROWSY) == 1) {
+				Buff.affect(ch, Drowsy.class);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_DROWSY) == 2) {
+				Buff.affect(ch, Drowsy.class);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_DROWSY) == 2) {
+				Buff.prolong(ch, Cripple.class, Cripple.DURATION);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_DROWSY) == 3) {
+				Buff.affect(ch, Drowsy.class);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_DROWSY) == 3) {
+				Buff.prolong(ch, Cripple.class, Cripple.DURATION);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_DROWSY) == 3) {
+				Buff.affect(ch, Doom.class);
+			}
+
+			if (curUser.pointsInTalent(Talent.BEAM_SLOW) == 1) {
+				Buff.prolong(ch, Slow.class, Slow.DURATION/5f);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_SLOW) == 2) {
+				Buff.prolong(ch, Slow.class, Slow.DURATION/2f);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_SLOW) == 3) {
+				Buff.prolong(ch, Slow.class, Slow.DURATION);
+			}
+
+			if (curUser.pointsInTalent(Talent.BEAM_ONEDAMAGE) == 1) {
+				if ((Random.Int(4) == 0))
+				Buff.prolong(ch, OneDamage.class, OneDamage.DURATION/5f);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_ONEDAMAGE) == 2) {
+				if ((Random.Int(4) == 0))
+				Buff.prolong(ch, OneDamage.class, OneDamage.DURATION/2f);
+			}
+			if (curUser.pointsInTalent(Talent.BEAM_ONEDAMAGE) == 3) {
+				if ((Random.Int(4) == 0))
+				Buff.prolong(ch, OneDamage.class, OneDamage.DURATION);
+			}
 		}
 	}
 

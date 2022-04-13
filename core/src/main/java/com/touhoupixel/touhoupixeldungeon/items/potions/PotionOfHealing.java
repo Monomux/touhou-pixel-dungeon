@@ -67,7 +67,7 @@ public class PotionOfHealing extends Potion {
 			ch.damage(ch.HT/2, ch);
 		} else if (ch == Dungeon.hero && ((Hero) ch).heroClass == HeroClass.KAGUYAPLAYER){
 			Buff.prolong( ch, Silence.class, Silence.DURATION );
-		} else if (ch == Dungeon.hero && Dungeon.isChallenged(Challenges.NO_HEALING) && !(Dungeon.hero.heroClass == HeroClass.MURASAPLAYER)) {
+		} else if (ch == Dungeon.hero && Dungeon.isChallenged(Challenges.CURSED_HOURAI_ELIXIR) && !(Dungeon.hero.heroClass == HeroClass.MURASAPLAYER)) {
 				pharmacophobiaProc(Dungeon.hero);
 			} else {
 				//starts out healing 30 hp, equalizes with hero health total at level 11

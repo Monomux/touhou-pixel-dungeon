@@ -24,18 +24,18 @@ package com.touhoupixel.touhoupixeldungeon.actors.buffs;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.ui.BuffIndicator;
 
-public class OneDefDamage extends FlavourBuff {
+public class ReBirthDone extends FlavourBuff {
 	
-	public static final float DURATION = 20f;
+	public static final float DURATION = 10f;
 	
 	{
-		type = buffType.POSITIVE;
+		type = buffType.NEGATIVE;
 		announced = true;
 	}
 	
 	@Override
 	public int icon() {
-		return BuffIndicator.ONEDEFDAMAGE;
+		return BuffIndicator.REBIRTH_DONE;
 	}
 
 	@Override
@@ -46,6 +46,11 @@ public class OneDefDamage extends FlavourBuff {
 	@Override
 	public String toString() {
 		return Messages.get(this, "name");
+	}
+	
+	@Override
+	public String heroMessage() {
+		return Messages.get(this, "heromsg");
 	}
 	
 	@Override

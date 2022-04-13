@@ -21,18 +21,28 @@
 
 package com.touhoupixel.touhoupixeldungeon.items.giftcard;
 
+import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.FlavourBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLevitation;
+import com.touhoupixel.touhoupixeldungeon.items.spells.ArcaneCatalyst;
+import com.touhoupixel.touhoupixeldungeon.items.spells.Spell;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
+import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.sprites.ItemSpriteSheet;
+import com.touhoupixel.touhoupixeldungeon.utils.GLog;
+import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
-public class JunkoCard extends GiftCard {
+public class BirthdayCard extends GiftCard {
 
 	{
 		image = ItemSpriteSheet.BIRTHDAY_CARD;

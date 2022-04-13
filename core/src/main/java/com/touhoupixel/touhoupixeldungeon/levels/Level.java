@@ -187,7 +187,9 @@ public abstract class Level implements Bundlable {
 
 		if (!(Dungeon.bossLevel())) {
 
-			addItemToSpawn(Generator.random(Generator.Category.FOOD));
+			if (!Dungeon.isChallenged(Challenges.CHERRY_BLOSSOM_BLOOM)) {
+				addItemToSpawn(Generator.random(Generator.Category.FOOD));
+			}
 
 			if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER){
 				addItemToSpawn( new ElixirOfAquaticRejuvenation() );
@@ -243,7 +245,9 @@ public abstract class Level implements Bundlable {
 						break;
 					case 4:
 						feeling = Feeling.LARGE;
-						addItemToSpawn(Generator.random(Generator.Category.FOOD));
+						if (!Dungeon.isChallenged(Challenges.CHERRY_BLOSSOM_BLOOM)) {
+							addItemToSpawn(Generator.random(Generator.Category.FOOD));
+						}
 						break;
 					case 5:
 						feeling = Feeling.TRAPS;

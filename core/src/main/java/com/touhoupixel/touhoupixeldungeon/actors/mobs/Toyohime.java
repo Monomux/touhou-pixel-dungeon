@@ -83,6 +83,7 @@ public class Toyohime extends Mob implements Callback {
 		Statistics.toyohimesKilled++;
 		Badges.validateToyohimesKilled();
 		Badges.validateReisenUnlock();
+		Badges.validateRenkoUnlock();
 	}
 
 
