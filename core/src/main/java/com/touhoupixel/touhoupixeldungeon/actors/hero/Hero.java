@@ -1689,8 +1689,8 @@ public class Hero extends Char {
 			damage *= 0.75f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.MYSTIA_HIGH_STRESS) && Dungeon.hero.belongings.weapon() instanceof MissileWeapon) {
-			Buff.prolong(this, HighStress.class, HighStress.DURATION);
+		if (Dungeon.isChallenged(Challenges.TENGU_TOY_CAMERA) && Dungeon.hero.belongings.weapon() instanceof MissileWeapon && !enemy.properties().contains(Char.Property.BOSS)) {
+			Buff.prolong(enemy, Triplespeed.class, Triplespeed.DURATION);
 		}
 
 		if (Dungeon.hero.belongings.armor() instanceof YorihimeArmor && (Random.Int(50) == 0)){

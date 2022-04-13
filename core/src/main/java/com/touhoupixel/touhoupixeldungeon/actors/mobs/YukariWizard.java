@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.CursingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DestroyArmorTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.SummoningTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.YukariTrap;
 import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
@@ -83,11 +84,26 @@ public class YukariWizard extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (Random.Int( 4 ) == 0) {
-			new DestroyArmorTrap().set(target).activate();
-			new CursingTrap().set(target).activate();
-			if (Dungeon.hero.STR > 5) {
-				Dungeon.hero.STR--;
-				GameScene.flash(0x80FFFFFF);
+			switch (Random.Int(5)) {
+				case 0:
+				default:
+					if (Dungeon.hero.STR > 5) {
+						Dungeon.hero.STR--;
+						GameScene.flash(0x80FFFFFF);
+					}
+					break;
+				case 1:
+					new DestroyArmorTrap().set(target).activate();
+					break;
+				case 2:
+					new CursingTrap().set(target).activate();
+					break;
+				case 3:
+					new AlarmTrap().set(target).activate();
+					break;
+				case 4:
+					new SummoningTrap().set(target).activate();
+					break;
 			}
 		}
 		return damage;

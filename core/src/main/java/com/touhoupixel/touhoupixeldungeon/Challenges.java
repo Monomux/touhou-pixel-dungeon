@@ -35,7 +35,7 @@ public class Challenges {
 	public static final int KEINE_TIME			     = 64;
 	public static final int EIKI_JUDGEMENT		     = 128;
 	public static final int CURSED_HOURAI_ELIXIR	 = 256;
-	public static final int MYSTIA_HIGH_STRESS       = 512;
+	public static final int TENGU_TOY_CAMERA         = 512;
 	public static final int YUUMA_POWER_DRAIN 		 = 1024;
 	public static final int CHERRY_BLOSSOM_BLOOM     = 2048;
 	public static final int DEKAI_ENEMIES 	         = 4096;
@@ -59,7 +59,7 @@ public class Challenges {
 			"keine_time",
 			"eiki_judgement",
 			"cursed_hourai_elixir",
-			"mystia_high_stress",
+			"tengu_toy_camera",
 			"yuuma_power_drain",
 			"cherry_blossom_bloom",
 			"dekai_enemies",
@@ -73,7 +73,7 @@ public class Challenges {
 	};
 
 	public static final int[] MASKS = {
-			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, CURSED_HOURAI_ELIXIR, MYSTIA_HIGH_STRESS, YUUMA_POWER_DRAIN, CHERRY_BLOSSOM_BLOOM, DEKAI_ENEMIES, ATHEISM, RINGING_BLOOM, REVERSE_HIERARCHY, REBIRTH_DAY, NITORI_CURSED_KEY, PUPPET_DANCE_PERFORMANCE, WIZARD_OF_GENSOKYO
+			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, CURSED_HOURAI_ELIXIR, TENGU_TOY_CAMERA, YUUMA_POWER_DRAIN, CHERRY_BLOSSOM_BLOOM, DEKAI_ENEMIES, ATHEISM, RINGING_BLOOM, REVERSE_HIERARCHY, REBIRTH_DAY, NITORI_CURSED_KEY, PUPPET_DANCE_PERFORMANCE, WIZARD_OF_GENSOKYO
 	};
 
 	public static int activeChallenges(){

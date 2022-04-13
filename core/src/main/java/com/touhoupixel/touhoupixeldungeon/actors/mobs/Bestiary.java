@@ -46,16 +46,10 @@ public class Bestiary {
 				if (Statistics.amuletObtained) {
 					return new ArrayList<>(Arrays.asList(
 							Yukari.class, Yukari.class));
-				} else if (!Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else if (!Statistics.altRoute) {
 					return new ArrayList<>(Arrays.asList(
 							Wriggle.class, Shinmyomaru.class, Nazrin.class, Mike.class));
-				} else if (!Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Wriggle.class, Shinmyomaru.class, Nazrin.class, Mike.class));
-				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Mystia.class, Kisume.class, Larva.class, Aunn.class));
-				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else {
 					return new ArrayList<>(Arrays.asList(
 							Mystia.class, Kisume.class, Larva.class, Aunn.class));
 				}
@@ -65,50 +59,22 @@ public class Bestiary {
 				if (Statistics.amuletObtained) {
 					return new ArrayList<>(Arrays.asList(
 							Yukari.class, Yukari.class));
-				} else if (!Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Wriggle.class, Shinmyomaru.class, Nazrin.class, Ringo.class, Mike.class));
-				} else if (!Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else if (!Statistics.altRoute) {
 					return new ArrayList<>(Arrays.asList(
 							Wriggle.class, Shinmyomaru.class, Nazrin.class, Ringo.class, Mike.class));
-				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Mystia.class, Kisume.class, Larva.class, Saki.class, Aunn.class));
-				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else {
 					return new ArrayList<>(Arrays.asList(
 							Mystia.class, Kisume.class, Larva.class, Saki.class, Aunn.class));
 				}
 			case 6:
-				if (Statistics.amuletObtained) {
-					return new ArrayList<>(Arrays.asList(
-							Yukari.class, Yukari.class));
-				} else if (!Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Rumia.class, Patchouli.class, Marisa.class, Joon.class, Lily.class));
-				} else if (!Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Rumia.class, Patchouli.class, Marisa.class, Joon.class, Lily.class));
-				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Koakuma.class, Kogasa.class, Kosuzu.class, Yachie.class, Nemuno.class));
-				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Koakuma.class, Kogasa.class, Kosuzu.class, Yachie.class, Nemuno.class));
-				}
 			case 7:
 				if (Statistics.amuletObtained) {
 					return new ArrayList<>(Arrays.asList(
 							Yukari.class, Yukari.class));
-				} else if (!Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Rumia.class, Patchouli.class, Marisa.class, Joon.class, Lily.class));
-				} else if (!Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else if (!Statistics.altRoute) {
 					return new ArrayList<>(Arrays.asList(
 							Rumia.class, Patchouli.class, Marisa.class, Joon.class, Lily.class));
-				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Koakuma.class, Kogasa.class, Kosuzu.class, Yachie.class, Nemuno.class));
-				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else {
 					return new ArrayList<>(Arrays.asList(
 							Koakuma.class, Kogasa.class, Kosuzu.class, Yachie.class, Nemuno.class));
 				}
@@ -118,16 +84,10 @@ public class Bestiary {
 				if (Statistics.amuletObtained) {
 					return new ArrayList<>(Arrays.asList(
 							Yukari.class, Yukari.class));
-				} else if (!Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Rumia.class, Patchouli.class, Marisa.class, Cirno.class, Joon.class, Lily.class));
-				} else if (!Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else if (!Statistics.altRoute) {
 					return new ArrayList<>(Arrays.asList(
 							Rumia.class, Patchouli.class, Marisa.class, Cirno.class, Joon.class, Lily.class));
-				} else if (Statistics.altRoute && Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
-					return new ArrayList<>(Arrays.asList(
-							Hecatia.class, Koakuma.class, Kogasa.class, Kosuzu.class, Remilia.class, Yachie.class, Nemuno.class));
-				} else if (Statistics.altRoute && !Dungeon.isChallenged(Challenges.HECATIA_TIME)) {
+				} else {
 					return new ArrayList<>(Arrays.asList(
 							Koakuma.class, Kogasa.class, Kosuzu.class, Remilia.class, Yachie.class, Nemuno.class));
 				}

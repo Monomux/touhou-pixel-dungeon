@@ -40,6 +40,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.ChampionEnemy;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Charm;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Corruption;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublerainbow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doublespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Dread;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
@@ -53,6 +54,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageA;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageD;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageResistance;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Poison;
@@ -644,24 +646,21 @@ public abstract class Mob extends Char {
 			damage *= 1.25f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.ROSELIA) && (Random.Int(2) == 0) && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
-			switch (Random.Int(5)) {
-				case 0:
-				default:
-					Buff.affect(enemy, MessageD.class).reignite(enemy, 50f);
-					break;
-				case 1:
-					Buff.affect(enemy, MessageE.class).reignite(enemy, 50f);
-					break;
-				case 2:
-					Buff.affect(enemy, MessageA.class).reignite(enemy, 50f);
-					break;
-				case 3:
-					Buff.affect(enemy, MessageT.class).reignite(enemy, 50f);
-					break;
-				case 4:
-					Buff.affect(enemy, MessageH.class).reignite(enemy, 50f);
-					break;
+		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy.buff(MessageResistance.class) == null && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
+			if (enemy.buff(MessageD.class) == null && enemy.buff(MessageE.class) == null) {
+				Buff.affect(enemy, MessageD.class).reignite(enemy, 25f);
+				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
+			} else if (enemy.buff(MessageD.class) != null && enemy.buff(MessageE.class) == null) {
+				Buff.affect(enemy, MessageE.class).reignite(enemy, 25f);
+				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
+			} else if (enemy.buff(MessageE.class) != null && enemy.buff(MessageA.class) == null) {
+				Buff.affect(enemy, MessageA.class).reignite(enemy, 25f);
+				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
+			} else if (enemy.buff(MessageA.class) != null && enemy.buff(MessageT.class) == null) {
+				Buff.affect(enemy, MessageT.class).reignite(enemy, 25f);
+				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
+			} else if (enemy.buff(MessageT.class) != null && enemy.buff(MessageH.class) == null) {
+				Buff.affect(enemy, MessageH.class).reignite(enemy, 25f);
 			}
 		}
 
@@ -856,7 +855,7 @@ public abstract class Mob extends Char {
 		for (int i : PathFinder.NEIGHBOURS4) {
 			for (Mob mob : Dungeon.level.mobs.toArray( new Mob[0] )) {
 				if (Dungeon.isChallenged(Challenges.AFTERGLOW) && mob.pos == this.pos + i) {
-					Buff.prolong(mob, Triplespeed.class, Triplespeed.DURATION/5f);
+					Buff.prolong(mob, Doublerainbow.class, Doublerainbow.DURATION/5f);
 				}
 			}
 		}

@@ -320,7 +320,7 @@ public class Potion extends Item {
 				Buff.detach(hero, ArisastarRank2.class);
 				Buff.detach(hero, ArisastarRank3.class);
 
-				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && Statistics.extraSTRcheck > 4) {
+				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && Statistics.extraSTRcheck > 9) {
 					Statistics.extraSTRcheck = 0;
 					GameScene.flash(0x80FFFFFF);
 					if (Dungeon.hero.STR > 5) {

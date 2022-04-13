@@ -142,6 +142,7 @@ public class BuffIndicator extends Component {
 	public static final int REBIRTH_DONE         = 92;
 	public static final int YUKARI_REST         = 93;
 	public static final int WAND_ZERODAMAGE         = 94;
+	public static final int MESSAGE_RESISTANCE         = 95;
 
 	public static final int SIZE    = 7;
 

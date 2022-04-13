@@ -35,11 +35,28 @@ public class v1_X_Changes {
 
 	//just the one update this time
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_5_5_Changes(changeInfos);
 		add_v1_5_4_Changes(changeInfos);
 		add_v1_5_3_Changes(changeInfos);
 		add_v1_5_2_Changes(changeInfos);
 		add_v1_5_1_Changes(changeInfos);
 		add_v1_5_Changes(changeInfos);
+	}
+
+	public static void add_v1_5_5_Changes( ArrayList<ChangeInfo> changeInfos ){
+		ChangeInfo changes = new ChangeInfo("v1.5.5", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Challenges rework part IV",
+				"_-_ Added new challenge, tengu's toy camera which replaces mystia's stress song.\n" +
+						"_-_ Afterglow challenge reworked. now grants double rainbow instead of triplespeed.\n" +
+						"_-_ Roselia challenge reworked. Now death messages are gathered in order, each messages are lasted for 25 turns, gain message resistance buff when gathered a message, preventing unlucky players.\n" +
+						"_-_ Yuuma's power drain challenge nerfed. Now triggers at 10th item instead of 5th item.\n" +
+						"_-_ Hello, hellpy world! challenge nerfed. now hecatia also doesn't spawn on floor 1~10f.\n" +
+						"_-_ Wizard of gensokyo challenge nerfed. now abilities are triggered with random.\n" +
+						"_-_ Dried rose now always appear on floor 6 shop.\n" +
+						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_5_4_Changes( ArrayList<ChangeInfo> changeInfos ){

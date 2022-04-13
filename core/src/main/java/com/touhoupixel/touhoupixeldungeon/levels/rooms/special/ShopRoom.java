@@ -192,9 +192,7 @@ public class ShopRoom extends SpecialRoom {
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
 				}
-				if (!Dungeon.isChallenged(Challenges.ROSELIA)){
 					itemsToSpawn.add(new DriedRose());
-				}
 				break;
 
 			case 11:

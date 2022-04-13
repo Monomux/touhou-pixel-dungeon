@@ -31,7 +31,7 @@ import com.watabou.utils.Bundle;
 
 public class MessageT extends Buff implements Hero.Doom {
 	
-	private static final float DURATION = 50f;
+	private static final float DURATION = 25f;
 	
 	private float left;
 	
