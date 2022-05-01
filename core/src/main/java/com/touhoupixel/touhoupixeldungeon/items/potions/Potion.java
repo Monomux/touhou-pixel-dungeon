@@ -59,6 +59,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.effects.Splash;
@@ -75,6 +76,7 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfCorrosive
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfShroudingFog;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfStormClouds;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FrostBrand;
 import com.touhoupixel.touhoupixeldungeon.journal.Catalog;
@@ -305,9 +307,7 @@ public class Potion extends Item {
 
 			} else {
 				drink( hero );
-				Statistics.extraSTRcheck += 1;
-				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
-					Buff.prolong(curUser, Degrade.class, Degrade.DURATION/2f);
+				if (Dungeon.isChallenged(Challenges.MORFONICA)) {
 					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
 				}
 
@@ -316,16 +316,23 @@ public class Potion extends Item {
 					hunger.affectHunger(10);
 				}
 
+				if (Challenges.activeChallenges() == 0 && Random.Int(9-hero.pointsInTalent(Talent.SOU_POTION)) == 0){
+					ScrollOfUpgrade sou = new ScrollOfUpgrade();
+					sou.collect();
+				}
+
 				Buff.detach(hero, ArisastarRank1.class);
 				Buff.detach(hero, ArisastarRank2.class);
 				Buff.detach(hero, ArisastarRank3.class);
 
-				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && Statistics.extraSTRcheck > 9) {
-					Statistics.extraSTRcheck = 0;
-					GameScene.flash(0x80FFFFFF);
-					if (Dungeon.hero.STR > 5) {
-						hero.STR--;
-					}
+				if (hero == Dungeon.hero && !(((Hero) hero).heroClass == HeroClass.MURASAPLAYER) && Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
+					if (Statistics.extraSTRcheck > 18) {
+						Statistics.extraSTRcheck = 10;
+						GameScene.flash(0x80FFFFFF);
+						if (Dungeon.hero.STR > 5) {
+							hero.STR--;
+						}
+					} else Statistics.extraSTRcheck += 1;
 				}
 
 				if (hero.pointsInTalent(Talent.CURSED_PRESERVE) == 1) {

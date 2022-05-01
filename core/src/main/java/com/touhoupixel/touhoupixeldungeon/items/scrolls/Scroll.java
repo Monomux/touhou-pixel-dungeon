@@ -41,6 +41,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.ScrollEmpower;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.WandZeroDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -208,10 +209,8 @@ public abstract class Scroll extends Item {
 			} else {
 				curUser = hero;
 				curItem = detach(hero.belongings.backpack);
-				Statistics.extraSTRcheck += 1;
 				doRead();
-				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
-					Buff.prolong(curUser, Degrade.class, Degrade.DURATION/2f);
+				if (Dungeon.isChallenged(Challenges.MORFONICA)) {
 					Buff.prolong(curUser, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
 				}
 
@@ -219,12 +218,14 @@ public abstract class Scroll extends Item {
 				Buff.detach(hero, ArisastarRank2.class);
 				Buff.detach(hero, ArisastarRank3.class);
 
-				if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && Statistics.extraSTRcheck > 9) {
-					Statistics.extraSTRcheck = 0;
-					GameScene.flash(0x80FFFFFF);
-					if (Dungeon.hero.STR > 5) {
-						hero.STR--;
-					}
+				if (hero == Dungeon.hero && !(((Hero) hero).heroClass == HeroClass.MURASAPLAYER) && Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN)) {
+					if (Statistics.extraSTRcheck > 18) {
+						Statistics.extraSTRcheck = 10;
+						GameScene.flash(0x80FFFFFF);
+						if (Dungeon.hero.STR > 5) {
+							hero.STR--;
+						}
+					} else Statistics.extraSTRcheck += 1;
 				}
 			}
 

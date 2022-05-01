@@ -31,7 +31,7 @@ public class MessageResistance extends FlavourBuff {
 		announced = true;
 	}
 
-	public static final float DURATION = 2f;
+	public static final float DURATION = 3f;
 
 	@Override
 	public int icon() {

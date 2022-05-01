@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.effects.Transmuting;
 import com.touhoupixel.touhoupixeldungeon.items.EquipableItem;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
 import com.touhoupixel.touhoupixeldungeon.items.potions.AlchemicalCatalyst;
 import com.touhoupixel.touhoupixeldungeon.items.potions.Potion;
@@ -65,6 +66,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		return item instanceof MeleeWeapon && ((MeleeWeapon) item).tier < 6 ||
 				(item instanceof MissileWeapon && (!(item instanceof Dart) || item instanceof TippedDart)) ||
 				(item instanceof Potion && !(item instanceof Elixir || item instanceof Brew || item instanceof AlchemicalCatalyst)) ||
+				item instanceof Armor && ((Armor) item).tier > 1 ||
 				item instanceof Scroll ||
 				item instanceof Ring ||
 				item instanceof Wand ||
@@ -110,6 +112,8 @@ public class ScrollOfTransmutation extends InventoryScroll {
 			return changeTippeDart( (TippedDart)item );
 		} else if (item instanceof MeleeWeapon || item instanceof MissileWeapon) {
 			return changeWeapon( (Weapon)item );
+		} else if (item instanceof Armor) {
+			return changeArmor( (Armor)item );
 		} else if (item instanceof Scroll) {
 			return changeScroll( (Scroll)item );
 		} else if (item instanceof Potion) {
@@ -188,6 +192,35 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		return n;
 		
+	}
+
+	private static Armor changeArmor( Armor w2 ) {
+
+		Armor n2;
+		Generator.Category c2;
+			c2 = Generator.armorTiers[(w2).tier - 1];
+
+		do {
+			n2 = (Armor) Reflection.newInstance(c2.classes[Random.chances(c2.probs)]);
+		} while (Challenges.isItemBlocked(n2) || n2.getClass() == w2.getClass());
+
+		int level = w2.level();
+		if (w2.curseInfusionBonus) level--;
+		if (level > 0) {
+			n2.upgrade( level );
+		} else if (level < 0) {
+			n2.degrade( -level );
+		}
+
+		n2.glyph = w2.glyph;
+		n2.curseInfusionBonus = w2.curseInfusionBonus;
+		n2.masteryPotionBonus = w2.masteryPotionBonus;
+		n2.levelKnown = w2.levelKnown;
+		n2.cursedKnown = w2.cursedKnown;
+		n2.cursed = w2.cursed;
+		n2.augment = w2.augment;
+
+		return n2;
 	}
 	
 	private static Ring changeRing( Ring r ) {

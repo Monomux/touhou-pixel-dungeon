@@ -37,6 +37,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.traps.DespairTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DisarmingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DisintegrationTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DistortionTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.FlashingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GapTrap;
@@ -123,7 +124,7 @@ public class HallsLevel extends RegularLevel {
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
 				FrostTrap.class, CorrosionTrap.class, BlazingTrap.class, DisintegrationTrap.class, GapTrap.class,
-				RockfallTrap.class, FlashingTrap.class, GuardianTrap.class, WeakeningTrap.class, DegradeTrap.class, DespairTrap.class, AntiHealTrap.class,
+				RockfallTrap.class, FlashingTrap.class, GuardianTrap.class, WeakeningTrap.class, DegradeTrap.class, DespairTrap.class, AntiHealTrap.class, ExConfusionTrap.class,
 				DisarmingTrap.class, SummoningTrap.class, WarpingTrap.class, CursingTrap.class, GrimTrap.class, PitfallTrap.class, DistortionTrap.class, GatewayTrap.class, GeyserTrap.class };
 	}
 
@@ -131,7 +132,7 @@ public class HallsLevel extends RegularLevel {
 	protected float[] trapChances() {
 		return new float[]{
 				4, 4, 4, 4, 4,
-				2, 2, 2, 2, 2, 2, 2,
+				2, 2, 2, 2, 2, 2, 2, 2,
 				1, 1, 1, 1, 1, 1, 1, 1, 1 };
 	}
 	

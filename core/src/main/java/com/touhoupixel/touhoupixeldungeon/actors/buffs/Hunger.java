@@ -201,8 +201,6 @@ public class Hunger extends Buff implements Hero.Doom {
 	@Override
 	public void onDeath() {
 
-		Badges.validateDeathFromHunger();
-
 		Dungeon.fail( getClass() );
 		GLog.n( Messages.get(this, "ondeath") );
 	}

@@ -53,10 +53,12 @@ public class Statistics {
 	public static int cardDrawalt;
 
 	public static int timeReset;
+	public static int tenshiEarthquake;
 
 	public static int deepdwarfHTdown;
 
 	public static int extraSTRcheck;
+	public static int extraSTRcheck2;
 
 	public static int spawnersAlive;
 
@@ -112,10 +114,12 @@ public class Statistics {
 		cardDrawalt   = 0;
 
 		timeReset = 0;
+		tenshiEarthquake = 0;
 
 		deepdwarfHTdown   = 0;
 
 		extraSTRcheck   = 0;
+		extraSTRcheck2   = 0;
 
 		spawnersAlive   = 0;
 
@@ -170,10 +174,12 @@ public class Statistics {
 	private static final String CARDDRAWALT		= "cardDrawalt";
 
 	private static final String TIMERESET		= "timeReset";
+	private static final String TENSHIEARTHQUAKE		= "tenshiearthquake";
 
 	private static final String DEEPDWARFHTDOWN		= "deepdwarfhtdown";
 
 	private static final String EXTRASTRCHECK		= "extraSTRcheck";
+	private static final String EXTRASTRCHECK2		= "extraSTRcheck2";
 
 	private static final String SPAWNERS	= "spawnersAlive";
 
@@ -226,10 +232,12 @@ public class Statistics {
 		bundle.put( CARDDRAWALT,		cardDrawalt );
 
 		bundle.put( TIMERESET,		timeReset );
+		bundle.put( TENSHIEARTHQUAKE,		tenshiEarthquake );
 
 		bundle.put( DEEPDWARFHTDOWN,	deepdwarfHTdown );
 
 		bundle.put( EXTRASTRCHECK,	extraSTRcheck );
+		bundle.put( EXTRASTRCHECK2,	extraSTRcheck2 );
 
 		bundle.put( SPAWNERS,	spawnersAlive );
 
@@ -283,10 +291,12 @@ public class Statistics {
 		cardDrawalt   = bundle.getInt( CARDDRAWALT );
 
 		timeReset   = bundle.getInt( TIMERESET );
+		tenshiEarthquake   = bundle.getInt( TENSHIEARTHQUAKE );
 
 		deepdwarfHTdown   = bundle.getInt( DEEPDWARFHTDOWN );
 
 		extraSTRcheck   = bundle.getInt( EXTRASTRCHECK );
+		extraSTRcheck2   = bundle.getInt( EXTRASTRCHECK2 );
 
 		spawnersAlive   = bundle.getInt( SPAWNERS );
 

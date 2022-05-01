@@ -121,7 +121,6 @@ public class Poison extends Buff implements Hero.Doom {
 
 	@Override
 	public void onDeath() {
-		Badges.validateDeathFromPoison();
 		
 		Dungeon.fail( getClass() );
 		GLog.n( Messages.get(this, "ondeath") );

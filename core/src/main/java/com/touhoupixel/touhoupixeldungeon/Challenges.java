@@ -35,17 +35,17 @@ public class Challenges {
 	public static final int KEINE_TIME			     = 64;
 	public static final int EIKI_JUDGEMENT		     = 128;
 	public static final int CURSED_HOURAI_ELIXIR	 = 256;
-	public static final int TENGU_TOY_CAMERA         = 512;
+	public static final int TENSHI_EARTHQUAKE        = 512;
 	public static final int YUUMA_POWER_DRAIN 		 = 1024;
 	public static final int CHERRY_BLOSSOM_BLOOM     = 2048;
 	public static final int DEKAI_ENEMIES 	         = 4096;
 	public static final int ATHEISM 	             = 8192;
 	public static final int RINGING_BLOOM            = 16384;
-	public static final int REVERSE_HIERARCHY 	     = 32768;
+	public static final int MORFONICA 	             = 32768;
 	public static final int REBIRTH_DAY 	         = 65536;
 	public static final int NITORI_CURSED_KEY        = 131072;
-	public static final int PUPPET_DANCE_PERFORMANCE = 262144;
-	public static final int WIZARD_OF_GENSOKYO       = 524288;
+	public static final int KAGUYA_ITEM_DISPEL       = 262144;
+	public static final int PUPPET_DANCE_PERFORMANCE = 524288;
 
 	public static final int MAX_VALUE                = 1048575;
 
@@ -59,21 +59,21 @@ public class Challenges {
 			"keine_time",
 			"eiki_judgement",
 			"cursed_hourai_elixir",
-			"tengu_toy_camera",
+			"tenshi_earthquake",
 			"yuuma_power_drain",
 			"cherry_blossom_bloom",
 			"dekai_enemies",
 			"atheism",
 			"become_fumo",
-			"reverse_hierarchy",
+			"morfonica",
 			"rebirth_day",
 			"nitori_cursed_key",
-			"puppet_dance_performance",
-			"wizard_of_gensokyo"
+			"kaguya_item_dispel",
+			"puppet_dance_performance"
 	};
 
 	public static final int[] MASKS = {
-			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, CURSED_HOURAI_ELIXIR, TENGU_TOY_CAMERA, YUUMA_POWER_DRAIN, CHERRY_BLOSSOM_BLOOM, DEKAI_ENEMIES, ATHEISM, RINGING_BLOOM, REVERSE_HIERARCHY, REBIRTH_DAY, NITORI_CURSED_KEY, PUPPET_DANCE_PERFORMANCE, WIZARD_OF_GENSOKYO
+			CHAMPION_ENEMIES, REISEN_GAZE, AFTERGLOW, PASTEL_PALETTES, ROSELIA, HECATIA_TIME, KEINE_TIME, EIKI_JUDGEMENT, CURSED_HOURAI_ELIXIR, TENSHI_EARTHQUAKE, YUUMA_POWER_DRAIN, CHERRY_BLOSSOM_BLOOM, DEKAI_ENEMIES, ATHEISM, RINGING_BLOOM, MORFONICA, REBIRTH_DAY, NITORI_CURSED_KEY, KAGUYA_ITEM_DISPEL, PUPPET_DANCE_PERFORMANCE
 	};
 
 	public static int activeChallenges(){

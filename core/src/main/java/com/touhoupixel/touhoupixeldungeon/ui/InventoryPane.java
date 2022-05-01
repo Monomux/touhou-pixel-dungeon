@@ -29,10 +29,13 @@ import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Belongings;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.bags.ArcaneHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
+import com.touhoupixel.touhoupixeldungeon.items.bags.FoodHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
 import com.touhoupixel.touhoupixeldungeon.items.bags.PotionBandolier;
 import com.touhoupixel.touhoupixeldungeon.items.bags.ScrollHolder;
+import com.touhoupixel.touhoupixeldungeon.items.bags.TailsmanHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
@@ -143,7 +146,9 @@ public class InventoryPane extends Component {
 						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_2
 						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_3
 						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_4
-						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_5){
+						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_5
+						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_6
+						&& KeyBindings.getActionForKey(keyEvent) != TPDAction.BAG_7){
 					selector = null;
 					updateInventory();
 					return true;
@@ -444,6 +449,12 @@ public class InventoryPane extends Component {
 			return Icons.get( Icons.WAND_HOLSTER );
 		} else if (bag instanceof PotionBandolier) {
 			return Icons.get( Icons.POTION_BANDOLIER );
+		} else if (bag instanceof FoodHolder) {
+			return Icons.get( Icons.FOOD_HOLDER );
+		} else if (bag instanceof ArcaneHolder) {
+			return Icons.get( Icons.ARCANE_HOLDER );
+		} else if (bag instanceof TailsmanHolder) {
+			return Icons.get( Icons.TAILSMAN_HOLDER );
 		} else {
 			return Icons.get( Icons.BACKPACK );
 		}
@@ -607,16 +618,20 @@ public class InventoryPane extends Component {
 		@Override
 		public GameAction keyAction() {
 			switch (index){
-				case 1: default:
+				case 0: default:
 					return TPDAction.BAG_1;
-				case 2:
+				case 1:
 					return TPDAction.BAG_2;
-				case 3:
+				case 2:
 					return TPDAction.BAG_3;
-				case 4:
+				case 3:
 					return TPDAction.BAG_4;
-				case 5:
+				case 4:
 					return TPDAction.BAG_5;
+				case 5:
+					return TPDAction.BAG_6;
+				case 6:
+					return TPDAction.BAG_7;
 			}
 		}
 	}

@@ -76,6 +76,8 @@ public class StatusPane extends Component {
 	private BuffIndicator buffs;
 	private Compass compass;
 
+	private BusyIndicator busy;
+
 	private Toolbar.PickedUpItem pickedUp;
 
 	@Override
@@ -134,6 +136,9 @@ public class StatusPane extends Component {
 
 		buffs = new BuffIndicator(Dungeon.hero);
 		add( buffs );
+
+		busy = new BusyIndicator();
+		add( busy );
 
 		add( pickedUp = new Toolbar.PickedUpItem());
 	}

@@ -25,8 +25,12 @@ import com.touhoupixel.touhoupixeldungeon.Badges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Berserk;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Healing;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MagicImmune;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
+import com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Talent;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.KindOfWeapon;
@@ -62,12 +66,15 @@ import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 abstract public class Weapon extends KindOfWeapon {
 
 	public float    ACC = 1f;	// Accuracy modifier
 	public float	DLY	= 1f;	// Speed modifier
 	public int      RCH = 1;    // Reach modifier (only applies to melee hits)
+
+	final Calendar calendar = Calendar.getInstance();
 
 	public enum Augment {
 		SPEED   (0.7f, 0.6667f),
@@ -90,24 +97,24 @@ abstract public class Weapon extends KindOfWeapon {
 			return dly * delayFactor;
 		}
 	}
-	
+
 	public Augment augment = Augment.NONE;
-	
+
 	private static final int USES_TO_ID = 20;
 	private float usesLeftToID = USES_TO_ID;
 	private float availableUsesToID = USES_TO_ID/2f;
-	
+
 	public Enchantment enchantment;
 	public boolean curseInfusionBonus = false;
 	public boolean masteryPotionBonus = false;
-	
+
 	@Override
 	public int proc( Char attacker, Char defender, int damage ) {
-		
+
 		if (enchantment != null && attacker.buff(MagicImmune.class) == null) {
 			damage = enchantment.proc( this, attacker, defender, damage );
 		}
-		
+
 		if (!levelKnown && attacker == Dungeon.hero) {
 			float uses = Math.min( availableUsesToID, Talent.itemIDSpeedFactor(Dungeon.hero, this) );
 			availableUsesToID -= uses;
@@ -121,7 +128,7 @@ abstract public class Weapon extends KindOfWeapon {
 
 		return damage;
 	}
-	
+
 	public void onHeroGainExp( float levelPercent, Hero hero ){
 		levelPercent *= Talent.itemIDSpeedFactor(hero, this);
 		if (!levelKnown && isEquipped(hero) && availableUsesToID <= USES_TO_ID/2f) {
@@ -129,7 +136,7 @@ abstract public class Weapon extends KindOfWeapon {
 			availableUsesToID = Math.min(USES_TO_ID/2f, availableUsesToID + levelPercent * USES_TO_ID);
 		}
 	}
-	
+
 	private static final String USES_LEFT_TO_ID = "uses_left_to_id";
 	private static final String AVAILABLE_USES  = "available_uses";
 	private static final String ENCHANTMENT	    = "enchantment";
@@ -147,7 +154,7 @@ abstract public class Weapon extends KindOfWeapon {
 		bundle.put( MASTERY_POTION_BONUS, masteryPotionBonus );
 		bundle.put( AUGMENT, augment );
 	}
-	
+
 	@Override
 	public void restoreFromBundle( Bundle bundle ) {
 		super.restoreFromBundle( bundle );
@@ -159,19 +166,19 @@ abstract public class Weapon extends KindOfWeapon {
 
 		augment = bundle.getEnum(AUGMENT, Augment.class);
 	}
-	
+
 	@Override
 	public void reset() {
 		super.reset();
 		usesLeftToID = USES_TO_ID;
 		availableUsesToID = USES_TO_ID/2f;
 	}
-	
+
 	@Override
 	public float accuracyFactor( Char owner ) {
-		
+
 		int encumbrance = 0;
-		
+
 		if( owner instanceof Hero ){
 			encumbrance = STRReq() - ((Hero)owner).STR();
 		}
@@ -183,10 +190,24 @@ abstract public class Weapon extends KindOfWeapon {
 
 		return encumbrance > 0 ? (float)(ACC / Math.pow( 1.5, encumbrance )) : ACC;
 	}
-	
+
 	@Override
 	public float delayFactor( Char owner ) {
-		return baseDelay(owner) * (1f/speedMultiplier(owner));
+		if (owner.buff(ExtremeConfusion.class) != null){
+			switch (Random.Int(4)) {
+				case 0:
+				default:
+					return 0f;
+				case 1:
+					return 1f;
+				case 2:
+					return 2f;
+				case 3:
+					return 3f;
+			}
+		} else if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
+			return 0.5f;
+		} else return baseDelay(owner) * (1f/speedMultiplier(owner));
 	}
 
 	protected float baseDelay( Char owner ){

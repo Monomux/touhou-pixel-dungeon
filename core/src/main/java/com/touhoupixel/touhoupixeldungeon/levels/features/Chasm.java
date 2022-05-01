@@ -109,7 +109,6 @@ public class Chasm implements Hero.Doom {
 
 	@Override
 	public void onDeath() {
-		Badges.validateDeathFromFalling();
 
 		Dungeon.fail( Chasm.class );
 		GLog.n( Messages.get(Chasm.class, "ondeath") );
@@ -160,12 +159,11 @@ public class Chasm implements Hero.Doom {
 			return true;
 		}
 	}
-	
+
 	public static class FallBleed extends Bleeding implements Hero.Doom {
-		
+
 		@Override
 		public void onDeath() {
-			Badges.validateDeathFromFalling();
 		}
 	}
 }

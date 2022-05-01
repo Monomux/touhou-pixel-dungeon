@@ -259,6 +259,7 @@ public class Assets {
 		public static final String JUNKOPLAYER     = "splashes/junkoplayer.jpg";
 		public static final String RENKOPLAYER     = "splashes/renkoplayer.jpg";
 		public static final String SEIJAPLAYER     = "splashes/seijaplayer.jpg";
+		public static final String TENKYUUPLAYER     = "splashes/tenkyuuplayer.jpg";
 	}
 
 	public static class Sprites {
@@ -280,6 +281,7 @@ public class Assets {
 		public static final String JUNKOPLAYER = "sprites/junkoplayer.png";
 		public static final String RENKOPLAYER = "sprites/renkoplayer.png";
 		public static final String SEIJAPLAYER = "sprites/seijaplayer.png";
+		public static final String TENKYUUPLAYER = "sprites/tenkyuuplayer.png";
 		public static final String AVATARS	= "sprites/avatars.png";
 		public static final String PET		= "sprites/pet.png";
 		public static final String AMULET	= "sprites/amulet.png";

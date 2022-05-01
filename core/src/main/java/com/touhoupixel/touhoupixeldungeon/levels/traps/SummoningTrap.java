@@ -45,12 +45,6 @@ public class SummoningTrap extends Trap {
 	public void activate() {
 
 		int nMobs = 1;
-		if (Random.Int( 2 ) == 0) {
-			nMobs++;
-			if (Random.Int( 2 ) == 0) {
-				nMobs++;
-			}
-		}
 
 		ArrayList<Integer> candidates = new ArrayList<>();
 

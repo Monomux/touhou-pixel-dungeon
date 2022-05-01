@@ -26,8 +26,13 @@ import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.TenshiMark;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vertigo;
+import com.touhoupixel.touhoupixeldungeon.items.Gold;
 import com.touhoupixel.touhoupixeldungeon.items.quest.Peach;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
+import com.touhoupixel.touhoupixeldungeon.sprites.NazrinSprite;
 import com.touhoupixel.touhoupixeldungeon.sprites.TenshiSprite;
 import com.touhoupixel.touhoupixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
@@ -65,7 +70,7 @@ public class Tenshi extends Mob {
 	public int damageRoll() {
 		if (Dungeon.depth > 50) {
 			return Random.NormalIntRange(42, 48);
-		} else return Random.NormalIntRange(21, 25);
+		} else return Random.NormalIntRange(21, 26);
 	}
 
 	@Override
@@ -80,42 +85,14 @@ public class Tenshi extends Mob {
 		return Random.NormalIntRange(0, 2);
 	}
 
-	protected float focusCooldown = 1;
-
 	@Override
-	protected boolean act() {
-		boolean result = super.act();
-		Buff.prolong(this, Hisou.class, Hisou.DURATION * 1000f);
-		if (state == HUNTING && focusCooldown <= 0 && !enemy.flying) {
-			focusCooldown = 1;
-			enemy.damage( Random.NormalIntRange(15, 20), this );
-			Sample.INSTANCE.play(Assets.Sounds.BLAST);
-			GLog.w(Messages.get(this, "earth"));
+	public int attackProc( Char enemy, int damage ) {
+		damage = super.attackProc( enemy, damage );
+		if (this.buff(Incompetence.class) == null) {
+			if (Random.Int(2) == 0) {
+				Buff.prolong(enemy, TenshiMark.class, TenshiMark.DURATION);
+			}
 		}
-		if (enemy == Dungeon.hero && !enemy.isAlive()) {
-			Dungeon.fail( getClass() );
-			GLog.n( Messages.get(this, "ondeath") );
-		}
-		return result;
-	}
-
-	@Override
-	protected void spend(float time) {
-		focusCooldown -= time;
-		super.spend(time);
-	}
-
-	private static String FOCUS_COOLDOWN = "focus_cooldown";
-
-	@Override
-	public void storeInBundle(Bundle bundle) {
-		super.storeInBundle(bundle);
-		bundle.put(FOCUS_COOLDOWN, focusCooldown);
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		focusCooldown = bundle.getInt(FOCUS_COOLDOWN);
+		return damage;
 	}
 }

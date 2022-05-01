@@ -35,12 +35,23 @@ public class v1_X_Changes {
 
 	//just the one update this time
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_5_6_Changes(changeInfos);
 		add_v1_5_5_Changes(changeInfos);
 		add_v1_5_4_Changes(changeInfos);
 		add_v1_5_3_Changes(changeInfos);
 		add_v1_5_2_Changes(changeInfos);
 		add_v1_5_1_Changes(changeInfos);
 		add_v1_5_Changes(changeInfos);
+	}
+
+	public static void add_v1_5_6_Changes( ArrayList<ChangeInfo> changeInfos ){
+		ChangeInfo changes = new ChangeInfo("v1.5.6", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "Challenges rework part V",
+				"_-_ Too many changes. Too many, so there is no space to write...\n" +
+						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_5_5_Changes( ArrayList<ChangeInfo> changeInfos ){

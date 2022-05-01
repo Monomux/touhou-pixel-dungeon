@@ -61,11 +61,11 @@ public class WandOfPurityBeam extends DamageWand {
 	}
 
 	public int min(int lvl){
-		return 6+lvl+Dungeon.depth*2;
+		return 6+lvl+Dungeon.depth;
 	}
 
 	public int max(int lvl){
-		return 12+4*lvl+Dungeon.depth*2;
+		return 11+4*lvl+Dungeon.depth;
 	}
 
 	protected int initialCharges() {

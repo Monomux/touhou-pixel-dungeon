@@ -23,6 +23,7 @@ package com.touhoupixel.touhoupixeldungeon.scenes;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Badges;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Chrome;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.TouhouPixelDungeon;
@@ -433,6 +434,17 @@ public class AlchemyScene extends PixelScene {
 			}
 
 			Statistics.itemsCrafted++;
+
+			if (Dungeon.isChallenged(Challenges.KAGUYA_ITEM_DISPEL)) {
+				if (Statistics.extraSTRcheck2 > 3) {
+					Statistics.extraSTRcheck2 = 0;
+					if (Dungeon.hero.STR > 5) {
+						Dungeon.hero.STR--;
+					}
+					Sample.INSTANCE.play(Assets.Sounds.BLAST);
+				} else Statistics.extraSTRcheck2 += 1;
+			}
+
 			Badges.validateItemsCrafted();
 			
 			try {

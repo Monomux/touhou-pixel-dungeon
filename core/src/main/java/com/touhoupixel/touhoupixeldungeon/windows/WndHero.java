@@ -156,6 +156,29 @@ public class WndHero extends WndTabbed {
 			else if (strBonus < 0)      statSlot( Messages.get(this, "str"), hero.STR + " - " + -strBonus );
 			else                        statSlot( Messages.get(this, "str"), hero.STR() );
 			statSlot( Messages.get(this, "exp"), hero.exp + "/" + hero.maxExp() );
+
+			if (hero.lvl < 10) {
+				statSlot(Messages.get(this, "damagelimit"), 25);
+			} else if (hero.lvl < 20) {
+				statSlot(Messages.get(this, "damagelimit"), 50);
+			} else if (hero.lvl < 30) {
+				statSlot(Messages.get(this, "damagelimit"), 75);
+			} else if (hero.lvl < 40) {
+				statSlot(Messages.get(this, "damagelimit"), 100);
+			} else if (hero.lvl < 50) {
+				statSlot(Messages.get(this, "damagelimit"), 150);
+			} else if (hero.lvl < 60) {
+				statSlot(Messages.get(this, "damagelimit"), 200);
+			} else if (hero.lvl < 70) {
+				statSlot(Messages.get(this, "damagelimit"), 250);
+			} else if (hero.lvl < 80) {
+				statSlot(Messages.get(this, "damagelimit"), 300);
+			} else if (hero.lvl < 90) {
+				statSlot(Messages.get(this, "damagelimit"), 450);
+			} else if (hero.lvl < 99) {
+				statSlot(Messages.get(this, "damagelimit"), 500);
+			} else statSlot(Messages.get(this, "damagelimit"), 999);
+
 			statSlot( Messages.get(this, "fireres"), Statistics.fireres );
 			statSlot( Messages.get(this, "coldres"), Statistics.coldres );
 			statSlot( Messages.get(this, "warpres"), Statistics.warpres );

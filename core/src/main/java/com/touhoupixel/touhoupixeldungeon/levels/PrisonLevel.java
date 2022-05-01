@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.traps.AlarmTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.ConfusionTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GapTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GatewayTrap;
@@ -102,7 +103,7 @@ public class PrisonLevel extends RegularLevel {
 		return new Class[]{
 				ChillingTrap.class, ToxicTrap.class, BurningTrap.class, PoisonDartTrap.class, GapTrap.class,
 				AlarmTrap.class, OozeTrap.class, GrippingTrap.class,
-				ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class, GeyserTrap.class };
+				ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class, ExConfusionTrap.class, GeyserTrap.class };
 	}
 
 	@Override
@@ -110,7 +111,7 @@ public class PrisonLevel extends RegularLevel {
 		return new float[]{
 				4, 4, 4, 4, 4,
 				2, 2, 2,
-				1, 1, 1, 1, 1, 1 };
+				1, 1, 1, 1, 1, 1, 1 };
 	}
 
 	@Override

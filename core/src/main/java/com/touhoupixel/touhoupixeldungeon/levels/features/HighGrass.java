@@ -56,7 +56,7 @@ public class HighGrass {
 		
 		Char ch = Actor.findChar(pos);
 
-		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.PUPPET_DANCE_PERFORMANCE) && (Random.Int(5) == 0)){
+		if (ch instanceof Hero && Dungeon.isChallenged(Challenges.PUPPET_DANCE_PERFORMANCE) && (Random.Int(6) == 0)){
 			new SummoningTrap().set(pos).activate();
 		}
 		

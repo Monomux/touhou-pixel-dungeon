@@ -61,14 +61,14 @@ public class TPDAction extends GameAction {
 	public static final GameAction QUICKSLOT_2  = new TPDAction("quickslot_2");
 	public static final GameAction QUICKSLOT_3  = new TPDAction("quickslot_3");
 	public static final GameAction QUICKSLOT_4  = new TPDAction("quickslot_4");
-	public static final GameAction QUICKSLOT_5  = new TPDAction("quickslot_5");
-	public static final GameAction QUICKSLOT_6  = new TPDAction("quickslot_6");
 
 	public static final GameAction BAG_1        = new TPDAction("bag_1");
 	public static final GameAction BAG_2        = new TPDAction("bag_2");
 	public static final GameAction BAG_3        = new TPDAction("bag_3");
 	public static final GameAction BAG_4        = new TPDAction("bag_4");
 	public static final GameAction BAG_5        = new TPDAction("bag_5");
+	public static final GameAction BAG_6        = new TPDAction("bag_6");
+	public static final GameAction BAG_7        = new TPDAction("bag_7");
 
 	public static final GameAction EXAMINE      = new TPDAction("examine");
 	public static final GameAction REST         = new TPDAction("rest");
@@ -130,14 +130,14 @@ public class TPDAction extends GameAction {
 		defaultBindings.put( Input.Keys.BUTTON_X,       TPDAction.QUICKSLOT_3 );
 		defaultBindings.put( Input.Keys.NUM_4,          TPDAction.QUICKSLOT_4 );
 		defaultBindings.put( Input.Keys.BUTTON_A,       TPDAction.QUICKSLOT_4 );
-		defaultBindings.put( Input.Keys.NUM_5,          TPDAction.QUICKSLOT_5 );
-		defaultBindings.put( Input.Keys.NUM_6,          TPDAction.QUICKSLOT_6 );
 
 		defaultBindings.put( Input.Keys.F1,             TPDAction.BAG_1 );
 		defaultBindings.put( Input.Keys.F2,             TPDAction.BAG_2 );
 		defaultBindings.put( Input.Keys.F3,             TPDAction.BAG_3 );
 		defaultBindings.put( Input.Keys.F4,             TPDAction.BAG_4 );
 		defaultBindings.put( Input.Keys.F5,             TPDAction.BAG_5 );
+		defaultBindings.put( Input.Keys.F6,             TPDAction.BAG_6 );
+		defaultBindings.put( Input.Keys.F7,             TPDAction.BAG_7 );
 
 		defaultBindings.put( Input.Keys.E,              TPDAction.EXAMINE );
 		defaultBindings.put( Input.Keys.BUTTON_L1,      TPDAction.EXAMINE );

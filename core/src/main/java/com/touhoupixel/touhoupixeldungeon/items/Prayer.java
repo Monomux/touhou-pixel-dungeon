@@ -30,6 +30,11 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Burning;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Degrade;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.HighStress;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageA;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageD;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Ooze;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperDegrade;
@@ -114,6 +119,11 @@ public class Prayer extends Item {
 				Ooze.detach( curUser, Ooze.class );
 				SuperOoze.detach( curUser, SuperOoze.class );
 				Burning.detach( curUser, Burning.class );
+				Burning.detach( curUser, MessageD.class );
+				Burning.detach( curUser, MessageE.class );
+				Burning.detach( curUser, MessageA.class );
+				Burning.detach( curUser, MessageT.class );
+				Burning.detach( curUser, MessageH.class );
 				if (hero.HP < hero.HT) {
 					hero.HP = Math.min(hero.HP + hero.HT, hero.HT);
 				}

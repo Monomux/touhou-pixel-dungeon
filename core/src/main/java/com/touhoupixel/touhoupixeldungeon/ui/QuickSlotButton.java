@@ -177,10 +177,6 @@ public class QuickSlotButton extends Button {
 				return TPDAction.QUICKSLOT_3;
 			case 3:
 				return TPDAction.QUICKSLOT_4;
-			case 4:
-				return TPDAction.QUICKSLOT_5;
-			case 5:
-				return TPDAction.QUICKSLOT_6;
 			default:
 				return super.keyAction();
 		}

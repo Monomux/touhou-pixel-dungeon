@@ -348,8 +348,10 @@ public class ItemSpriteSheet {
 	public static final int ARISA_KEYBOARD        = WEP_TIER5+373;
 	public static final int TURNABOUT_CLOAK        = WEP_TIER5+374;
 	public static final int DOUBLE_SWORD        = WEP_TIER5+375;
+	public static final int YACHIE_HORN        = WEP_TIER5+376;
 	public static final int AUTUMN_KATANA        = WEP_TIER5+377;
 	public static final int GRAYSWANDIR        = WEP_TIER5+378;
+	public static final int BUTTERFLY_FAN        = WEP_TIER5+379;
 	public static final int YUKINA_MIC        = WEP_TIER5+381;
 	public static final int PLAY_MAT        = WEP_TIER5+383;
 	static{
@@ -393,8 +395,10 @@ public class ItemSpriteSheet {
 		assignItemRect(ARISA_KEYBOARD,      13, 13);
 		assignItemRect(TURNABOUT_CLOAK,      14, 14);
 		assignItemRect(DOUBLE_SWORD,      13, 13);
+		assignItemRect(YACHIE_HORN,      13, 13);
 		assignItemRect(AUTUMN_KATANA,      13, 13);
 		assignItemRect(GRAYSWANDIR,      13, 13);
+		assignItemRect(BUTTERFLY_FAN,      13, 13);
 		assignItemRect(YUKINA_MIC,      13, 13);
 		assignItemRect(PLAY_MAT,      13, 13);
 	}
@@ -767,6 +771,7 @@ public class ItemSpriteSheet {
 	private static final int GIFTCARD     =                               xy(1, 26);  //16 slots
 	public static final int BIRTHDAY_CARD     = GIFTCARD+0;
 	public static final int SPCARD     = GIFTCARD+1;
+	public static final int THREE_STAR_TICKET     = GIFTCARD+2;
 	static{
 		for (int i = GIFTCARD; i < GIFTCARD+16; i++)
 			assignItemRect(i, 15, 11);
@@ -954,7 +959,7 @@ public class ItemSpriteSheet {
 	public static final int ALCHEMY_SWORD        = WEP_TIER5_PART2+6;
 	public static final int POT_OF_GREED        = WEP_TIER5_PART2+7;
 	public static final int ALCHEMY_HAT        = WEP_TIER5_PART2+8;
-
+	public static final int EIKI_HAMMER        = WEP_TIER5_PART2+9;
 	public static final int SMALL_SEIRAN_HAMMER    = WEP_TIER5_PART2+10;
 	public static final int HINA_RIBBON        = WEP_TIER5_PART2+11;
 	public static final int LUNA_CLOCK        = WEP_TIER5_PART2+12;
@@ -971,7 +976,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ALCHEMY_SWORD,      13, 13);
 		assignItemRect(POT_OF_GREED,      12, 12);
 		assignItemRect(ALCHEMY_HAT,      11, 10);
-
+		assignItemRect(EIKI_HAMMER,      16, 16);
 		assignItemRect(SMALL_SEIRAN_HAMMER,      10, 10);
 		assignItemRect(HINA_RIBBON,      13, 6);
 		assignItemRect(LUNA_CLOCK,      13, 16);

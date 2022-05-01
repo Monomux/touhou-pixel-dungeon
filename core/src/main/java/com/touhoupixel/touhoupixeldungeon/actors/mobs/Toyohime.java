@@ -30,6 +30,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SuperDegrade;
 import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeon.mechanics.Ballistica;
@@ -66,8 +67,8 @@ public class Toyohime extends Mob implements Callback {
 
 		flying = true;
 
-		loot = new PotionOfMight();
-		lootChance = 0.2f;
+		loot = new ThreeStarTicket();
+		lootChance = 0.1f;
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.GOD);

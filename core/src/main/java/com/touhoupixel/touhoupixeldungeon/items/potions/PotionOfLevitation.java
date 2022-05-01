@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items.potions;
 
 import com.touhoupixel.touhoupixeldungeon.Assets;
+import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.Blob;
 import com.touhoupixel.touhoupixeldungeon.actors.blobs.ConfusionGas;
@@ -57,7 +58,9 @@ public class PotionOfLevitation extends Potion {
 	@Override
 	public void apply( Hero hero ) {
 		identify();
-		Buff.affect( hero, Levitation.class, Levitation.DURATION );
+		if (Dungeon.isChallenged(Challenges.TENSHI_EARTHQUAKE)) {
+			Buff.affect( hero, Levitation.class, Levitation.DURATION*5f );
+		} else Buff.affect( hero, Levitation.class, Levitation.DURATION );
 		GLog.i( Messages.get(this, "float") );
 	}
 	

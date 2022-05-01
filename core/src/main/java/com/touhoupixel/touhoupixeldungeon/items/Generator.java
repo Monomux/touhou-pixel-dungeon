@@ -22,6 +22,7 @@
 package com.touhoupixel.touhoupixeldungeon.items;
 
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Yachie;
 import com.touhoupixel.touhoupixeldungeon.items.armor.Armor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
@@ -161,12 +162,14 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AssassinsBlade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AutumnKatana;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BattleAxe;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ButterflyFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Crossbow;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dagger;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DeadBeacon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dirk;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoremyDream;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.EikiHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.EnmaShaku;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FireBrand;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flail;
@@ -232,6 +235,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Whip;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WindgodFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WoodenBat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WornShortsword;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YachieHorn;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YoumuSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YukinaMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YuukaUmbrella;
@@ -534,9 +538,10 @@ public class Generator {
 					TurnaboutCloak.class,
 					DoubleSword.class,
 					FireBrand.class,
-					FrostBrand.class
+					FrostBrand.class,
+					YachieHorn.class
 			};
-			WEP_T4.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5 };
+			WEP_T4.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 5, 5, 4 };
 
 			WEP_T5.classes = new Class<?>[]{
 					Greatsword.class,
@@ -564,9 +569,11 @@ public class Generator {
 					AutumnKatana.class,
 					HorouBook.class,
 					Grayswandir.class,
-					LunaClock.class
+					LunaClock.class,
+					EikiHammer.class,
+					ButterflyFan.class
 			};
-			WEP_T5.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5, 5 };
+			WEP_T5.probs = new float[]{ 5, 5, 5, 4, 4, 4, 5, 5, 5, 5, 4, 5, 4, 5, 5, 5, 5, 4, 5, 5, 5, 4, 5, 5, 5, 5, 5, 5 };
 
 			//see generator.randomWeapon
 			ARMOR.classes = new Class<?>[]{};

@@ -32,6 +32,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.traps.ChillingTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DespairTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.DisarmingTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.FlockTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GapTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GatewayTrap;
@@ -99,7 +100,7 @@ public class SewerLevel extends RegularLevel {
 				new Class<?>[]{
 						ChillingTrap.class, ToxicTrap.class, WornDartTrap.class, GapTrap.class,
 						AlarmTrap.class, OozeTrap.class,
-						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, GatewayTrap.class };
+						ConfusionTrap.class, FlockTrap.class, SummoningTrap.class, TeleportationTrap.class, ExConfusionTrap.class, GatewayTrap.class };
 }
 
 	@Override
@@ -109,7 +110,7 @@ public class SewerLevel extends RegularLevel {
 				new float[]{
 						4, 4, 4, 4,
 						2, 2,
-						1, 1, 1, 1, 1};
+						1, 1, 1, 1, 1, 1};
 	}
 	
 	@Override

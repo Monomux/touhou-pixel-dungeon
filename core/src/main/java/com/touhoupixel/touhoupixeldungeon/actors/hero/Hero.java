@@ -69,10 +69,17 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Levitation;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageA;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageD;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageE;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageH;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MessageT;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Might;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MindVision;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Momentum;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MoveDetect;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MurasaCall;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MurasaDeathExpress;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.MurasaInfEvasion;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDamage;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.OneDefDamage;
@@ -86,6 +93,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.SnipersMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stableness;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Stamina;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.TenshiMark;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Terror;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.UnderwaterCurse;
@@ -104,6 +112,7 @@ import com.touhoupixel.touhoupixeldungeon.items.Amulet;
 import com.touhoupixel.touhoupixeldungeon.items.Ankh;
 import com.touhoupixel.touhoupixeldungeon.items.Dewdrop;
 import com.touhoupixel.touhoupixeldungeon.items.EquipableItem;
+import com.touhoupixel.touhoupixeldungeon.items.Generator;
 import com.touhoupixel.touhoupixeldungeon.items.Heap;
 import com.touhoupixel.touhoupixeldungeon.items.Heap.Type;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
@@ -124,6 +133,7 @@ import com.touhoupixel.touhoupixeldungeon.items.artifacts.HornOfPlenty;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TalismanOfForesight;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
+import com.touhoupixel.touhoupixeldungeon.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeon.items.food.MiracleFruit;
 import com.touhoupixel.touhoupixeldungeon.items.journal.Guidebook;
 import com.touhoupixel.touhoupixeldungeon.items.keys.CrystalKey;
@@ -135,6 +145,7 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.Potion;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfDoublespeed;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfStrength;
 import com.touhoupixel.touhoupixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.touhoupixel.touhoupixeldungeon.items.potions.exotic.PotionOfDivineInspiration;
 import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfAccuracy;
@@ -147,6 +158,8 @@ import com.touhoupixel.touhoupixeldungeon.items.rings.RingOfTenacity;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.Scroll;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTeleportation;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.touhoupixel.touhoupixeldungeon.items.wands.CursedWand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.Wand;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfBlastWave;
@@ -155,7 +168,9 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.Weapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.AlchemyHat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ButterflyFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DoubleSword;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.EikiHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flail;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Flintlock;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.FullmoonScythe;
@@ -163,6 +178,7 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HellMic;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.KoishiSword;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Log;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MagesStaff;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.PlayMat;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.touhoupixel.touhoupixeldungeon.journal.Document;
@@ -204,6 +220,7 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
+import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -276,7 +293,7 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		int curHT = HT;
 
-		HT = 30 + 5 * (lvl - 1) + HTBoost + 30*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.GHOST_TENSITY) + 40*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.MAXHT_UP);
+		HT = 30 + 5 * (lvl - 1) + HTBoost + 30*pointsInTalent(Talent.GHOST_TENSITY) + 40*pointsInTalent(Talent.MORE_GHOST_TENSITY) + Statistics.deepdwarfHTdown + (Statistics.upgradesUsed*2)*pointsInTalent(Talent.UPGRADE_MAXHT_UP) + 15*pointsInTalent(Talent.MAXHT_UP);
 		float multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier * HT);
 
@@ -293,38 +310,6 @@ public class Hero extends Char {
 	public int STR() {
 
 		int strBonus = 0;
-
-		if (Dungeon.hero.heroClass == HeroClass.NITORIPLAYER){
-			strBonus += 4;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.YUYUKOPLAYER){
-			strBonus += 6;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER){
-			strBonus += 6;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.KOGASAPLAYER){
-			strBonus += 2;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.YUKARIPLAYER){
-			strBonus += 6;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER){
-			strBonus += 8;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER){
-			strBonus += 4;
-		}
-
-		if (Dungeon.hero.heroClass == HeroClass.SEIJAPLAYER){
-			strBonus += 6;
-		}
 
 		strBonus += RingOfMight.strengthBonus( this );
 
@@ -839,6 +824,28 @@ public class Hero extends Char {
 		}
 		if (dmg < 0) dmg = 0;
 
+		if (this.lvl < 10) {
+			if (dmg > 25) dmg = 25;
+		} else if (this.lvl < 20) {
+			if (dmg > 50) dmg = 50;
+		} else if (this.lvl < 30) {
+			if (dmg > 75) dmg = 75;
+		} else if (this.lvl < 40) {
+			if (dmg > 100) dmg = 100;
+		} else if (this.lvl < 50) {
+			if (dmg > 150) dmg = 150;
+		} else if (this.lvl < 60) {
+			if (dmg > 200) dmg = 200;
+		} else if (this.lvl < 70) {
+			if (dmg > 250) dmg = 250;
+		} else if (this.lvl < 80) {
+			if (dmg > 300) dmg = 300;
+		} else if (this.lvl < 90) {
+			if (dmg > 400) dmg = 400;
+		} else if (this.lvl < 99) {
+			if (dmg > 500) dmg = 500;
+		}
+
 		return dmg;
 	}
 
@@ -863,7 +870,7 @@ public class Hero extends Char {
 			}
 		}
 
-		if (hasTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) && pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 1){
+		if (hasTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) && pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 1 || pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 2){
 			speed *= 0.95f;
 		}
 		if (hasTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) && pointsInTalent(Talent.GAIN_RANDOM_SECRET_WEAPON) == 2){
@@ -984,10 +991,8 @@ public class Hero extends Char {
 	}
 
 	public float attackDelay() {
-		if (Dungeon.hero.heroClass == HeroClass.RENKOPLAYER && calendar.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-			return 0.5f;
-		} else if (buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.LethalMomentumTracker.class) != null){
-			buff(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.LethalMomentumTracker.class).detach();
+		if (buff(Talent.LethalMomentumTracker.class) != null){
+			buff(Talent.LethalMomentumTracker.class).detach();
 			return 0;
 		}
 
@@ -1518,6 +1523,123 @@ public class Hero extends Char {
 	public int attackProc( final Char enemy, int damage ) {
 		damage = super.attackProc(enemy, damage);
 
+		for (int i : PathFinder.NEIGHBOURS4) {
+			if (Challenges.activeChallenges() == 0 && hasTalent(Talent.SOU_RECTATTACK) && enemy.pos == this.pos+i && enemy.HP == enemy.HT && Random.Int(26-pointsInTalent(Talent.SOU_RECTATTACK)) == 0){
+				ScrollOfUpgrade sou = new ScrollOfUpgrade();
+				sou.collect();
+			}
+		}
+
+		if (Dungeon.hero.belongings.weapon() instanceof EikiHammer && this.HP < 30 && (Random.Int(3) == 0)) {
+			PotionOfHealing.cure(this);
+			PotionOfHealing.heal(this);
+		}
+
+		if (Dungeon.hero.belongings.weapon() instanceof ButterflyFan && Challenges.activeChallenges() > 9){
+			damage *= 1.5f;
+		}
+
+		if (Challenges.activeChallenges() == 0 && Dungeon.hero.heroClass == HeroClass.TENKYUUPLAYER && enemy.HP == enemy.HT && (Random.Int(5) == 0)) {
+			GameScene.flash(0x80FFFFFF);
+			switch (Random.Int(15)) {
+				case 0:
+				default:
+					ScrollOfUpgrade sou = new ScrollOfUpgrade();
+					sou.collect();
+					break;
+				case 1:
+					if (pointsInTalent(Talent.TELE_CHANGE) == 1 || pointsInTalent(Talent.TELE_CHANGE) == 2 || pointsInTalent(Talent.TELE_CHANGE) == 3) {
+						ScrollOfTeleportation sotp = new ScrollOfTeleportation();
+						sotp.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 2:
+					if (pointsInTalent(Talent.TELE_CHANGE) == 2 || pointsInTalent(Talent.TELE_CHANGE) == 3) {
+						ScrollOfTeleportation sotp = new ScrollOfTeleportation();
+						sotp.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 3:
+					if (pointsInTalent(Talent.TELE_CHANGE) == 3) {
+						ScrollOfTeleportation sotp = new ScrollOfTeleportation();
+						sotp.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 4:
+					if (pointsInTalent(Talent.MAP_CHANGE) == 1 || pointsInTalent(Talent.MAP_CHANGE) == 2 || pointsInTalent(Talent.MAP_CHANGE) == 3) {
+						ScrollOfMagicMapping somm = new ScrollOfMagicMapping();
+						somm.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 5:
+					if (pointsInTalent(Talent.MAP_CHANGE) == 2 || pointsInTalent(Talent.MAP_CHANGE) == 3) {
+						ScrollOfMagicMapping somm = new ScrollOfMagicMapping();
+						somm.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 6:
+					if (pointsInTalent(Talent.MAP_CHANGE) == 3) {
+						ScrollOfMagicMapping somm = new ScrollOfMagicMapping();
+						somm.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 7:
+					if (pointsInTalent(Talent.TRANSMUTE_CHANGE) == 1 || pointsInTalent(Talent.TRANSMUTE_CHANGE) == 2 || pointsInTalent(Talent.TRANSMUTE_CHANGE) == 3) {
+						ScrollOfTransmutation sotm = new ScrollOfTransmutation();
+						sotm.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 8:
+					if (pointsInTalent(Talent.TRANSMUTE_CHANGE) == 2 || pointsInTalent(Talent.TRANSMUTE_CHANGE) == 3) {
+						ScrollOfTransmutation sotm = new ScrollOfTransmutation();
+						sotm.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 9:
+					if (pointsInTalent(Talent.TRANSMUTE_CHANGE) == 3) {
+						ScrollOfTransmutation sotm = new ScrollOfTransmutation();
+						sotm.collect();
+					} else { Generator.Category c = Generator.Category.SCROLL;
+						Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+						w.collect();
+					}
+					break;
+				case 10:
+				case 11:
+				case 12:
+				case 13:
+				case 14:
+					Generator.Category c = Generator.Category.SCROLL;
+					Scroll w = (Scroll) Reflection.newInstance(c.classes[Random.chances(c.probs)]);
+					w.collect();
+					break;
+			}
+		}
+
 		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER && !(enemy.HP == enemy.HT) && !enemy.properties().contains(Char.Property.BOSS)) {
 			damage *= 2f;
 		}
@@ -1689,7 +1811,7 @@ public class Hero extends Char {
 			damage *= 0.75f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.TENGU_TOY_CAMERA) && Dungeon.hero.belongings.weapon() instanceof MissileWeapon && !enemy.properties().contains(Char.Property.BOSS)) {
+		if (Dungeon.isChallenged(Challenges.AFTERGLOW) && Dungeon.hero.belongings.weapon() instanceof MissileWeapon && !enemy.properties().contains(Char.Property.BOSS)) {
 			Buff.prolong(enemy, Triplespeed.class, Triplespeed.DURATION);
 		}
 
@@ -1713,12 +1835,12 @@ public class Hero extends Char {
 
 		if (buff(FireBrandBuff.class) != null){
 			Buff.affect(this, FireImbue.class).set(FireImbue.DURATION);
-			damage *= 2.5f;
+			damage *= 1.8f;
 		}
 
 		if (buff(FrostBrandBuff.class) != null){
 			Buff.affect(this, FrostImbue.class, FrostImbue.DURATION);
-			damage *= 2.5f;
+			damage *= 1.8f;
 		}
 
 		if (Dungeon.hero.belongings.weapon() instanceof PlayMat && buff(Weakness.class) != null && enemy.buff(Weakness.class) != null){
@@ -2088,7 +2210,7 @@ public class Hero extends Char {
 						@Override
 						protected boolean act() {
 							if (enemy.isAlive()) {
-								int bonusTurns = hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.SHARED_UPGRADES) ? wep.buffedLvl() : 0;
+								int bonusTurns = hasTalent(Talent.SHARED_UPGRADES) ? wep.buffedLvl() : 0;
 								Buff.prolong(Hero.this, SnipersMark.class, SnipersMark.DURATION + bonusTurns).set(enemy.id(), bonusTurns);
 							}
 							Actor.remove(this);
@@ -2106,8 +2228,22 @@ public class Hero extends Char {
 	@Override
 	public int defenseProc( Char enemy, int damage ) {
 
+		if (Challenges.activeChallenges() == 0 && hasTalent(Talent.SOU_DEFENSE) && Random.Int(26-pointsInTalent(Talent.SOU_DEFENSE)) == 0){
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
+		}
+
 		if (buff(HighStress.class) != null){
 			HP = 1;
+		}
+
+		if (buff(MurasaDeathExpress.class) != null && Dungeon.level.water[enemy.pos] && (Random.Int(10) == 0)) {
+			this.die(this);
+			if (this == Dungeon.hero && !this.isAlive()) {
+				Dungeon.fail(Murasa.class);
+			}
+		} else if (buff(MurasaCall.class) != null && Dungeon.level.water[enemy.pos] && (Random.Int(10) == 0)) {
+			Buff.prolong(this, MurasaDeathExpress.class, MurasaDeathExpress.DURATION);
 		}
 
 		if (Dungeon.hero.heroClass == HeroClass.JUNKOPLAYER && pointsInTalent(Talent.SILENCE_TIME_REDUCE) == 1) {
@@ -2120,11 +2256,6 @@ public class Hero extends Char {
 
 		if (Dungeon.hero.heroClass == HeroClass.MURASAPLAYER && (Random.Int(5) == 0)){
 			Dungeon.level.setCellToWater(false, pos);
-		}
-
-		if (Dungeon.isChallenged(Challenges.YUUMA_POWER_DRAIN) && this.HP < this.HT/5) {
-			Buff.prolong(this, Degrade.class, Degrade.DURATION/2f);
-			Buff.prolong(this, WandZeroDamage.class, WandZeroDamage.DURATION/2f);
 		}
 
 		if (pointsInTalent(Talent.EMER_TELEPORT) == 1 && !enemy.properties().contains(Char.Property.BOSS) && Random.Int(5) == 0) {
@@ -2313,9 +2444,18 @@ public class Hero extends Char {
 			dmg += 2;
 		}
 
+		if (hasTalent(Talent.SOU_DEFENSE)){
+			dmg += 5;
+		}
+
+		if (hasTalent(Talent.SOU_RECTATTACK)){
+			dmg += 5;
+		}
+
 		if (buff(FireBrandBuff.class) != null){
 			dmg += 1;
 		}
+
 		if (buff(FrostBrandBuff.class) != null){
 			dmg += 1;
 		}
@@ -2998,6 +3138,20 @@ public class Hero extends Char {
 	public void move(int step, boolean travelling) {
 		boolean wasHighGrass = Dungeon.level.map[step] == Terrain.HIGH_GRASS;
 
+		if (Dungeon.isChallenged(Challenges.TENSHI_EARTHQUAKE) || buff(TenshiMark.class) != null) {
+			if (Statistics.tenshiEarthquake > 98) {
+				Statistics.tenshiEarthquake = 0;
+				Camera.main.shake( 5, 1f );
+				if (!this.flying) {
+					this.damage(Dungeon.depth/2, this);
+					if (this == Dungeon.hero && !this.isAlive()) {
+						Dungeon.fail(Tenshi.class);
+					}
+				}
+				Sample.INSTANCE.play(Assets.Sounds.BLAST);
+			} else Statistics.tenshiEarthquake += 1;
+		}
+
 		super.move(step, travelling);
 
 		if (Dungeon.isChallenged(Challenges.REISEN_GAZE)){
@@ -3007,28 +3161,6 @@ public class Hero extends Char {
 
 				GameScene.updateFog(); //just in case hero wasn't moved
 				Dungeon.observe();
-			}
-		}
-
-		if (Dungeon.isChallenged(Challenges.WIZARD_OF_GENSOKYO) && buff(YukariRest.class) == null) {
-			new WizardTrap().set(pos).activate();
-			switch (Random.Int(5)) {
-				case 0:
-				default:
-					Buff.prolong(this, YukariRest.class, YukariRest.DURATION);
-					break;
-				case 1:
-					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 2f);
-					break;
-				case 2:
-					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 3f);
-					break;
-				case 3:
-					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 4f);
-					break;
-				case 4:
-					Buff.prolong(this, YukariRest.class, YukariRest.DURATION * 5f);
-					break;
 			}
 		}
 
@@ -3192,9 +3324,9 @@ public class Hero extends Char {
 
 		boolean smthFound = false;
 
-		boolean circular = pointsInTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.WIDE_SEARCH) == 1;
-		int distance = heroClass == com.touhoupixel.touhoupixeldungeon.actors.hero.HeroClass.ROGUE ? 2 : 1;
-		if (hasTalent(com.touhoupixel.touhoupixeldungeon.actors.hero.Talent.WIDE_SEARCH)) distance++;
+		boolean circular = pointsInTalent(Talent.WIDE_SEARCH) == 1;
+		int distance = heroClass == HeroClass.ROGUE ? 2 : 1;
+		if (hasTalent(Talent.WIDE_SEARCH)) distance++;
 
 		boolean foresight = buff(Foresight.class) != null;
 

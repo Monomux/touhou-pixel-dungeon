@@ -34,6 +34,7 @@ import com.touhoupixel.touhoupixeldungeon.items.Honeypot;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.MerchantsBeacon;
 import com.touhoupixel.touhoupixeldungeon.items.Stylus;
+import com.touhoupixel.touhoupixeldungeon.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeon.items.Torch;
 import com.touhoupixel.touhoupixeldungeon.items.armor.GoldenDragonArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.HanasakigawaArmor;
@@ -52,14 +53,6 @@ import com.touhoupixel.touhoupixeldungeon.items.armor.YorihimeArmor;
 import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.TimekeepersHourglass;
-import com.touhoupixel.touhoupixeldungeon.items.bags.ArcaneHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.Bag;
-import com.touhoupixel.touhoupixeldungeon.items.bags.FoodHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeon.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeon.items.bags.ScrollHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.TailsmanHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeon.items.bombs.Bomb;
 import com.touhoupixel.touhoupixeldungeon.items.food.Cucumber;
 import com.touhoupixel.touhoupixeldungeon.items.food.SmallRation;
@@ -175,6 +168,8 @@ public class ShopRoom extends SpecialRoom {
 		switch (Dungeon.depth) {
 			case 6:
 			default:
+				itemsToSpawn.add(new DriedRose());
+				itemsToSpawn.add(new ThreeStarTicket());
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[1]);
 				itemsToSpawn.add(Generator.random(Generator.misTiers[1]).quantity(2).identify());
 				switch (Random.Int(3)) {
@@ -192,10 +187,10 @@ public class ShopRoom extends SpecialRoom {
 					itemsToSpawn.add(new Cucumber());
 					itemsToSpawn.add(new Cucumber());
 				}
-					itemsToSpawn.add(new DriedRose());
 				break;
 
 			case 11:
+				itemsToSpawn.add(new ThreeStarTicket());
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[2]);
 				itemsToSpawn.add( Generator.random(Generator.misTiers[2]).quantity(2).identify() );
 				switch (Random.Int(4)) {
@@ -219,6 +214,7 @@ public class ShopRoom extends SpecialRoom {
 				break;
 
 			case 16:
+				itemsToSpawn.add(new ThreeStarTicket());
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[3]);
 				itemsToSpawn.add( Generator.random(Generator.misTiers[3]).quantity(2).identify() );
 				switch (Random.Int(4)) {
@@ -242,6 +238,7 @@ public class ShopRoom extends SpecialRoom {
 				break;
 
 			case 21: case 31: case 61: case 81:
+				itemsToSpawn.add(new ThreeStarTicket());
 				w = (MeleeWeapon) Generator.random(Generator.wepTiers[4]);
 				itemsToSpawn.add( Generator.random(Generator.misTiers[4]).quantity(2).identify() );
 				switch (Random.Int(4)) {
@@ -275,8 +272,6 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add( TippedDart.randomTipped(2) );
 
 		itemsToSpawn.add( new Alchemize().quantity(Random.IntRange(3, 4)));
-
-		itemsToSpawn.add(ChooseBag(Dungeon.hero.belongings));
 
 
 		itemsToSpawn.add( new PotionOfHealing() );
@@ -369,58 +364,4 @@ public class ShopRoom extends SpecialRoom {
 
 		return itemsToSpawn;
 	}
-
-	protected static Bag ChooseBag(Belongings pack){
-
-		//generate a hashmap of all valid bags.
-		HashMap<Bag, Integer> bags = new HashMap<>();
-		if (!Dungeon.LimitedDrops.VELVET_POUCH.dropped()) bags.put(new VelvetPouch(), 1);
-		if (!Dungeon.LimitedDrops.SCROLL_HOLDER.dropped()) bags.put(new ScrollHolder(), 0);
-		if (!Dungeon.LimitedDrops.POTION_BANDOLIER.dropped()) bags.put(new PotionBandolier(), 0);
-		if (!Dungeon.LimitedDrops.MAGICAL_HOLSTER.dropped()) bags.put(new MagicalHolster(), 1);
-		if (!Dungeon.LimitedDrops.FOOD_HOLDER.dropped()) bags.put(new FoodHolder(), 1);
-		if (!Dungeon.LimitedDrops.TAILSMAN_HOLDER.dropped()) bags.put(new TailsmanHolder(), 1);
-		if (!Dungeon.LimitedDrops.ARCANE_HOLDER.dropped()) bags.put(new ArcaneHolder(), 0);
-
-		if (bags.isEmpty()) return null;
-
-		//count up items in the main bag
-		for (Item item : pack.backpack.items) {
-			for (Bag bag : bags.keySet()){
-				if (bag.canHold(item)){
-					bags.put(bag, bags.get(bag)+1);
-				}
-			}
-		}
-
-		//find which bag will result in most inventory savings, drop that.
-		Bag bestBag = null;
-		for (Bag bag : bags.keySet()){
-			if (bestBag == null){
-				bestBag = bag;
-			} else if (bags.get(bag) > bags.get(bestBag)){
-				bestBag = bag;
-			}
-		}
-
-		if (bestBag instanceof VelvetPouch){
-			Dungeon.LimitedDrops.VELVET_POUCH.drop();
-		} else if (bestBag instanceof ScrollHolder){
-			Dungeon.LimitedDrops.SCROLL_HOLDER.drop();
-		} else if (bestBag instanceof PotionBandolier){
-			Dungeon.LimitedDrops.POTION_BANDOLIER.drop();
-		} else if (bestBag instanceof MagicalHolster){
-			Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
-		} else if (bestBag instanceof FoodHolder){
-			Dungeon.LimitedDrops.FOOD_HOLDER.drop();
-		} else if (bestBag instanceof ArcaneHolder){
-			Dungeon.LimitedDrops.ARCANE_HOLDER.drop();
-		} else if (bestBag instanceof TailsmanHolder){
-			Dungeon.LimitedDrops.TAILSMAN_HOLDER.drop();
-		}
-
-		return bestBag;
-
-	}
-
 }

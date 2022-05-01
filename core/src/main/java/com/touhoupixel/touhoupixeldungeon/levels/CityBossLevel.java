@@ -122,9 +122,9 @@ public class CityBossLevel extends Level {
 
 		Point c = entry.center();
 
-		Painter.fill(this, c.x-1, c.y-2, 3, 1, Terrain.STATUE);
-		Painter.fill(this, c.x-1, c.y, 3, 1, Terrain.STATUE);
-		Painter.fill(this, c.x-1, c.y+2, 3, 1, Terrain.STATUE);
+		Painter.fill(this, c.x-1, c.y-2, 3, 1, Terrain.BOOKSHELF);
+		Painter.fill(this, c.x-1, c.y, 3, 1, Terrain.BOOKSHELF);
+		Painter.fill(this, c.x-1, c.y+2, 3, 1, Terrain.BOOKSHELF);
 		Painter.fill(this, c.x, entry.top+1, 1, 6, Terrain.EMPTY_SP);
 
 		Painter.set(this, c.x, entry.top, Terrain.DOOR);
@@ -139,10 +139,10 @@ public class CityBossLevel extends Level {
 		Painter.fill(this, arena, 6, Terrain.SIGN);
 
 		c = arena.center();
-		Painter.set(this, c.x-3, c.y, Terrain.STATUE);
-		Painter.set(this, c.x-4, c.y, Terrain.STATUE);
-		Painter.set(this, c.x+3, c.y, Terrain.STATUE);
-		Painter.set(this, c.x+4, c.y, Terrain.STATUE);
+		Painter.set(this, c.x-3, c.y, Terrain.BOOKSHELF);
+		Painter.set(this, c.x-4, c.y, Terrain.BOOKSHELF);
+		Painter.set(this, c.x+3, c.y, Terrain.BOOKSHELF);
+		Painter.set(this, c.x+4, c.y, Terrain.BOOKSHELF);
 
 		Painter.set(this, pedestals[0], Terrain.PEDESTAL);
 		Painter.set(this, pedestals[1], Terrain.PEDESTAL);
@@ -189,30 +189,6 @@ public class CityBossLevel extends Level {
 		customWalls.add(customVisuals);
 
 		return true;
-	}
-
-	//returns a random pedestal that doesn't already have a summon inbound on it
-	public int getSummoningPos(){
-		Mob king = getKing();
-		HashSet<YuyukoBoss.Summoning> summons = king.buffs(YuyukoBoss.Summoning.class);
-		ArrayList<Integer> positions = new ArrayList<>();
-		for (int pedestal : pedestals) {
-			boolean clear = true;
-			for (YuyukoBoss.Summoning s : summons) {
-				if (s.getPos() == pedestal) {
-					clear = false;
-					break;
-				}
-			}
-			if (clear) {
-				positions.add(pedestal);
-			}
-		}
-		if (positions.isEmpty()){
-			return -1;
-		} else {
-			return Random.element(positions);
-		}
 	}
 
 	private Mob getKing(){

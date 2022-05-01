@@ -100,41 +100,6 @@ public class Kosuzu extends Mob {
 	}
 
 	@Override
-	public void damage(int dmg, Object src) {
-		int waterCells = 0;
-		for (int i : PathFinder.NEIGHBOURS9) {
-			if (Dungeon.level.map[pos + i] == Terrain.BOOKSHELF) {
-				waterCells++;
-			}
-		}
-		if (waterCells > 0) dmg = Math.round(dmg * (2 - waterCells)*0.25f);
-
-		int waterCells2 = 0;
-		for (int i : PathFinder.NEIGHBOURS9) {
-			if (Dungeon.level.map[pos + i] == Terrain.ENTRANCE) {
-				waterCells2++;
-			}
-		}
-		if (waterCells2 > 0) Buff.affect(enemy, Doom.class);
-		if (waterCells2 > 0) Sample.INSTANCE.play(Assets.Sounds.CURSED);
-		if (waterCells2 > 0) CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-		if (waterCells2 > 0) GLog.w(Messages.get(this, "rage"));
-
-		int waterCells3 = 0;
-		for (int i : PathFinder.NEIGHBOURS9) {
-			if (Dungeon.level.map[pos + i] == Terrain.EXIT) {
-				waterCells3++;
-			}
-		}
-		if (waterCells3 > 0) Buff.affect(enemy, Doom.class);
-		if (waterCells3 > 0) Sample.INSTANCE.play(Assets.Sounds.CURSED);
-		if (waterCells3 > 0) CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
-		if (waterCells3 > 0) GLog.w(Messages.get(this, "rage"));
-
-		super.damage(dmg, src);
-	}
-
-	@Override
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc( enemy, damage );
 		if (Random.Int( 50 ) == 0) {

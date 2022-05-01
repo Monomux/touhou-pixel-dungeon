@@ -105,6 +105,11 @@ public class MessageD extends Buff implements Hero.Doom {
 
 			if (hero.buff(MessageD.class) != null && hero.buff(MessageE.class) != null && hero.buff(MessageA.class) != null && hero.buff(MessageT.class) != null && hero.buff(MessageH.class) != null) {
 				hero.die(this);
+				Buff.detach(hero, MessageD.class);
+				Buff.detach(hero, MessageE.class);
+				Buff.detach(hero, MessageA.class);
+				Buff.detach(hero, MessageT.class);
+				Buff.detach(hero, MessageH.class);
 			}
 		}
 

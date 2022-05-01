@@ -181,8 +181,7 @@ public class Youmu extends Mob {
 			for (Buff buff : buffs()) {
 				//ally buffs, champion, and king damager are preserved when removed via life link
 				if (!(buff instanceof AllyBuff)
-						&& (!(buff instanceof ChampionEnemy))
-						&& !(buff instanceof YuyukoBoss.KingDamager)) {
+						&& (!(buff instanceof ChampionEnemy))) {
 					buff.detach();
 				}
 			}

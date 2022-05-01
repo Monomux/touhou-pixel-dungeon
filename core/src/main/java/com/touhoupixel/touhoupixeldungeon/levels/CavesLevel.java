@@ -30,6 +30,7 @@ import com.touhoupixel.touhoupixeldungeon.levels.rooms.Room;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.BurningTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.ConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.CorrosionTrap;
+import com.touhoupixel.touhoupixeldungeon.levels.traps.ExConfusionTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.FrostTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GapTrap;
 import com.touhoupixel.touhoupixeldungeon.levels.traps.GatewayTrap;
@@ -100,7 +101,7 @@ public class CavesLevel extends RegularLevel {
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
 				BurningTrap.class, PoisonDartTrap.class, FrostTrap.class, CorrosionTrap.class, GapTrap.class,
-				GrippingTrap.class, RockfallTrap.class,  GuardianTrap.class,
+				GrippingTrap.class, RockfallTrap.class,  GuardianTrap.class, ExConfusionTrap.class,
 				ConfusionTrap.class, SummoningTrap.class, WarpingTrap.class, PitfallTrap.class, GatewayTrap.class, GeyserTrap.class };
 	}
 
@@ -108,7 +109,7 @@ public class CavesLevel extends RegularLevel {
 	protected float[] trapChances() {
 		return new float[]{
 				4, 4, 4, 4, 4,
-				2, 2, 2,
+				2, 2, 2, 2,
 				1, 1, 1, 1, 1, 1 };
 	}
 	

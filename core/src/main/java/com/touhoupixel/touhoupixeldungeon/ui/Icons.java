@@ -101,6 +101,7 @@ public enum Icons {
 	DEPTH_TRAPS,
 	DEPTH_SECRETS,
 	CHAL_COUNT,
+	DAMAGE_LIMIT_COUNT,
 
 	//icons that appear in the about screen, variable spacing
 	LIBGDX,
@@ -259,13 +260,13 @@ public enum Icons {
 				icon.frame( icon.texture.uvRectBySize( 241, 48, 10, 10 ) );
 				break;
 			case FOOD_HOLDER:
-				icon.frame( icon.texture.uvRectBySize( 241, 48, 10, 10 ) );
+				icon.frame( icon.texture.uvRectBySize( 221, 58, 10, 10 ) );
 				break;
 			case ARCANE_HOLDER:
-				icon.frame( icon.texture.uvRectBySize( 241, 48, 10, 10 ) );
+				icon.frame( icon.texture.uvRectBySize( 221, 68, 10, 10 ) );
 				break;
 			case TAILSMAN_HOLDER:
-				icon.frame( icon.texture.uvRectBySize( 241, 48, 10, 10 ) );
+				icon.frame( icon.texture.uvRectBySize( 221, 78, 10, 10 ) );
 				break;
 
 			case TARGET:
@@ -315,6 +316,9 @@ public enum Icons {
 				break;
 			case CHAL_COUNT:
 				icon.frame( icon.texture.uvRectBySize( 48, 72, 7, 7 ) );
+				break;
+			case DAMAGE_LIMIT_COUNT:
+				icon.frame( icon.texture.uvRectBySize( 55, 72, 7, 7 ) );
 				break;
 
 			case LIBGDX:

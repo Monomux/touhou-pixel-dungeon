@@ -434,7 +434,7 @@ public abstract class Mob extends Char {
 
 			if (Actor.findChar(target) == null
 					&& (Dungeon.level.passable[target] || (flying && Dungeon.level.avoid[target]))
-					&& (!Char.hasProp(this, Char.Property.LARGE) || Dungeon.level.openSpace[target])) {
+					&& (!Char.hasProp(this, Property.LARGE) || Dungeon.level.openSpace[target])) {
 				step = target;
 			}
 
@@ -490,7 +490,7 @@ public abstract class Mob extends Char {
 				int nextCell = path.removeFirst();
 				if (!Dungeon.level.passable[nextCell]
 						|| (!flying && Dungeon.level.avoid[nextCell])
-						|| (Char.hasProp(this, Char.Property.LARGE) && !Dungeon.level.openSpace[nextCell])
+						|| (Char.hasProp(this, Property.LARGE) && !Dungeon.level.openSpace[nextCell])
 						|| Actor.findChar(nextCell) != null) {
 
 					newPath = true;
@@ -500,7 +500,7 @@ public abstract class Mob extends Char {
 							if (Dungeon.level.adjacent(pos, nextCell + i) && Dungeon.level.adjacent(nextCell + i, path.getFirst())) {
 								if (Dungeon.level.passable[nextCell + i]
 										&& (flying || !Dungeon.level.avoid[nextCell + i])
-										&& (!Char.hasProp(this, Char.Property.LARGE) || Dungeon.level.openSpace[nextCell + i])
+										&& (!Char.hasProp(this, Property.LARGE) || Dungeon.level.openSpace[nextCell + i])
 										&& Actor.findChar(nextCell + i) == null) {
 									path.addFirst(nextCell + i);
 									newPath = false;
@@ -529,7 +529,7 @@ public abstract class Mob extends Char {
 						path = ignoreChars;
 						if (!Dungeon.level.passable[ignoreChars.getFirst()]
 								|| (!flying && Dungeon.level.avoid[ignoreChars.getFirst()])
-								|| (Char.hasProp(this, Char.Property.LARGE) && !Dungeon.level.openSpace[ignoreChars.getFirst()])
+								|| (Char.hasProp(this, Property.LARGE) && !Dungeon.level.openSpace[ignoreChars.getFirst()])
 								|| Actor.findChar(ignoreChars.getFirst()) != null) {
 							return false;
 						}
@@ -616,7 +616,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public String defenseVerb() {
-		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && buff(ReBirthDone.class) == null && !properties().contains(Char.Property.BOSS) && !(this instanceof Wraith) && !(Dungeon.depth == 40) && !(Dungeon.depth == 45) && !(Dungeon.depth == 50)){
+		if (Dungeon.isChallenged(Challenges.REBIRTH_DAY) && buff(ReBirthDone.class) == null && !properties().contains(Property.MINIBOSS) && !properties().contains(Property.BOSS) && (Random.Int(3) == 0) && !(this instanceof Wraith) && !(this instanceof Narumi) && !(Dungeon.depth == 40) && !(Dungeon.depth == 45) && !(Dungeon.depth == 50)){
 			Buff.prolong(this, ReBirth.class, ReBirth.DURATION*10000f);
 		}
 		return Messages.get(this, "def_verb");
@@ -626,7 +626,7 @@ public abstract class Mob extends Char {
 	public int attackProc( Char enemy, int damage ) {
 
 		if (Dungeon.isChallenged(Challenges.EIKI_JUDGEMENT)){
-			damage += Statistics.goldPickedup/12+Statistics.enemiesSlain/80;
+			damage += Statistics.goldPickedup/25+Statistics.enemiesSlain/100;
 		}
 
 		for (int i : PathFinder.NEIGHBOURS4) {
@@ -646,7 +646,7 @@ public abstract class Mob extends Char {
 			damage *= 1.25f;
 		}
 
-		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy.buff(MessageResistance.class) == null && enemy instanceof Hero && !properties().contains(Char.Property.BOSS)) {
+		if (Dungeon.isChallenged(Challenges.ROSELIA) && enemy.buff(MessageResistance.class) == null && enemy instanceof Hero && !properties().contains(Property.BOSS)) {
 			if (enemy.buff(MessageD.class) == null && enemy.buff(MessageE.class) == null) {
 				Buff.affect(enemy, MessageD.class).reignite(enemy, 25f);
 				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
@@ -661,77 +661,78 @@ public abstract class Mob extends Char {
 				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
 			} else if (enemy.buff(MessageT.class) != null && enemy.buff(MessageH.class) == null) {
 				Buff.affect(enemy, MessageH.class).reignite(enemy, 25f);
+				Buff.prolong(enemy, MessageResistance.class, MessageResistance.DURATION);
 			}
 		}
 
 		//res damage zone//
-		if (Statistics.fireres == 1 && properties().contains(Char.Property.FIRE)) {
+		if (Statistics.fireres == 1 && properties().contains(Property.FIRE)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.fireres == 2 && properties().contains(Char.Property.FIRE)) {
+		if (Statistics.fireres == 2 && properties().contains(Property.FIRE)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.fireres > 2 && properties().contains(Char.Property.FIRE)) {
+		if (Statistics.fireres > 2 && properties().contains(Property.FIRE)) {
 			damage = Math.round(damage * 0.5f);
 		}
 
-		if (Statistics.coldres == 1 && properties().contains(Char.Property.COLD)) {
+		if (Statistics.coldres == 1 && properties().contains(Property.COLD)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.coldres == 2 && properties().contains(Char.Property.COLD)) {
+		if (Statistics.coldres == 2 && properties().contains(Property.COLD)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.coldres > 2 && properties().contains(Char.Property.COLD)) {
+		if (Statistics.coldres > 2 && properties().contains(Property.COLD)) {
 			damage = Math.round(damage * 0.5f);
 		}
 
-		if (Statistics.warpres == 1 && properties().contains(Char.Property.WARP)) {
+		if (Statistics.warpres == 1 && properties().contains(Property.WARP)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.warpres == 2 && properties().contains(Char.Property.WARP)) {
+		if (Statistics.warpres == 2 && properties().contains(Property.WARP)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.warpres > 2 && properties().contains(Char.Property.WARP)) {
+		if (Statistics.warpres > 2 && properties().contains(Property.WARP)) {
 			damage = Math.round(damage * 0.5f);
 		}
 
-		if (Statistics.powerfulres == 1 && properties().contains(Char.Property.POWERFUL)) {
+		if (Statistics.powerfulres == 1 && properties().contains(Property.POWERFUL)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.powerfulres == 2 && properties().contains(Char.Property.POWERFUL)) {
+		if (Statistics.powerfulres == 2 && properties().contains(Property.POWERFUL)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.powerfulres > 2 && properties().contains(Char.Property.POWERFUL)) {
+		if (Statistics.powerfulres > 2 && properties().contains(Property.POWERFUL)) {
 			damage = Math.round(damage * 0.5f);
 		}
 
-		if (Statistics.coolres == 1 && properties().contains(Char.Property.COOL)) {
+		if (Statistics.coolres == 1 && properties().contains(Property.COOL)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.coolres == 2 && properties().contains(Char.Property.COOL)) {
+		if (Statistics.coolres == 2 && properties().contains(Property.COOL)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.coolres > 2 && properties().contains(Char.Property.COOL)) {
+		if (Statistics.coolres > 2 && properties().contains(Property.COOL)) {
 			damage = Math.round(damage * 0.5f);
 		}
 
-		if (Statistics.pureres == 1 && properties().contains(Char.Property.PURE)) {
+		if (Statistics.pureres == 1 && properties().contains(Property.PURE)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.pureres == 2 && properties().contains(Char.Property.PURE)) {
+		if (Statistics.pureres == 2 && properties().contains(Property.PURE)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.pureres > 2 && properties().contains(Char.Property.PURE)) {
+		if (Statistics.pureres > 2 && properties().contains(Property.PURE)) {
 			damage = Math.round(damage * 0.5f);
 		}
 
-		if (Statistics.happyres == 1 && properties().contains(Char.Property.HAPPY)) {
+		if (Statistics.happyres == 1 && properties().contains(Property.HAPPY)) {
 			damage = Math.round(damage * 0.85f);
 		}
-		if (Statistics.happyres == 2 && properties().contains(Char.Property.HAPPY)) {
+		if (Statistics.happyres == 2 && properties().contains(Property.HAPPY)) {
 			damage = Math.round(damage * 0.7f);
 		}
-		if (Statistics.happyres > 2 && properties().contains(Char.Property.HAPPY)) {
+		if (Statistics.happyres > 2 && properties().contains(Property.HAPPY)) {
 			damage = Math.round(damage * 0.5f);
 		}
 		//res damage zone//
@@ -892,7 +893,7 @@ public abstract class Mob extends Char {
 
 		boolean soulMarked = buff(SoulMark.class) != null;
 
-		if (buff(ReBirth.class) != null && !(cause == Chasm.class) && !properties().contains(Char.Property.BOSS) && !(this instanceof Wraith) && !(Dungeon.depth == 40) && !(Dungeon.depth == 45) && !(Dungeon.depth == 50)){
+		if (buff(ReBirth.class) != null && !(cause == Chasm.class) && !properties().contains(Property.BOSS) && !(this instanceof Wraith) && !(Dungeon.depth == 40) && !(Dungeon.depth == 45) && !(Dungeon.depth == 50)){
 			CellEmitter.get( pos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
 			Buff.detach(this, ReBirth.class);
 			Buff.prolong(this, ReBirthDone.class, ReBirthDone.DURATION*10000f);

@@ -31,6 +31,7 @@ import com.touhoupixel.touhoupixeldungeon.effects.BlobEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.Identification;
 import com.touhoupixel.touhoupixeldungeon.effects.Speck;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
+import com.touhoupixel.touhoupixeldungeon.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeon.journal.Notes.Landmark;
 import com.touhoupixel.touhoupixeldungeon.levels.Terrain;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
@@ -64,6 +65,9 @@ public class WaterOfAwareness extends WellWater {
 		
 		Buff.affect( hero, Awareness.class, Awareness.DURATION );
 		Dungeon.observe();
+
+		ThreeStarTicket tst = new ThreeStarTicket();
+		tst.collect();
 
 		Dungeon.hero.interrupt();
 	

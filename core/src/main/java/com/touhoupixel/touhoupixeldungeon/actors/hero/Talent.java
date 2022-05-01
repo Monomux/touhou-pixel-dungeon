@@ -49,6 +49,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.FlavourBuff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Haste;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hunger;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Invisibility;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Light;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.LostInventory;
@@ -302,7 +303,7 @@ public enum Talent {
 	//Puritygod T3
 	BEAM_DROWSY(215, 3), BEAM_SLOW(216, 3), BEAM_ONEDAMAGE(217, 3),
 	//Puregod T3
-	ATTACK_DOUBLEEVASION(218, 3), EXPLOSION_SNIPE(219, 3), FOOD_INVULNERABILITY(220, 3);
+	ATTACK_DOUBLEEVASION(218, 3), EXPLOSION_SNIPE(219, 3), FOOD_INVULNERABILITY(220, 3),
 
 	//Renko T1
 	//MINOR_EVASION_UP(221), MINOR_ACCURACY_UP(222), MAXHP_FOOD_DOUBLEEVASION(223), SILENCE_TIME_REDUCE(224),
@@ -314,6 +315,28 @@ public enum Talent {
 	//BEAM_DROWSY(232, 3), BEAM_SLOW(233, 3), BEAM_ONEDAMAGE(234, 3),
 	//Lunarseeker T3
 	//ATTACK_DOUBLEEVASION(235, 3), EXPLOSION_SNIPE(236, 3), FOOD_INVULNERABILITY(237, 3);
+
+	//Seija T1
+	//MINOR_EVASION_UP(221), MINOR_ACCURACY_UP(222), MAXHP_FOOD_DOUBLEEVASION(223), SILENCE_TIME_REDUCE(224),
+	//Seija T2
+	//MAJOR_EVASION_UP(225), MAJOR_ACCURACY_UP(226), GAIN_BLOWAWAY(227), GAIN_INVISIBILITY(228), ATTACK_MINDVISION(229),
+	//Seija T3
+	//ATTACK_HEX(230, 3), ITEM_CONFUSION(231, 3),
+	//Turnmaster T3
+	//BEAM_DROWSY(232, 3), BEAM_SLOW(233, 3), BEAM_ONEDAMAGE(234, 3),
+	//Gravmaster T3
+	//ATTACK_DOUBLEEVASION(235, 3), EXPLOSION_SNIPE(236, 3), FOOD_INVULNERABILITY(254, 3);
+
+	//Tenkyuu T1
+	SOU_HEAL(255), SOU_TUMMY(256), SOU_BLESS(257), SOU_POH(258),
+	//Tenkyuu T2
+	SOU_MORE_HEAL(259), SOU_MORE_TUMMY(260), SOU_POL(261), SOU_POP(262), SOU_POS(263),
+	//Tenkyuu T3
+	SOU_MAP(264, 3), SOU_FOOD(265, 3),
+	//Soucollecter T3
+	SOU_DEFENSE(266, 3), SOU_POTION(267, 3), SOU_RECTATTACK(268, 3),
+	//Misccollecter T3
+	TELE_CHANGE(269, 3), MAP_CHANGE(270, 3), TRANSMUTE_CHANGE(271, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff {
 		public int icon() {
@@ -489,16 +512,16 @@ public enum Talent {
 		}
 
 		if (talent == SIMPLE_POWER && hero.pointsInTalent(SIMPLE_POWER) == 1){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(1).collect();
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
 		}
 		if (talent == SIMPLE_POWER && hero.pointsInTalent(SIMPLE_POWER) == 2){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(1).collect();
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
 		}
 		if (talent == SIMPLE_POWER && hero.pointsInTalent(SIMPLE_POWER) == 3){
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(1).collect();
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
 		}
 		if (talent == INVU_POWER && hero.pointsInTalent(INVU_POWER) == 1){
 			PotionOfInvulnerability Poi = new PotionOfInvulnerability();
@@ -606,57 +629,57 @@ public enum Talent {
 		}
 
 		if (talent == PASTY_GAIN && hero.pointsInTalent(PASTY_GAIN) == 1) {
-			Pasty Healing212 = new Pasty();
-			Healing212.quantity(2).collect();
+			Pasty pasty = new Pasty();
+			pasty.quantity(2).collect();
 		}
 		if (talent == PASTY_GAIN && hero.pointsInTalent(PASTY_GAIN) == 2) {
-			Pasty Healing212 = new Pasty();
-			Healing212.quantity(2).collect();
+			Pasty pasty = new Pasty();
+			pasty.quantity(2).collect();
 		}
 
 		if (talent == CUCUMBER_GAIN && hero.pointsInTalent(CUCUMBER_GAIN) == 1) {
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(5).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.quantity(5).collect();
 		}
 		if (talent == CUCUMBER_GAIN && hero.pointsInTalent(CUCUMBER_GAIN) == 2) {
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(5).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.quantity(5).collect();
 		}
 
 		if (talent == FROZEN_FOOD_GAIN && hero.pointsInTalent(FROZEN_FOOD_GAIN) == 1) {
-			FrozenCarpaccio Healing213 = new FrozenCarpaccio();
-			Healing213.quantity(5).collect();
+			FrozenCarpaccio frozencarpaccio = new FrozenCarpaccio();
+			frozencarpaccio.quantity(5).collect();
 		}
 		if (talent == FROZEN_FOOD_GAIN && hero.pointsInTalent(FROZEN_FOOD_GAIN) == 2) {
-			FrozenCarpaccio Healing213 = new FrozenCarpaccio();
-			Healing213.quantity(5).collect();
+			FrozenCarpaccio frozencarpaccio = new FrozenCarpaccio();
+			frozencarpaccio.quantity(5).collect();
 		}
 
 		if (talent == MORE_FOOD_PANCAKE && hero.pointsInTalent(MORE_FOOD_PANCAKE) == 1) {
-			Pancake Healing214 = new Pancake();
-			Healing214.quantity(5).collect();
+			Pancake pancake = new Pancake();
+			pancake.quantity(5).collect();
 		}
 		if (talent == MORE_FOOD_PANCAKE && hero.pointsInTalent(MORE_FOOD_PANCAKE) == 2) {
-			Pancake Healing214 = new Pancake();
-			Healing214.quantity(5).collect();
+			Pancake pancake = new Pancake();
+			pancake.quantity(5).collect();
 		}
 
 		if (talent == MORE_FOOD_WAFFLE && hero.pointsInTalent(MORE_FOOD_WAFFLE) == 1) {
-			Waffle Healing215 = new Waffle();
-			Healing215.quantity(5).collect();
+			Waffle waffle = new Waffle();
+			waffle.quantity(5).collect();
 		}
 		if (talent == MORE_FOOD_WAFFLE && hero.pointsInTalent(MORE_FOOD_WAFFLE) == 2) {
-			Waffle Healing215 = new Waffle();
-			Healing215.quantity(5).collect();
+			Waffle waffle = new Waffle();
+			waffle.quantity(5).collect();
 		}
 
 		if (talent == MORE_FOOD_FRUIT && hero.pointsInTalent(MORE_FOOD_FRUIT) == 1) {
-			MiracleFruit Healing216 = new MiracleFruit();
-			Healing216.quantity(5).collect();
+			MiracleFruit miraclefruit = new MiracleFruit();
+			miraclefruit.quantity(5).collect();
 		}
 		if (talent == MORE_FOOD_FRUIT && hero.pointsInTalent(MORE_FOOD_FRUIT) == 2) {
-			MiracleFruit Healing216 = new MiracleFruit();
-			Healing216.quantity(5).collect();
+			MiracleFruit miraclefruit = new MiracleFruit();
+			miraclefruit.quantity(5).collect();
 		}
 
 		if (talent == GAIN_CURSED_METAL && hero.pointsInTalent(GAIN_CURSED_METAL) == 1) {
@@ -694,8 +717,8 @@ public enum Talent {
 			}
 			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
 			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(1).collect();
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
 		}
 		if (talent == CURSED_SET && hero.pointsInTalent(CURSED_SET) == 2) {
 			CurseInfusion Crinfu = new CurseInfusion();
@@ -710,8 +733,8 @@ public enum Talent {
 			}
 			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
 			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(1).collect();
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
 		}
 		if (talent == CURSED_SET && hero.pointsInTalent(CURSED_SET) == 3) {
 			CurseInfusion Crinfu = new CurseInfusion();
@@ -726,8 +749,8 @@ public enum Talent {
 			}
 			Buff.prolong(hero, Triplespeed.class, Triplespeed.DURATION);
 			Buff.prolong(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION*5f);
-			ScrollOfUpgrade Healing2 = new ScrollOfUpgrade();
-			Healing2.quantity(1).collect();
+			ScrollOfUpgrade sou = new ScrollOfUpgrade();
+			sou.collect();
 		}
 
 		if (talent == EMER_UNIDENTIFY && hero.pointsInTalent(EMER_UNIDENTIFY) == 1) {
@@ -754,24 +777,24 @@ public enum Talent {
 		if (talent == AQUA_FOOD && hero.pointsInTalent(AQUA_FOOD) == 1) {
 			ElixirOfAquaticRejuvenation murasa1 = new ElixirOfAquaticRejuvenation();
 			murasa1.quantity(6).collect();
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(5).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.quantity(5).collect();
 			AquaBlast murasa2 = new AquaBlast();
 			murasa2.quantity(90).collect();
 		}
 		if (talent == AQUA_FOOD && hero.pointsInTalent(AQUA_FOOD) == 2) {
 			ElixirOfAquaticRejuvenation murasa1 = new ElixirOfAquaticRejuvenation();
 			murasa1.quantity(6).collect();
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(5).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.quantity(5).collect();
 			AquaBlast murasa2 = new AquaBlast();
 			murasa2.quantity(90).collect();
 		}
 		if (talent == AQUA_FOOD && hero.pointsInTalent(AQUA_FOOD) == 3) {
 			ElixirOfAquaticRejuvenation murasa1 = new ElixirOfAquaticRejuvenation();
 			murasa1.quantity(6).collect();
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(5).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.quantity(5).collect();
 			AquaBlast murasa2 = new AquaBlast();
 			murasa2.quantity(90).collect();
 		}
@@ -813,16 +836,16 @@ public enum Talent {
 		}
 
 		if (talent == TENSHI_PEACH_GAIN && hero.pointsInTalent(TENSHI_PEACH_GAIN) == 1) {
-			TenshiPeach Healing217 = new TenshiPeach();
-			Healing217.quantity(3).collect();
+			TenshiPeach tenshiPeach = new TenshiPeach();
+			tenshiPeach.quantity(3).collect();
 		}
 		if (talent == TENSHI_PEACH_GAIN && hero.pointsInTalent(TENSHI_PEACH_GAIN) == 2) {
-			TenshiPeach Healing217 = new TenshiPeach();
-			Healing217.quantity(3).collect();
+			TenshiPeach tenshiPeach = new TenshiPeach();
+			tenshiPeach.quantity(3).collect();
 		}
 		if (talent == TENSHI_PEACH_GAIN && hero.pointsInTalent(TENSHI_PEACH_GAIN) == 3) {
-			TenshiPeach Healing217 = new TenshiPeach();
-			Healing217.quantity(3).collect();
+			TenshiPeach tenshiPeach = new TenshiPeach();
+			tenshiPeach.quantity(3).collect();
 		}
 
 		if (talent == CONTROL_DEATH && hero.pointsInTalent(CONTROL_DEATH) == 1) {
@@ -840,7 +863,6 @@ public enum Talent {
 			live.collect();
 			Buff.prolong( hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION/6f );
 		}
-
 
 		if (talent == GAIN_RECHARGE && hero.pointsInTalent(GAIN_RECHARGE) == 1){
 			ScrollOfRecharging Sor = new ScrollOfRecharging();
@@ -1250,8 +1272,8 @@ public enum Talent {
 
 		if (hero.hasTalent(CUCUMBER_MEAL)) {
 			if (Random.Int(10-hero.pointsInTalent(CUCUMBER_MEAL)-2) == 0) {
-				Cucumber Healing211 = new Cucumber();
-				Healing211.quantity(1).collect();
+				Cucumber cucumber = new Cucumber();
+				cucumber.collect();
 			}
 		}
 
@@ -1423,16 +1445,75 @@ public enum Talent {
 			}
 		}
 
+		if (hero.hasTalent(SOU_HEAL)) {
+			hero.HP = Math.min(hero.HP + 1 + 2 * hero.pointsInTalent(SOU_HEAL), hero.HT);
+			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1+hero.pointsInTalent(SOU_HEAL));
+		}
+
+		if (hero.hasTalent(SOU_MORE_HEAL)) {
+			hero.HP = Math.min(hero.HP + 4 + 3 * hero.pointsInTalent(SOU_MORE_HEAL), hero.HT);
+			hero.sprite.emitter().burst(Speck.factory(Speck.HEALING), 1+hero.pointsInTalent(SOU_MORE_HEAL));
+		}
+
+		if (hero.hasTalent(SOU_TUMMY)) {
+			Hunger hunger = Buff.affect(hero, Hunger.class);
+			hunger.affectHunger(5+3*hero.pointsInTalent(SOU_TUMMY));
+		}
+
+		if (hero.hasTalent(SOU_MORE_TUMMY)) {
+			Hunger hunger = Buff.affect(hero, Hunger.class);
+			hunger.affectHunger(10+4*hero.pointsInTalent(SOU_MORE_TUMMY));
+		}
+
+		if (hero.hasTalent(SOU_BLESS) && hero.pointsInTalent(SOU_BLESS) == 1) {
+			Buff.prolong(hero, Bless.class, Bless.DURATION/2f);
+		}
+
+		if (hero.hasTalent(SOU_BLESS) && hero.pointsInTalent(SOU_BLESS) == 2) {
+			Buff.prolong(hero, Bless.class, Bless.DURATION);
+		}
+
+		if (hero.hasTalent(SOU_POH) && Random.Int(15-hero.pointsInTalent(SOU_POH)) == 0){
+			PotionOfHealing.cure(hero);
+			PotionOfHealing.heal(hero);
+		}
+
+		if (hero.hasTalent(SOU_POL) && Random.Int(7-hero.pointsInTalent(SOU_POL)) == 0){
+			PotionOfLevitation polv = new PotionOfLevitation();
+			polv.collect();
+		}
+
+		if (hero.hasTalent(SOU_POP) && Random.Int(7-hero.pointsInTalent(SOU_POP)) == 0){
+			PotionOfParalyticGas polv = new PotionOfParalyticGas();
+			polv.collect();
+		}
+
+		if (hero.hasTalent(SOU_POS) && Random.Int(14-hero.pointsInTalent(SOU_POS)) == 0){
+			PotionOfStrength pos = new PotionOfStrength();
+			pos.collect();
+		}
+
+		if (hero.hasTalent(SOU_MAP) && Random.Int(11-hero.pointsInTalent(SOU_MAP)) == 0){
+			ScrollOfMagicMapping somm = new ScrollOfMagicMapping();
+			somm.collect();
+		}
+
+		if (hero.hasTalent(SOU_FOOD) && Random.Int(11-hero.pointsInTalent(SOU_FOOD)) == 0){
+			Generator.Category f = Generator.Category.FOOD;
+			Food f2 = (Food) Reflection.newInstance(f.classes[Random.chances(f.probs)]);
+			f2.collect();
+		}
+
 		if (hero.hasTalent(AQUA_UPGRADE)) {
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(1).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.collect();
 			if (Random.Int(4+hero.pointsInTalent(AQUA_UPGRADE)-2) == 0)
 				Buff.affect( hero, Bleeding.class ).set( 9-hero.pointsInTalent(AQUA_UPGRADE));
 		}
 
 		if (hero.hasTalent(RISKY_UPGRADE)) {
-			Cucumber Healing211 = new Cucumber();
-			Healing211.quantity(1).collect();
+			Cucumber cucumber = new Cucumber();
+			cucumber.collect();
 			if (Random.Int(5+hero.pointsInTalent(AQUA_UPGRADE)*2-2) == 0)
 				Buff.prolong( hero, Degrade.class, Degrade.DURATION );
 			Buff.prolong( hero, Roots.class, Roots.DURATION );
@@ -1618,6 +1699,9 @@ public enum Talent {
 			case JUNKOPLAYER:
 				Collections.addAll(tierTalents, MINOR_EVASION_UP, MINOR_ACCURACY_UP, MAXHP_FOOD_DOUBLEEVASION, SILENCE_TIME_REDUCE);
 				break;
+			case TENKYUUPLAYER:
+				Collections.addAll(tierTalents, SOU_HEAL, SOU_TUMMY, SOU_BLESS, SOU_POH);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(0).put(talent, 0);
@@ -1666,6 +1750,9 @@ public enum Talent {
 			case JUNKOPLAYER:
 				Collections.addAll(tierTalents, MAJOR_EVASION_UP, MAJOR_ACCURACY_UP, GAIN_BLOWAWAY, GAIN_INVISIBILITY, ATTACK_MINDVISION);
 				break;
+			case TENKYUUPLAYER:
+				Collections.addAll(tierTalents, SOU_MORE_HEAL, SOU_MORE_TUMMY, SOU_POL, SOU_POP, SOU_POS);
+				break;
 		}
 		for (Talent talent : tierTalents) {
 			talents.get(1).put(talent, 0);
@@ -1713,6 +1800,9 @@ public enum Talent {
 				break;
 			case JUNKOPLAYER:
 				Collections.addAll(tierTalents, ATTACK_HEX, ITEM_CONFUSION);
+				break;
+			case TENKYUUPLAYER:
+				Collections.addAll(tierTalents, SOU_MAP, SOU_FOOD);
 				break;
 		}
 		for (Talent talent : tierTalents) {
@@ -1775,6 +1865,9 @@ public enum Talent {
 			case PURITYGOD:
 				Collections.addAll(tierTalents, BEAM_DROWSY, BEAM_SLOW, BEAM_ONEDAMAGE);
 				break;
+			case SOUCOLLECTOR:
+				Collections.addAll(tierTalents, SOU_DEFENSE, SOU_POTION, SOU_RECTATTACK);
+				break;
 
 			case ASSASSIN:
 				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER);
@@ -1814,6 +1907,9 @@ public enum Talent {
 				break;
 			case PUREGOD:
 				Collections.addAll(tierTalents, ATTACK_DOUBLEEVASION, EXPLOSION_SNIPE, FOOD_INVULNERABILITY);
+				break;
+			case MISCCOLLECTOR:
+				Collections.addAll(tierTalents, TELE_CHANGE, MAP_CHANGE, TRANSMUTE_CHANGE);
 				break;
 		}
 		for (Talent talent : tierTalents){

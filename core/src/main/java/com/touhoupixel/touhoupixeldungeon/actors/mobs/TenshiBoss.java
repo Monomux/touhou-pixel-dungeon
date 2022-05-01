@@ -81,7 +81,7 @@ public class TenshiBoss extends Mob {
 
 		HP = HT = Dungeon.isChallenged(Challenges.CHAMPION_ENEMIES) ? 800 : 600;
 		EXP = 30;
-		defenseSkill = 15;
+		defenseSkill = 25;
 
 		properties.add(Property.BOSS);
 	}

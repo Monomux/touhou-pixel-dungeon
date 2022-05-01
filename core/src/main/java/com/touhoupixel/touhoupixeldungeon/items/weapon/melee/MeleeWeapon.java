@@ -28,6 +28,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Cripple;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.MurasaCall;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
@@ -41,14 +42,14 @@ public class MeleeWeapon extends Weapon {
 
 	@Override
 	public int min(int lvl) {
-		return  tier +  //base
-				lvl;    //level scaling
+		return  tier +
+				lvl;
 	}
 
 	@Override
 	public int max(int lvl) {
-		return  5*(tier+1) +    //base
-				lvl*(tier+1);   //level scaling
+		return  5*(tier+1) +
+				lvl*(tier+1);
 	}
 
 	public int STRReq(int lvl){
@@ -66,11 +67,8 @@ public class MeleeWeapon extends Weapon {
 			}
 		}
 
-		if (Dungeon.isChallenged(Challenges.REVERSE_HIERARCHY) && tier > 3) {
-			Buff.prolong(owner, Weakness.class, Weakness.DURATION);
-			Buff.prolong(owner, Vulnerable.class, Vulnerable.DURATION);
-			Buff.prolong(owner, Hex.class, Hex.DURATION);
-			Buff.prolong(owner, AntiSneakattack.class, AntiSneakattack.DURATION);
+		if (Dungeon.isChallenged(Challenges.MORFONICA) && tier > 3) {
+			Buff.prolong(owner, MurasaCall.class, MurasaCall.DURATION);
 		}
 		
 		return damage;

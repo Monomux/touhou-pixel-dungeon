@@ -23,13 +23,6 @@ package com.touhoupixel.touhoupixeldungeon;
 
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.Artifact;
-import com.touhoupixel.touhoupixeldungeon.items.bags.ArcaneHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.FoodHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
-import com.touhoupixel.touhoupixeldungeon.items.bags.PotionBandolier;
-import com.touhoupixel.touhoupixeldungeon.items.bags.ScrollHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.TailsmanHolder;
-import com.touhoupixel.touhoupixeldungeon.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeon.journal.Catalog;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
@@ -63,11 +56,6 @@ public class Badges {
 		FOOD_EATEN_1                ( 11 ),
 		ITEMS_CRAFTED_1             ( 12 ),
 		BOSS_SLAIN_1                ( 13 ),
-		DEATH_FROM_FIRE             ( 14 ),
-		DEATH_FROM_POISON           ( 15 ),
-		DEATH_FROM_GAS              ( 16 ),
-		DEATH_FROM_HUNGER           ( 17 ),
-		DEATH_FROM_FALLING          ( 18 ),
 		UNLOCK_REISENPLAYER         ( 24 ),
 		UNLOCK_NITORIPLAYER         ( 25 ),
 		UNLOCK_YUYUKOPLAYER         ( 26 ),
@@ -79,6 +67,7 @@ public class Badges {
 		UNLOCK_JUNKOPLAYER          ( 23 ),
 		UNLOCK_RENKOPLAYER          ( 56 ),
 		UNLOCK_SEIJAPLAYER          ( 57 ),
+		UNLOCK_TENKYUUPLAYER        ( 58 ),
 		SHOPKEEPERS                 ( 28 ),
 		TOYOHIMES                   ( 29 ),
 		YORIHIMES                   ( 30 ),
@@ -104,19 +93,10 @@ public class Badges {
 		BOSS_SLAIN_3                ( 49 ),
 		ALL_POTIONS_IDENTIFIED      ( 50 ),
 		ALL_SCROLLS_IDENTIFIED      ( 51 ),
-		DEATH_FROM_GLYPH            ( 52 ),
 		GAMES_PLAYED_1              ( 54, true ),
 
 		//gold
 		PIRANHAS                    ( 64 ),
-		BAG_BOUGHT_SEED_POUCH,
-		BAG_BOUGHT_SCROLL_HOLDER,
-		BAG_BOUGHT_POTION_BANDOLIER,
-		BAG_BOUGHT_FOOD_HOLDER,
-		BAG_BOUGHT_ARCANE_HOLDER,
-		BAG_BOUGHT_WAND_HOLSTER,
-		BAG_BOUGHT_TAILSMAN_HOLDER,
-		ALL_BAGS_BOUGHT             ( 65 ),
 		MASTERY_COMBO               ( 66 ),
 		ITEM_LEVEL_4                ( 67 ),
 		LEVEL_REACHED_4             ( 68 ),
@@ -130,7 +110,6 @@ public class Badges {
 		ALL_RINGS_IDENTIFIED        ( 76 ),
 		ALL_ARTIFACTS_IDENTIFIED    ( 77 ),
 		VICTORY                     ( 78 ),
-		YASD                        ( 79, true ),
 		GAMES_PLAYED_2              ( 81, true ),
 
 		//platinum
@@ -205,9 +184,6 @@ public class Badges {
 	private static final HashMap<String, String> renamedBadges = new HashMap<>();
 	static{
 		//v1.1.0 (some names were from before 1.1.0, but conversion was added then)
-		renamedBadges.put("BAG_BOUGHT_SEED_POUCH",      "BAG_BOUGHT_VELVET_POUCH");
-		renamedBadges.put("BAG_BOUGHT_WAND_HOLSTER",    "BAG_BOUGHT_MAGICAL_HOLSTER");
-
 		renamedBadges.put("POTIONS_COOKED_1", "ITEMS_CRAFTED_1");
 		renamedBadges.put("POTIONS_COOKED_2", "ITEMS_CRAFTED_2");
 		renamedBadges.put("POTIONS_COOKED_3", "ITEMS_CRAFTED_3");
@@ -537,45 +513,6 @@ public class Badges {
 		displayBadge( badge );
 	}
 
-	public static void validateAllBagsBought( Item bag ) {
-
-		Badge badge = null;
-		if (bag instanceof VelvetPouch) {
-			badge = Badge.BAG_BOUGHT_SEED_POUCH;
-		} else if (bag instanceof ScrollHolder) {
-			badge = Badge.BAG_BOUGHT_SCROLL_HOLDER;
-		} else if (bag instanceof PotionBandolier) {
-			badge = Badge.BAG_BOUGHT_POTION_BANDOLIER;
-		} else if (bag instanceof FoodHolder) {
-			badge = Badge.BAG_BOUGHT_FOOD_HOLDER;
-		} else if (bag instanceof ArcaneHolder) {
-			badge = Badge.BAG_BOUGHT_ARCANE_HOLDER;
-		} else if (bag instanceof MagicalHolster) {
-			badge = Badge.BAG_BOUGHT_WAND_HOLSTER;
-		} else if (bag instanceof TailsmanHolder) {
-			badge = Badge.BAG_BOUGHT_TAILSMAN_HOLDER;
-		}
-
-		if (badge != null) {
-
-			local.add( badge );
-
-			if (!local.contains( Badge.ALL_BAGS_BOUGHT ) &&
-					local.contains( Badge.BAG_BOUGHT_SEED_POUCH ) &&
-					local.contains( Badge.BAG_BOUGHT_SCROLL_HOLDER ) &&
-					local.contains( Badge.BAG_BOUGHT_POTION_BANDOLIER ) &&
-					local.contains( Badge.BAG_BOUGHT_FOOD_HOLDER ) &&
-					local.contains( Badge.BAG_BOUGHT_ARCANE_HOLDER ) &&
-					local.contains( Badge.BAG_BOUGHT_WAND_HOLSTER ) &&
-					local.contains( Badge.BAG_BOUGHT_TAILSMAN_HOLDER )) {
-
-				badge = Badge.ALL_BAGS_BOUGHT;
-				local.add( badge );
-				displayBadge( badge );
-			}
-		}
-	}
-
 	public static void validateItemsIdentified() {
 
 		for (Catalog cat : Catalog.values()){
@@ -600,69 +537,14 @@ public class Badges {
 		}
 	}
 
-	public static void validateDeathFromFire() {
-		Badge badge = Badge.DEATH_FROM_FIRE;
-		local.add( badge );
-		displayBadge( badge );
-
-		validateYASD();
-	}
-
-	public static void validateDeathFromPoison() {
-		Badge badge = Badge.DEATH_FROM_POISON;
-		local.add( badge );
-		displayBadge( badge );
-
-		validateYASD();
-	}
-
-	public static void validateDeathFromGas() {
-		Badge badge = Badge.DEATH_FROM_GAS;
-		local.add( badge );
-		displayBadge( badge );
-
-		validateYASD();
-	}
-
-	public static void validateDeathFromHunger() {
-		Badge badge = Badge.DEATH_FROM_HUNGER;
-		local.add( badge );
-		displayBadge( badge );
-
-		validateYASD();
-	}
-
-	public static void validateDeathFromGlyph() {
-		Badge badge = Badge.DEATH_FROM_GLYPH;
-		local.add( badge );
-		displayBadge( badge );
-
-		validateYASD();
-	}
-
-	public static void validateDeathFromFalling() {
-		Badge badge = Badge.DEATH_FROM_FALLING;
-		local.add( badge );
-		displayBadge( badge );
-
-		validateYASD();
-	}
-
-	private static void validateYASD() {
-		if (global.contains( Badge.DEATH_FROM_FIRE ) &&
-				global.contains( Badge.DEATH_FROM_POISON ) &&
-				global.contains( Badge.DEATH_FROM_GAS ) &&
-				global.contains( Badge.DEATH_FROM_HUNGER) &&
-				global.contains( Badge.DEATH_FROM_GLYPH) &&
-				global.contains( Badge.DEATH_FROM_FALLING)) {
-
-			Badge badge = Badge.YASD;
-			displayBadge( badge );
+	public static void validateMageUnlock(){
+		if (Statistics.upgradesUsed >= 1 && !global.contains(Badge.UNLOCK_MAGE)){
+			displayBadge( Badge.UNLOCK_MAGE );
 		}
 	}
 
-	public static void validateMageUnlock(){
-		if (Statistics.upgradesUsed >= 1 && !global.contains(Badge.UNLOCK_MAGE)){
+	public static void validateTenkyuuUnlock(){
+		if (Statistics.upgradesUsed >= 55 && !global.contains(Badge.UNLOCK_TENKYUUPLAYER)){
 			displayBadge( Badge.UNLOCK_MAGE );
 		}
 	}
@@ -943,13 +825,6 @@ public class Badges {
 	};
 
 	private static final Badge[][] metaBadgeReplacements = new Badge[][]{
-			{Badge.DEATH_FROM_FIRE, Badge.YASD},
-			{Badge.DEATH_FROM_GAS, Badge.YASD},
-			{Badge.DEATH_FROM_HUNGER, Badge.YASD},
-			{Badge.DEATH_FROM_POISON, Badge.YASD},
-			{Badge.DEATH_FROM_GLYPH, Badge.YASD},
-			{Badge.DEATH_FROM_FALLING, Badge.YASD },
-
 			{Badge.ALL_WEAPONS_IDENTIFIED, Badge.ALL_ITEMS_IDENTIFIED},
 			{Badge.ALL_ARMOR_IDENTIFIED, Badge.ALL_ITEMS_IDENTIFIED},
 			{Badge.ALL_WANDS_IDENTIFIED, Badge.ALL_ITEMS_IDENTIFIED},

@@ -26,6 +26,7 @@ import com.touhoupixel.touhoupixeldungeon.Badges;
 import com.touhoupixel.touhoupixeldungeon.Challenges;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.QuickSlot;
+import com.touhoupixel.touhoupixeldungeon.actors.mobs.Eiki;
 import com.touhoupixel.touhoupixeldungeon.items.BrokenSeal;
 import com.touhoupixel.touhoupixeldungeon.items.Item;
 import com.touhoupixel.touhoupixeldungeon.items.KogasaPrayer;
@@ -36,10 +37,17 @@ import com.touhoupixel.touhoupixeldungeon.items.SpCard;
 import com.touhoupixel.touhoupixeldungeon.items.Waterskin;
 import com.touhoupixel.touhoupixeldungeon.items.YukariMemo;
 import com.touhoupixel.touhoupixeldungeon.items.armor.ClothArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PlateArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.PoppinPartyArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.RumiaArmor;
+import com.touhoupixel.touhoupixeldungeon.items.armor.YuyukoArmor;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.CloakOfShadows;
 import com.touhoupixel.touhoupixeldungeon.items.artifacts.DriedRose;
+import com.touhoupixel.touhoupixeldungeon.items.bags.ArcaneHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.FoodHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.MagicalHolster;
+import com.touhoupixel.touhoupixeldungeon.items.bags.PotionBandolier;
+import com.touhoupixel.touhoupixeldungeon.items.bags.ScrollHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.TailsmanHolder;
 import com.touhoupixel.touhoupixeldungeon.items.bags.VelvetPouch;
 import com.touhoupixel.touhoupixeldungeon.items.food.Cucumber;
@@ -52,6 +60,7 @@ import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfExperience;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHaste;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfInvisibility;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLevitation;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLightHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMight;
@@ -65,6 +74,7 @@ import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRage;
+import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfRouteChange;
 import com.touhoupixel.touhoupixeldungeon.items.scrolls.ScrollOfSilence;
@@ -82,8 +92,10 @@ import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfReverseGravity;
 import com.touhoupixel.touhoupixeldungeon.items.wands.WandOfStableness;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.SpiritBow;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.BlazingStar;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.ButterflyFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Dagger;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.DeadBeacon;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.EikiHammer;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Gloves;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.Greatshield;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.HandAxe;
@@ -95,8 +107,10 @@ import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.MurasaDipper;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.NitoriRod;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.RunicBlade;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.SmallSeiranHammer;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TenkyuuCloak;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.TurnaboutCloak;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.WornShortsword;
+import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YachieHorn;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.melee.YuyukoFoldingFan;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.ThrowingKnife;
 import com.touhoupixel.touhoupixeldungeon.items.weapon.missiles.ThrowingStone;
@@ -121,7 +135,8 @@ public enum HeroClass {
 	YUKARIPLAYER( HeroSubClass.GAPMASTER, HeroSubClass.BORDERMASTER ),
 	JUNKOPLAYER( HeroSubClass.PURITYGOD, HeroSubClass.PUREGOD ),
 	RENKOPLAYER( HeroSubClass.STARSEEKER, HeroSubClass.LUNARSEEKER ),
-	SEIJAPLAYER( HeroSubClass.TURNMASTER, HeroSubClass.GRAVMASTER );
+	SEIJAPLAYER( HeroSubClass.TURNMASTER, HeroSubClass.GRAVMASTER ),
+	TENKYUUPLAYER( HeroSubClass.SOUCOLLECTOR, HeroSubClass.MISCCOLLECTOR );
 
 	private HeroSubClass[] subClasses;
 
@@ -140,17 +155,13 @@ public enum HeroClass {
 		i = new Food();
 		i.collect();
 
-		new VelvetPouch().collect();
-		Dungeon.LimitedDrops.VELVET_POUCH.drop();
-
-		new MagicalHolster().collect();
-		Dungeon.LimitedDrops.MAGICAL_HOLSTER.drop();
-
+		new ArcaneHolder().collect();
 		new FoodHolder().collect();
-		Dungeon.LimitedDrops.FOOD_HOLDER.drop();
-
+		new MagicalHolster().collect();
+		new PotionBandolier().collect();
+		new ScrollHolder().collect();
 		new TailsmanHolder().collect();
-		Dungeon.LimitedDrops.TAILSMAN_HOLDER.drop();
+		new VelvetPouch().collect();
 
 		Waterskin waterskin = new Waterskin();
 		waterskin.collect();
@@ -217,6 +228,10 @@ public enum HeroClass {
 				if (Dungeon.hero.heroClass == KOGASAPLAYER && calendar.get(Calendar.DATE) == 19) {
 					card.collect();
 				}
+			case Calendar.OCTOBER:
+				if (Dungeon.hero.heroClass == TENKYUUPLAYER && calendar.get(Calendar.DATE) == 9) {
+					card.collect();
+				}
 			case Calendar.NOVEMBER:
 				if (Dungeon.hero.heroClass == RENKOPLAYER && calendar.get(Calendar.DATE) == 5) {
 					card.collect();
@@ -235,8 +250,13 @@ public enum HeroClass {
 			spcard.collect();
 		}
 
-		PotionOfHealing Poh = new PotionOfHealing();
-		Poh.quantity(3).collect();
+		if (Dungeon.isChallenged(Challenges.TENSHI_EARTHQUAKE)) {
+			PotionOfLevitation pol = new PotionOfLevitation();
+			pol.quantity(5).identify().collect();
+		}
+
+		PotionOfHealing poh = new PotionOfHealing();
+		poh.quantity(3).collect();
 
 		new PotionOfHealing().identify();
 		new ScrollOfRouteChange().identify();
@@ -300,6 +320,10 @@ public enum HeroClass {
 
 			case SEIJAPLAYER:
 				initSeijaplayer( hero );
+				break;
+
+			case TENKYUUPLAYER:
+				initTenkyuuplayer( hero );
 				break;
 		}
 
@@ -382,7 +406,7 @@ public enum HeroClass {
 	}
 
 	private static void initNitoriplayer( Hero hero ) {
-		(hero.belongings.weapon = new NitoriRod()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		Cucumber cm = new Cucumber();
 		cm.quantity(5).collect();
@@ -401,7 +425,7 @@ public enum HeroClass {
 	}
 
 	private static void initYuyukoplayer( Hero hero ) {
-		(hero.belongings.weapon = new YuyukoFoldingFan()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		TwoSoySauce soy = new TwoSoySauce();
 		soy.quantity(3).collect();
@@ -417,7 +441,7 @@ public enum HeroClass {
 	}
 
 	private static void initMurasaplayer( Hero hero ) {
-		(hero.belongings.weapon = new MurasaDipper()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		PotionOfHealing Healing = new PotionOfHealing();
 		Healing.quantity(27).collect();
@@ -463,7 +487,7 @@ public enum HeroClass {
 	}
 
 	private static void initKogasaplayer( Hero hero ) {
-		(hero.belongings.weapon = new HandAxe()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		Food food = new Food();
 		food.quantity(9).collect();
@@ -478,7 +502,7 @@ public enum HeroClass {
 	}
 
 	private static void initYukariplayer( Hero hero ) {
-		(hero.belongings.weapon = new RunicBlade()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		YukariMemo ym = new YukariMemo();
 		ym.collect();
@@ -486,7 +510,7 @@ public enum HeroClass {
 	}
 
 	private static void initJunkoplayer( Hero hero ) {
-		(hero.belongings.weapon = new Greatshield()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		WandOfPurityBeam wopb = new WandOfPurityBeam();
 		wopb.identify().collect();
@@ -494,7 +518,7 @@ public enum HeroClass {
 	}
 
 	private static void initRenkoplayer( Hero hero ) {
-		(hero.belongings.weapon = new BlazingStar()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		RenkoMemo rm = new RenkoMemo();
 		rm.collect();
@@ -502,11 +526,15 @@ public enum HeroClass {
 	}
 
 	private static void initSeijaplayer( Hero hero ) {
-		(hero.belongings.weapon = new TurnaboutCloak()).identify();
+		(hero.belongings.weapon = new WornShortsword()).identify();
 
 		WandOfReverseGravity worg = new WandOfReverseGravity();
 		worg.identify().collect();
 		Dungeon.quickslot.setSlot(0, worg);
+	}
+
+	private static void initTenkyuuplayer( Hero hero ) {
+		(hero.belongings.weapon = new WornShortsword()).identify();
 	}
 
 	public String title() {
@@ -553,6 +581,8 @@ public enum HeroClass {
 				return Assets.Sprites.RENKOPLAYER;
 			case SEIJAPLAYER:
 				return Assets.Sprites.SEIJAPLAYER;
+			case TENKYUUPLAYER:
+				return Assets.Sprites.TENKYUUPLAYER;
 		}
 	}
 
@@ -588,6 +618,8 @@ public enum HeroClass {
 				return Assets.Splashes.RENKOPLAYER;
 			case SEIJAPLAYER:
 				return Assets.Splashes.SEIJAPLAYER;
+			case TENKYUUPLAYER:
+				return Assets.Splashes.TENKYUUPLAYER;
 		}
 	}
 
@@ -713,6 +745,14 @@ public enum HeroClass {
 						Messages.get(HeroClass.class, "seijaplayer_perk4"),
 						Messages.get(HeroClass.class, "seijaplayer_perk5"),
 				};
+			case TENKYUUPLAYER:
+				return new String[]{
+						Messages.get(HeroClass.class, "tenkyuuplayer_perk1"),
+						Messages.get(HeroClass.class, "tenkyuuplayer_perk2"),
+						Messages.get(HeroClass.class, "tenkyuuplayer_perk3"),
+						Messages.get(HeroClass.class, "tenkyuuplayer_perk4"),
+						Messages.get(HeroClass.class, "tenkyuuplayer_perk5"),
+				};
 		}
 	}
 
@@ -752,6 +792,8 @@ public enum HeroClass {
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_RENKOPLAYER);
 			case SEIJAPLAYER:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_SEIJAPLAYER);
+			case TENKYUUPLAYER:
+				return Badges.isUnlocked(Badges.Badge.UNLOCK_TENKYUUPLAYER);
 		}
 	}
 
@@ -788,6 +830,8 @@ public enum HeroClass {
 				return Messages.get(HeroClass.class, "renkoplayer_unlock");
 			case SEIJAPLAYER:
 				return Messages.get(HeroClass.class, "seijaplayer_unlock");
+			case TENKYUUPLAYER:
+				return Messages.get(HeroClass.class, "tenkyuuplayer_unlock");
 		}
 	}
 }

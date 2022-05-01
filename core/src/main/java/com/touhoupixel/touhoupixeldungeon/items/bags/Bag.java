@@ -76,8 +76,6 @@ public class Bag extends Item implements Iterable<Item> {
 			
 			owner = container.owner;
 			
-			Badges.validateAllBagsBought( this );
-			
 			return true;
 		} else {
 			return false;

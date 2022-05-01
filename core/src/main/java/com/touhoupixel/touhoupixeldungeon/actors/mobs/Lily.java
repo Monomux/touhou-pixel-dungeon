@@ -24,7 +24,14 @@ package com.touhoupixel.touhoupixeldungeon.actors.mobs;
 import com.touhoupixel.touhoupixeldungeon.Assets;
 import com.touhoupixel.touhoupixeldungeon.Dungeon;
 import com.touhoupixel.touhoupixeldungeon.actors.Char;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.AntiSneakattack;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Buff;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Doubleevasion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.ExtremeConfusion;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hisou;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Incompetence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Silence;
+import com.touhoupixel.touhoupixeldungeon.actors.buffs.Triplespeed;
 import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
@@ -44,8 +51,6 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 public class Lily extends Mob {
-
-	public Item item;
 
 	{
 		spriteClass = LilySprite.class;
@@ -68,28 +73,11 @@ public class Lily extends Mob {
 
 		flying = true;
 
-		WANDERING = new Wandering();
-		FLEEING = new Fleeing();
-
 		loot = new ScrollOfSirensSong();
 		lootChance = 0.15f;
 
 		properties.add(Property.FLOAT);
 		properties.add(Property.WARP);
-	}
-
-	private static final String ITEM = "item";
-
-	@Override
-	public void storeInBundle(Bundle bundle) {
-		super.storeInBundle(bundle);
-		bundle.put(ITEM, item);
-	}
-
-	@Override
-	public void restoreFromBundle(Bundle bundle) {
-		super.restoreFromBundle(bundle);
-		item = (Item) bundle.get(ITEM);
 	}
 
 	@Override
@@ -107,46 +95,18 @@ public class Lily extends Mob {
 	}
 
 	@Override
-	protected Item createLoot() {
-		Dungeon.LimitedDrops.THEIF_MISC.count++;
-		return super.createLoot();
-	}
-
-	@Override
 	public int drRoll() {
 		return Random.NormalIntRange(0, 2);
 	}
 
 	@Override
-	public int attackProc(Char enemy, int damage) {
-		damage = super.attackProc(enemy, damage);
+	public int attackProc( Char hero, int damage ) {
+		damage = super.attackProc( enemy, damage );
 		if (this.buff(Incompetence.class) == null) {
-			if (alignment == Alignment.ENEMY && item == null
-					&& enemy instanceof Hero && steal((Hero) enemy)) {
-				state = WANDERING;
-				this.die(null);
+			if (Random.Int(2) == 0) {
+				Buff.prolong(enemy, ExtremeConfusion.class, ExtremeConfusion.DURATION/2f);
 			}
 		}
 		return damage;
-	}
-
-	protected boolean steal(Hero hero) {
-
-		Item toSteal = hero.belongings.randomUnequipped();
-
-		if (toSteal != null && !toSteal.unique && toSteal.level() < 1 && toSteal instanceof Scroll) {
-
-			GLog.w(Messages.get(Lily.class, "stole", toSteal.name()));
-			if (!toSteal.stackable) {
-				Dungeon.quickslot.convertToPlaceholder(toSteal);
-				Sample.INSTANCE.play( Assets.Sounds.CURSED );
-			}
-			Item.updateQuickslot();
-
-			item = toSteal.detach(hero.belongings.backpack);
-			return true;
-		} else {
-			return false;
-		}
 	}
 }

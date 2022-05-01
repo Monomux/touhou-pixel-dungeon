@@ -77,8 +77,8 @@ public class BirthdayCard extends GiftCard {
 		Generator.Category c9 = Generator.Category.ARMOR_T5;
 		Armor w9 = (Armor) Reflection.newInstance(c9.classes[Random.chances(c9.probs)]);
 		w9.collect();
-		PotionOfHealing Poh = new PotionOfHealing();
-		Poh.quantity(3).collect();
+		PotionOfHealing poh = new PotionOfHealing();
+		poh.quantity(3).collect();
 		GameScene.flash(0x80FFFFFF);
 	}
 }

@@ -130,16 +130,7 @@ public class Dungeon {
 		SHAMAN_WAND,
 		DM200_EQUIP,
 		GOLEM_EQUIP,
-		KOMACHI_EQUIP,
-
-		//containers
-		VELVET_POUCH,
-		SCROLL_HOLDER,
-		FOOD_HOLDER,
-		ARCANE_HOLDER,
-		POTION_BANDOLIER,
-		MAGICAL_HOLSTER,
-		TAILSMAN_HOLDER;
+		KOMACHI_EQUIP;
 
 		public int count = 0;
 
@@ -364,7 +355,7 @@ public class Dungeon {
 				level = new HallsBossLevel();
 				break;
 			case 51:
-				if (!Dungeon.isChallenged(com.touhoupixel.touhoupixeldungeon.Challenges.DEKAI_ENEMIES)) {
+				if (!Dungeon.isChallenged(Challenges.DEKAI_ENEMIES)) {
 					level = new LastLevel();
 					break;
 				} else {

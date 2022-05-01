@@ -33,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.buffs.Hex;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Slow;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Vulnerable;
 import com.touhoupixel.touhoupixeldungeon.actors.buffs.Weakness;
+import com.touhoupixel.touhoupixeldungeon.items.ThreeStarTicket;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfMight;
 import com.touhoupixel.touhoupixeldungeon.sprites.YorihimeSprite;
 import com.watabou.utils.Random;
@@ -66,8 +67,8 @@ public class Yorihime extends Mob {
 
 		baseSpeed = 0.8f;
 
-		loot = new PotionOfMight();
-		lootChance = 0.2f;
+		loot = new ThreeStarTicket();
+		lootChance = 0.1f;
 	}
 
 	@Override

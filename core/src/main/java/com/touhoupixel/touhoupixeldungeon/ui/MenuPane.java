@@ -33,6 +33,7 @@ import com.touhoupixel.touhoupixeldungeon.scenes.GameScene;
 import com.touhoupixel.touhoupixeldungeon.scenes.PixelScene;
 import com.touhoupixel.touhoupixeldungeon.windows.WndChallenges;
 import com.touhoupixel.touhoupixeldungeon.windows.WndGame;
+import com.touhoupixel.touhoupixeldungeon.windows.WndHero;
 import com.touhoupixel.touhoupixeldungeon.windows.WndJournal;
 import com.touhoupixel.touhoupixeldungeon.windows.WndKeyBindings;
 import com.touhoupixel.touhoupixeldungeon.windows.WndStory;

@@ -49,14 +49,14 @@ public class AutumnKatana extends MeleeWeapon {
 	}
 
 	@Override
-	public int pureResistFactor( Char owner ) {
-		return 3;
-	}
-
-	@Override
 	public int max(int lvl) {
 		return  4*(tier+1) +
 				lvl*(tier);
+	}
+
+	@Override
+	public int pureResistFactor( Char owner ) {
+		return 3;
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class AutumnKatana extends MeleeWeapon {
 		if (owner instanceof Hero) {
 			Hero hero = (Hero) owner;
 			Char enemy = hero.enemy();
-			if (Dungeon.hero.belongings.weapon() instanceof AutumnKatana && (Random.Int(6) == 0)) {
+			if (Dungeon.hero.belongings.weapon() instanceof AutumnKatana && (Random.Int(8) == 0)) {
 				Buff.prolong(owner, OneDefDamage.class, OneDefDamage.DURATION / 4f);
 			}
 		}

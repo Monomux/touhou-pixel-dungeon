@@ -29,6 +29,7 @@ import com.touhoupixel.touhoupixeldungeon.actors.hero.Hero;
 import com.touhoupixel.touhoupixeldungeon.effects.CellEmitter;
 import com.touhoupixel.touhoupixeldungeon.effects.particles.ShadowParticle;
 import com.touhoupixel.touhoupixeldungeon.items.Gold;
+import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfHealing;
 import com.touhoupixel.touhoupixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.touhoupixel.touhoupixeldungeon.messages.Messages;
 import com.touhoupixel.touhoupixeldungeon.sprites.JoonSprite;
@@ -90,11 +91,11 @@ public class Joon extends Mob {
 	public int attackProc( Char hero, int damage ) {
 		damage = super.attackProc(enemy, damage);
 		if (this.buff(Incompetence.class) == null) {
-		if (Random.Int( 3 ) == 0 && hero instanceof Hero) {
-			if (Dungeon.gold > 501) {
-				Dungeon.gold -= 500;
-				PotionOfLiquidFlame Flame = new PotionOfLiquidFlame();
-				Flame.quantity(1).collect();
+		if (Random.Int( 5 ) == 0 && hero instanceof Hero) {
+			if (Dungeon.gold > 801) {
+				Dungeon.gold -= 800;
+				PotionOfHealing poh = new PotionOfHealing();
+				poh.collect();
 				Sample.INSTANCE.play(Assets.Sounds.GOLD);
 				CellEmitter.get(pos).burst(ShadowParticle.UP, 5);
 				GLog.w(Messages.get(this, "wastemoney"));
