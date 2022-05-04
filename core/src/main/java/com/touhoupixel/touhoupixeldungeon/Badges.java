@@ -545,7 +545,7 @@ public class Badges {
 
 	public static void validateTenkyuuUnlock(){
 		if (Statistics.upgradesUsed >= 55 && !global.contains(Badge.UNLOCK_TENKYUUPLAYER)){
-			displayBadge( Badge.UNLOCK_MAGE );
+			displayBadge( Badge.UNLOCK_TENKYUUPLAYER );
 		}
 	}
 

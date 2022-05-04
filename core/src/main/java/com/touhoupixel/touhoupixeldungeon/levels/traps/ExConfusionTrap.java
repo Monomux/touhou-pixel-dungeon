@@ -35,8 +35,8 @@ import com.watabou.noosa.audio.Sample;
 public class ExConfusionTrap extends Trap {
 
 	{
-		color = BLACK;
-		shape = GRILL;
+		color = GREEN;
+		shape = DIAMOND;
 
 		avoidsHallways = false;
 	}

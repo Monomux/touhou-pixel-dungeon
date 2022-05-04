@@ -35,6 +35,7 @@ public class v1_X_Changes {
 
 	//just the one update this time
 	public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
+		add_v1_5_7_Changes(changeInfos);
 		add_v1_5_6_Changes(changeInfos);
 		add_v1_5_5_Changes(changeInfos);
 		add_v1_5_4_Changes(changeInfos);
@@ -42,6 +43,16 @@ public class v1_X_Changes {
 		add_v1_5_2_Changes(changeInfos);
 		add_v1_5_1_Changes(changeInfos);
 		add_v1_5_Changes(changeInfos);
+	}
+
+	public static void add_v1_5_7_Changes( ArrayList<ChangeInfo> changeInfos ){
+		ChangeInfo changes = new ChangeInfo("v1.5.7", true, "");
+		changes.hardlight(Window.TITLE_COLOR);
+		changeInfos.add(changes);
+
+		changes.addButton( new ChangeButton( Icons.get(Icons.CHANGES), "TBA",
+				"_-_ TBA.\n" +
+						"_-_ Bug report: Touhoupixeldungeon@gmail.com"));
 	}
 
 	public static void add_v1_5_6_Changes( ArrayList<ChangeInfo> changeInfos ){
