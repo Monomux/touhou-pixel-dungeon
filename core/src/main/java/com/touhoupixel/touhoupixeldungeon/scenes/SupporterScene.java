@@ -78,7 +78,7 @@ public class SupporterScene extends PixelScene {
 			@Override
 			protected void onClick() {
 				super.onClick();
-				String link = "https://www.gift-gift.jp/inquiry";
+				String link = "https://github.com/tpd0618/touhou-pixel-dungeon-reloaded";
 				TouhouPixelDungeon.platform.openURI(link);
 			}
 		};
