@@ -33,7 +33,7 @@ public class Nazrin extends Mob {
 		spriteClass = NazrinSprite.class;
 
 		if (Dungeon.depth > 50){
-			HP = HT = 382;
+			HP = HT = 384;
 		} else HP = HT = 9;
 
 		if (Dungeon.depth > 50){
